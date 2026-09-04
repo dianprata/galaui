@@ -45,6 +45,14 @@
   ],
   "author": "GalaUI",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianprata/galaui.git"
+  },
+  "homepage": "https://github.com/dianprata/galaui#readme",
+  "bugs": {
+    "url": "https://github.com/dianprata/galaui/issues"
+  },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
