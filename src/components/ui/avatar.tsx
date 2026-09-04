@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full ring-1 ring-border",
+  "relative flex shrink-0 overflow-hidden rounded-full ring-1 ring-border transition-transform duration-200 ease-out hover:scale-105 select-none",
   {
     variants: {
       size: {
@@ -44,7 +44,7 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseAvatar.Image
     ref={ref}
-    className={cn("aspect-square h-full w-full object-cover", className)}
+    className={cn("aspect-square h-full w-full object-cover transition-opacity duration-200 ease-out", className)}
     {...props}
   />
 ));
@@ -57,7 +57,7 @@ const AvatarFallback = React.forwardRef<
   <BaseAvatar.Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground",
+      "flex h-full w-full items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground transition-colors duration-200 ease-out",
       className
     )}
     {...props}

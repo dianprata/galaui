@@ -15,7 +15,7 @@ const DialogBackdrop = React.forwardRef<
   <BaseDialog.Backdrop
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-all duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-200 ease-out data-starting-style:opacity-0 data-ending-style:opacity-0",
       className
     )}
     {...props}
@@ -33,13 +33,13 @@ const DialogPopup = React.forwardRef<
       <BaseDialog.Popup
         ref={ref}
         className={cn(
-          "relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-starting-style:translate-y-2 data-ending-style:opacity-0 data-ending-style:scale-95 data-ending-style:translate-y-2",
           className
         )}
         {...props}
       >
         {children}
-        <BaseDialog.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-opacity cursor-pointer">
+        <BaseDialog.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 active:scale-90 cursor-pointer">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </BaseDialog.Close>
@@ -110,4 +110,3 @@ export {
   DialogTitle,
   DialogDescription,
 };
-

@@ -3,8 +3,8 @@ import { Popover as BasePopover } from "@base-ui/react";
 import { cn } from "@/lib/utils";
 
 const Popover = BasePopover.Root;
-const PopoverTrigger = BasePopover.Trigger;
 const PopoverPortal = BasePopover.Portal;
+const PopoverTrigger = BasePopover.Trigger;
 const PopoverClose = BasePopover.Close;
 
 const PopoverPopup = React.forwardRef<
@@ -19,7 +19,7 @@ const PopoverPopup = React.forwardRef<
       <BasePopover.Popup
         ref={ref}
         className={cn(
-          "z-50 w-72 rounded-xl border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "z-50 w-72 origin-[var(--transform-origin)] rounded-xl border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
           className
         )}
         {...props}
@@ -32,4 +32,3 @@ const PopoverPopup = React.forwardRef<
 PopoverPopup.displayName = "PopoverPopup";
 
 export { Popover, PopoverTrigger, PopoverPortal, PopoverPopup, PopoverClose };
-

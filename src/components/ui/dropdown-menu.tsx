@@ -4,9 +4,9 @@ import { ChevronRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const DropdownMenu = BaseMenu.Root;
-const DropdownMenuTrigger = BaseMenu.Trigger;
 const DropdownMenuGroup = BaseMenu.Group;
 const DropdownMenuPortal = BaseMenu.Portal;
+const DropdownMenuTrigger = BaseMenu.Trigger;
 
 const DropdownMenuPopup = React.forwardRef<
   React.ElementRef<typeof BaseMenu.Popup>,
@@ -20,7 +20,7 @@ const DropdownMenuPopup = React.forwardRef<
       <BaseMenu.Popup
         ref={ref}
         className={cn(
-          "z-50 min-w-[8rem] overflow-hidden rounded-xl border border-border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "z-50 min-w-[8rem] origin-[var(--transform-origin)] overflow-hidden rounded-xl border border-border bg-popover p-1 text-popover-foreground shadow-lg transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
           className
         )}
         {...props}
@@ -39,7 +39,7 @@ const DropdownMenuItem = React.forwardRef<
   <BaseMenu.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer select-none items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus:bg-muted focus:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-pointer select-none items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-all duration-100 ease-out focus:bg-muted focus:text-foreground active:scale-[0.98] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
       className
     )}
@@ -69,4 +69,3 @@ export {
   DropdownMenuGroup,
   DropdownMenuPortal,
 };
-

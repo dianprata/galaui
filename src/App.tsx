@@ -54,8 +54,11 @@ import {
   CardContent,
   CardFooter,
   Separator,
+  ToastProvider,
+  ToastViewport,
   cn,
 } from "./index";
+import { ShowcaseNewComponents } from "./components/ShowcaseNewComponents";
 
 import {
   Sparkle,
@@ -112,7 +115,32 @@ type ComponentId =
   | "slider"
   | "input"
   | "badge"
-  | "card";
+  | "card"
+  | "alert"
+  | "skeleton"
+  | "field"
+  | "toast"
+  | "drawer"
+  | "number-field"
+  | "input-otp"
+  | "toggle"
+  | "toggle-group"
+  | "checkbox-group"
+  | "collapsible"
+  | "alert-dialog"
+  | "progress"
+  | "meter"
+  | "breadcrumb"
+  | "pagination"
+  | "scroll-area"
+  | "kbd"
+  | "table"
+  | "context-menu"
+  | "menubar"
+  | "navigation-menu"
+  | "preview-card"
+  | "aspect-ratio"
+  | "empty-state";
 
 interface ComponentMeta {
   id: ComponentId;
@@ -124,22 +152,47 @@ interface ComponentMeta {
 }
 
 const COMPONENT_LIST: ComponentMeta[] = [
-  { id: "button", name: "Button", category: "Primitives", primitive: "Base UI Button / cva", desc: "Interactive tactile button with spring physics and variant matrices.", figmaToken: "color/semantic/primary/default" },
-  { id: "dialog", name: "Dialog (Modal)", category: "Molecules", primitive: "@base-ui/react/Dialog", desc: "Accessible modal overlay with focus trapping, backdrop blur, and escape dismissal.", figmaToken: "radius/2xl + shadow/2xl" },
-  { id: "popover", name: "Popover", category: "Molecules", primitive: "@base-ui/react/Popover", desc: "Floating contextual popover card with collision detection and smooth transitions.", figmaToken: "color/semantic/bg/popover" },
-  { id: "dropdown", name: "Dropdown Menu", category: "Molecules", primitive: "@base-ui/react/Menu", desc: "Action menu trigger with keyboard traversal and separator groups.", figmaToken: "color/semantic/bg/popover" },
-  { id: "switch", name: "Switch", category: "Primitives", primitive: "@base-ui/react/Switch", desc: "Toggle primitive for binary options with spring-actuated thumb animation.", figmaToken: "color/semantic/primary/default" },
-  { id: "checkbox", name: "Checkbox", category: "Primitives", primitive: "@base-ui/react/Checkbox", desc: "Tri-state capable custom checkbox with high-contrast indicator.", figmaToken: "radius/sm + border/default" },
-  { id: "radio", name: "Radio Group", category: "Primitives", primitive: "@base-ui/react/RadioGroup", desc: "Mutually exclusive choice selector with directional keyboard arrows.", figmaToken: "radius/full + primary" },
-  { id: "tooltip", name: "Tooltip", category: "Primitives", primitive: "@base-ui/react/Tooltip", desc: "Contextual label that appears on pointer hover or keyboard focus.", figmaToken: "color/semantic/bg/inverse" },
   { id: "accordion", name: "Accordion", category: "Molecules", primitive: "@base-ui/react/Accordion", desc: "Vertically stacked interactive disclosure headings and content panels.", figmaToken: "border/default + space/4" },
-  { id: "tabs", name: "Tabs", category: "Molecules", primitive: "@base-ui/react/Tabs", desc: "Segmented container switching between multiple functional views.", figmaToken: "color/semantic/bg/subtle" },
-  { id: "select", name: "Select", category: "Form", primitive: "@base-ui/react/Select", desc: "Native-like custom select popup with typeahead search support.", figmaToken: "color/semantic/border/default" },
+  { id: "alert", name: "Alert", category: "Molecules", primitive: "cva / cn", desc: "Status banner callouts with semantic color indicators.", figmaToken: "status/* + radius/xl" },
+  { id: "alert-dialog", name: "Alert Dialog", category: "Molecules", primitive: "@base-ui/react/AlertDialog", desc: "Modal confirmation prompt for destructive or irreversible actions.", figmaToken: "status/destructive + radius/2xl" },
+  { id: "aspect-ratio", name: "Aspect Ratio", category: "Primitives", primitive: "CSS AspectRatio", desc: "Proportional media wrapper maintaining defined aspect ratios.", figmaToken: "radius/xl" },
   { id: "avatar", name: "Avatar", category: "Primitives", primitive: "@base-ui/react/Avatar", desc: "Image presentation primitive with automatic initials fallback.", figmaToken: "radius/full + border/subtle" },
-  { id: "slider", name: "Slider", category: "Form", primitive: "@base-ui/react/Slider", desc: "Continuous and stepped value slider with touch and drag physics.", figmaToken: "primary/default + radius/full" },
-  { id: "input", name: "Input & Textarea", category: "Form", primitive: "Form HTML", desc: "Typography-calibrated input fields with label placement and helper text.", figmaToken: "color/semantic/input" },
   { id: "badge", name: "Badge", category: "Primitives", primitive: "cva / cn", desc: "Status tag indicators with semantic border tints.", figmaToken: "radius/md + status/*" },
+  { id: "breadcrumb", name: "Breadcrumb", category: "Molecules", primitive: "Semantic Nav", desc: "Hierarchical trail navigation showing user location.", figmaToken: "color/semantic/fg/muted" },
+  { id: "button", name: "Button", category: "Primitives", primitive: "Base UI Button / cva", desc: "Interactive tactile button with spring physics and variant matrices.", figmaToken: "color/semantic/primary/default" },
   { id: "card", name: "Card", category: "Molecules", primitive: "Compound Layout", desc: "Elevated structural surface with header, content, and footer slots.", figmaToken: "color/semantic/bg/card" },
+  { id: "checkbox", name: "Checkbox", category: "Primitives", primitive: "@base-ui/react/Checkbox", desc: "Tri-state capable custom checkbox with high-contrast indicator.", figmaToken: "radius/sm + border/default" },
+  { id: "checkbox-group", name: "Checkbox Group", category: "Form", primitive: "@base-ui/react/CheckboxGroup", desc: "Accessible grouping for multiple checkbox selections.", figmaToken: "space/2.5" },
+  { id: "collapsible", name: "Collapsible", category: "Molecules", primitive: "@base-ui/react/Collapsible", desc: "Expandable disclosure container controlled by an interactive trigger.", figmaToken: "border/default + radius/xl" },
+  { id: "context-menu", name: "Context Menu", category: "Molecules", primitive: "@base-ui/react/ContextMenu", desc: "Right-click popup menu with submenus and shortcut hints.", figmaToken: "shadow/xl + radius/xl" },
+  { id: "dialog", name: "Dialog (Modal)", category: "Molecules", primitive: "@base-ui/react/Dialog", desc: "Accessible modal overlay with focus trapping, backdrop blur, and escape dismissal.", figmaToken: "radius/2xl + shadow/2xl" },
+  { id: "drawer", name: "Drawer (Sheet)", category: "Molecules", primitive: "@base-ui/react/Drawer", desc: "Slide-over panel from screen edges with gesture swipe dismiss.", figmaToken: "radius/2xl + shadow/2xl" },
+  { id: "dropdown", name: "Dropdown Menu", category: "Molecules", primitive: "@base-ui/react/Menu", desc: "Action menu trigger with keyboard traversal and separator groups.", figmaToken: "color/semantic/bg/popover" },
+  { id: "empty-state", name: "Empty State", category: "Molecules", primitive: "Compound Layout", desc: "Visual placeholder displayed when data or records are empty.", figmaToken: "border/dashed + radius/2xl" },
+  { id: "field", name: "Field & Form", category: "Form", primitive: "@base-ui/react/Field", desc: "Accessible form field with label, control, description, and error validation.", figmaToken: "color/semantic/border + status/destructive" },
+  { id: "input", name: "Input & Textarea", category: "Form", primitive: "Form HTML", desc: "Typography-calibrated input fields with label placement and helper text.", figmaToken: "color/semantic/input" },
+  { id: "input-otp", name: "Input OTP", category: "Form", primitive: "@base-ui/react/OTPField", desc: "Segmented one-time password input with individual character slots.", figmaToken: "color/semantic/input + radius/lg" },
+  { id: "kbd", name: "Kbd", category: "Primitives", primitive: "Semantic Kbd", desc: "Keyboard shortcut key badge indicator.", figmaToken: "font/mono + radius/sm" },
+  { id: "menubar", name: "Menubar", category: "Molecules", primitive: "@base-ui/react/Menubar", desc: "Application menu bar with top-level dropdown commands.", figmaToken: "radius/xl + shadow/2xs" },
+  { id: "meter", name: "Meter", category: "Primitives", primitive: "@base-ui/react/Meter", desc: "Visual display for scalar measurements and resource quotas.", figmaToken: "primary/default + radius/full" },
+  { id: "navigation-menu", name: "Navigation Menu", category: "Molecules", primitive: "@base-ui/react/NavigationMenu", desc: "Header navigation with animated indicator and popup viewport.", figmaToken: "shadow/2xl + radius/2xl" },
+  { id: "number-field", name: "Number Field", category: "Form", primitive: "@base-ui/react/NumberField", desc: "Numeric input with stepper buttons, formatting, and scrub area.", figmaToken: "color/semantic/input" },
+  { id: "pagination", name: "Pagination", category: "Molecules", primitive: "Semantic Nav", desc: "Multi-page navigation with next, previous, and page number links.", figmaToken: "space/1 + radius/sm" },
+  { id: "popover", name: "Popover", category: "Molecules", primitive: "@base-ui/react/Popover", desc: "Floating contextual popover card with collision detection and smooth transitions.", figmaToken: "color/semantic/bg/popover" },
+  { id: "preview-card", name: "Preview Card", category: "Molecules", primitive: "@base-ui/react/PreviewCard", desc: "Rich preview popup on pointer hover for links or user profiles.", figmaToken: "shadow/xl + radius/2xl" },
+  { id: "progress", name: "Progress Bar", category: "Primitives", primitive: "@base-ui/react/Progress", desc: "Determinate and indeterminate progress indicators.", figmaToken: "primary/default + radius/full" },
+  { id: "radio", name: "Radio Group", category: "Primitives", primitive: "@base-ui/react/RadioGroup", desc: "Mutually exclusive choice selector with directional keyboard arrows.", figmaToken: "radius/full + primary" },
+  { id: "scroll-area", name: "Scroll Area", category: "Primitives", primitive: "@base-ui/react/ScrollArea", desc: "Custom styled cross-browser scrollbar without layout shift.", figmaToken: "color/semantic/bg/muted" },
+  { id: "select", name: "Select", category: "Form", primitive: "@base-ui/react/Select", desc: "Native-like custom select popup with typeahead search support.", figmaToken: "color/semantic/border/default" },
+  { id: "skeleton", name: "Skeleton", category: "Primitives", primitive: "Tailwind Pulse", desc: "Animated placeholder skeleton for loading content structures.", figmaToken: "color/semantic/bg/muted" },
+  { id: "slider", name: "Slider", category: "Form", primitive: "@base-ui/react/Slider", desc: "Continuous and stepped value slider with touch and drag physics.", figmaToken: "primary/default + radius/full" },
+  { id: "switch", name: "Switch", category: "Primitives", primitive: "@base-ui/react/Switch / cva", desc: "Toggle primitive for binary options with spring-actuated thumb animation.", figmaToken: "color/semantic/primary/default" },
+  { id: "table", name: "Table", category: "Molecules", primitive: "Semantic Table", desc: "Structured data table with responsive styled rows and cells.", figmaToken: "border/default + color/semantic/bg/card" },
+  { id: "tabs", name: "Tabs", category: "Molecules", primitive: "@base-ui/react/Tabs", desc: "Segmented container switching between multiple functional views.", figmaToken: "color/semantic/bg/subtle" },
+  { id: "toast", name: "Toast Notification", category: "Molecules", primitive: "@base-ui/react/Toast", desc: "Queue-based floating notification messages with swipe-to-dismiss.", figmaToken: "shadow/xl + radius/xl" },
+  { id: "toggle", name: "Toggle", category: "Primitives", primitive: "@base-ui/react/Toggle", desc: "Two-state pressed button for binary on/off actions.", figmaToken: "primary/default + radius/lg" },
+  { id: "toggle-group", name: "Toggle Group", category: "Primitives", primitive: "@base-ui/react/ToggleGroup", desc: "Grouped segmented toggle controls for single or multiple selection.", figmaToken: "color/semantic/bg/muted" },
+  { id: "tooltip", name: "Tooltip", category: "Primitives", primitive: "@base-ui/react/Tooltip", desc: "Contextual label that appears on pointer hover or keyboard focus.", figmaToken: "color/semantic/bg/inverse" },
 ];
 
 export default function App() {
@@ -195,7 +248,7 @@ export default function App() {
     (c) =>
       c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ).sort((a, b) => a.name.localeCompare(b.name));
 
   const getGeneratedCode = (): string => {
     switch (selectedComp) {
@@ -269,7 +322,8 @@ export function SyncControl() {
         <p className="text-[11px] text-muted-foreground">Keep variables in lockstep with code</p>
       </div>
       <Switch
-        checked={enabled}
+        size="${btnSize}"
+        ${isDisabled ? "disabled\n        " : ""}checked={enabled}
         onCheckedChange={setEnabled}
         className={cn("${customCn}")}
       />
@@ -330,6 +384,8 @@ export function BandwidthSlider() {
   };
 
   return (
+    <ToastProvider>
+      <ToastViewport />
     <div className="h-screen flex flex-col font-sans bg-background text-foreground overflow-hidden selection:bg-primary selection:text-primary-foreground">
       {/* Precision Top Navbar */}
       <header className="h-12 border-b border-border bg-card/95 backdrop-blur-md flex items-center justify-between px-4 z-30 shrink-0">
@@ -431,7 +487,7 @@ export function BandwidthSlider() {
           </nav>
 
           <div className="p-2.5 border-t border-border bg-muted/20 text-[11px] font-mono text-muted-foreground flex items-center justify-between">
-            <span>16 Primitives</span>
+            <span>{COMPONENT_LIST.length} Components</span>
             <span>v1.2.0</span>
           </div>
         </aside>
@@ -545,10 +601,8 @@ export function BandwidthSlider() {
 
                   {selectedComp === "dialog" && (
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                      <DialogTrigger asChild>
-                        <Button variant="primary" size="md" className="shadow-xs">
-                          <Fingerprint weight="bold" className="w-4 h-4" /> Launch Modal Dialog
-                        </Button>
+                      <DialogTrigger render={<Button variant="primary" size="md" className="shadow-xs" />}>
+                        <Fingerprint weight="bold" className="w-4 h-4" /> Launch Modal Dialog
                       </DialogTrigger>
                       <DialogPopup>
                         <DialogHeader>
@@ -562,13 +616,9 @@ export function BandwidthSlider() {
                           <Input defaultValue="pk_live_galaui_8921" />
                         </div>
                         <DialogFooter>
-                          <DialogClose asChild>
-                            <Button variant="outline">Cancel</Button>
-                          </DialogClose>
-                          <DialogClose asChild>
-                            <Button variant="primary" onClick={() => showToast("Key authorized")}>
-                              Authorize Key
-                            </Button>
+                          <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
+                          <DialogClose render={<Button variant="primary" onClick={() => showToast("Key authorized")} />}>
+                            Authorize Key
                           </DialogClose>
                         </DialogFooter>
                       </DialogPopup>
@@ -577,10 +627,8 @@ export function BandwidthSlider() {
 
                   {selectedComp === "popover" && (
                     <Popover>
-                      <PopoverTrigger asChild>
-                        <Button variant="outline">
-                          <Sliders weight="bold" className="w-4 h-4" /> Open Base UI Popover
-                        </Button>
+                      <PopoverTrigger render={<Button variant="outline" />}>
+                        <Sliders weight="bold" className="w-4 h-4" /> Open Base UI Popover
                       </PopoverTrigger>
                       <PopoverPopup className="w-76 space-y-3">
                         <div className="flex items-center justify-between pb-2 border-b border-border">
@@ -600,11 +648,9 @@ export function BandwidthSlider() {
 
                   {selectedComp === "dropdown" && (
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
-                          <span>Actions Menu</span>
-                          <CaretRight weight="bold" className="w-3.5 h-3.5" />
-                        </Button>
+                      <DropdownMenuTrigger render={<Button variant="outline" />}>
+                        <span>Actions Menu</span>
+                        <CaretRight weight="bold" className="w-3.5 h-3.5" />
                       </DropdownMenuTrigger>
                       <DropdownMenuPopup className="w-52">
                         <DropdownMenuItem onClick={() => showToast("Edited item")}>
@@ -629,6 +675,8 @@ export function BandwidthSlider() {
                           <p className="text-[11px] text-muted-foreground">Broadcast token updates instantly</p>
                         </div>
                         <Switch
+                          size={btnSize as any}
+                          disabled={isDisabled}
                           checked={switchState}
                           onCheckedChange={setSwitchState}
                           className={cn(customCn)}
@@ -678,10 +726,8 @@ export function BandwidthSlider() {
 
                   {selectedComp === "tooltip" && (
                     <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button variant="secondary">
-                          <Eye weight="bold" className="w-4 h-4 mr-1.5" /> Hover for Inspection
-                        </Button>
+                      <TooltipTrigger render={<Button variant="secondary" />}>
+                        <Eye weight="bold" className="w-4 h-4 mr-1.5" /> Hover for Inspection
                       </TooltipTrigger>
                       <TooltipPopup>
                         Rendered with @base-ui/react Tooltip with automatic collision boundaries
@@ -850,6 +896,17 @@ export function BandwidthSlider() {
                       </CardFooter>
                     </Card>
                   )}
+
+                  <ShowcaseNewComponents
+                    selectedComp={selectedComp}
+                    viewMode="focus"
+                    showToast={showToast}
+                    btnVariant={btnVariant}
+                    btnSize={btnSize}
+                    btnLabel={btnLabel}
+                    isDisabled={isDisabled}
+                    customCn={customCn}
+                  />
                 </div>
               </div>
             ) : (
@@ -1117,10 +1174,79 @@ export function BandwidthSlider() {
                   </div>
                 )}
 
-                {selectedComp !== "button" && selectedComp !== "badge" && selectedComp !== "slider" && selectedComp !== "select" && selectedComp !== "input" && (
-                  <div className="p-8 text-center text-xs font-mono text-muted-foreground border border-dashed border-border rounded-lg">
-                    Specimen matrix is active for interactive buttons and badge primitives.
+                {selectedComp === "switch" && (
+                  <div className="space-y-6">
+                    {/* Sizes */}
+                    <div className="space-y-3">
+                      <span className="text-xs font-semibold text-muted-foreground">Sizes Scale</span>
+                      <div className="space-y-4 max-w-md">
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <div>
+                            <p className="text-xs font-medium text-foreground">Extra Small (xs)</p>
+                            <p className="text-[10px] text-muted-foreground">16px track / 12px thumb</p>
+                          </div>
+                          <Switch size="xs" defaultChecked />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <div>
+                            <p className="text-xs font-medium text-foreground">Small (sm)</p>
+                            <p className="text-[10px] text-muted-foreground">20px track / 16px thumb</p>
+                          </div>
+                          <Switch size="sm" defaultChecked />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <div>
+                            <p className="text-xs font-medium text-foreground">Default / Medium (default / md)</p>
+                            <p className="text-[10px] text-muted-foreground">24px track / 20px thumb</p>
+                          </div>
+                          <Switch size="default" defaultChecked />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <div>
+                            <p className="text-xs font-medium text-foreground">Large (lg)</p>
+                            <p className="text-[10px] text-muted-foreground">28px track / 24px thumb</p>
+                          </div>
+                          <Switch size="lg" defaultChecked />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* States */}
+                    <div className="space-y-3 pt-4 border-t border-border">
+                      <span className="text-xs font-semibold text-muted-foreground">States & Interactions</span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <span className="text-xs font-semibold text-foreground">Checked (Active)</span>
+                          <Switch defaultChecked />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <span className="text-xs font-semibold text-foreground">Unchecked (Inactive)</span>
+                          <Switch />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <span className="text-xs font-semibold text-foreground">Disabled (Checked)</span>
+                          <Switch defaultChecked disabled />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-card">
+                          <span className="text-xs font-semibold text-foreground">Disabled (Unchecked)</span>
+                          <Switch disabled />
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                )}
+
+                {selectedComp !== "button" && selectedComp !== "badge" && selectedComp !== "slider" && selectedComp !== "select" && selectedComp !== "input" && selectedComp !== "switch" && (
+                  <ShowcaseNewComponents
+                    selectedComp={selectedComp}
+                    viewMode="matrix"
+                    showToast={showToast}
+                    btnVariant={btnVariant}
+                    btnSize={btnSize}
+                    btnLabel={btnLabel}
+                    isDisabled={isDisabled}
+                    customCn={customCn}
+                  />
                 )}
               </div>
             )}
@@ -1156,10 +1282,10 @@ export function BandwidthSlider() {
           </div>
 
           <div className="p-3.5 space-y-4 text-xs">
-            {/* Variant / Size for Button, Badge, Slider, Select & Input */}
-            {(selectedComp === "button" || selectedComp === "badge" || selectedComp === "slider" || selectedComp === "select" || selectedComp === "input") && (
+            {/* Variant / Size for Button, Badge, Slider, Select, Input & Switch */}
+            {(selectedComp === "button" || selectedComp === "badge" || selectedComp === "slider" || selectedComp === "select" || selectedComp === "input" || selectedComp === "switch") && (
               <>
-                {selectedComp !== "select" && selectedComp !== "input" && (
+                {selectedComp !== "select" && selectedComp !== "input" && selectedComp !== "switch" && (
                 <div className="space-y-1">
                   <label className="text-muted-foreground font-medium block text-[11px]">Variant</label>
                   <select
@@ -1262,11 +1388,12 @@ export function BandwidthSlider() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 px-3.5 py-2 rounded-lg bg-foreground text-background text-xs font-semibold shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-150">
+        <div className="fixed bottom-5 right-5 z-50 px-3.5 py-2 rounded-lg bg-foreground text-background text-xs font-semibold shadow-2xl flex items-center gap-2 animate-toast">
           <Check weight="bold" className="w-3.5 h-3.5 text-emerald-500" />
           <span>{toastMessage}</span>
         </div>
       )}
     </div>
+    </ToastProvider>
   );
 }

@@ -49,7 +49,7 @@ function Select<Value = any, Multiple extends boolean | undefined = false>({
 }
 
 const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between rounded-lg border border-border bg-background text-foreground ring-offset-background transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 cursor-pointer select-none text-left font-normal",
+  "flex w-full items-center justify-between rounded-lg border border-border bg-background text-foreground ring-offset-background transition-all duration-150 ease-out active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 cursor-pointer select-none text-left font-normal",
   {
     variants: {
       size: {
@@ -133,7 +133,7 @@ const SelectPopup = React.forwardRef<
         <BaseSelect.Popup
           ref={ref}
           className={cn(
-            "relative z-50 max-h-96 min-w-[var(--anchor-width)] overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg outline-none transition-[opacity,transform] duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
+            "relative z-50 max-h-96 min-w-[var(--anchor-width)] origin-[var(--transform-origin)] overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg outline-none transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
             className
           )}
           {...props}
@@ -155,7 +155,7 @@ const SelectItem = React.forwardRef<
   <BaseSelect.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2.5 text-xs outline-none transition-colors data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[selected]:font-semibold data-[selected]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2.5 text-xs outline-none transition-all duration-100 ease-out active:scale-[0.99] data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[selected]:font-semibold data-[selected]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
