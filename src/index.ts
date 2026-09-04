@@ -41,3 +41,5 @@ export * from "./components/ui/navigation-menu";
 export * from "./components/ui/preview-card";
 export * from "./components/ui/aspect-ratio";
 export * from "./components/ui/empty-state";
+export * from "./components/ui/textarea";
+export * from "../tokens/index";

@@ -56,6 +56,7 @@ import {
   Separator,
   ToastProvider,
   ToastViewport,
+  toast,
   cn,
 } from "./index";
 import { ShowcaseNewComponents } from "./components/ShowcaseNewComponents";
@@ -111,6 +112,7 @@ type ComponentId =
   | "accordion"
   | "tabs"
   | "select"
+  | "separator"
   | "avatar"
   | "slider"
   | "input"
@@ -185,6 +187,7 @@ const COMPONENT_LIST: ComponentMeta[] = [
   { id: "scroll-area", name: "Scroll Area", category: "Primitives", primitive: "@base-ui/react/ScrollArea", desc: "Custom styled cross-browser scrollbar without layout shift.", figmaToken: "color/semantic/bg/muted" },
   { id: "select", name: "Select", category: "Form", primitive: "@base-ui/react/Select", desc: "Native-like custom select popup with typeahead search support.", figmaToken: "color/semantic/border/default" },
   { id: "skeleton", name: "Skeleton", category: "Primitives", primitive: "Tailwind Pulse", desc: "Animated placeholder skeleton for loading content structures.", figmaToken: "color/semantic/bg/muted" },
+  { id: "separator", name: "Separator", category: "Primitives", primitive: "@base-ui/react/Separator", desc: "Visual divider for grouping related content and controls.", figmaToken: "color/semantic/border/default" },
   { id: "slider", name: "Slider", category: "Form", primitive: "@base-ui/react/Slider", desc: "Continuous and stepped value slider with touch and drag physics.", figmaToken: "primary/default + radius/full" },
   { id: "switch", name: "Switch", category: "Primitives", primitive: "@base-ui/react/Switch / cva", desc: "Toggle primitive for binary options with spring-actuated thumb animation.", figmaToken: "color/semantic/primary/default" },
   { id: "table", name: "Table", category: "Molecules", primitive: "Semantic Table", desc: "Structured data table with responsive styled rows and cells.", figmaToken: "border/default + color/semantic/bg/card" },
@@ -202,7 +205,6 @@ export default function App() {
   const [canvasBg, setCanvasBg] = useState<"grid" | "plain">("grid");
   const [viewMode, setViewMode] = useState<"focus" | "matrix">("focus");
   const [searchQuery, setSearchQuery] = useState("");
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Dynamic props configuration
   const [btnVariant, setBtnVariant] = useState<"primary" | "secondary" | "outline" | "destructive" | "ghost" | "link">("primary");
@@ -233,8 +235,7 @@ export default function App() {
   }, [isDark]);
 
   const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 2500);
+    toast.show(msg);
   };
 
   const copyToClipboard = (text: string) => {
@@ -376,6 +377,48 @@ export function BandwidthSlider() {
         step={1}
       />
     </div>
+  );
+}`;
+      case "separator":
+        return `import { Separator } from "@/components/ui/separator";
+
+export function ContentDivider() {
+  return (
+    <div className="w-full max-w-md space-y-4">
+      <div className="space-y-1">
+        <h4 className="text-xs font-semibold text-foreground">Overview</h4>
+        <p className="text-xs text-muted-foreground">Detailed layout configuration</p>
+      </div>
+      <Separator />
+      <div className="flex h-5 items-center gap-4 text-xs text-muted-foreground">
+        <span>Docs</span>
+        <Separator orientation="vertical" />
+        <span>Changelog</span>
+        <Separator orientation="vertical" />
+        <span>GitHub</span>
+      </div>
+    </div>
+  );
+}`;
+      case "toast":
+        return `import { ToastProvider, ToastViewport, useToastManager } from "@/components/ui/toast";
+import { Button } from "@/components/ui/button";
+
+export function NotificationTrigger() {
+  const toastManager = useToastManager();
+
+  return (
+    <Button
+      variant="primary"
+      onClick={() =>
+        toastManager.add({
+          title: "Operation Confirmed",
+          description: "Variables synced 1:1 with Figma Tokens Studio.",
+        })
+      }
+    >
+      Dispatch Toast
+    </Button>
   );
 }`;
       default:
@@ -1385,14 +1428,6 @@ export function BandwidthSlider() {
           </div>
         </aside>
       </div>
-
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 px-3.5 py-2 rounded-lg bg-foreground text-background text-xs font-semibold shadow-2xl flex items-center gap-2 animate-toast">
-          <Check weight="bold" className="w-3.5 h-3.5 text-emerald-500" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
     </div>
     </ToastProvider>
   );

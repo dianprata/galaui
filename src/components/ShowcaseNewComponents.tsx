@@ -129,6 +129,7 @@ import {
   EmptyStateActions,
   Button,
   Badge,
+  Separator,
   cn,
 } from "../index";
 
@@ -168,21 +169,52 @@ interface ShowcaseProps {
 
 function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
   const toastManager = useToastManager();
-  const handleCreate = () => {
+  const handleCreate = (type?: "default" | "success" | "warning" | "destructive") => {
     if (toastManager?.add) {
-      toastManager.add({
-        title: "Token Synchronized",
-        description: "Variables matched 1:1 with Figma Tokens Studio.",
-      });
+      if (type === "success") {
+        toastManager.add({
+          title: "Token Synchronized",
+          description: "Variables matched 1:1 with Figma Tokens Studio.",
+          type: "success",
+        });
+      } else if (type === "destructive") {
+        toastManager.add({
+          title: "Cluster Disconnected",
+          description: "Connection to ap-southeast-1 was terminated.",
+          type: "destructive",
+        });
+      } else if (type === "warning") {
+        toastManager.add({
+          title: "Rate Limit Approaching",
+          description: "You have used 85% of your API token quota.",
+          type: "warning",
+        });
+      } else {
+        toastManager.add({
+          title: "System Notification",
+          description: "GalaUI Base UI Toast dispatched with auto-dismiss.",
+        });
+      }
     } else {
       showToast("Toast notification dispatched");
     }
   };
 
   return (
-    <Button variant="primary" onClick={handleCreate}>
-      <BellRinging weight="bold" className="w-4 h-4 mr-1.5" /> Dispatch Base UI Toast
-    </Button>
+    <div className="flex flex-wrap gap-2 justify-center items-center">
+      <Button variant="primary" size="sm" onClick={() => handleCreate()}>
+        <BellRinging weight="bold" className="w-4 h-4 mr-1.5" /> Dispatch Toast
+      </Button>
+      <Button variant="outline" size="sm" onClick={() => handleCreate("success")}>
+        <CheckCircle weight="bold" className="w-4 h-4 mr-1.5 text-emerald-500" /> Success
+      </Button>
+      <Button variant="outline" size="sm" onClick={() => handleCreate("warning")}>
+        <Warning weight="bold" className="w-4 h-4 mr-1.5 text-amber-500" /> Warning
+      </Button>
+      <Button variant="destructive" size="sm" onClick={() => handleCreate("destructive")}>
+        <XCircle weight="bold" className="w-4 h-4 mr-1.5" /> Destructive
+      </Button>
+    </div>
   );
 }
 
@@ -269,16 +301,34 @@ export function ShowcaseNewComponents({
 
       case "toast":
         return (
-          <div className="flex flex-col items-center gap-4 text-center">
-            <ToastDemoButton showToast={showToast} />
-            <div className="w-full max-w-xs text-left p-3 rounded-xl border border-border bg-card shadow-md space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-foreground">Notification Specimen</span>
-                <Badge variant="success">Queue Ready</Badge>
+          <div className="flex flex-col items-center gap-6 text-center w-full max-w-md">
+            <div className="w-full text-left space-y-2">
+              <span className="text-xs font-semibold text-muted-foreground">Interactive Queue Dispatcher</span>
+              <div className="p-4 rounded-xl border border-border bg-card flex flex-col items-center justify-center gap-3">
+                <ToastDemoButton showToast={showToast} />
+                <p className="text-[11px] text-muted-foreground">
+                  Dispatches Base UI animated queue toast to the viewport in the bottom-right.
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Supports swipe gestures, timeouts, and viewport portals.
-              </p>
+            </div>
+
+            <div className="w-full text-left space-y-2">
+              <span className="text-xs font-semibold text-muted-foreground">Notification Specimen (Live Preview)</span>
+              <div className="w-full max-w-md p-4 rounded-xl border border-border bg-card shadow-md space-y-2">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold text-foreground tracking-tight">Token Synchronized</p>
+                    <p className="text-xs text-muted-foreground leading-normal">
+                      Variables matched 1:1 with Figma Tokens Studio.
+                    </p>
+                  </div>
+                  <Badge variant="success">Queue Ready</Badge>
+                </div>
+                <div className="pt-2 border-t border-border/50 flex items-center justify-between text-[11px] text-muted-foreground">
+                  <span>Swipe to dismiss supported</span>
+                  <span>5000ms auto-timeout</span>
+                </div>
+            </div>
             </div>
           </div>
         );
@@ -788,6 +838,21 @@ export function ShowcaseNewComponents({
           </div>
         );
 
+      case "separator":
+        return (
+          <div className="w-full max-w-md space-y-4">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-foreground">Horizontal</p>
+              <Separator />
+            </div>
+            <div className="flex h-10 items-center gap-4">
+              <span className="text-xs text-muted-foreground">Navigation</span>
+              <Separator orientation="vertical" />
+              <span className="text-xs text-muted-foreground">Settings</span>
+            </div>
+          </div>
+        );
+
       case "empty-state":
         return (
           <EmptyState className="w-full max-w-md">
@@ -864,6 +929,69 @@ export function ShowcaseNewComponents({
             <Toggle variant="outline">Outline Unpressed</Toggle>
             <Toggle variant="outline" defaultPressed>Outline Pressed</Toggle>
             <Toggle disabled>Disabled State</Toggle>
+          </div>
+        </div>
+      );
+
+    case "separator":
+      return (
+        <div className="space-y-6 max-w-md">
+          <div className="space-y-2">
+            <span className="text-xs font-semibold text-muted-foreground">Horizontal Orientation</span>
+            <div className="space-y-2 p-3 rounded-xl border border-border bg-card">
+              <p className="text-xs font-medium text-foreground">Section Alpha</p>
+              <Separator />
+              <p className="text-xs text-muted-foreground">Section Beta</p>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <span className="text-xs font-semibold text-muted-foreground">Vertical Orientation</span>
+            <div className="flex h-10 items-center gap-4 p-3 rounded-xl border border-border bg-card">
+              <span className="text-xs font-medium text-foreground">Dashboard</span>
+              <Separator orientation="vertical" />
+              <span className="text-xs font-medium text-foreground">Analytics</span>
+              <Separator orientation="vertical" />
+              <span className="text-xs font-medium text-foreground">Settings</span>
+            </div>
+          </div>
+        </div>
+      );
+
+    case "toast":
+      return (
+        <div className="space-y-6 max-w-md">
+          <div className="space-y-2">
+            <span className="text-xs font-semibold text-muted-foreground">Variant Specimens</span>
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl border border-border bg-card shadow-sm flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold text-foreground">Default Toast</p>
+                  <p className="text-xs text-muted-foreground">Standard system notification card with neutral border.</p>
+                </div>
+                <Badge variant="secondary">Default</Badge>
+              </div>
+              <div className="p-4 rounded-xl border border-success-500/30 bg-emerald-50 dark:border-success-500/40 dark:bg-emerald-950 shadow-sm flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold text-emerald-950 dark:text-emerald-200">Success Toast</p>
+                  <p className="text-xs text-emerald-800/80 dark:text-emerald-300/80">Confirmed operation or variable synchronization completed.</p>
+                </div>
+                <Badge variant="success">Success</Badge>
+              </div>
+              <div className="p-4 rounded-xl border border-warning-500/30 bg-amber-50 dark:border-warning-500/40 dark:bg-amber-950 shadow-sm flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold text-amber-950 dark:text-amber-200">Warning Toast</p>
+                  <p className="text-xs text-amber-800/80 dark:text-amber-300/80">Cautionary notification for rate limits or sync warnings.</p>
+                </div>
+                <Badge variant="warning">Warning</Badge>
+              </div>
+              <div className="p-4 rounded-xl border border-destructive-500/30 bg-red-50 dark:border-destructive-500/40 dark:bg-red-950 shadow-sm flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-xs font-semibold text-destructive-700 dark:text-red-200">Destructive Toast</p>
+                  <p className="text-xs text-destructive-600/80 dark:text-red-300/80">Deletion event, cluster teardown, or critical error.</p>
+                </div>
+                <Badge variant="destructive">Critical</Badge>
+              </div>
+            </div>
           </div>
         </div>
       );

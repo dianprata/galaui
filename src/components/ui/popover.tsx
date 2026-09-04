@@ -6,6 +6,20 @@ const Popover = BasePopover.Root;
 const PopoverPortal = BasePopover.Portal;
 const PopoverTrigger = BasePopover.Trigger;
 const PopoverClose = BasePopover.Close;
+const PopoverTitle = BasePopover.Title;
+const PopoverDescription = BasePopover.Description;
+
+const PopoverPositioner = React.forwardRef<
+  React.ElementRef<typeof BasePopover.Positioner>,
+  React.ComponentPropsWithoutRef<typeof BasePopover.Positioner>
+>(({ className, ...props }, ref) => (
+  <BasePopover.Positioner
+    ref={ref}
+    className={cn("z-50 outline-none", className)}
+    {...props}
+  />
+));
+PopoverPositioner.displayName = "PopoverPositioner";
 
 const PopoverPopup = React.forwardRef<
   React.ElementRef<typeof BasePopover.Popup>,
@@ -31,4 +45,13 @@ const PopoverPopup = React.forwardRef<
 ));
 PopoverPopup.displayName = "PopoverPopup";
 
-export { Popover, PopoverTrigger, PopoverPortal, PopoverPopup, PopoverClose };
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverPositioner,
+  PopoverPopup,
+  PopoverTitle,
+  PopoverDescription,
+  PopoverClose,
+};
