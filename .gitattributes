@@ -1,0 +1,6 @@
+# Ignore bundled HTML artifacts and tokens from GitHub language statistics
+designs/** linguist-vendored
+designs/*.html linguist-generated
+index.html linguist-documentation
+src/tokens/figma-variables.json linguist-generated
+src/tokens/tokens.json linguist-generated
