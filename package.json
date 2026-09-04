@@ -1,0 +1,43 @@
+{
+  "name": "@galaui/design-system",
+  "version": "1.0.0",
+  "description": "Production-ready Design System & Tokens for Figma, React, and Tailwind CSS",
+  "main": "tokens/index.ts",
+  "scripts": {
+    "serve": "python3 -m http.server 4311 --directory .",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "design-system",
+    "figma-tokens",
+    "tailwind",
+    "react",
+    "tokens-studio",
+    "ui-kit"
+  ],
+  "author": "GalaUI",
+  "license": "MIT",
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.2.4",
+    "lucide-react": "^1.40.0",
+    "postcss": "^8.5.28",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.2.2",
+    "vite-plugin-singlefile": "^2.3.3"
+  },
+  "type": "module"
+}

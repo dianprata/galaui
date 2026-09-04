@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+
+  /* Refined neutral zinc scale */
+  --color-zinc-0: #FFFFFF;
+  --color-zinc-50: #F8F9FA;
+  --color-zinc-100: #F1F3F5;
+  --color-zinc-200: #E9ECEF;
+  --color-zinc-300: #DEE2E6;
+  --color-zinc-400: #CED4DA;
+  --color-zinc-500: #868E96;
+  --color-zinc-600: #495057;
+  --color-zinc-700: #343A40;
+  --color-zinc-800: #212529;
+  --color-zinc-900: #121417;
+  --color-zinc-950: #0A0C0E;
+  --color-zinc-1000: #000000;
+
+  /* Electric Cobalt Brand Focus */
+  --color-brand-50: #EEF4FF;
+  --color-brand-100: #D8E6FF;
+  --color-brand-200: #B9D2FE;
+  --color-brand-300: #8AB4FC;
+  --color-brand-400: #558FF8;
+  --color-brand-500: #2F6FED;
+  --color-brand-600: #1D54DB;
+  --color-brand-700: #143EB0;
+  --color-brand-800: #12348E;
+  --color-brand-900: #142F73;
+  --color-brand-950: #0C1C45;
+
+  /* Precision status ramps */
+  --color-destructive-500: #E03131;
+  --color-destructive-600: #C92A2A;
+  --color-success-500: #2F9E44;
+  --color-success-600: #2B8A3E;
+  --color-warning-500: #F08C00;
+  --color-warning-600: #E67700;
+  --color-info-500: #1971C2;
+  --color-info-600: #1864AB;
+
+  /* Semantic UI Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Precise Corner Radii */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+  --radius: var(--radius-lg);
+
+  /* Base Component Sizing Scale (xs=24, sm=28, default=32, lg=36) */
+  --size-xs: 1.5rem;
+  --size-sm: 1.75rem;
+  --size-default: 2rem;
+  --size-md: 2rem;
+  --size-lg: 2.25rem;
+}
+
+@layer base {
+  :root {
+    --background: #FCFCFD;
+    --foreground: #121417;
+    --muted: #F1F3F5;
+    --muted-foreground: #6C757D;
+    --subtle-foreground: #ADB5BD;
+    --secondary: #E9ECEF;
+    --secondary-foreground: #121417;
+    --popover: #FFFFFF;
+    --popover-foreground: #121417;
+    --card: #FFFFFF;
+    --card-foreground: #121417;
+
+    --primary: #1D54DB;
+    --primary-hover: #143EB0;
+    --primary-active: #12348E;
+    --primary-foreground: #FFFFFF;
+
+    --border: #E4E7EB;
+    --border-subtle: #EEF0F3;
+    --input: #F8F9FA;
+    --ring: #1D54DB;
+
+    --destructive: #E03131;
+    --destructive-foreground: #FFFFFF;
+    --success: #2F9E44;
+    --success-foreground: #FFFFFF;
+    --warning: #F08C00;
+    --warning-foreground: #FFFFFF;
+    --info: #1971C2;
+    --info-foreground: #FFFFFF;
+  }
+
+  .dark {
+    --background: #0A0C0E;
+    --foreground: #F8F9FA;
+    --muted: #16191D;
+    --muted-foreground: #8B949E;
+    --subtle-foreground: #484F58;
+    --secondary: #1F2429;
+    --secondary-foreground: #F8F9FA;
+    --popover: #121519;
+    --popover-foreground: #F8F9FA;
+    --card: #101317;
+    --card-foreground: #F8F9FA;
+
+    --primary: #2F6FED;
+    --primary-hover: #558FF8;
+    --primary-active: #8AB4FC;
+    --primary-foreground: #FFFFFF;
+
+    --border: #21262D;
+    --border-subtle: #161A20;
+    --input: #121519;
+    --ring: #2F6FED;
+
+    --destructive: #F03E3E;
+    --destructive-foreground: #FFFFFF;
+    --success: #37B24D;
+    --success-foreground: #FFFFFF;
+    --warning: #F59F00;
+    --warning-foreground: #FFFFFF;
+    --info: #1C7ED6;
+    --info-foreground: #FFFFFF;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(130, 140, 150, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(130, 140, 150, 0.4);
+}

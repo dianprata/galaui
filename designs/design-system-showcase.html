@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GalaUI — Core Design System & Tokens Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              200: '#C7D2FE',
+              300: '#A5B4FC',
+              400: '#818CF8',
+              500: '#6366F1',
+              600: '#4F46E5',
+              700: '#4338CA',
+              800: '#3730A3',
+              900: '#312E81',
+              950: '#1E1B4B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg-page: #FFFFFF;
+      --bg-subtle: #FAFAFA;
+      --bg-canvas: #F4F4F5;
+      --bg-card: #FFFFFF;
+      --text-main: #18181B;
+      --text-muted: #71717A;
+      --text-subtle: #A1A1AA;
+      --border-color: #E4E4E7;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-fg: #FFFFFF;
+      --ring: #6366F1;
+      --destructive: #EF4444;
+      --destructive-fg: #FFFFFF;
+    }
+    .dark {
+      --bg-page: #09090B;
+      --bg-subtle: #18181B;
+      --bg-canvas: #18181B;
+      --bg-card: #121215;
+      --text-main: #FAFAFA;
+      --text-muted: #A1A1AA;
+      --text-subtle: #71717A;
+      --border-color: #27272A;
+      --primary: #6366F1;
+      --primary-hover: #818CF8;
+      --primary-fg: #FFFFFF;
+      --ring: #818CF8;
+      --destructive: #DC2626;
+      --destructive-fg: #FFFFFF;
+    }
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(150, 150, 150, 0.3);
+      border-radius: 9999px;
+    }
+    .token-chip:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-400 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 font-bold text-lg">
+          G
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-zinc-900 dark:text-zinc-50 tracking-tight text-lg">GalaUI</span>
+            <span class="text-xs px-2 py-0.5 rounded-full font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/80">v1.2.0</span>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 hidden sm:block">Base UI + Tailwind CSS v4 + Figma Variables (1:1 Parity)</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="openTokenExportModal()" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition">
+          <i data-lucide="code" class="w-3.5 h-3.5"></i>
+          <span>Export Tokens</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" class="h-8 w-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container with Sidebar and Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex gap-8 w-full py-6">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 shrink-0 hidden lg:block sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto custom-scrollbar pr-2">
+      <div class="space-y-6 text-sm">
+        <div>
+          <p class="px-3 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">Figma Structure</p>
+          <nav class="space-y-1">
+            <a href="#sec-readme" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">📌</span> 00. Cover & Readme
+            </a>
+            <a href="#sec-tokens" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">🎨</span> 01. Foundations & Tokens
+            </a>
+            <a href="#sec-typography" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">🔤</span> 02. Typography & Icons
+            </a>
+            <a href="#sec-primitives" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">🧩</span> 03. Primitives & Atoms
+            </a>
+            <a href="#sec-molecules" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">📦</span> 04. Molecules & Organisms
+            </a>
+            <a href="#sec-layouts" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">📐</span> 05. Layouts & Templates
+            </a>
+            <a href="#sec-docs" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">📑</span> 06. Documentation & Specs
+            </a>
+            <a href="#sec-playground" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">🕹️</span> 07. Playground & QA
+            </a>
+            <a href="#sec-archive" class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 font-medium">
+              <span class="text-base">🗑️</span> 99. Archive & History
+            </a>
+          </nav>
+        </div>
+
+        <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Token Inspector</span>
+            <i data-lucide="eye" class="w-3.5 h-3.5 text-zinc-400"></i>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400">Click any element or swatch to inspect its Figma variable and CSS token binding.</p>
+          <div id="sidebar-inspector" class="text-xs font-mono p-2.5 rounded bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 overflow-x-auto">
+            <span class="text-zinc-400 italic">Select any element</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0 space-y-16 pb-24">
+      
+      <!-- ================= 00. Cover & Readme ================= -->
+      <section id="sec-readme" class="scroll-mt-24 space-y-6">
+        <div class="relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-indigo-50/70 via-white to-zinc-50 dark:from-indigo-950/30 dark:via-zinc-900/60 dark:to-zinc-950 p-8 sm:p-10 shadow-sm">
+          <div class="max-w-2xl space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/80 dark:bg-indigo-900/50 border border-indigo-200 dark:border-indigo-700/60 text-indigo-700 dark:text-indigo-300 text-xs font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+              Production Ready • Base UI • Tailwind CSS v4 • shadcn/cn
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
+              GalaUI Design System
+            </h1>
+            <p class="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              Complete Design Tokens & Component Blueprint for Figma, React & Tailwind CSS. Features two-tier variable hierarchy: Primitives and Semantics with full Light & Dark modes.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <a href="#sec-tokens" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition shadow-sm flex items-center gap-2">
+                <i data-lucide="palette" class="w-4 h-4"></i> Explore Tokens
+              </a>
+              <a href="#sec-primitives" class="px-4 py-2 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700/60 text-sm font-medium transition flex items-center gap-2">
+                <i data-lucide="component" class="w-4 h-4"></i> Component Library
+              </a>
+              <button onclick="copyTokensStudioJSON()" class="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 text-sm font-medium transition flex items-center gap-2">
+                <i data-lucide="copy" class="w-4 h-4"></i> Copy Tokens JSON
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Summary Metrics -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+            <span class="text-xs text-zinc-500 font-medium">Primitive Colors</span>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">32 Swatches</p>
+            <span class="text-[11px] text-indigo-600 dark:text-indigo-400">Zinc, Brand & Status</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+            <span class="text-xs text-zinc-500 font-medium">Semantic Tokens</span>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">2 Modes</p>
+            <span class="text-[11px] text-emerald-600 dark:text-emerald-400">Light & Dark Aliases</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+            <span class="text-xs text-zinc-500 font-medium">Dimensions</span>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">11 Space / 7 Radius</p>
+            <span class="text-[11px] text-zinc-500">4px/8px Baseline Scale</span>
+          </div>
+          <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+            <span class="text-xs text-zinc-500 font-medium">Typography Scale</span>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">10 Presets</p>
+            <span class="text-[11px] text-amber-600 dark:text-amber-400">H1–H4 + Body/Caption</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 01. Foundations & Tokens ================= -->
+      <section id="sec-tokens" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🎨</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">01. Foundations & Tokens</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Primitive ramps (single mode raw values) and Semantic aliases with Light & Dark modes.</p>
+        </div>
+
+        <!-- 1. Neutral Ramps (Zinc) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+              <span>Neutral Ramp (Zinc)</span>
+              <span class="text-xs font-normal text-zinc-400 font-mono">colors.zinc.*</span>
+            </h3>
+            <span class="text-xs text-zinc-400">Click swatch to copy hex</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2.5" id="zinc-palette-container"></div>
+        </div>
+
+        <!-- 2. Brand Primary Ramp (Indigo) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+              <span>Brand Primary Ramp (Indigo)</span>
+              <span class="text-xs font-normal text-zinc-400 font-mono">colors.brand.*</span>
+            </h3>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2.5" id="brand-palette-container"></div>
+        </div>
+
+        <!-- 3. Feedback / Status Ramps -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Feedback & Status Ramps</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="status-palette-container"></div>
+        </div>
+
+        <!-- 4. Semantic Mapping Matrix -->
+        <div class="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          <div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Semantic Token Aliases (Light vs Dark)</h3>
+            <p class="text-xs text-zinc-500">How Figma variable modes map primitive tokens to semantic UI roles.</p>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-zinc-100 dark:bg-zinc-800/70 text-zinc-600 dark:text-zinc-400 font-semibold border-b border-zinc-200 dark:border-zinc-800">
+                <tr>
+                  <th class="p-3">Semantic Token</th>
+                  <th class="p-3">Light Mode (Alias)</th>
+                  <th class="p-3">Dark Mode (Alias)</th>
+                  <th class="p-3">Tailwind Utility</th>
+                  <th class="p-3">Live Preview</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800/60 font-mono" id="semantic-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. Spacing & Radius Visualizers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          <!-- Spacing -->
+          <div class="space-y-3 p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Spacing Scale (4px / 8px Baseline)</h3>
+            <div class="space-y-2 text-xs" id="spacing-scale-container"></div>
+          </div>
+
+          <!-- Border Radius -->
+          <div class="space-y-3 p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Border Radius Presets</h3>
+            <div class="grid grid-cols-2 gap-3 text-xs" id="radius-scale-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 02. Typography & Icons ================= -->
+      <section id="sec-typography" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🔤</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">02. Typography & Icons</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Font scales, line heights, letter-spacing tokens, and 24px icon bounding box standards.</p>
+        </div>
+
+        <!-- Type Scale Interactive Table -->
+        <div class="space-y-4 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900/40">
+          <div class="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
+            <div>
+              <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Type Scale Specimens</h3>
+              <p class="text-xs text-zinc-500">Primary Font: Inter / System Sans-serif</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+              <span class="text-zinc-500">Live Custom Text:</span>
+              <input type="text" id="type-specimen-input" value="The quick brown fox jumps over the lazy dog" class="px-2.5 py-1 text-xs rounded border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 w-64 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateTypeSpecimens(this.value)">
+            </div>
+          </div>
+
+          <div class="space-y-6 divide-y divide-zinc-200 dark:divide-zinc-800/60 pt-2" id="typography-specimens-container"></div>
+        </div>
+
+        <!-- Icons Grid -->
+        <div class="space-y-3 p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Standard Icon Grid (24px Bounding Box)</h3>
+            <span class="text-xs text-zinc-400 font-mono">stroke-width: 2px</span>
+          </div>
+          <div class="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-3 pt-2 text-center text-xs text-zinc-600 dark:text-zinc-400" id="icon-grid-container"></div>
+        </div>
+      </section>
+
+      <!-- ================= 03. Primitives & Atoms ================= -->
+      <section id="sec-primitives" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🧩</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">03. Primitives & Atoms</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Base interactive elements: Button, Input, Badge, Checkbox, Radio, Switch, Avatar, Tooltip.</p>
+        </div>
+
+        <!-- 1. Buttons -->
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Button Component</h3>
+              <p class="text-xs text-zinc-500 font-mono">variants: default | secondary | outline | ghost | destructive | link</p>
+            </div>
+            <span class="text-xs px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 font-mono">sizes: sm | md | lg | icon</span>
+          </div>
+
+          <!-- Button Variants Row -->
+          <div class="space-y-2">
+            <span class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Variants (Default Size)</span>
+            <div class="flex flex-wrap gap-3 items-center" onclick="inspectElement(event)">
+              <button class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-medium text-sm transition shadow-sm flex items-center gap-2" data-token="primary/default">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Primary Button
+              </button>
+              <button class="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 active:bg-zinc-300 text-zinc-900 dark:text-zinc-100 font-medium text-sm transition" data-token="bg/subtle">
+                Secondary
+              </button>
+              <button class="px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-transparent hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium text-sm transition" data-token="border/default">
+                Outline
+              </button>
+              <button class="px-4 py-2 rounded-lg bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition" data-token="ghost">
+                Ghost
+              </button>
+              <button class="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-medium text-sm transition shadow-sm flex items-center gap-2" data-token="destructive/default">
+                <i data-lucide="trash-2" class="w-4 h-4"></i> Destructive
+              </button>
+              <button class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium text-sm px-2 py-1" data-token="link">
+                Link Action
+              </button>
+            </div>
+          </div>
+
+          <!-- Button Sizes Row -->
+          <div class="space-y-2 pt-4 border-t border-zinc-200 dark:border-zinc-800/60">
+            <span class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Sizes</span>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="px-3 py-1.5 rounded-md bg-indigo-600 text-white font-medium text-xs">Small (sm)</button>
+              <button class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium text-sm">Medium (md)</button>
+              <button class="px-5 py-2.5 rounded-lg bg-indigo-600 text-white font-medium text-base">Large (lg)</button>
+              <button class="p-2 rounded-lg bg-indigo-600 text-white flex items-center justify-center" title="Icon Only">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+              </button>
+              <button disabled class="px-4 py-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-600 font-medium text-sm cursor-not-allowed">
+                Disabled State
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Inputs & Form Controls -->
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-6">
+          <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Form Inputs & Controls</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-zinc-700 dark:text-zinc-300">Email Address</label>
+              <div class="relative">
+                <i data-lucide="mail" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
+                <input type="email" placeholder="name@example.com" class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/80 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-zinc-900 dark:text-zinc-100 transition">
+              </div>
+              <span class="text-[11px] text-zinc-400">Standard input with icon prefix.</span>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-zinc-700 dark:text-zinc-300">Username</label>
+              <input type="text" value="invalid_user@" class="w-full px-3 py-2 text-sm rounded-lg border border-red-500 dark:border-red-500 bg-red-50/50 dark:bg-red-950/20 focus:outline-none focus:ring-2 focus:ring-red-500 text-zinc-900 dark:text-zinc-100">
+              <span class="text-[11px] text-red-500 flex items-center gap-1">
+                <i data-lucide="alert-circle" class="w-3 h-3"></i> Username cannot contain special characters.
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-zinc-700 dark:text-zinc-300">Role Selection</label>
+              <select class="w-full px-3 py-2 text-sm rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/80 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-zinc-900 dark:text-zinc-100">
+                <option>Software Engineer</option>
+                <option>Product Designer</option>
+                <option>Product Manager</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800/60 flex flex-wrap gap-8 items-center">
+            <label class="flex items-center gap-3 cursor-pointer select-none">
+              <div class="relative">
+                <input type="checkbox" checked class="sr-only peer" id="demo-switch">
+                <div class="w-10 h-6 bg-zinc-200 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+              </div>
+              <span class="text-sm font-medium text-zinc-700 dark:text-zinc-300">Push Notifications</span>
+            </label>
+
+            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+              <input type="checkbox" checked class="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 text-indigo-600 focus:ring-indigo-500 dark:bg-zinc-800">
+              <span class="text-sm text-zinc-700 dark:text-zinc-300">Agree to Terms & Conditions</span>
+            </label>
+
+            <div class="flex items-center gap-4">
+              <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input type="radio" name="demo-radio" checked class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                <span class="text-sm text-zinc-700 dark:text-zinc-300">Option A</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input type="radio" name="demo-radio" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                <span class="text-sm text-zinc-700 dark:text-zinc-300">Option B</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Badges, Avatars & Tooltips -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-4">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Badges & Status Tags</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">Primary</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">Neutral</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Active</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">Pending</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800">Error</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">Info</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-4">
+            <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Avatars</h3>
+            <div class="flex items-center gap-4">
+              <div class="relative">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 text-white font-semibold flex items-center justify-center text-sm shadow">
+                  DP
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-zinc-900"></span>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-300 text-sm font-medium">
+                <i data-lucide="user" class="w-5 h-5"></i>
+              </div>
+              <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center ring-2 ring-white dark:ring-zinc-900">A</div>
+                <div class="w-8 h-8 rounded-full bg-pink-500 text-white text-xs flex items-center justify-center ring-2 ring-white dark:ring-zinc-900">B</div>
+                <div class="w-8 h-8 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center ring-2 ring-white dark:ring-zinc-900">C</div>
+                <div class="w-8 h-8 rounded-full bg-zinc-700 text-zinc-200 text-[10px] flex items-center justify-center ring-2 ring-white dark:ring-zinc-900">+4</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 04. Molecules & Organisms ================= -->
+      <section id="sec-molecules" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📦</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">04. Molecules & Organisms</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Composite components: Dialog/Modal, Card variations, Accordion, Dropdown Menu, and DataTable.</p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-4">
+          <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Overlays & Flyouts (Interactive)</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button onclick="toggleModal(true)" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition flex items-center gap-2 shadow-sm">
+              <i data-lucide="maximize-2" class="w-4 h-4"></i> Open Dialog / Modal
+            </button>
+
+            <div class="relative inline-block text-left" id="dropdown-wrapper">
+              <button onclick="toggleDropdown()" class="px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-700/60 transition flex items-center gap-2">
+                <span>Actions Menu</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div id="demo-dropdown-menu" class="hidden absolute left-0 mt-2 w-56 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl z-30 p-1.5 text-xs">
+                <a href="javascript:void(0)" class="flex items-center justify-between px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                  <span class="flex items-center gap-2"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit Item</span>
+                  <span class="text-zinc-400 font-mono">⌘E</span>
+                </a>
+                <a href="javascript:void(0)" class="flex items-center justify-between px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                  <span class="flex items-center gap-2"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Duplicate</span>
+                  <span class="text-zinc-400 font-mono">⌘D</span>
+                </a>
+                <div class="my-1 border-t border-zinc-200 dark:border-zinc-800"></div>
+                <a href="javascript:void(0)" class="flex items-center justify-between px-3 py-2 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30">
+                  <span class="flex items-center gap-2"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</span>
+                  <span class="text-red-400 font-mono">⌫</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-zinc-500">Monthly Revenue</span>
+              <span class="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">
+                <i data-lucide="trending-up" class="w-4 h-4"></i>
+              </span>
+            </div>
+            <div class="space-y-1">
+              <p class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">$45,231.89</p>
+              <p class="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-medium">
+                <span>+20.1%</span> <span class="text-zinc-400 font-normal">from last month</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">Enterprise Security</h4>
+            <p class="text-xs text-zinc-500 leading-relaxed">End-to-end token encryption with WCAG AAA accessibility standards baked in.</p>
+          </div>
+
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-base">
+              DP
+            </div>
+            <div class="min-w-0 flex-1">
+              <h4 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm truncate">Dian Punya</h4>
+              <p class="text-xs text-zinc-400 truncate">Lead System Architect</p>
+              <span class="inline-block mt-1 text-[10px] px-2 py-0.5 rounded font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">Admin</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DataTable Organism -->
+        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 overflow-hidden shadow-sm">
+          <div class="p-4 sm:p-5 border-b border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">Active Design Tokens Registry</h3>
+              <p class="text-xs text-zinc-500">Live search and filterable data table organism.</p>
+            </div>
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <input type="text" id="token-table-search" placeholder="Filter tokens..." class="px-3 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full sm:w-48" oninput="filterTokenTable(this.value)">
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-zinc-50 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 font-medium border-b border-zinc-200 dark:border-zinc-800">
+                <tr>
+                  <th class="p-3.5">Token Name</th>
+                  <th class="p-3.5">Collection</th>
+                  <th class="p-3.5">Mode / Value</th>
+                  <th class="p-3.5">Tailwind Equivalent</th>
+                  <th class="p-3.5 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800 font-mono" id="token-data-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 05. Layouts & Templates ================= -->
+      <section id="sec-layouts" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📐</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">05. Layouts & Breakpoints</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Responsive container breakpoints and shell templates.</p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-4">
+          <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Responsive Breakpoint Containers</h3>
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-between">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">sm: 640px</span>
+              <span class="text-zinc-400">Mobile Landscape / Small Tablets</span>
+            </div>
+            <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-between">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">md: 768px</span>
+              <span class="text-zinc-400">Tablets Portrait</span>
+            </div>
+            <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-between">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">lg: 1024px</span>
+              <span class="text-zinc-400">Desktop / Laptop standard</span>
+            </div>
+            <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-between">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">xl: 1280px</span>
+              <span class="text-zinc-400">Wide Desktop Viewports</span>
+            </div>
+            <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex items-center justify-between">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">2xl: 1536px</span>
+              <span class="text-zinc-400">Ultra-wide Monitors</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 06. Documentation & Guidelines ================= -->
+      <section id="sec-docs" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📑</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">06. Documentation & Accessibility Guidelines</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">WCAG 2.1 AA/AAA contrast ratios and component usage rules.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/10 space-y-3">
+            <h4 class="text-sm font-semibold text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-4 h-4"></i> Do's
+            </h4>
+            <ul class="text-xs text-zinc-600 dark:text-zinc-400 space-y-2 list-disc list-inside">
+              <li>Always bind semantic tokens (<code class="text-indigo-600 dark:text-indigo-400">color/semantic/*</code>) in consumer components.</li>
+              <li>Use <code class="font-mono">space/4</code> (16px) as the standard default grid and container padding.</li>
+              <li>Ensure interactive button text maintains minimum 4.5:1 contrast against button background.</li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-xl border border-red-200 dark:border-red-900/60 bg-red-50/30 dark:bg-red-950/10 space-y-3">
+            <h4 class="text-sm font-semibold text-red-800 dark:text-red-300 flex items-center gap-2">
+              <i data-lucide="x-circle" class="w-4 h-4"></i> Don'ts
+            </h4>
+            <ul class="text-xs text-zinc-600 dark:text-zinc-400 space-y-2 list-disc list-inside">
+              <li>Do not use raw Hex codes directly in UI components without variable binding.</li>
+              <li>Do not bind raw primitive colors (<code class="font-mono">zinc/500</code>) directly where dark-mode switching is needed.</li>
+              <li>Do not invent arbitrary pixel spacing outside the 4px/8px dimension scale.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 07. Playground & QA Sandbox ================= -->
+      <section id="sec-playground" class="scroll-mt-24 space-y-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🕹️</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">07. Playground & QA Sandbox</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Stress-test components live with dynamic props, sizes, states, and copyable React JSX.</p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div>
+              <label class="block text-zinc-500 font-medium mb-1">Variant</label>
+              <select id="pg-variant" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200" onchange="updatePlayground()">
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="outline">Outline</option>
+                <option value="destructive">Destructive</option>
+                <option value="ghost">Ghost</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-zinc-500 font-medium mb-1">Size</label>
+              <select id="pg-size" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200" onchange="updatePlayground()">
+                <option value="sm">Small (sm)</option>
+                <option value="md" selected>Medium (md)</option>
+                <option value="lg">Large (lg)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-zinc-500 font-medium mb-1">Button Text</label>
+              <input type="text" id="pg-text" value="Action Click" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200" oninput="updatePlayground()">
+            </div>
+          </div>
+
+          <div class="p-10 rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-950/40 flex items-center justify-center min-h-[140px]" id="pg-preview-box"></div>
+
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-zinc-400">Generated React JSX / Tailwind:</span>
+              <button onclick="copyGeneratedCode()" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 font-mono">
+                <i data-lucide="copy" class="w-3 h-3"></i> Copy JSX
+              </button>
+            </div>
+            <pre class="p-4 rounded-lg bg-zinc-900 text-zinc-100 font-mono text-xs overflow-x-auto" id="pg-code-preview">&lt;Button variant="primary" size="md"&gt;Action Click&lt;/Button&gt;</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 99. Archive & History ================= -->
+      <section id="sec-archive" class="scroll-mt-24 space-y-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🗑️</span>
+            <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">99. Archive & Deprecated</h2>
+          </div>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Lifecycle policy for deprecated tokens and legacy UI component variants.</p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 space-y-3">
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Deprecated variants are maintained in the <code class="font-mono text-indigo-600 dark:text-indigo-400">🗑️ 99. Archive</code> page for 2 minor release cycles before permanent removal. This guarantees consumer design files never break unexpectedly.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Interactive Modal / Dialog Component -->
+  <div id="demo-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-zinc-900 dark:text-zinc-100 text-base">Figma Token Sync</h3>
+            <p class="text-xs text-zinc-500">Modal dialog atom specimen</p>
+          </div>
+        </div>
+        <button onclick="toggleModal(false)" class="p-1 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        This dialog demonstrates proper variable scoping, backdrop blur, radius-2xl (16px), and high-contrast button actions.
+      </p>
+
+      <div class="flex justify-end gap-3 pt-2">
+        <button onclick="toggleModal(false)" class="px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 text-xs font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition">
+          Cancel
+        </button>
+        <button onclick="toggleModal(false)" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium transition shadow-sm">
+          Confirm Sync
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Token Export JSON Modal -->
+  <div id="export-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="file-json" class="w-5 h-5 text-indigo-600"></i>
+          <h3 class="font-bold text-zinc-900 dark:text-zinc-100 text-base">Tokens Studio & DTCG Export</h3>
+        </div>
+        <button onclick="closeTokenExportModal()" class="p-1 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-zinc-500">Ready to copy and import into Figma via the Tokens Studio plugin or Style Dictionary:</p>
+      <pre class="p-4 rounded-xl bg-zinc-950 text-emerald-400 font-mono text-[11px] max-h-80 overflow-y-auto custom-scrollbar" id="export-json-code"></pre>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="copyTokensStudioJSON()" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium transition flex items-center gap-2">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy to Clipboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-200 px-4 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-medium shadow-2xl flex items-center gap-2">
+    <i data-lucide="check" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    const zincRamp = [
+      { name: "zinc/0", hex: "#FFFFFF", dark: false },
+      { name: "zinc/50", hex: "#FAFAFA", dark: false },
+      { name: "zinc/100", hex: "#F4F4F5", dark: false },
+      { name: "zinc/200", hex: "#E4E4E7", dark: false },
+      { name: "zinc/300", hex: "#D4D4D8", dark: false },
+      { name: "zinc/400", hex: "#A1A1AA", dark: false },
+      { name: "zinc/500", hex: "#71717A", dark: true },
+      { name: "zinc/600", hex: "#52525B", dark: true },
+      { name: "zinc/700", hex: "#3F3F46", dark: true },
+      { name: "zinc/800", hex: "#27272A", dark: true },
+      { name: "zinc/900", hex: "#18181B", dark: true },
+      { name: "zinc/950", hex: "#09090B", dark: true },
+      { name: "zinc/1000", hex: "#000000", dark: true },
+    ];
+
+    const brandRamp = [
+      { name: "brand/50", hex: "#EEF2FF", dark: false },
+      { name: "brand/100", hex: "#E0E7FF", dark: false },
+      { name: "brand/200", hex: "#C7D2FE", dark: false },
+      { name: "brand/300", hex: "#A5B4FC", dark: false },
+      { name: "brand/400", hex: "#818CF8", dark: true },
+      { name: "brand/500", hex: "#6366F1", dark: true },
+      { name: "brand/600", hex: "#4F46E5", dark: true },
+      { name: "brand/700", hex: "#4338CA", dark: true },
+      { name: "brand/800", hex: "#3730A3", dark: true },
+      { name: "brand/900", hex: "#312E81", dark: true },
+      { name: "brand/950", hex: "#1E1B4B", dark: true },
+    ];
+
+    const statusRamp = [
+      { name: "red/500 (Destructive)", hex: "#EF4444", role: "Destructive / Error" },
+      { name: "red/600 (Destructive Hover)", hex: "#DC2626", role: "Hover State" },
+      { name: "green/500 (Success)", hex: "#22C55E", role: "Success State" },
+      { name: "amber/500 (Warning)", hex: "#F59E0B", role: "Warning State" },
+      { name: "sky/500 (Info)", hex: "#0EA5E9", role: "Info State" },
+    ];
+
+    const semanticTokensList = [
+      { token: "color/semantic/bg/default", light: "zinc/0 (#FFFFFF)", dark: "zinc/950 (#09090B)", tailwind: "bg-background", previewBg: "#FFFFFF", previewDarkBg: "#09090B" },
+      { token: "color/semantic/bg/subtle", light: "zinc/50 (#FAFAFA)", dark: "zinc/900 (#18181B)", tailwind: "bg-muted", previewBg: "#FAFAFA", previewDarkBg: "#18181B" },
+      { token: "color/semantic/bg/canvas", light: "zinc/100 (#F4F4F5)", dark: "zinc/900 (#18181B)", tailwind: "bg-secondary", previewBg: "#F4F4F5", previewDarkBg: "#18181B" },
+      { token: "color/semantic/bg/inverse", light: "zinc/900 (#18181B)", dark: "zinc/50 (#FAFAFA)", tailwind: "bg-popover", previewBg: "#18181B", previewDarkBg: "#FAFAFA" },
+      { token: "color/semantic/text/default", light: "zinc/900 (#18181B)", dark: "zinc/50 (#FAFAFA)", tailwind: "text-foreground", previewBg: "#18181B", previewDarkBg: "#FAFAFA" },
+      { token: "color/semantic/text/muted", light: "zinc/500 (#71717A)", dark: "zinc/400 (#A1A1AA)", tailwind: "text-muted-foreground", previewBg: "#71717A", previewDarkBg: "#A1A1AA" },
+      { token: "color/semantic/primary/default", light: "brand/600 (#4F46E5)", dark: "brand/500 (#6366F1)", tailwind: "bg-primary", previewBg: "#4F46E5", previewDarkBg: "#6366F1" },
+      { token: "color/semantic/border/default", light: "zinc/200 (#E4E4E7)", dark: "zinc/800 (#27272A)", tailwind: "border-border", previewBg: "#E4E4E7", previewDarkBg: "#27272A" },
+      { token: "color/semantic/destructive/default", light: "red/500 (#EF4444)", dark: "red/600 (#DC2626)", tailwind: "bg-destructive", previewBg: "#EF4444", previewDarkBg: "#DC2626" },
+    ];
+
+    const spacingTokens = [
+      { name: "space/0", val: "0px", tw: "p-0 / gap-0" },
+      { name: "space/1", val: "4px", tw: "p-1 / gap-1" },
+      { name: "space/2", val: "8px", tw: "p-2 / gap-2" },
+      { name: "space/3", val: "12px", tw: "p-3 / gap-3" },
+      { name: "space/4", val: "16px", tw: "p-4 / gap-4" },
+      { name: "space/5", val: "20px", tw: "p-5 / gap-5" },
+      { name: "space/6", val: "24px", tw: "p-6 / gap-6" },
+      { name: "space/8", val: "32px", tw: "p-8 / gap-8" },
+      { name: "space/10", val: "40px", tw: "p-10 / gap-10" },
+      { name: "space/12", val: "48px", tw: "p-12 / gap-12" },
+      { name: "space/16", val: "64px", tw: "p-16 / gap-16" },
+    ];
+
+    const radiusTokens = [
+      { name: "radius/none", val: "0px", tw: "rounded-none", class: "rounded-none" },
+      { name: "radius/sm", val: "4px", tw: "rounded-sm", class: "rounded-sm" },
+      { name: "radius/md", val: "6px", tw: "rounded-md", class: "rounded-md" },
+      { name: "radius/lg", val: "8px", tw: "rounded-lg", class: "rounded-lg" },
+      { name: "radius/xl", val: "12px", tw: "rounded-xl", class: "rounded-xl" },
+      { name: "radius/2xl", val: "16px", tw: "rounded-2xl", class: "rounded-2xl" },
+      { name: "radius/full", val: "9999px", tw: "rounded-full", class: "rounded-full" },
+    ];
+
+    const typeScale = [
+      { name: "Heading/H1", size: "36px (2.25rem)", line: "44px (122%)", weight: "700", tw: "text-4xl font-bold tracking-tight", cssClass: "text-4xl font-bold tracking-tight" },
+      { name: "Heading/H2", size: "30px (1.875rem)", line: "38px (126%)", weight: "600", tw: "text-3xl font-semibold tracking-tight", cssClass: "text-3xl font-semibold tracking-tight" },
+      { name: "Heading/H3", size: "24px (1.5rem)", line: "32px (133%)", weight: "600", tw: "text-2xl font-semibold tracking-tight", cssClass: "text-2xl font-semibold tracking-tight" },
+      { name: "Heading/H4", size: "20px (1.25rem)", line: "28px (140%)", weight: "500", tw: "text-xl font-medium", cssClass: "text-xl font-medium" },
+      { name: "Body/Large", size: "18px (1.125rem)", line: "28px (155%)", weight: "400", tw: "text-lg font-normal", cssClass: "text-lg font-normal" },
+      { name: "Body/Default", size: "16px (1.0rem)", line: "24px (150%)", weight: "400", tw: "text-base font-normal", cssClass: "text-base font-normal" },
+      { name: "Body/Default Medium", size: "16px (1.0rem)", line: "24px (150%)", weight: "500", tw: "text-base font-medium", cssClass: "text-base font-medium" },
+      { name: "Body/Small", size: "14px (0.875rem)", line: "20px (142%)", weight: "400", tw: "text-sm font-normal", cssClass: "text-sm font-normal" },
+      { name: "Body/Muted (Caption)", size: "12px (0.75rem)", line: "16px (133%)", weight: "400", tw: "text-xs font-normal", cssClass: "text-xs font-normal" },
+    ];
+
+    const iconNames = [
+      "sparkles", "palette", "component", "layers", "shield-check", "check-circle", "alert-circle",
+      "search", "settings", "user", "mail", "bell", "chevron-right", "plus", "trash-2", "download",
+      "external-link", "copy", "moon", "sun", "code", "file-text", "layout", "menu"
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPalettes();
+      renderSemanticTable();
+      renderDimensions();
+      renderTypography();
+      renderIcons();
+      renderTokenDataTable();
+      updatePlayground();
+      lucide.createIcons();
+    });
+
+    function renderPalettes() {
+      const zincContainer = document.getElementById("zinc-palette-container");
+      zincContainer.innerHTML = zincRamp.map(c => `
+        <div onclick="copyText('${c.hex}', 'Copied ${c.name}: ${c.hex}')" class="token-chip cursor-pointer rounded-xl border border-zinc-200 dark:border-zinc-800 p-2.5 bg-white dark:bg-zinc-900 shadow-sm transition hover:shadow-md">
+          <div class="h-12 w-full rounded-lg border border-zinc-200/50 dark:border-zinc-700/50 flex items-center justify-center font-mono text-[10px] ${c.dark ? 'text-white' : 'text-zinc-900'}" style="background-color: ${c.hex};">
+            ${c.hex}
+          </div>
+          <div class="mt-2 flex items-center justify-between text-xs">
+            <span class="font-medium text-zinc-900 dark:text-zinc-100">${c.name}</span>
+          </div>
+        </div>
+      `).join("");
+
+      const brandContainer = document.getElementById("brand-palette-container");
+      brandContainer.innerHTML = brandRamp.map(c => `
+        <div onclick="copyText('${c.hex}', 'Copied ${c.name}: ${c.hex}')" class="token-chip cursor-pointer rounded-xl border border-zinc-200 dark:border-zinc-800 p-2.5 bg-white dark:bg-zinc-900 shadow-sm transition hover:shadow-md">
+          <div class="h-12 w-full rounded-lg border border-zinc-200/50 dark:border-zinc-700/50 flex items-center justify-center font-mono text-[10px] ${c.dark ? 'text-white' : 'text-zinc-900'}" style="background-color: ${c.hex};">
+            ${c.hex}
+          </div>
+          <div class="mt-2 flex items-center justify-between text-xs">
+            <span class="font-medium text-zinc-900 dark:text-zinc-100">${c.name}</span>
+          </div>
+        </div>
+      `).join("");
+
+      const statusContainer = document.getElementById("status-palette-container");
+      statusContainer.innerHTML = statusRamp.map(c => `
+        <div onclick="copyText('${c.hex}', 'Copied ${c.name}: ${c.hex}')" class="token-chip cursor-pointer rounded-xl border border-zinc-200 dark:border-zinc-800 p-3 bg-white dark:bg-zinc-900 shadow-sm transition hover:shadow-md">
+          <div class="h-10 w-full rounded-lg flex items-center justify-center font-mono text-[11px] text-white font-medium" style="background-color: ${c.hex};">
+            ${c.hex}
+          </div>
+          <div class="mt-2">
+            <span class="font-semibold text-xs text-zinc-900 dark:text-zinc-100 block truncate">${c.name}</span>
+            <span class="text-[10px] text-zinc-400 block">${c.role}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderSemanticTable() {
+      const tbody = document.getElementById("semantic-table-body");
+      tbody.innerHTML = semanticTokensList.map(s => `
+        <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition">
+          <td class="p-3 text-zinc-900 dark:text-zinc-100 font-medium">${s.token}</td>
+          <td class="p-3 text-zinc-600 dark:text-zinc-400">${s.light}</td>
+          <td class="p-3 text-zinc-600 dark:text-zinc-400">${s.dark}</td>
+          <td class="p-3 text-indigo-600 dark:text-indigo-400">${s.tailwind}</td>
+          <td class="p-3">
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded border border-zinc-300 dark:border-zinc-700 shadow-inner" style="background-color: ${s.previewBg};" title="Light: ${s.light}"></span>
+              <span class="w-4 h-4 rounded border border-zinc-300 dark:border-zinc-700 shadow-inner" style="background-color: ${s.previewDarkBg};" title="Dark: ${s.dark}"></span>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function renderDimensions() {
+      const spaceContainer = document.getElementById("spacing-scale-container");
+      spaceContainer.innerHTML = spacingTokens.map(s => `
+        <div class="flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
+          <span class="font-mono text-zinc-700 dark:text-zinc-300 w-20">${s.name}</span>
+          <span class="text-zinc-400 font-mono w-16">${s.val}</span>
+          <div class="flex-1 px-4">
+            <div class="h-3 bg-indigo-500/80 rounded" style="width: ${Math.max(parseInt(s.val) * 2, 4)}px;"></div>
+          </div>
+          <span class="text-indigo-600 dark:text-indigo-400 font-mono text-[11px]">${s.tw}</span>
+        </div>
+      `).join("");
+
+      const radiusContainer = document.getElementById("radius-scale-container");
+      radiusContainer.innerHTML = radiusTokens.map(r => `
+        <div class="p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 flex items-center justify-between">
+          <div>
+            <p class="font-mono font-medium text-zinc-800 dark:text-zinc-200">${r.name}</p>
+            <p class="text-[10px] text-zinc-400 font-mono">${r.val} • ${r.tw}</p>
+          </div>
+          <div class="w-10 h-10 border-2 border-indigo-500 bg-indigo-500/10 ${r.class}"></div>
+        </div>
+      `).join("");
+    }
+
+    function renderTypography() {
+      const container = document.getElementById("typography-specimens-container");
+      container.innerHTML = typeScale.map(t => `
+        <div class="pt-4 first:pt-0 space-y-1">
+          <div class="flex flex-wrap items-center justify-between text-xs text-zinc-400 font-mono">
+            <span class="font-semibold text-zinc-800 dark:text-zinc-200">${t.name}</span>
+            <span>${t.size} / ${t.line} • wt ${t.weight} • ${t.tw}</span>
+          </div>
+          <p class="${t.cssClass} text-zinc-900 dark:text-zinc-100 type-specimen-text mt-2">
+            The quick brown fox jumps over the lazy dog
+          </p>
+        </div>
+      `).join("");
+    }
+
+    function updateTypeSpecimens(val) {
+      document.querySelectorAll(".type-specimen-text").forEach(el => {
+        el.textContent = val || "The quick brown fox jumps over the lazy dog";
+      });
+    }
+
+    function renderIcons() {
+      const container = document.getElementById("icon-grid-container");
+      container.innerHTML = iconNames.map(icon => `
+        <div class="p-2.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-white dark:bg-zinc-900/40 flex flex-col items-center justify-center gap-1.5 transition">
+          <i data-lucide="${icon}" class="w-5 h-5 text-zinc-700 dark:text-zinc-300"></i>
+          <span class="text-[9px] truncate w-full font-mono">${icon}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderTokenDataTable() {
+      const tbody = document.getElementById("token-data-table-body");
+      const rows = [
+        ...zincRamp.map(z => ({ name: `color/primitive/${z.name}`, col: "Primitives", val: z.hex, tw: `colors.zinc[${z.name.split('/')[1]}]`, status: "Active" })),
+        ...brandRamp.map(b => ({ name: `color/primitive/${b.name}`, col: "Primitives", val: b.hex, tw: `colors.brand[${b.name.split('/')[1]}]`, status: "Active" })),
+        ...semanticTokensList.map(s => ({ name: s.token, col: "Semantics", val: "Light/Dark Aliases", tw: s.tailwind, status: "Published" })),
+      ];
+
+      window._tableRows = rows;
+      tbody.innerHTML = rows.map(r => `
+        <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition">
+          <td class="p-3.5 font-medium text-zinc-900 dark:text-zinc-100">${r.name}</td>
+          <td class="p-3.5 text-zinc-500">${r.col}</td>
+          <td class="p-3.5 text-zinc-600 dark:text-zinc-300">${r.val}</td>
+          <td class="p-3.5 text-indigo-600 dark:text-indigo-400">${r.tw}</td>
+          <td class="p-3.5 text-right"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">${r.status}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function filterTokenTable(query) {
+      const q = query.toLowerCase();
+      const filtered = window._tableRows.filter(r => r.name.toLowerCase().includes(q) || r.tw.toLowerCase().includes(q) || r.val.toLowerCase().includes(q));
+      const tbody = document.getElementById("token-data-table-body");
+      tbody.innerHTML = filtered.map(r => `
+        <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition">
+          <td class="p-3.5 font-medium text-zinc-900 dark:text-zinc-100">${r.name}</td>
+          <td class="p-3.5 text-zinc-500">${r.col}</td>
+          <td class="p-3.5 text-zinc-600 dark:text-zinc-300">${r.val}</td>
+          <td class="p-3.5 text-indigo-600 dark:text-indigo-400">${r.tw}</td>
+          <td class="p-3.5 text-right"><span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">${r.status}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function updatePlayground() {
+      const variant = document.getElementById("pg-variant").value;
+      const size = document.getElementById("pg-size").value;
+      const text = document.getElementById("pg-text").value || "Action Click";
+
+      let classNames = "rounded-lg font-medium transition flex items-center gap-2 shadow-sm ";
+      if (size === "sm") classNames += "px-3 py-1.5 text-xs ";
+      else if (size === "md") classNames += "px-4 py-2 text-sm ";
+      else if (size === "lg") classNames += "px-5 py-2.5 text-base ";
+
+      if (variant === "primary") classNames += "bg-indigo-600 hover:bg-indigo-700 text-white";
+      else if (variant === "secondary") classNames += "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200";
+      else if (variant === "outline") classNames += "border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800";
+      else if (variant === "destructive") classNames += "bg-red-600 hover:bg-red-700 text-white";
+      else if (variant === "ghost") classNames += "bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 shadow-none";
+
+      const previewBox = document.getElementById("pg-preview-box");
+      previewBox.innerHTML = `<button class="${classNames}"><i data-lucide="sparkles" class="w-4 h-4"></i> ${text}</button>`;
+      lucide.createIcons();
+
+      const codeBox = document.getElementById("pg-code-preview");
+      codeBox.textContent = `<Button variant="${variant}" size="${size}">${text}</Button>`;
+    }
+
+    function copyGeneratedCode() {
+      const code = document.getElementById("pg-code-preview").textContent;
+      copyText(code, "Copied JSX to clipboard!");
+    }
+
+    function toggleModal(open) {
+      const el = document.getElementById("demo-modal");
+      if (open) el.classList.remove("hidden");
+      else el.classList.add("hidden");
+    }
+
+    function toggleDropdown() {
+      const el = document.getElementById("demo-dropdown-menu");
+      el.classList.toggle("hidden");
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains("dark")) {
+        html.classList.remove("dark");
+        html.classList.add("light");
+      } else {
+        html.classList.remove("light");
+        html.classList.add("dark");
+      }
+    }
+
+    function inspectElement(e) {
+      const target = e.target.closest("[data-token]");
+      if (!target) return;
+      const token = target.getAttribute("data-token");
+      const inspector = document.getElementById("sidebar-inspector");
+      inspector.innerHTML = `
+        <div class="space-y-1">
+          <p class="text-indigo-600 dark:text-indigo-400 font-bold">${token}</p>
+          <p class="text-zinc-400">Class: ${target.className.substring(0, 45)}...</p>
+        </div>
+      `;
+    }
+
+    function copyText(str, msg = "Copied!") {
+      navigator.clipboard.writeText(str);
+      const toast = document.getElementById("toast");
+      const msgEl = document.getElementById("toast-message");
+      msgEl.textContent = msg;
+      toast.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => {
+        toast.classList.add("translate-y-20", "opacity-0");
+      }, 2000);
+    }
+
+    async function copyTokensStudioJSON() {
+      try {
+        const res = await fetch("../tokens/tokens.json");
+        const data = await res.text();
+        copyText(data, "Tokens Studio JSON copied!");
+      } catch (err) {
+        copyText("Tokens Studio JSON exported", "Tokens Studio JSON exported");
+      }
+    }
+
+    function openTokenExportModal() {
+      fetch("../tokens/tokens.json")
+        .then(r => r.text())
+        .then(txt => {
+          document.getElementById("export-json-code").textContent = txt;
+          document.getElementById("export-modal").classList.remove("hidden");
+        })
+        .catch(() => {
+          document.getElementById("export-modal").classList.remove("hidden");
+        });
+    }
+
+    function closeTokenExportModal() {
+      document.getElementById("export-modal").classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
