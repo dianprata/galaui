@@ -1,74 +1,156 @@
-# GalaUI — Base UI & Tailwind CSS v4 Design System & React Playground
+# @galaui/react
 
-A modern, production-ready Design System & Component Library powered by **[@base-ui/react](https://base-ui.com/)**, **Tailwind CSS v4 (Pure CSS-First / Zero Config)**, and the compiled **[`cn`](https://github.com/shadcn-ui/cn)** package (`npm i cn`), maintaining a 1:1 token parity with **Figma Local Variables** and **Tokens Studio**.
-
----
-
-## 🌟 Tech Stack & Architecture
-
-- **Base UI Engine**: [`@base-ui/react`](https://base-ui.com/) — Headless, fully accessible WAI-ARIA compliant UI primitives.
-- **Styling Engine**: **Tailwind CSS v4** — CSS-First configuration with native `@theme` directives (no `tailwind.config.js` required).
-- **Class Merging**: [`cn`](https://github.com/shadcn-ui/cn) via `npm i cn` — fast, small, compiled drop-in replacement for `twMerge(clsx(...))`.
-- **Live React Playground**: Built with **Vite + React 19** for live component testing and interactive state inspection.
-- **Figma Variables**: Dual-layer architecture:
-  - **`Primitives` Collection**: Raw Zinc, Brand Indigo, and Status values (Hidden from publishing).
-  - **`Semantics` Collection**: `Light` and `Dark` modes mapped to primitive aliases.
+A modern, accessible React component library and design system powered by **[@base-ui/react](https://base-ui.com/)**, **Tailwind CSS v4 (CSS-first / Zero Config)**, and pure CSS variables for complete token and theme customizability.
 
 ---
 
-## 🚀 Quick Start (React Playground & Dev Server)
+## 📦 Installation
+
+Install the package via your favorite package manager:
 
 ```bash
-# 1. Jalankan development server lokal
-npm run dev
+# npm
+npm install @galaui/react
 
-# 2. Build untuk production
-npm run build
+# pnpm
+pnpm add @galaui/react
+
+# yarn
+yarn add @galaui/react
+
+# bun
+bun add @galaui/react
 ```
-
-Aplikasi playground interaktif akan berjalan di `http://localhost:5173`.
 
 ---
 
-## 📁 Repository Structure
+## 🚀 Quick Start
 
+### 1. Import Stylesheet
+
+Import the GalaUI stylesheet at the root of your application (e.g. `main.tsx`, `App.tsx`, or Next.js `layout.tsx`):
+
+```tsx
+import "@galaui/react/styles.css";
 ```
-galaui/
-├── src/
-│   ├── App.tsx                      # Interactive React Component Playground & Test Workbench
-│   ├── main.tsx                     # React application root entrypoint
-│   ├── components/
-│   │   └── ui/
-│   │       ├── button.tsx           # Button (Variants + Sizes with cva & cn)
-│   │       ├── dialog.tsx           # Base UI Dialog (Root, Trigger, Backdrop, Popup, Title, Close)
-│   │       ├── popover.tsx          # Base UI Popover (Root, Trigger, Positioner, Popup)
-│   │       ├── dropdown-menu.tsx    # Base UI Menu (Root, Trigger, Item, Separator)
-│   │       ├── switch.tsx           # Base UI Switch (Root, Thumb)
-│   │       ├── checkbox.tsx         # Base UI Checkbox (Root, Indicator)
-│   │       ├── radio-group.tsx      # Base UI RadioGroup (Root, Item, Indicator)
-│   │       ├── tooltip.tsx          # Base UI Tooltip (Root, Trigger, Positioner, Popup)
-│   │       ├── accordion.tsx        # Base UI Accordion (Root, Item, Trigger, Panel)
-│   │       ├── tabs.tsx             # Base UI Tabs (Root, List, Tab, Panel)
-│   │       ├── select.tsx           # Base UI Select (Root, Trigger, Popup, Item)
-│   │       ├── avatar.tsx           # Base UI Avatar (Root, Image, Fallback)
-│   │       ├── slider.tsx           # Base UI Slider (Root, Track, Indicator, Thumb)
-│   │       ├── input.tsx            # Input & Textarea
-│   │       ├── badge.tsx            # Badge (Variants with cva & cn)
-│   │       ├── card.tsx             # Card (Header, Title, Description, Content, Footer)
-│   │       └── separator.tsx        # Base UI Separator
-│   ├── lib/
-│   │   └── utils.ts                 # Re-exporting from 'cn' package (npm i cn)
-│   ├── styles/
-│   │   └── globals.css              # Pure CSS-first Tailwind v4 @import "tailwindcss" & @theme
-│   └── index.ts                     # Full component & utility exports
-├── tokens/
-│   ├── tokens.json                  # Tokens Studio for Figma ($themes Light & Dark)
-│   ├── figma-variables.json         # Figma Local Variables Schema (REST API / Plugin format)
-│   └── index.ts                     # Type-safe TypeScript token definitions
-├── designs/
-│   ├── playground.html              # Standalone React Playground Build
-│   └── design-system-showcase.html  # Interactive Standalone UI Showcase
-├── vite.config.ts                   # Vite configuration with @tailwindcss/vite
-├── package.json
-└── tsconfig.json
+
+### 2. Use Components
+
+```tsx
+import {
+  Button,
+  Dialog,
+  DialogTrigger,
+  DialogPopup,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@galaui/react";
+
+export default function Example() {
+  return (
+    <Dialog>
+      <DialogTrigger>
+        <Button variant="default" size="md">
+          Open Dialog
+        </Button>
+      </DialogTrigger>
+      <DialogPopup>
+        <DialogHeader>
+          <DialogTitle>GalaUI Dialog</DialogTitle>
+          <DialogDescription>
+            Fully accessible Base UI dialog powered by Tailwind CSS v4.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose>
+            <Button variant="outline" size="sm">Cancel</Button>
+          </DialogClose>
+          <Button variant="default" size="sm">Confirm</Button>
+        </DialogFooter>
+      </DialogPopup>
+    </Dialog>
+  );
+}
 ```
+
+---
+
+## 🎨 Full Design Token & Theme Customization
+
+GalaUI design tokens (Typography, Corner Radii, Component Sizing, and Semantic Colors) are driven 100% by CSS Custom Variables. You can customize them directly in your project's `globals.css`:
+
+```css
+@import "@galaui/react/styles.css";
+
+/* Customize Light Mode & Global Tokens */
+:root {
+  /* 1. Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 2. Border Radius Scale */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* 3. Brand / Semantic Colors */
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-active: #3730A3;
+  --primary-foreground: #FFFFFF;
+
+  --background: #FFFFFF;
+  --foreground: #09090B;
+  --border: #E4E4E7;
+}
+
+/* Customize Dark Mode */
+.dark {
+  --primary: #6366F1;
+  --primary-hover: #818CF8;
+  --background: #09090B;
+  --foreground: #FAFAFA;
+  --border: #27272A;
+}
+```
+
+---
+
+## 🛠 Development & Local Workbench
+
+To run the local interactive component test bench and playground:
+
+```bash
+# Start dev server
+npm run dev
+
+# Build library for publishing
+npm run build:lib
+
+# Build standalone playground HTML
+npm run build:app
+```
+
+---
+
+## 🚀 Publishing to npm
+
+1. Login to your npm account:
+   ```bash
+   npm login
+   ```
+
+2. Publish to npm (public access is free):
+   ```bash
+   npm publish --access public
+   ```
+
+---
+
+## 📄 License
+
+MIT © [GalaUI](LICENSE)

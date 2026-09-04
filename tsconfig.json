@@ -24,12 +24,12 @@
         "./src/*"
       ],
       "@/tokens/*": [
-        "./tokens/*"
+        "./src/tokens/*"
       ]
     }
   },
   "include": [
     "src",
-    "tokens"
+    "playground"
   ]
 }

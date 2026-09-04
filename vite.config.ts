@@ -13,11 +13,12 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),
-      "@/tokens": path.resolve(import.meta.dirname, "./tokens"),
+      "@/tokens": path.resolve(import.meta.dirname, "./src/tokens"),
     },
   },
   build: {
     target: "esnext",
+    outDir: "dist-app",
     assetsInlineLimit: 100000000,
     chunkSizeWarningLimit: 100000000,
     cssCodeSplit: false,
@@ -32,4 +33,3 @@ export default defineConfig({
     host: true,
   },
 });
-

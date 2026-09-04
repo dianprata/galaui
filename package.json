@@ -1,42 +1,75 @@
 {
-  "name": "@galaui/design-system",
-  "version": "1.0.0",
-  "description": "Production-ready Design System & Tokens for Figma, React, and Tailwind CSS",
-  "main": "tokens/index.ts",
+  "name": "@galaui/react",
+  "version": "0.1.0",
+  "description": "Modern Base UI & Tailwind CSS v4 Component Library and Design Tokens",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "python3 -m http.server 4311 --directory .",
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:lib",
+    "build:lib": "vite build --config vite.config.lib.ts",
+    "build:app": "vite build && cp dist-app/index.html designs/playground.html",
+    "prepublishOnly": "npm run build:lib",
     "preview": "vite preview"
   },
   "keywords": [
     "design-system",
-    "figma-tokens",
+    "base-ui",
     "tailwind",
+    "tailwindcss",
     "react",
-    "tokens-studio",
+    "ui",
+    "components",
     "ui-kit"
   ],
   "author": "GalaUI",
   "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@phosphor-icons/react": "^2.1.10",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.4",
     "lucide-react": "^1.40.0",
     "postcss": "^8.5.28",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "typescript": "^5.9.3",
     "vite": "^8.2.2",
+    "vite-plugin-dts": "^5.1.0",
     "vite-plugin-singlefile": "^2.3.3"
   },
   "type": "module"

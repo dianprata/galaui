@@ -24,7 +24,7 @@ const MenubarSubmenu = BaseMenu.SubmenuRoot;
 const MenubarRadioGroup = BaseMenu.RadioGroup;
 
 const MenubarTrigger = React.forwardRef<
-  React.ElementRef<typeof BaseMenu.Trigger>,
+  HTMLButtonElement,
   React.ComponentPropsWithoutRef<typeof BaseMenu.Trigger>
 >(({ className, ...props }, ref) => (
   <BaseMenu.Trigger

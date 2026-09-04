@@ -58,8 +58,8 @@ import {
   ToastViewport,
   toast,
   cn,
-} from "./index";
-import { ShowcaseNewComponents } from "./components/ShowcaseNewComponents";
+} from "@/index";
+import { ShowcaseNewComponents } from "./ShowcaseNewComponents";
 
 import {
   Sparkle,

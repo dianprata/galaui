@@ -131,7 +131,7 @@ import {
   Badge,
   Separator,
   cn,
-} from "../index";
+} from "@/index";
 
 import {
   Sparkle,
