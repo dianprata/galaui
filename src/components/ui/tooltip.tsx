@@ -5,7 +5,20 @@ import { cn } from "@/lib/utils";
 const TooltipProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 const Tooltip = BaseTooltip.Root;
 const TooltipPortal = BaseTooltip.Portal;
-const TooltipTrigger = BaseTooltip.Trigger;
+
+const TooltipTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseTooltip.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseTooltip.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseTooltip.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BaseTooltip.Trigger ref={ref} {...props}>{children}</BaseTooltip.Trigger>;
+});
+TooltipTrigger.displayName = "TooltipTrigger";
 
 const TooltipPopup = React.forwardRef<
   React.ElementRef<typeof BaseTooltip.Popup>,

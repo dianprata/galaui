@@ -53,7 +53,7 @@ export function ComponentPreview({
   return (
     <Card className={cn("overflow-hidden p-0 not-prose", className)}>
       {(title || description) && (
-        <CardHeader className="px-6 py-4 border-b border-border bg-muted/20 space-y-1">
+        <CardHeader className="px-4 py-4 border-b border-border bg-muted/20 space-y-1">
           {title && <CardTitle className="text-sm font-semibold tracking-tight">{title}</CardTitle>}
           {description && <CardDescription className="text-xs">{description}</CardDescription>}
         </CardHeader>
@@ -79,7 +79,7 @@ export function ComponentPreview({
                 const selected = Array.isArray(val) ? val.filter(Boolean).pop() : val;
                 if (selected) setBgStyle(selected as any);
               }}
-              className="hidden sm:inline-flex p-0.5 rounded-lg border border-border/70 bg-background"
+              className="hidden sm:inline-flex px-0.5 rounded-lg border border-border/70"
             >
               <Tooltip>
                 <TooltipTrigger>
