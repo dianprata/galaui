@@ -1,5 +1,6 @@
 import { CodeBlock } from "@docs/components/CodeBlock";
-import { Alert, AlertTitle, AlertDescription } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { Alert, AlertTitle, AlertDescription, Tabs, TabsList, TabsTab, TabsPanel, Separator, Button } from "@/index";
 import { CheckCircle2 } from "lucide-react";
 
 # Installation
@@ -8,21 +9,34 @@ Install `@galaui/react` and its peer dependencies into your React project.
 
 ## 1. Package Installation
 
-Install via your preferred package manager:
+Select your package manager to install the core package:
 
-### npm
-<CodeBlock language="bash" code="npm install @galaui/react" />
+<Tabs defaultValue="npm" className="my-6">
+  <TabsList>
+    <TabsTab value="npm">npm</TabsTab>
+    <TabsTab value="pnpm">pnpm</TabsTab>
+    <TabsTab value="yarn">yarn</TabsTab>
+    <TabsTab value="bun">bun</TabsTab>
+  </TabsList>
 
-### pnpm
-<CodeBlock language="bash" code="pnpm add @galaui/react" />
+  <TabsPanel value="npm">
+    <CodeBlock language="bash" code="npm install @galaui/react" />
+  </TabsPanel>
 
-### yarn
-<CodeBlock language="bash" code="yarn add @galaui/react" />
+  <TabsPanel value="pnpm">
+    <CodeBlock language="bash" code="pnpm add @galaui/react" />
+  </TabsPanel>
 
-### bun
-<CodeBlock language="bash" code="bun add @galaui/react" />
+  <TabsPanel value="yarn">
+    <CodeBlock language="bash" code="yarn add @galaui/react" />
+  </TabsPanel>
 
----
+  <TabsPanel value="bun">
+    <CodeBlock language="bash" code="bun add @galaui/react" />
+  </TabsPanel>
+</Tabs>
+
+<Separator className="my-8" />
 
 ## 2. Import Stylesheet
 
@@ -33,24 +47,26 @@ GalaUI includes all base styles and Tailwind CSS v4 design tokens in `@galaui/re
   code={'import "@galaui/react/styles.css";\nimport React from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")!).render(<App />);'}
 />
 
----
+<Separator className="my-8" />
 
 ## 3. Verify Setup
 
-Test by importing your first component into any page:
+Render your first GalaUI component to verify that styling and Base UI primitives work:
 
-<CodeBlock
-  language="tsx"
-  code={'import { Button } from "@galaui/react";\n\nexport default function Home() {\n  return (\n    <main className="p-8">\n      <Button variant="default">Hello GalaUI</Button>\n    </main>\n  );\n}'}
-/>
+<ComponentPreview
+  title="Verification Button"
+  description="Ensure styles and Base UI interactivity are loaded properly."
+  code={'import { Button } from "@galaui/react";\n\nexport default function App() {\n  return <Button variant="default">Hello GalaUI</Button>;\n}'}
+>
+  <Button variant="default">Hello GalaUI</Button>
+</ComponentPreview>
 
-<Alert className="my-6 bg-emerald-500/10 border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
-  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+<Alert variant="success" className="my-6">
+  <CheckCircle2 className="w-4 h-4" />
   <div>
-    <AlertTitle>Ready to go!</AlertTitle>
+    <AlertTitle>Ready to build!</AlertTitle>
     <AlertDescription>
       Your project is now fully configured with GalaUI. Check out the Theming guide next to customize design tokens.
     </AlertDescription>
   </div>
 </Alert>
-

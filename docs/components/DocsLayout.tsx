@@ -7,7 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { SearchDialog } from "./SearchDialog";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { DocsPagination } from "./DocsPagination";
-import { Badge } from "@/index";
+import { Badge, Button, Kbd } from "@/index";
 import { Menu, X, ExternalLink, Search } from "lucide-react";
 import { useEffect } from "react";
 
@@ -37,13 +37,14 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       {/* Top Navbar */}
       <header className="sticky top-0 z-40 h-14 border-b border-border bg-background/80 backdrop-blur-md px-4 md:px-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button
-            type="button"
+          <Button
+            variant="ghost"
+            size="icon-sm"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground"
+            className="md:hidden"
           >
             {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
+          </Button>
 
           <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-foreground hover:opacity-90">
             <div className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black text-xs shadow-xs">
@@ -68,21 +69,20 @@ export function DocsLayout({ children }: DocsLayoutProps) {
               <Search className="w-3.5 h-3.5 text-muted-foreground" />
               <span>Search documentation...</span>
             </div>
-            <kbd className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono rounded bg-muted text-muted-foreground border border-border">
-              ⌘K
-            </kbd>
+            <Kbd>⌘K</Kbd>
           </button>
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
+          <Button
+            variant="ghost"
+            size="icon-sm"
             onClick={() => setSearchOpen(true)}
-            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+            className="md:hidden text-muted-foreground hover:text-foreground"
             title="Search"
           >
             <Search className="w-4 h-4" />
-          </button>
+          </Button>
 
           <a
             href="https://www.npmjs.com/package/@galaui/react"

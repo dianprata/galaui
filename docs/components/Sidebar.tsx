@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { docSections } from "../routes";
+import { Input, Badge } from "@/index";
 import { Search } from "lucide-react";
 
 interface SidebarProps {
@@ -25,14 +26,13 @@ export function Sidebar({ onNavigate, onSearchClick }: SidebarProps) {
     <aside className="w-64 shrink-0 flex flex-col h-[calc(100vh-3.5rem)] sticky top-14 border-r border-border bg-background">
       <div className="p-4 border-b border-border/60">
         <div className="relative">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="text"
+          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10" />
+          <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => onSearchClick?.()}
             placeholder="Quick search docs..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border bg-muted/40 placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all cursor-pointer"
+            className="pl-8 text-xs h-8 cursor-pointer"
           />
         </div>
       </div>
@@ -59,9 +59,9 @@ export function Sidebar({ onNavigate, onSearchClick }: SidebarProps) {
                   >
                     <span>{item.title}</span>
                     {item.badge && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground uppercase font-mono">
+                      <Badge variant="outline" size="sm" className="font-mono text-[10px] h-4 px-1 uppercase">
                         {item.badge}
-                      </span>
+                      </Badge>
                     )}
                   </Link>
                 );
@@ -79,3 +79,4 @@ export function Sidebar({ onNavigate, onSearchClick }: SidebarProps) {
     </aside>
   );
 }
+

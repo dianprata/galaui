@@ -1,7 +1,16 @@
-import { useLocation, Link } from "wouter";
+import { useLocation } from "wouter";
 import { docSections } from "../routes";
-import { ChevronRight, Share2, Check } from "lucide-react";
+import { Share2, Check } from "lucide-react";
 import { useState } from "react";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  Button,
+} from "@/index";
 
 export function Breadcrumbs() {
   const [location] = useLocation();
@@ -31,36 +40,41 @@ export function Breadcrumbs() {
   };
 
   return (
-    <div className="flex items-center justify-between pb-6 mb-4 border-b border-border/60 text-xs">
-      <nav className="flex items-center gap-1.5 text-muted-foreground">
-        <Link href="/" className="hover:text-foreground transition-colors">
-          Docs
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/60" />
-        <span>{sectionTitle}</span>
-        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/60" />
-        <span className="text-foreground font-medium">{itemTitle}</span>
-      </nav>
+    <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/60 text-xs">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#/getting-started/introduction">Docs</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <span>{sectionTitle}</span>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{itemTitle}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-      <button
-        type="button"
+      <Button
+        variant="outline"
+        size="xs"
         onClick={onCopyUrl}
-        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer select-none"
         title="Copy page link"
       >
         {copied ? (
           <>
-            <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-            <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">Copied link</span>
+            <Check className="w-3 h-3 mr-1 text-emerald-600 dark:text-emerald-400" />
+            <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">Copied</span>
           </>
         ) : (
           <>
-            <Share2 className="w-3 h-3" />
+            <Share2 className="w-3 h-3 mr-1" />
             <span className="text-[11px]">Share</span>
           </>
         )}
-      </button>
+      </Button>
     </div>
   );
 }
-

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { allRoutes, docSections } from "../routes";
-import { Search, X, ChevronRight, FileText } from "lucide-react";
+import { Search, ChevronRight, FileText } from "lucide-react";
+import { Dialog, DialogPopup, Input, Kbd } from "@/index";
 
 interface SearchDialogProps {
   open: boolean;
@@ -54,34 +55,18 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
-      <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in-50"
-        onClick={onClose}
-      />
-
-      <div className="relative w-full max-w-xl rounded-2xl border border-border bg-popover text-popover-foreground shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-150">
-        <div className="flex items-center px-4 py-3 border-b border-border gap-3">
-          <Search className="w-4 h-4 text-muted-foreground shrink-0" />
-          <input
+    <Dialog open={open} onOpenChange={(isOpen: any) => !isOpen && onClose()}>
+      <DialogPopup className="max-w-xl p-0 overflow-hidden shadow-2xl">
+        <div className="flex items-center px-4 py-3 border-b border-border gap-2">
+          <Search className="w-4 h-4 text-muted-foreground shrink-0 mr-1" />
+          <Input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search documentation, components, tokens..."
-            className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+            className="border-0 bg-transparent shadow-none focus-visible:ring-0 p-0 text-sm h-auto"
           />
-          {query && (
-            <button
-              type="button"
-              onClick={() => setQuery("")}
-              className="p-1 rounded text-muted-foreground hover:text-foreground"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
-          <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono rounded bg-muted text-muted-foreground border border-border">
-            ESC
-          </kbd>
+          <Kbd className="hidden sm:inline-flex">ESC</Kbd>
         </div>
 
         <div className="max-h-80 overflow-y-auto p-2">
@@ -130,15 +115,14 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
 
         <div className="flex items-center justify-between px-4 py-2 border-t border-border bg-muted/40 text-[11px] text-muted-foreground font-mono">
           <div className="flex items-center gap-2">
-            <span>Navigation:</span>
-            <kbd className="px-1 rounded bg-background border border-border">↑</kbd>
-            <kbd className="px-1 rounded bg-background border border-border">↓</kbd>
-            <kbd className="px-1 rounded bg-background border border-border">↵</kbd>
+            <span>Navigate:</span>
+            <Kbd>↑</Kbd>
+            <Kbd>↓</Kbd>
+            <Kbd>↵</Kbd>
           </div>
           <span>GalaUI Docs Search</span>
         </div>
-      </div>
-    </div>
+      </DialogPopup>
+    </Dialog>
   );
 }
-

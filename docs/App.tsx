@@ -3,6 +3,16 @@ import { useHashLocation } from "wouter/use-hash-location";
 import { DocsLayout } from "./components/DocsLayout";
 import { allRoutes } from "./routes";
 import { MDXProvider } from "@mdx-js/react";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Separator,
+  Button,
+} from "@/index";
 
 const mdxComponents = {
   h1: (props: any) => <h1 className="text-3xl font-bold tracking-tight mb-3 text-foreground" {...props} />,
@@ -12,21 +22,20 @@ const mdxComponents = {
   ul: (props: any) => <ul className="list-disc pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
   ol: (props: any) => <ol className="list-decimal pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
   li: (props: any) => <li className="leading-relaxed" {...props} />,
-  hr: (props: any) => <hr className="my-8 border-border" {...props} />,
+  hr: (props: any) => <Separator className="my-8" {...props} />,
   strong: (props: any) => <strong className="font-semibold text-foreground" {...props} />,
   code: ({ className, ...props }: any) => {
     if (className) {
       return <code className={className} {...props} />;
     }
-    return <code className="px-1.5 py-0.5 rounded bg-muted font-mono text-xs text-foreground" {...props} />;
+    return <code className="px-1.5 py-0.5 rounded-md bg-muted font-mono text-xs text-foreground border border-border/50" {...props} />;
   },
-  table: (props: any) => (
-    <div className="my-6 w-full overflow-x-auto rounded-xl border border-border">
-      <table className="w-full text-xs text-left border-collapse" {...props} />
-    </div>
-  ),
-  th: (props: any) => <th className="border-b border-border bg-muted/50 px-4 py-2.5 font-semibold text-foreground" {...props} />,
-  td: (props: any) => <td className="border-b border-border/60 px-4 py-2 text-muted-foreground" {...props} />,
+  table: (props: any) => <Table className="my-6" {...props} />,
+  thead: (props: any) => <TableHeader {...props} />,
+  tbody: (props: any) => <TableBody {...props} />,
+  tr: (props: any) => <TableRow {...props} />,
+  th: (props: any) => <TableHead {...props} />,
+  td: (props: any) => <TableCell {...props} />,
 };
 
 export default function App() {
@@ -56,11 +65,10 @@ export default function App() {
                 <p className="text-sm text-muted-foreground">
                   The page you are looking for does not exist or has moved.
                 </p>
-                <a
-                  href="#/getting-started/introduction"
-                  className="inline-flex items-center justify-center h-8 px-4 rounded-lg bg-primary text-primary-foreground text-xs font-medium"
-                >
-                  Return to Introduction
+                <a href="#/getting-started/introduction">
+                  <Button variant="default" size="sm">
+                    Return to Introduction
+                  </Button>
                 </a>
               </div>
             </Route>
