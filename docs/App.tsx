@@ -1,5 +1,4 @@
-import { Router, Route, Switch, Redirect } from "wouter";
-import { useHashLocation } from "wouter/use-hash-location";
+import { Router, Route, Switch, Redirect, Link } from "wouter";
 import { DocsLayout } from "./components/DocsLayout";
 import { allRoutes } from "./routes";
 import { MDXProvider } from "@mdx-js/react";
@@ -14,10 +13,43 @@ import {
   Button,
 } from "@/index";
 
+function slugify(text: any): string {
+  if (typeof text !== "string") {
+    if (Array.isArray(text)) {
+      text = text.map((t) => (typeof t === "string" ? t : "")).join("");
+    } else {
+      text = String(text || "");
+    }
+  }
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 const mdxComponents = {
   h1: (props: any) => <h1 className="text-3xl font-bold tracking-tight mb-3 text-foreground" {...props} />,
-  h2: (props: any) => <h2 className="text-xl font-semibold tracking-tight mt-8 mb-3 text-foreground" {...props} />,
-  h3: (props: any) => <h3 className="text-base font-semibold mt-5 mb-2 text-foreground" {...props} />,
+  h2: (props: any) => {
+    const id = props.id || slugify(props.children);
+    return (
+      <h2
+        id={id}
+        className="text-xl font-semibold tracking-tight mt-8 mb-3 text-foreground scroll-mt-20"
+        {...props}
+      />
+    );
+  },
+  h3: (props: any) => {
+    const id = props.id || slugify(props.children);
+    return (
+      <h3
+        id={id}
+        className="text-base font-semibold mt-5 mb-2 text-foreground scroll-mt-20"
+        {...props}
+      />
+    );
+  },
   p: (props: any) => <p className="text-sm text-muted-foreground leading-relaxed my-2.5" {...props} />,
   ul: (props: any) => <ul className="list-disc pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
   ol: (props: any) => <ol className="list-decimal pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
@@ -40,7 +72,7 @@ const mdxComponents = {
 
 export default function App() {
   return (
-    <Router hook={useHashLocation}>
+    <Router>
       <DocsLayout>
         <MDXProvider components={mdxComponents}>
           <Switch>
@@ -65,11 +97,11 @@ export default function App() {
                 <p className="text-sm text-muted-foreground">
                   The page you are looking for does not exist or has moved.
                 </p>
-                <a href="#/getting-started/introduction">
+                <Link href="/getting-started/introduction">
                   <Button variant="default" size="sm">
                     Return to Introduction
                   </Button>
-                </a>
+                </Link>
               </div>
             </Route>
           </Switch>

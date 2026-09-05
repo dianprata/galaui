@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useLocation } from "wouter";
 import { AlignLeft, ChevronDown, ExternalLink, MessageSquare } from "lucide-react";
 import { Collapsible, CollapsibleTrigger, CollapsiblePanel, cn } from "@/index";
 
@@ -11,43 +12,84 @@ interface HeadingItem {
 function useHeadings() {
   const [headings, setHeadings] = useState<HeadingItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
+  const [location] = useLocation();
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    // Collect all h2 and h3 elements within .docs-content
-    const elements = Array.from(document.querySelectorAll(".docs-content h2, .docs-content h3"));
-    const items: HeadingItem[] = elements
-      .map((el) => {
-        if (!el.id) {
-          el.id =
-            el.textContent
-              ?.toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "") || "";
-        }
-        return {
-          id: el.id,
-          text: el.textContent || "",
-          level: el.tagName === "H2" ? 2 : 3,
-        };
-      })
-      .filter((item) => item.id && item.text);
+    let animationFrameId: number;
+    let mutationObserver: MutationObserver | null = null;
 
-    setHeadings(items);
+    const scanHeadings = () => {
+      // Target h2 & h3 only inside main docs content and exclude non-prose preview cards
+      const elements = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          ".docs-content h2:not(.not-prose *), .docs-content h3:not(.not-prose *)"
+        )
+      );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+      const items: HeadingItem[] = elements
+        .map((el) => {
+          if (!el.id) {
+            el.id =
+              el.textContent
+                ?.toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)/g, "") || "";
           }
-        });
-      },
-      { rootMargin: "0% 0% -65% 0%" }
-    );
+          return {
+            id: el.id,
+            text: el.textContent?.trim() || "",
+            level: el.tagName.toLowerCase() === "h2" ? 2 : 3,
+          };
+        })
+        .filter((item) => item.id && item.text);
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+      setHeadings(items);
+
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "0% 0% -65% 0%" }
+      );
+
+      elements.forEach((el) => observerRef.current?.observe(el));
+
+      // If current URL has a hash, activate it
+      if (window.location.hash) {
+        const hashId = window.location.hash.replace("#", "");
+        if (items.some((item) => item.id === hashId)) {
+          setActiveId(hashId);
+        }
+      }
+    };
+
+    // Initial scan with requestAnimationFrame
+    animationFrameId = requestAnimationFrame(scanHeadings);
+
+    const contentContainer = document.querySelector(".docs-content");
+    if (contentContainer) {
+      mutationObserver = new MutationObserver(() => {
+        scanHeadings();
+      });
+      mutationObserver.observe(contentContainer, { childList: true, subtree: true });
+    }
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      observerRef.current?.disconnect();
+      mutationObserver?.disconnect();
+    };
+  }, [location]);
 
   return { headings, activeId, setActiveId };
 }
@@ -202,4 +244,3 @@ export function TableOfContents({ className }: { className?: string } = {}) {
     </aside>
   );
 }
-

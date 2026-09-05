@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { docSections } from "../routes";
 import { Share2, Check } from "lucide-react";
 import { useState } from "react";
@@ -45,7 +45,9 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="#/getting-started/introduction">Docs</BreadcrumbLink>
+            <Link href="/getting-started/introduction" className="transition-colors hover:text-foreground cursor-pointer">
+              Docs
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

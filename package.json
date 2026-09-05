@@ -31,6 +31,8 @@
     "build:docs": "vite build",
     "build:lib": "vite build --config vite.config.lib.ts",
     "build:app": "vite build",
+    "deploy:docs": "npm run build:docs && wrangler pages deploy dist-app --project-name=galaui",
+    "deploy:worker": "npm run build:docs && wrangler deploy",
     "prepublishOnly": "npm run build:lib",
     "preview": "vite preview"
   },
@@ -86,7 +88,8 @@
     "vite": "^8.2.2",
     "vite-plugin-dts": "^5.1.0",
     "vite-plugin-singlefile": "^2.3.3",
-    "wouter": "^3.10.0"
+    "wouter": "^3.10.0",
+    "wrangler": "^4.129.0"
   },
   "type": "module"
 }
