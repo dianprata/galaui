@@ -11,28 +11,16 @@ const ScrollArea = React.forwardRef<
     className={cn("relative overflow-hidden", className)}
     {...props}
   >
-    <ScrollAreaViewport>{children}</ScrollAreaViewport>
-    <ScrollAreaScrollbar orientation="vertical">
-      <ScrollAreaThumb />
-    </ScrollAreaScrollbar>
-    <ScrollAreaCorner />
+    <BaseScrollArea.Viewport className="h-full w-full rounded-[inherit] outline-none">
+      {children}
+    </BaseScrollArea.Viewport>
+    <ScrollBar orientation="vertical" />
+    <BaseScrollArea.Corner />
   </BaseScrollArea.Root>
 ));
 ScrollArea.displayName = "ScrollArea";
 
-const ScrollAreaViewport = React.forwardRef<
-  React.ElementRef<typeof BaseScrollArea.Viewport>,
-  React.ComponentPropsWithoutRef<typeof BaseScrollArea.Viewport>
->(({ className, ...props }, ref) => (
-  <BaseScrollArea.Viewport
-    ref={ref}
-    className={cn("h-full w-full rounded-[inherit] outline-none", className)}
-    {...props}
-  />
-));
-ScrollAreaViewport.displayName = "ScrollAreaViewport";
-
-const ScrollAreaScrollbar = React.forwardRef<
+const ScrollBar = React.forwardRef<
   React.ElementRef<typeof BaseScrollArea.Scrollbar>,
   React.ComponentPropsWithoutRef<typeof BaseScrollArea.Scrollbar>
 >(({ className, orientation = "vertical", ...props }, ref) => (
@@ -46,28 +34,15 @@ const ScrollAreaScrollbar = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    <BaseScrollArea.Thumb
+      className="relative flex-1 rounded-full bg-muted-foreground/30 hover:bg-muted-foreground/50 transition-colors"
+    />
+  </BaseScrollArea.Scrollbar>
 ));
-ScrollAreaScrollbar.displayName = "ScrollAreaScrollbar";
-
-const ScrollAreaThumb = React.forwardRef<
-  React.ElementRef<typeof BaseScrollArea.Thumb>,
-  React.ComponentPropsWithoutRef<typeof BaseScrollArea.Thumb>
->(({ className, ...props }, ref) => (
-  <BaseScrollArea.Thumb
-    ref={ref}
-    className={cn("relative flex-1 rounded-full bg-muted-foreground/30 hover:bg-muted-foreground/50 transition-colors", className)}
-    {...props}
-  />
-));
-ScrollAreaThumb.displayName = "ScrollAreaThumb";
-
-const ScrollAreaCorner = BaseScrollArea.Corner;
+ScrollBar.displayName = "ScrollBar";
 
 export {
   ScrollArea,
-  ScrollAreaViewport,
-  ScrollAreaScrollbar,
-  ScrollAreaThumb,
-  ScrollAreaCorner,
+  ScrollBar,
 };

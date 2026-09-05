@@ -11,6 +11,8 @@ import {
   TableCell,
   Separator,
   Button,
+  ToastProvider,
+  ToastViewport,
 } from "@/index";
 
 function slugify(text: any): string {
@@ -72,6 +74,8 @@ const mdxComponents = {
 
 export default function App() {
   return (
+    <ToastProvider>
+      <ToastViewport />
     <Router>
       <DocsLayout>
         <MDXProvider components={mdxComponents}>
@@ -108,5 +112,6 @@ export default function App() {
         </MDXProvider>
       </DocsLayout>
     </Router>
+    </ToastProvider>
   );
 }

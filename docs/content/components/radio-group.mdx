@@ -1,0 +1,45 @@
+import { RadioGroup, RadioGroupItem, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Radio Group
+
+A set of checkable buttons—known as radio buttons—where no more than one button can be checked at a time. Built on Base UI RadioGroup primitives with arrow-key traversal.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Keyboard Traversal</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { RadioGroup, RadioGroupItem } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Subscription Plan"
+  description="Mutually exclusive radio choices."
+  code={'import { RadioGroup, RadioGroupItem } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <RadioGroup defaultValue="pro" className="space-y-2.5 max-w-sm">\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="starter" id="r-starter" />\n        <label htmlFor="r-starter" className="text-xs font-medium cursor-pointer select-none">\n          Starter Plan (Free)\n        </label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="pro" id="r-pro" />\n        <label htmlFor="r-pro" className="text-xs font-medium cursor-pointer select-none">\n          Professional Tier ($19/mo)\n        </label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="enterprise" id="r-enterprise" />\n        <label htmlFor="r-enterprise" className="text-xs font-medium cursor-pointer select-none">\n          Enterprise Cluster (Custom)\n        </label>\n      </div>\n    </RadioGroup>\n  );\n}'}
+>
+  <RadioGroup defaultValue="pro" className="space-y-2.5 max-w-sm">
+    <div className="flex items-center gap-2.5">
+      <RadioGroupItem value="starter" id="r-starter" />
+      <label htmlFor="r-starter" className="text-xs font-medium cursor-pointer select-none">
+        Starter Plan (Free)
+      </label>
+    </div>
+    <div className="flex items-center gap-2.5">
+      <RadioGroupItem value="pro" id="r-pro" />
+      <label htmlFor="r-pro" className="text-xs font-medium cursor-pointer select-none">
+        Professional Tier ($19/mo)
+      </label>
+    </div>
+    <div className="flex items-center gap-2.5">
+      <RadioGroupItem value="enterprise" id="r-enterprise" />
+      <label htmlFor="r-enterprise" className="text-xs font-medium cursor-pointer select-none">
+        Enterprise Cluster (Custom)
+      </label>
+    </div>
+  </RadioGroup>
+</ComponentPreview>

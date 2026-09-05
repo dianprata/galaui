@@ -1,0 +1,67 @@
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Table
+
+A responsive and accessible table component for displaying structured tabular records.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic Table</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Responsive</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Table,\n  TableHeader,\n  TableBody,\n  TableFooter,\n  TableHead,\n  TableRow,\n  TableCell,\n  TableCaption,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Invoices Table"
+  description="Structured data table with responsive styled rows."
+  code={'import {\n  Table,\n  TableHeader,\n  TableBody,\n  TableHead,\n  TableRow,\n  TableCell,\n  Badge,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full overflow-hidden rounded-xl border border-border">\n      <Table>\n        <TableHeader>\n          <TableRow>\n            <TableHead>Invoice</TableHead>\n            <TableHead>Status</TableHead>\n            <TableHead>Method</TableHead>\n            <TableHead className="text-right">Amount</TableHead>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          <TableRow>\n            <TableCell className="font-mono font-medium">INV001</TableCell>\n            <TableCell><Badge variant="success">Paid</Badge></TableCell>\n            <TableCell>Credit Card</TableCell>\n            <TableCell className="text-right font-mono">$250.00</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className="font-mono font-medium">INV002</TableCell>\n            <TableCell><Badge variant="warning">Pending</Badge></TableCell>\n            <TableCell>PayPal</TableCell>\n            <TableCell className="text-right font-mono">$150.00</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className="font-mono font-medium">INV003</TableCell>\n            <TableCell><Badge variant="destructive">Unpaid</Badge></TableCell>\n            <TableCell>Bank Transfer</TableCell>\n            <TableCell className="text-right font-mono">$350.00</TableCell>\n          </TableRow>\n        </TableBody>\n      </Table>\n    </div>\n  );\n}'}
+>
+  <div className="w-full overflow-hidden rounded-xl border border-border">
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell className="font-mono font-medium">INV001</TableCell>
+          <TableCell><Badge variant="success">Paid</Badge></TableCell>
+          <TableCell>Credit Card</TableCell>
+          <TableCell className="text-right font-mono">$250.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-mono font-medium">INV002</TableCell>
+          <TableCell><Badge variant="warning">Pending</Badge></TableCell>
+          <TableCell>PayPal</TableCell>
+          <TableCell className="text-right font-mono">$150.00</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="font-mono font-medium">INV003</TableCell>
+          <TableCell><Badge variant="destructive">Unpaid</Badge></TableCell>
+          <TableCell>Bank Transfer</TableCell>
+          <TableCell className="text-right font-mono">$350.00</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </div>
+</ComponentPreview>

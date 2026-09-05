@@ -167,12 +167,12 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
       </div>
 
       {/* Simple Footer */}
-      <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+      {/* <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>MIT License © {new Date().getFullYear()} GalaUI</span>
           <span>Powered by Base UI & Tailwind CSS v4</span>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

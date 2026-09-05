@@ -1,0 +1,73 @@
+import { Accordion, AccordionItem, AccordionTrigger, AccordionPanel, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Accordion
+
+A vertically stacked set of interactive headings that each reveal a section of content. Built on Base UI Accordion primitives with keyboard navigation and smooth expansion transitions.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">WAI-ARIA Accordion</Badge>
+  <Badge variant="default" className="font-mono text-[11px]">Smooth Spring Height</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Accordion,\n  AccordionItem,\n  AccordionTrigger,\n  AccordionPanel,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="FAQ Accordion"
+  description="Clean vertical disclosure list with single active item."
+  code={'import {\n  Accordion,\n  AccordionItem,\n  AccordionTrigger,\n  AccordionPanel,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Accordion defaultValue={["item-1"]}>\n        <AccordionItem value="item-1">\n          <AccordionTrigger>Is GalaUI accessible?</AccordionTrigger>\n          <AccordionPanel>\n            Yes. It adheres strictly to WAI-ARIA authoring practices powered by Base UI headless primitives with full keyboard traversal.\n          </AccordionPanel>\n        </AccordionItem>\n        <AccordionItem value="item-2">\n          <AccordionTrigger>Can I customize design tokens?</AccordionTrigger>\n          <AccordionPanel>\n            Every color, radius, and sizing token is driven 100% by pure CSS Custom Properties for seamless theming with Tailwind CSS v4.\n          </AccordionPanel>\n        </AccordionItem>\n        <AccordionItem value="item-3" className="border-b-0">\n          <AccordionTrigger>Is it animated without layout shift?</AccordionTrigger>\n          <AccordionPanel>\n            Panels animate smoothly with CSS keyframes and spring-like curves based on dynamic content height.\n          </AccordionPanel>\n        </AccordionItem>\n      </Accordion>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Accordion defaultValue={["item-1"]}>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is GalaUI accessible?</AccordionTrigger>
+        <AccordionPanel>
+          Yes. It adheres strictly to WAI-ARIA authoring practices powered by Base UI headless primitives with full keyboard traversal.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Can I customize design tokens?</AccordionTrigger>
+        <AccordionPanel>
+          Every color, radius, and sizing token is driven 100% by pure CSS Custom Properties for seamless theming with Tailwind CSS v4.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="item-3" className="border-b-0">
+        <AccordionTrigger>Is it animated without layout shift?</AccordionTrigger>
+        <AccordionPanel>
+          Panels animate smoothly with CSS keyframes and spring-like curves based on dynamic content height.
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  </div>
+</ComponentPreview>
+
+## Multiple Expansion
+
+<ComponentPreview
+  title="Multiple Items Open"
+  description="Allows multiple accordion panels to be opened simultaneously."
+  code={'import {\n  Accordion,\n  AccordionItem,\n  AccordionTrigger,\n  AccordionPanel,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Accordion multiple defaultValue={["terms", "privacy"]}>\n        <AccordionItem value="terms">\n          <AccordionTrigger>Terms of Service</AccordionTrigger>\n          <AccordionPanel>\n            By accessing or using GalaUI services, you agree to be bound by our terms and conditions.\n          </AccordionPanel>\n        </AccordionItem>\n        <AccordionItem value="privacy" className="border-b-0">\n          <AccordionTrigger>Privacy Policy</AccordionTrigger>\n          <AccordionPanel>\n            We respect your privacy and protect all sensitive data with modern encryption standards.\n          </AccordionPanel>\n        </AccordionItem>\n      </Accordion>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Accordion multiple defaultValue={["terms", "privacy"]}>
+      <AccordionItem value="terms">
+        <AccordionTrigger>Terms of Service</AccordionTrigger>
+        <AccordionPanel>
+          By accessing or using GalaUI services, you agree to be bound by our terms and conditions.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="privacy" className="border-b-0">
+        <AccordionTrigger>Privacy Policy</AccordionTrigger>
+        <AccordionPanel>
+          We respect your privacy and protect all sensitive data with modern encryption standards.
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  </div>
+</ComponentPreview>

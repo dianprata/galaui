@@ -1,0 +1,55 @@
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectPopup,
+  SelectItem,
+  SelectGroup,
+  SelectGroupLabel,
+  SelectSeparator,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Select
+
+Displays a list of options for the user to pick from—triggered by a button. Built on Base UI Select with full keyboard typeahead support.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Typeahead Search</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectPopup,\n  SelectItem,\n  SelectGroup,\n  SelectGroupLabel,\n  SelectSeparator,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Grouped Select Options"
+  description="Select with groups and size options."
+  code={'import {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectPopup,\n  SelectItem,\n  SelectGroup,\n  SelectGroupLabel,\n  SelectSeparator,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xs space-y-3">\n      <Select defaultValue="tokyo">\n        <SelectTrigger size="default">\n          <SelectValue />\n        </SelectTrigger>\n        <SelectPopup>\n          <SelectGroup>\n            <SelectGroupLabel>Asia Pacific</SelectGroupLabel>\n            <SelectItem value="tokyo">Tokyo (ap-northeast-1)</SelectItem>\n            <SelectItem value="singapore">Singapore (ap-southeast-1)</SelectItem>\n          </SelectGroup>\n          <SelectSeparator />\n          <SelectGroup>\n            <SelectGroupLabel>Americas</SelectGroupLabel>\n            <SelectItem value="virginia">N. Virginia (us-east-1)</SelectItem>\n            <SelectItem value="oregon">Oregon (us-west-2)</SelectItem>\n          </SelectGroup>\n        </SelectPopup>\n      </Select>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xs space-y-3">
+    <Select defaultValue="tokyo">
+      <SelectTrigger size="default">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectPopup>
+        <SelectGroup>
+          <SelectGroupLabel>Asia Pacific</SelectGroupLabel>
+          <SelectItem value="tokyo">Tokyo (ap-northeast-1)</SelectItem>
+          <SelectItem value="singapore">Singapore (ap-southeast-1)</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectGroupLabel>Americas</SelectGroupLabel>
+          <SelectItem value="virginia">N. Virginia (us-east-1)</SelectItem>
+          <SelectItem value="oregon">Oregon (us-west-2)</SelectItem>
+        </SelectGroup>
+      </SelectPopup>
+    </Select>
+  </div>
+</ComponentPreview>

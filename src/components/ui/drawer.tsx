@@ -4,10 +4,37 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Drawer = BaseDrawer.Root;
-const DrawerTrigger = BaseDrawer.Trigger;
 const DrawerPortal = BaseDrawer.Portal;
-const DrawerClose = BaseDrawer.Close;
 const DrawerHandle = BaseDrawer.Handle;
+const DrawerViewport = BaseDrawer.Viewport;
+
+const DrawerTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseDrawer.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseDrawer.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseDrawer.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BaseDrawer.Trigger ref={ref} {...props}>{children}</BaseDrawer.Trigger>;
+});
+DrawerTrigger.displayName = "DrawerTrigger";
+
+const DrawerClose = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseDrawer.Close>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseDrawer.Close ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseDrawer.Close ref={ref} render={children} {...props} />;
+  }
+  return <BaseDrawer.Close ref={ref} {...props}>{children}</BaseDrawer.Close>;
+});
+DrawerClose.displayName = "DrawerClose";
 
 const DrawerBackdrop = React.forwardRef<
   React.ElementRef<typeof BaseDrawer.Backdrop>,
@@ -34,36 +61,48 @@ const DrawerPopup = React.forwardRef<
   React.ElementRef<typeof BaseDrawer.Popup>,
   DrawerPopupProps
 >(({ className, children, side = "bottom", showCloseButton = true, ...props }, ref) => {
+  const isBottom = side === "bottom";
+
   const sideStyles = {
     bottom:
-      "fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[85vh] flex-col rounded-t-2xl border-t border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:translate-y-full data-ending-style:translate-y-full",
+      "pointer-events-auto mt-24 flex max-h-[85vh] w-full flex-col rounded-t-2xl border-t border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:translate-y-full data-ending-style:translate-y-full",
     right:
       "fixed inset-y-0 right-0 z-50 flex h-full w-full max-w-sm flex-col rounded-l-2xl border-l border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:translate-x-full data-ending-style:translate-x-full",
     left:
       "fixed inset-y-0 left-0 z-50 flex h-full w-full max-w-sm flex-col rounded-r-2xl border-r border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:-translate-x-full data-ending-style:-translate-x-full",
     top:
-      "fixed inset-x-0 top-0 z-50 flex max-h-[85vh] flex-col rounded-b-2xl border-b border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:-translate-y-full data-ending-style:-translate-y-full",
+      "fixed inset-x-0 top-0 z-50 flex max-h-[85vh] w-full flex-col rounded-b-2xl border-b border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:-translate-y-full data-ending-style:-translate-y-full",
   };
+
+  const popupElement = (
+    <BaseDrawer.Popup
+      ref={ref}
+      className={cn(sideStyles[side], className)}
+      {...props}
+    >
+      {isBottom && (
+        <div className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-muted-foreground/30" />
+      )}
+      {children}
+      {showCloseButton && (
+        <BaseDrawer.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 cursor-pointer">
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </BaseDrawer.Close>
+      )}
+    </BaseDrawer.Popup>
+  );
 
   return (
     <DrawerPortal>
       <DrawerBackdrop />
-      <BaseDrawer.Popup
-        ref={ref}
-        className={cn(sideStyles[side], className)}
-        {...props}
-      >
-        {side === "bottom" && (
-          <div className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-muted-foreground/30" />
-        )}
-        {children}
-        {showCloseButton && (
-          <BaseDrawer.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 cursor-pointer">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </BaseDrawer.Close>
-        )}
-      </BaseDrawer.Popup>
+      {isBottom ? (
+        <BaseDrawer.Viewport className="fixed inset-0 z-50 flex flex-col justify-end pointer-events-none">
+          {popupElement}
+        </BaseDrawer.Viewport>
+      ) : (
+        popupElement
+      )}
     </DrawerPortal>
   );
 });
@@ -119,6 +158,7 @@ export {
   Drawer,
   DrawerTrigger,
   DrawerPortal,
+  DrawerViewport,
   DrawerClose,
   DrawerHandle,
   DrawerBackdrop,

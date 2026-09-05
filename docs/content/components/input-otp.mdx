@@ -1,0 +1,34 @@
+import { InputOTP, InputOTPSlot, InputOTPSeparator, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Input OTP
+
+Accessible segmented one-time password input with individual character slots. Built on Base UI OTPField primitives with clipboard paste support.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Auto Paste</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { InputOTP, InputOTPSlot, InputOTPSeparator } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="6-Digit Verification Code"
+  description="Segmented slots with auto-advance and separator."
+  code={'import { InputOTP, InputOTPSlot, InputOTPSeparator } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <InputOTP length={6}>\n      <InputOTPSlot index={0} />\n      <InputOTPSlot index={1} />\n      <InputOTPSlot index={2} />\n      <InputOTPSeparator />\n      <InputOTPSlot index={3} />\n      <InputOTPSlot index={4} />\n      <InputOTPSlot index={5} />\n    </InputOTP>\n  );\n}'}
+>
+  <InputOTP length={6}>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSeparator />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTP>
+</ComponentPreview>

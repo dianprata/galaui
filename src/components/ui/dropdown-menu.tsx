@@ -6,9 +6,22 @@ import { cn } from "@/lib/utils";
 const DropdownMenu = BaseMenu.Root;
 const DropdownMenuGroup = BaseMenu.Group;
 const DropdownMenuPortal = BaseMenu.Portal;
-const DropdownMenuTrigger = BaseMenu.Trigger;
 const DropdownMenuRadioGroup = BaseMenu.RadioGroup;
 const DropdownMenuSubmenu = BaseMenu.SubmenuRoot;
+
+const DropdownMenuTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseMenu.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseMenu.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseMenu.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BaseMenu.Trigger ref={ref} {...props}>{children}</BaseMenu.Trigger>;
+});
+DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
 const DropdownMenuPositioner = React.forwardRef<
   React.ElementRef<typeof BaseMenu.Positioner>,

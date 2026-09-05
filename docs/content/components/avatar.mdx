@@ -1,0 +1,39 @@
+import { Avatar, AvatarImage, AvatarFallback, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Avatar
+
+An image element with a graceful initials fallback for representing user profiles. Built on Base UI Avatar primitives with automatic image loading detection.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Automatic Fallback</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Avatar, AvatarImage, AvatarFallback } from "@galaui/react";'} />
+
+## Sizes & Fallbacks
+
+<ComponentPreview
+  title="Avatar Variants"
+  description="Displays profile images with automatic fallback to text initials."
+  code={'import { Avatar, AvatarImage, AvatarFallback } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Avatar size="sm">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="default">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="lg">\n        <AvatarImage src="broken-link.jpg" alt="Alex" />\n        <AvatarFallback>AP</AvatarFallback>\n      </Avatar>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-4">
+    <Avatar size="sm">
+      <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />
+      <AvatarFallback>SC</AvatarFallback>
+    </Avatar>
+    <Avatar size="default">
+      <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />
+      <AvatarFallback>SC</AvatarFallback>
+    </Avatar>
+    <Avatar size="lg">
+      <AvatarImage src="broken-link.jpg" alt="Alex" />
+      <AvatarFallback>AP</AvatarFallback>
+    </Avatar>
+  </div>
+</ComponentPreview>

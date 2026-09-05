@@ -1,0 +1,49 @@
+import { Tooltip, TooltipTrigger, TooltipPopup, Button, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Info, Bell } from "lucide-react";
+
+# Tooltip
+
+A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. Built on Base UI with collision boundaries.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Collision Aware</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Tooltip, TooltipTrigger, TooltipPopup } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Hover Tooltip"
+  description="Smooth entry animation with focus and hover detection."
+  code={'import { Tooltip, TooltipTrigger, TooltipPopup, Button } from "@galaui/react";\nimport { Info, Bell } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="outline" size="sm">\n            <Info className="w-3.5 h-3.5 mr-1.5 text-primary" />\n            Hover for Info\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          GalaUI Tooltip with Base UI positioning\n        </TooltipPopup>\n      </Tooltip>\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="secondary" size="icon">\n            <Bell className="w-4 h-4" />\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          Notification alerts (2 unread)\n        </TooltipPopup>\n      </Tooltip>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-4">
+    <Tooltip>
+      <TooltipTrigger>
+        <Button variant="outline" size="sm">
+          <Info className="w-3.5 h-3.5 mr-1.5 text-primary" />
+          Hover for Info
+        </Button>
+      </TooltipTrigger>
+      <TooltipPopup>
+        GalaUI Tooltip with Base UI positioning
+      </TooltipPopup>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger>
+        <Button variant="secondary" size="icon">
+          <Bell className="w-4 h-4" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipPopup>
+        Notification alerts (2 unread)
+      </TooltipPopup>
+    </Tooltip>
+  </div>
+</ComponentPreview>

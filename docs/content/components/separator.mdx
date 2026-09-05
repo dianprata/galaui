@@ -1,0 +1,39 @@
+import { Separator, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Separator
+
+Visually or semantically separates content within a list or page layout.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic Separator</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Horizontal / Vertical</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Separator } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Content Dividers"
+  description="Horizontal and vertical dividers separating layout blocks."
+  code={'import { Separator } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="space-y-4 max-w-sm">\n      <div className="space-y-1">\n        <h4 className="text-sm font-semibold">GalaUI Tokens</h4>\n        <p className="text-xs text-muted-foreground">CSS Custom Property architecture.</p>\n      </div>\n      <Separator />\n      <div className="flex h-5 items-center justify-between space-x-3 text-xs">\n        <span>Docs</span>\n        <Separator orientation="vertical" />\n        <span>Source</span>\n        <Separator orientation="vertical" />\n        <span>Figma</span>\n      </div>\n    </div>\n  );\n}'}
+>
+  <div className="space-y-4 max-w-sm">
+    <div className="space-y-1">
+      <h4 className="text-sm font-semibold">GalaUI Tokens</h4>
+      <p className="text-xs text-muted-foreground">CSS Custom Property architecture.</p>
+    </div>
+    <Separator />
+    <div className="flex h-5 items-center justify-between space-x-3 text-xs">
+      <span>Docs</span>
+      <Separator orientation="vertical" />
+      <span>Source</span>
+      <Separator orientation="vertical" />
+      <span>Figma</span>
+    </div>
+  </div>
+</ComponentPreview>

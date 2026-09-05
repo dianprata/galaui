@@ -3,16 +3,25 @@ import { OTPField as BaseOTPField } from "@base-ui/react";
 import { Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+export interface InputOTPProps
+  extends React.ComponentPropsWithoutRef<typeof BaseOTPField.Root> {
+  maxLength?: number;
+}
+
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof BaseOTPField.Root>,
-  React.ComponentPropsWithoutRef<typeof BaseOTPField.Root>
->(({ className, ...props }, ref) => (
-  <BaseOTPField.Root
-    ref={ref}
-    className={cn("flex items-center gap-2 select-none", className)}
-    {...props}
-  />
-));
+  InputOTPProps
+>(({ className, length, maxLength, ...props }, ref) => {
+  const resolvedLength = length ?? maxLength ?? 6;
+  return (
+    <BaseOTPField.Root
+      ref={ref}
+      length={resolvedLength}
+      className={cn("flex items-center gap-2 select-none", className)}
+      {...props}
+    />
+  );
+});
 InputOTP.displayName = "InputOTP";
 
 const InputOTPSlot = React.forwardRef<

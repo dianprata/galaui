@@ -1,0 +1,72 @@
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  ScrollArea,
+  ScrollBar,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Scroll Area
+
+Augments native scroll functionality for custom cross-browser styling without layout shift. Built on Base UI ScrollArea primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Zero Layout Shift</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { ScrollArea, ScrollBar } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Custom Scroll Container"
+  description="Smooth scrollbar indicator with hover styling."
+  code={'import { ScrollArea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <ScrollArea className="h-48 w-full max-w-sm p-4">\n      <div className="space-y-3 pr-3 text-xs">\n        <h4 className="font-semibold text-foreground">Changelog Highlights</h4>\n        <p className="text-muted-foreground leading-relaxed">\n          v0.1.2 — Full Figma variable tokens sync, base-ui v1.7.0 update, responsive table of contents, mobile drawer integration.\n        </p>\n        <p className="text-muted-foreground leading-relaxed">\n          v0.1.1 — Tailwind CSS v4 CSS-first theming overhaul, zero configuration build with vite-plugin-dts.\n        </p>\n        <p className="text-muted-foreground leading-relaxed">\n          v0.1.0 — Initial open-source release of GalaUI with 40+ production components.\n        </p>\n      </div>\n    </ScrollArea>\n  );\n}'}
+>
+  <ScrollArea className="h-48 w-full max-w-sm p-4">
+    <div className="space-y-3 text-xs pr-3">
+      <h4 className="font-semibold text-foreground">Changelog Highlights</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        v0.1.2 — Full Figma variable tokens sync, base-ui v1.7.0 update, responsive table of contents, mobile drawer integration.
+      </p>
+      <p className="text-muted-foreground leading-relaxed">
+        v0.1.1 — Tailwind CSS v4 CSS-first theming overhaul, zero configuration build with vite-plugin-dts.
+      </p>
+      <p className="text-muted-foreground leading-relaxed">
+        v0.1.0 — Initial open-source release of GalaUI with 40+ production components.
+      </p>
+    </div>
+  </ScrollArea>
+</ComponentPreview>
+
+## Inside a Card
+
+<ComponentPreview
+  title="Card with Scroll Area"
+  description="Seamlessly scrolls structured content inside a Card component."
+  code={'import { Card, CardHeader, CardTitle, CardContent, ScrollArea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Card className="w-full max-w-sm">\n      <CardHeader className="p-4 pb-2">\n        <CardTitle className="text-sm">Activity Feed</CardTitle>\n      </CardHeader>\n      <CardContent className="p-0">\n        <ScrollArea className="h-44 px-4 pb-4">\n          <div className="space-y-2.5 pr-3 text-xs text-muted-foreground">\n            <p>Deployment #1042 successfully deployed to edge.</p>\n            <p>Database replica synchronized across 3 regions.</p>\n            <p>SSL certificate renewed automatically for galaui.dev.</p>\n            <p>Cache invalidated for API endpoints /v1/tokens.</p>\n            <p>Zero downtime maintenance completed.</p>\n          </div>\n        </ScrollArea>\n      </CardContent>\n    </Card>\n  );\n}'}
+>
+  <Card className="w-full max-w-sm">
+    <CardHeader className="p-4 pb-2">
+      <CardTitle className="text-sm">Activity Feed</CardTitle>
+    </CardHeader>
+    <CardContent className="p-0">
+      <ScrollArea className="h-30 px-4 pb-4">
+        <div className="space-y-2.5 pr-3 text-xs text-muted-foreground">
+          <p>Deployment #1042 successfully deployed to edge.</p>
+          <p>Database replica synchronized across 3 regions.</p>
+          <p>SSL certificate renewed automatically for galaui.dev.</p>
+          <p>Cache invalidated for API endpoints /v1/tokens.</p>
+          <p>Zero downtime maintenance completed.</p>
+        </div>
+      </ScrollArea>
+    </CardContent>
+  </Card>
+</ComponentPreview>

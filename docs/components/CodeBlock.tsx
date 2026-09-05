@@ -60,20 +60,17 @@ export function CodeBlock({
         {showCopy && (
           <Button
             variant="ghost"
-            size="xs"
+            size="icon-sm"
             onClick={onCopy}
-            className="h-6 px-2 text-muted-foreground hover:text-foreground"
             title="Copy code"
           >
             {copied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span className="text-emerald-600 dark:text-emerald-400 text-[11px] ml-1">Copied</span>
               </>
             ) : (
               <>
                 <Copy className="w-3.5 h-3.5" />
-                <span className="text-[11px] ml-1">Copy</span>
               </>
             )}
           </Button>

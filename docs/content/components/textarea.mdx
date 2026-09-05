@@ -1,0 +1,30 @@
+import { Textarea, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Textarea
+
+A multiline text input field with configurable sizing and state indicators.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Form HTML</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Multiline Input</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Textarea } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Multiline Bio"
+  description="Textarea field with placeholder and helper text."
+  code={'import { Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-1.5">\n      <label className="text-xs font-medium">Bio Description</label>\n      <Textarea rows={4} placeholder="Write a short summary about your project..." />\n      <p className="text-[11px] text-muted-foreground">Brief description for your dashboard profile.</p>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-1.5">
+    <label className="text-xs font-medium">Bio Description</label>
+    <Textarea rows={4} placeholder="Write a short summary about your project..." />
+    <p className="text-[11px] text-muted-foreground">Brief description for your dashboard profile.</p>
+  </div>
+</ComponentPreview>

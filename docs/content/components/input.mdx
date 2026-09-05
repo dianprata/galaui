@@ -1,0 +1,31 @@
+import { Input, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Input
+
+Typography-calibrated input fields with precise sizing scales and focus indicators.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Tailwind v4 @theme</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Sizing Scale (xs - lg)</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Input } from "@galaui/react";'} />
+
+## Sizing Scale
+
+<ComponentPreview
+  title="Sizes"
+  description="From compact tables (xs) to prominent search fields (lg)."
+  code={'import { Input } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <Input size="xs" placeholder="Extra Small (24px)" />\n      <Input size="sm" placeholder="Small (28px)" />\n      <Input size="default" placeholder="Default (32px)" />\n      <Input size="lg" placeholder="Large (36px)" />\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-3">
+    <Input size="xs" placeholder="Extra Small (24px)" />
+    <Input size="sm" placeholder="Small (28px)" />
+    <Input size="default" placeholder="Default (32px)" />
+    <Input size="lg" placeholder="Large (36px)" />
+  </div>
+</ComponentPreview>

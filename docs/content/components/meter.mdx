@@ -1,0 +1,36 @@
+import { Meter, MeterTrack, MeterIndicator, MeterLabel, MeterValue, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Meter
+
+Displays a scalar measurement within a known range or a fractional value, such as disk space or storage quota. Built on Base UI Meter primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">ARIA Meter</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Meter, MeterTrack, MeterIndicator, MeterLabel, MeterValue } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Storage Usage Meter"
+  description="Visual representation of quota consumption."
+  code={'import { Meter, MeterTrack, MeterIndicator, MeterLabel, MeterValue } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-2">\n      <Meter value={74}>\n        <div className="flex justify-between items-center">\n          <MeterLabel>Storage Usage</MeterLabel>\n          <MeterValue>74 GB of 100 GB</MeterValue>\n        </div>\n        <MeterTrack>\n          <MeterIndicator />\n        </MeterTrack>\n      </Meter>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-2">
+    <Meter value={74}>
+      <div className="flex justify-between items-center">
+        <MeterLabel>Storage Usage</MeterLabel>
+        <MeterValue>74 GB of 100 GB</MeterValue>
+      </div>
+      <MeterTrack>
+        <MeterIndicator />
+      </MeterTrack>
+    </Meter>
+  </div>
+</ComponentPreview>
