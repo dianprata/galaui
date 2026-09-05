@@ -1,10 +1,15 @@
 import { Button } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
 import { ArrowRight, Trash2, Heart, Download } from "lucide-react";
 
 # Button
 
 Displays a button or a component that looks like a button. Built with customizable CVA variants and Base UI interactive primitives.
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Button } from "@galaui/react";'} />
 
 ---
 
@@ -13,7 +18,7 @@ Displays a button or a component that looks like a button. Built with customizab
 <ComponentPreview
   title="Variants"
   description="Different visual emphasis and contextual styles."
-  code={'<div className="flex flex-wrap gap-2.5 items-center">\n  <Button variant="default">Primary</Button>\n  <Button variant="secondary">Secondary</Button>\n  <Button variant="outline">Outline</Button>\n  <Button variant="destructive">Destructive</Button>\n  <Button variant="ghost">Ghost</Button>\n  <Button variant="link">Link Style</Button>\n</div>'}
+  code={'import { Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Button variant="default">Primary</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="outline">Outline</Button>\n      <Button variant="destructive">Destructive</Button>\n      <Button variant="ghost">Ghost</Button>\n      <Button variant="link">Link Style</Button>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2.5 items-center">
     <Button variant="default">Primary</Button>
@@ -32,7 +37,7 @@ Displays a button or a component that looks like a button. Built with customizab
 <ComponentPreview
   title="Size Scale"
   description="Available sizes from xs, sm, md, to lg."
-  code={'<div className="flex flex-wrap items-center gap-2.5">\n  <Button size="xs">Extra Small (xs)</Button>\n  <Button size="sm">Small (sm)</Button>\n  <Button size="default">Default / Medium (md)</Button>\n  <Button size="lg">Large (lg)</Button>\n</div>'}
+  code={'import { Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap items-center gap-2.5">\n      <Button size="xs">Extra Small (xs)</Button>\n      <Button size="sm">Small (sm)</Button>\n      <Button size="default">Default / Medium (md)</Button>\n      <Button size="lg">Large (lg)</Button>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap items-center gap-2.5">
     <Button size="xs">Extra Small (xs)</Button>
@@ -49,7 +54,7 @@ Displays a button or a component that looks like a button. Built with customizab
 <ComponentPreview
   title="Icons & Actions"
   description="Buttons with leading, trailing, or icon-only layouts."
-  code={'<div className="flex flex-wrap items-center gap-2.5">\n  <Button variant="default">\n    Continue\n    <ArrowRight className="w-4 h-4 ml-1.5" />\n  </Button>\n  <Button variant="outline">\n    <Download className="w-4 h-4 mr-1.5" />\n    Download\n  </Button>\n  <Button variant="destructive" size="icon">\n    <Trash2 className="w-4 h-4" />\n  </Button>\n  <Button variant="secondary" size="icon">\n    <Heart className="w-4 h-4 text-red-500 fill-red-500" />\n  </Button>\n</div>'}
+  code={'import { Button } from "@galaui/react";\nimport { ArrowRight, Download, Trash2, Heart } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap items-center gap-2.5">\n      <Button variant="default">\n        Continue\n        <ArrowRight className="w-4 h-4 ml-1.5" />\n      </Button>\n      <Button variant="outline">\n        <Download className="w-4 h-4 mr-1.5" />\n        Download\n      </Button>\n      <Button variant="destructive" size="icon">\n        <Trash2 className="w-4 h-4" />\n      </Button>\n      <Button variant="secondary" size="icon">\n        <Heart className="w-4 h-4 text-red-500 fill-red-500" />\n      </Button>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap items-center gap-2.5">
     <Button variant="default">
@@ -76,7 +81,7 @@ Displays a button or a component that looks like a button. Built with customizab
 <ComponentPreview
   title="Disabled"
   description="Disabled interactive state."
-  code={'<div className="flex gap-2">\n  <Button disabled variant="default">Disabled Primary</Button>\n  <Button disabled variant="outline">Disabled Outline</Button>\n</div>'}
+  code={'import { Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex gap-2">\n      <Button disabled variant="default">Disabled Primary</Button>\n      <Button disabled variant="outline">Disabled Outline</Button>\n    </div>\n  );\n}'}
 >
   <div className="flex gap-2">
     <Button disabled variant="default">Disabled Primary</Button>

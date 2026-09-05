@@ -1,9 +1,14 @@
 import { Dialog, DialogTrigger, DialogPopup, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Button, Input } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
 
 # Dialog
 
 A modal dialog that interrupts the user with important content and requires action. Built on Base UI accessible dialog primitives with focus management and animations.
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Dialog,\n  DialogTrigger,\n  DialogPopup,\n  DialogHeader,\n  DialogTitle,\n  DialogDescription,\n  DialogFooter,\n  DialogClose,\n} from "@galaui/react";'} />
 
 ---
 
@@ -12,7 +17,7 @@ A modal dialog that interrupts the user with important content and requires acti
 <ComponentPreview
   title="Modal Dialog"
   description="Click to open the accessible modal dialog."
-  code={'<Dialog>\n  <DialogTrigger>\n    <Button variant="default">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogPopup>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>\n        Make changes to your profile here. Click save when you are done.\n      </DialogDescription>\n    </DialogHeader>\n    <div className="space-y-3 py-4">\n      <div className="space-y-1">\n        <label className="text-xs font-medium">Name</label>\n        <Input defaultValue="Dian Pratama" />\n      </div>\n      <div className="space-y-1">\n        <label className="text-xs font-medium">Username</label>\n        <Input defaultValue="@dianprata" />\n      </div>\n    </div>\n    <DialogFooter>\n      <DialogClose>\n        <Button variant="outline">Cancel</Button>\n      </DialogClose>\n      <Button variant="default">Save changes</Button>\n    </DialogFooter>\n  </DialogPopup>\n</Dialog>'}
+  code={'import {\n  Dialog,\n  DialogTrigger,\n  DialogPopup,\n  DialogHeader,\n  DialogTitle,\n  DialogDescription,\n  DialogFooter,\n  DialogClose,\n  Button,\n  Input,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Dialog>\n      <DialogTrigger>\n        <Button variant="default">Edit Profile</Button>\n      </DialogTrigger>\n      <DialogPopup>\n        <DialogHeader>\n          <DialogTitle>Edit profile</DialogTitle>\n          <DialogDescription>\n            Make changes to your profile here. Click save when you are done.\n          </DialogDescription>\n        </DialogHeader>\n        <div className="space-y-3 py-4">\n          <div className="space-y-1">\n            <label className="text-xs font-medium">Name</label>\n            <Input defaultValue="Dian Pratama" />\n          </div>\n          <div className="space-y-1">\n            <label className="text-xs font-medium">Username</label>\n            <Input defaultValue="@dianprata" />\n          </div>\n        </div>\n        <DialogFooter>\n          <DialogClose>\n            <Button variant="outline">Cancel</Button>\n          </DialogClose>\n          <Button variant="default">Save changes</Button>\n        </DialogFooter>\n      </DialogPopup>\n    </Dialog>\n  );\n}'}
 >
   <Dialog>
     <DialogTrigger>

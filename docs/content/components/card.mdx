@@ -1,9 +1,14 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button, Input } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
 
 # Card
 
 Displays a structured card container with header, content, and footer sections.
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from "@galaui/react";'} />
 
 ---
 
@@ -12,7 +17,7 @@ Displays a structured card container with header, content, and footer sections.
 <ComponentPreview
   title="Interactive Card Container"
   description="Card component with title, body, and action footer."
-  code={'<Card className="w-full max-w-md">\n  <CardHeader>\n    <CardTitle>Create project</CardTitle>\n    <CardDescription>Deploy your new project in one-click.</CardDescription>\n  </CardHeader>\n  <CardContent className="space-y-3">\n    <div className="space-y-1">\n      <label className="text-xs font-medium">Project Name</label>\n      <Input placeholder="my-awesome-app" />\n    </div>\n  </CardContent>\n  <CardFooter className="flex justify-between items-center border-t border-border pt-4">\n    <Button variant="outline" size="sm">Cancel</Button>\n    <Button variant="default" size="sm">Deploy</Button>\n  </CardFooter>\n</Card>'}
+  code={'import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n  Button,\n  Input,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Card className="w-full max-w-md">\n      <CardHeader>\n        <CardTitle>Create project</CardTitle>\n        <CardDescription>Deploy your new project in one-click.</CardDescription>\n      </CardHeader>\n      <CardContent className="space-y-3">\n        <div className="space-y-1">\n          <label className="text-xs font-medium">Project Name</label>\n          <Input placeholder="my-awesome-app" />\n        </div>\n      </CardContent>\n      <CardFooter className="flex justify-between items-center border-t border-border pt-4">\n        <Button variant="outline" size="sm">Cancel</Button>\n        <Button variant="default" size="sm">Deploy</Button>\n      </CardFooter>\n    </Card>\n  );\n}'}
 >
   <Card className="w-full max-w-md">
     <CardHeader>

@@ -46,7 +46,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        "shiki-container relative group border border-border bg-card text-foreground overflow-hidden shadow-xs transition-colors",
+        "shiki-container relative group rounded border border-border bg-card text-foreground overflow-hidden shadow-xs transition-colors",
         className
       )}
     >

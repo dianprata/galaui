@@ -1,9 +1,14 @@
-import { Input, Textarea, Switch, Checkbox, Progress, Slider } from "@/index";
+import { Input, Textarea, Switch, Checkbox, Progress } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
 
 # Form Controls
 
 Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and Progress Indicators.
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Input, Textarea, Switch, Checkbox, Progress } from "@galaui/react";'} />
 
 ---
 
@@ -12,7 +17,7 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
 <ComponentPreview
   title="Input Fields"
   description="Text inputs and multiline textareas."
-  code={'<div className="w-full max-w-sm space-y-4">\n  <div className="space-y-1.5">\n    <label className="text-xs font-medium">Username</label>\n    <Input placeholder="Enter username..." />\n  </div>\n  <div className="space-y-1.5">\n    <label className="text-xs font-medium">Bio</label>\n    <Textarea rows={3} placeholder="Tell us a little bit about yourself..." />\n  </div>\n</div>'}
+  code={'import { Input, Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-4">\n      <div className="space-y-1.5">\n        <label className="text-xs font-medium">Username</label>\n        <Input placeholder="Enter username..." />\n      </div>\n      <div className="space-y-1.5">\n        <label className="text-xs font-medium">Bio</label>\n        <Textarea rows={3} placeholder="Tell us a little bit about yourself..." />\n      </div>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-4">
     <div className="space-y-1.5">
@@ -33,7 +38,7 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
 <ComponentPreview
   title="Toggle Controls"
   description="Switches and checkboxes with accessible keyboard states."
-  code={'<div className="w-full max-w-sm space-y-3">\n  <div className="flex items-center justify-between p-3 rounded-lg border border-border">\n    <span className="text-xs font-medium">Email Notifications</span>\n    <Switch defaultChecked />\n  </div>\n  <div className="flex items-center gap-2.5 px-1">\n    <Checkbox id="terms" defaultChecked />\n    <label htmlFor="terms" className="text-xs text-muted-foreground cursor-pointer select-none">\n      I agree to the terms and privacy conditions\n    </label>\n  </div>\n</div>'}
+  code={'import { Switch, Checkbox } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-3 rounded-lg border border-border">\n        <span className="text-xs font-medium">Email Notifications</span>\n        <Switch defaultChecked />\n      </div>\n      <div className="flex items-center gap-2.5 px-1">\n        <Checkbox id="terms" defaultChecked />\n        <label htmlFor="terms" className="text-xs text-muted-foreground cursor-pointer select-none">\n          I agree to the terms and privacy conditions\n        </label>\n      </div>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-3">
     <div className="flex items-center justify-between p-3 rounded-lg border border-border">
@@ -56,7 +61,7 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
 <ComponentPreview
   title="Progress Bar"
   description="Deterministic progress bar indicator."
-  code={'<div className="w-full max-w-sm space-y-2">\n  <div className="flex justify-between text-xs text-muted-foreground">\n    <span>Storage Capacity</span>\n    <span>68%</span>\n  </div>\n  <Progress value={68} />\n</div>'}
+  code={'import { Progress } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-2">\n      <div className="flex justify-between text-xs text-muted-foreground">\n        <span>Storage Capacity</span>\n        <span>68%</span>\n      </div>\n      <Progress value={68} />\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-2">
     <div className="flex justify-between text-xs text-muted-foreground">

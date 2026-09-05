@@ -1,10 +1,15 @@
 import { Badge } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
 import { Sparkles, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 # Badge
 
 Displays a small status label, tag, or counter.
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Badge } from "@galaui/react";'} />
 
 ---
 
@@ -13,7 +18,7 @@ Displays a small status label, tag, or counter.
 <ComponentPreview
   title="Semantic Badges"
   description="Status indicators and contextual color variants."
-  code={'<div className="flex flex-wrap gap-2 items-center">\n  <Badge variant="default">Default</Badge>\n  <Badge variant="secondary">Secondary</Badge>\n  <Badge variant="outline">Outline</Badge>\n  <Badge variant="success">Success</Badge>\n  <Badge variant="warning">Warning</Badge>\n  <Badge variant="destructive">Destructive</Badge>\n  <Badge variant="info">Info</Badge>\n</div>'}
+  code={'import { Badge } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2 items-center">\n      <Badge variant="default">Default</Badge>\n      <Badge variant="secondary">Secondary</Badge>\n      <Badge variant="outline">Outline</Badge>\n      <Badge variant="success">Success</Badge>\n      <Badge variant="warning">Warning</Badge>\n      <Badge variant="destructive">Destructive</Badge>\n      <Badge variant="info">Info</Badge>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2 items-center">
     <Badge variant="default">Default</Badge>
@@ -33,7 +38,7 @@ Displays a small status label, tag, or counter.
 <ComponentPreview
   title="Badges with Icons"
   description="Combines icons with badge text for quick recognition."
-  code={'<div className="flex flex-wrap gap-2.5 items-center">\n  <Badge variant="success" className="gap-1">\n    <CheckCircle2 className="w-3 h-3" />\n    <span>Deployed</span>\n  </Badge>\n  <Badge variant="warning" className="gap-1">\n    <AlertTriangle className="w-3 h-3" />\n    <span>Needs Review</span>\n  </Badge>\n  <Badge variant="default" className="gap-1">\n    <Sparkles className="w-3 h-3" />\n    <span>New Feature</span>\n  </Badge>\n</div>'}
+  code={'import { Badge } from "@galaui/react";\nimport { CheckCircle2, AlertTriangle, Sparkles } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Badge variant="success" className="gap-1">\n        <CheckCircle2 className="w-3 h-3" />\n        <span>Deployed</span>\n      </Badge>\n      <Badge variant="warning" className="gap-1">\n        <AlertTriangle className="w-3 h-3" />\n        <span>Needs Review</span>\n      </Badge>\n      <Badge variant="default" className="gap-1">\n        <Sparkles className="w-3 h-3" />\n        <span>New Feature</span>\n      </Badge>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2.5 items-center">
     <Badge variant="success" className="gap-1">
