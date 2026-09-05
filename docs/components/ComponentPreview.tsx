@@ -15,11 +15,9 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipPopup,
-  ToggleGroup,
-  ToggleGroupItem,
   cn,
 } from "@/index";
-import { Eye, Code as CodeIcon, RefreshCw, Copy, Check, Grid, CircleDot, Square } from "lucide-react";
+import { Eye, Code as CodeIcon, Copy, Check } from "lucide-react";
 
 interface ComponentPreviewProps {
   children: ReactNode;
@@ -36,8 +34,6 @@ export function ComponentPreview({
   description,
   className = "",
 }: ComponentPreviewProps) {
-  const [bgStyle, setBgStyle] = useState<"dots" | "lines" | "solid">("dots");
-  const [key, setKey] = useState(0);
   const [copied, setCopied] = useState(false);
 
   const onCopy = async () => {
@@ -72,88 +68,27 @@ export function ComponentPreview({
             </TabsTab>
           </TabsList>
 
-          <div className="flex items-center gap-1.5">
-            <ToggleGroup
-              value={[bgStyle]}
-              onValueChange={(val: any) => {
-                const selected = Array.isArray(val) ? val.filter(Boolean).pop() : val;
-                if (selected) setBgStyle(selected as any);
-              }}
-              className="hidden sm:inline-flex px-0.5 rounded-lg border border-border/70"
-            >
-              <Tooltip>
-                <TooltipTrigger>
-                  <ToggleGroupItem value="dots" aria-label="Dot grid canvas" className="h-6 w-6 p-0 rounded-md">
-                    <CircleDot className="w-3 h-3" />
-                  </ToggleGroupItem>
-                </TooltipTrigger>
-                <TooltipPopup>Dot grid canvas</TooltipPopup>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger>
-                  <ToggleGroupItem value="lines" aria-label="Grid lines canvas" className="h-6 w-6 p-0 rounded-md">
-                    <Grid className="w-3 h-3" />
-                  </ToggleGroupItem>
-                </TooltipTrigger>
-                <TooltipPopup>Grid lines canvas</TooltipPopup>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger>
-                  <ToggleGroupItem value="solid" aria-label="Clean solid canvas" className="h-6 w-6 p-0 rounded-md">
-                    <Square className="w-3 h-3" />
-                  </ToggleGroupItem>
-                </TooltipTrigger>
-                <TooltipPopup>Clean solid canvas</TooltipPopup>
-              </Tooltip>
-            </ToggleGroup>
-
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="outline"
-                  size="icon-xs"
-                  onClick={() => setKey((k) => k + 1)}
-                >
-                  <RefreshCw className="w-3 h-3" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipPopup>Reset preview state</TooltipPopup>
-            </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="outline"
-                  size="icon-xs"
-                  onClick={onCopy}
-                >
-                  {copied ? (
-                    <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                  ) : (
-                    <Copy className="w-3 h-3" />
-                  )}
-                </Button>
-              </TooltipTrigger>
-              <TooltipPopup>{copied ? "Copied code!" : "Copy code"}</TooltipPopup>
-            </Tooltip>
-          </div>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button
+                variant="outline"
+                size="icon-sm"
+                onClick={onCopy}
+              >
+                {copied ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5" />
+                )}
+              </Button>
+            </TooltipTrigger>
+            <TooltipPopup>{copied ? "Copied code!" : "Copy code"}</TooltipPopup>
+          </Tooltip>
         </div>
 
         <CardContent className="p-0">
           <TabsPanel value="preview">
-            <div
-              key={key}
-              className={cn(
-                "p-8 md:p-12 min-h-[220px] flex items-center justify-center overflow-x-auto transition-colors",
-                bgStyle === "dots"
-                  ? "stage-dots"
-                  : bgStyle === "lines"
-                  ? "stage-lines"
-                  : "stage-solid"
-              )}
-            >
+            <div className="p-8 md:p-12 min-h-[220px] flex items-center justify-center overflow-x-auto stage-dots">
               <div className="w-full flex items-center justify-center">{children}</div>
             </div>
           </TabsPanel>
@@ -166,3 +101,4 @@ export function ComponentPreview({
     </Card>
   );
 }
+
