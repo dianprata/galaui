@@ -2,9 +2,14 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { Sidebar } from "./Sidebar";
+import { TableOfContents } from "./TableOfContents";
 import { ThemeToggle } from "./ThemeToggle";
+import { SearchDialog } from "./SearchDialog";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { DocsPagination } from "./DocsPagination";
 import { Badge } from "@/index";
-import { Menu, X, ExternalLink } from "lucide-react";
+import { Menu, X, ExternalLink, Search } from "lucide-react";
+import { useEffect } from "react";
 
 interface DocsLayoutProps {
   children: ReactNode;
@@ -12,9 +17,23 @@ interface DocsLayoutProps {
 
 export function DocsLayout({ children }: DocsLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+
       {/* Top Navbar */}
       <header className="sticky top-0 z-40 h-14 border-b border-border bg-background/80 backdrop-blur-md px-4 md:px-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -38,7 +57,33 @@ export function DocsLayout({ children }: DocsLayoutProps) {
           </Badge>
         </div>
 
+        {/* Search Command Palette Trigger */}
+        <div className="flex-1 max-w-sm mx-4 hidden md:block">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg border border-border/80 bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground transition-all cursor-pointer shadow-2xs"
+          >
+            <div className="flex items-center gap-2">
+              <Search className="w-3.5 h-3.5 text-muted-foreground" />
+              <span>Search documentation...</span>
+            </div>
+            <kbd className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono rounded bg-muted text-muted-foreground border border-border">
+              ⌘K
+            </kbd>
+          </button>
+        </div>
+
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+            title="Search"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
           <a
             href="https://www.npmjs.com/package/@galaui/react"
             target="_blank"
@@ -97,11 +142,18 @@ export function DocsLayout({ children }: DocsLayoutProps) {
         )}
 
         {/* Main Documentation Content */}
-        <main className="flex-1 min-w-0 px-6 py-8 md:px-12 md:py-10">
-          <div className="max-w-4xl mx-auto docs-content">
-            {children}
+        <main className="flex-1 min-w-0 px-6 py-8 md:px-10 md:py-10">
+          <div className="max-w-3xl mx-auto">
+            <Breadcrumbs />
+            <div className="docs-content">
+              {children}
+            </div>
+            <DocsPagination />
           </div>
         </main>
+
+        {/* Right Table of Contents (On this page) */}
+        <TableOfContents />
       </div>
 
       {/* Simple Footer */}

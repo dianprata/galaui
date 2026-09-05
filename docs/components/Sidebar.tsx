@@ -5,9 +5,10 @@ import { Search } from "lucide-react";
 
 interface SidebarProps {
   onNavigate?: () => void;
+  onSearchClick?: () => void;
 }
 
-export function Sidebar({ onNavigate }: SidebarProps) {
+export function Sidebar({ onNavigate, onSearchClick }: SidebarProps) {
   const [location] = useLocation();
   const [query, setQuery] = useState("");
 
@@ -29,8 +30,9 @@ export function Sidebar({ onNavigate }: SidebarProps) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => onSearchClick?.()}
             placeholder="Quick search docs..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border bg-muted/40 placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border bg-muted/40 placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all cursor-pointer"
           />
         </div>
       </div>
@@ -49,9 +51,9 @@ export function Sidebar({ onNavigate }: SidebarProps) {
                     key={item.path}
                     href={item.path}
                     onClick={onNavigate}
-                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
                       isActive
-                        ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                        ? "bg-primary/10 text-primary font-semibold border border-primary/25 shadow-2xs"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     }`}
                   >

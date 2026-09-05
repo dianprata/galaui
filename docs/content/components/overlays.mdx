@@ -1,10 +1,17 @@
 import { Button, Tooltip, TooltipTrigger, TooltipPopup, Popover, PopoverTrigger, PopoverPopup, PopoverTitle, PopoverDescription, DropdownMenu, DropdownMenuTrigger, DropdownMenuPopup, DropdownMenuItem, DropdownMenuSeparator } from "@/index";
+import { Badge } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
-import { MoreHorizontal, User, Settings, LogOut, Info } from "lucide-react";
+import { MoreHorizontal, User, Settings, LogOut, Info, Bell, Shield, Sliders } from "lucide-react";
 
 # Overlays & Tooltips
 
 Floating context elements built on Base UI floating primitives with auto-positioning, collision detection, and smooth open/close micro-animations.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">WAI-ARIA Compliant</Badge>
+  <Badge variant="success" className="font-mono text-[11px]">Collision Aware</Badge>
+</div>
 
 ---
 
@@ -83,3 +90,24 @@ Floating context elements built on Base UI floating primitives with auto-positio
   </DropdownMenu>
 </ComponentPreview>
 
+---
+
+## Component Anatomy
+
+Overview of exported subcomponents:
+
+### Tooltip Parts
+| Component | Role |
+| :--- | :--- |
+| `Tooltip` | Root container managing open/close hover timers. |
+| `TooltipTrigger` | The anchor element that receives pointer and keyboard focus. |
+| `TooltipPopup` | The animated floating tooltip card. |
+
+### Popover Parts
+| Component | Role |
+| :--- | :--- |
+| `Popover` | Root state controller for the popover surface. |
+| `PopoverTrigger` | Button element that toggles visibility on click. |
+| `PopoverPopup` | Floating surface container with elevation and arrow alignment. |
+| `PopoverTitle` | Accessible title for assistive technologies. |
+| `PopoverDescription` | Accessible description text. |
