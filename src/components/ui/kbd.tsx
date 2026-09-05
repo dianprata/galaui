@@ -8,7 +8,7 @@ const Kbd = React.forwardRef<
   <kbd
     ref={ref}
     className={cn(
-      "pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground shadow-2xs",
+      "pointer-events-none inline-flex h-5 w-fit min-w-5 px-1 select-none justify-center items-center gap-1 rounded-md border border-border bg-muted font-mono text-xs font-medium text-muted-foreground",
       className
     )}
     {...props}
@@ -16,4 +16,16 @@ const Kbd = React.forwardRef<
 ));
 Kbd.displayName = "Kbd";
 
-export { Kbd };
+const KbdGroup = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("inline-flex items-center gap-1", className)}
+    {...props}
+  />
+));
+KbdGroup.displayName = "KbdGroup";
+
+export { Kbd, KbdGroup };
