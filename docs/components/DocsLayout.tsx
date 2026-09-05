@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { Sidebar } from "./Sidebar";
-import { TableOfContents } from "./TableOfContents";
+import { TableOfContents, MobileTableOfContents } from "./TableOfContents";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchDialog } from "./SearchDialog";
 import { Breadcrumbs } from "./Breadcrumbs";
@@ -147,6 +147,7 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
         <main className="flex-1 min-w-0 px-6 py-8 md:px-10 md:py-10">
           <div className="max-w-3xl mx-auto">
             <Breadcrumbs />
+            <MobileTableOfContents />
             <div className="docs-content prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-base prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2.5 prose-p:text-sm prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:my-2.5 prose-ul:my-2.5 prose-ul:space-y-1.5 prose-ol:my-2.5 prose-ol:space-y-1.5 prose-hr:my-6 prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-xs">
               {children}
             </div>
