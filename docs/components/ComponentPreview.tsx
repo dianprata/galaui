@@ -15,6 +15,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipPopup,
+  ToggleGroup,
+  ToggleGroupItem,
   cn,
 } from "@/index";
 import { Eye, Code as CodeIcon, RefreshCw, Copy, Check, Grid, CircleDot, Square } from "lucide-react";
@@ -71,46 +73,41 @@ export function ComponentPreview({
           </TabsList>
 
           <div className="flex items-center gap-1.5">
-            <div className="hidden sm:flex items-center gap-1 border border-border/70 rounded-lg p-0.5 bg-background">
+            <ToggleGroup
+              value={[bgStyle]}
+              onValueChange={(val: any) => {
+                const selected = Array.isArray(val) ? val.filter(Boolean).pop() : val;
+                if (selected) setBgStyle(selected as any);
+              }}
+              className="hidden sm:inline-flex p-0.5 rounded-lg border border-border/70 bg-background"
+            >
               <Tooltip>
                 <TooltipTrigger>
-                  <Button
-                    variant={bgStyle === "dots" ? "secondary" : "ghost"}
-                    size="icon-xs"
-                    onClick={() => setBgStyle("dots")}
-                  >
+                  <ToggleGroupItem value="dots" aria-label="Dot grid canvas" className="h-6 w-6 p-0 rounded-md">
                     <CircleDot className="w-3 h-3" />
-                  </Button>
+                  </ToggleGroupItem>
                 </TooltipTrigger>
                 <TooltipPopup>Dot grid canvas</TooltipPopup>
               </Tooltip>
 
               <Tooltip>
                 <TooltipTrigger>
-                  <Button
-                    variant={bgStyle === "lines" ? "secondary" : "ghost"}
-                    size="icon-xs"
-                    onClick={() => setBgStyle("lines")}
-                  >
+                  <ToggleGroupItem value="lines" aria-label="Grid lines canvas" className="h-6 w-6 p-0 rounded-md">
                     <Grid className="w-3 h-3" />
-                  </Button>
+                  </ToggleGroupItem>
                 </TooltipTrigger>
                 <TooltipPopup>Grid lines canvas</TooltipPopup>
               </Tooltip>
 
               <Tooltip>
                 <TooltipTrigger>
-                  <Button
-                    variant={bgStyle === "solid" ? "secondary" : "ghost"}
-                    size="icon-xs"
-                    onClick={() => setBgStyle("solid")}
-                  >
+                  <ToggleGroupItem value="solid" aria-label="Clean solid canvas" className="h-6 w-6 p-0 rounded-md">
                     <Square className="w-3 h-3" />
-                  </Button>
+                  </ToggleGroupItem>
                 </TooltipTrigger>
                 <TooltipPopup>Clean solid canvas</TooltipPopup>
               </Tooltip>
-            </div>
+            </ToggleGroup>
 
             <Tooltip>
               <TooltipTrigger>
