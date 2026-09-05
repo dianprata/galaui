@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Select as BaseSelect } from "@base-ui/react";
-import { ChevronDown, Check } from "lucide-react";
+import { ChevronDown, ChevronUp, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { cva, type VariantProps } from "class-variance-authority";
@@ -76,13 +76,17 @@ const SelectTrigger = React.forwardRef<
 >(({ className, size = "default", children, ...props }, ref) => (
   <BaseSelect.Trigger
     ref={ref}
+    data-slot="select-trigger"
     className={cn(selectTriggerVariants({ size }), className)}
     {...props}
   >
     {children}
-    <BaseSelect.Icon className="shrink-0 text-muted-foreground transition-transform duration-200 data-[popup-open]:rotate-180">
-      <ChevronDown className={cn(size === "xs" ? "h-3 w-3" : size === "sm" ? "h-3.5 w-3.5" : "h-3.5 w-3.5", "opacity-70")} />
-    </BaseSelect.Icon>
+    <BaseSelect.Icon
+      className="shrink-0 text-muted-foreground transition-transform duration-200 data-[popup-open]:rotate-180 pointer-events-none"
+      render={
+        <ChevronDown className={cn(size === "xs" ? "h-3 w-3" : size === "sm" ? "h-3.5 w-3.5" : "h-3.5 w-3.5", "opacity-70 pointer-events-none")} />
+      }
+    />
   </BaseSelect.Trigger>
 ));
 SelectTrigger.displayName = "SelectTrigger";
@@ -103,9 +107,11 @@ const SelectValue = React.forwardRef<
 SelectValue.displayName = "SelectValue";
 
 export interface SelectPopupProps
-  extends React.ComponentPropsWithoutRef<typeof BaseSelect.Popup> {
-  sideOffset?: number;
-  alignItemWithTrigger?: boolean;
+  extends React.ComponentPropsWithoutRef<typeof BaseSelect.Popup>,
+    Pick<
+      React.ComponentPropsWithoutRef<typeof BaseSelect.Positioner>,
+      "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
+    > {
   positionerClassName?: string;
 }
 
@@ -117,8 +123,11 @@ const SelectPopup = React.forwardRef<
     {
       className,
       positionerClassName,
+      side = "bottom",
       sideOffset = 4,
-      alignItemWithTrigger = false,
+      align = "center",
+      alignOffset = 0,
+      alignItemWithTrigger = true,
       children,
       ...props
     },
@@ -126,27 +135,35 @@ const SelectPopup = React.forwardRef<
   ) => (
     <BaseSelect.Portal>
       <BaseSelect.Positioner
+        side={side}
         sideOffset={sideOffset}
+        align={align}
+        alignOffset={alignOffset}
         alignItemWithTrigger={alignItemWithTrigger}
-        className={cn("z-50 outline-none select-none", positionerClassName)}
+        className={cn("isolate z-50 outline-none select-none", positionerClassName)}
       >
         <BaseSelect.Popup
           ref={ref}
+          data-slot="select-content"
+          data-align-trigger={alignItemWithTrigger}
           className={cn(
-            "relative z-50 max-h-96 min-w-[var(--anchor-width)] origin-[var(--transform-origin)] overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg outline-none transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
+            "relative isolate z-50 max-h-[var(--available-height)] w-[calc(var(--anchor-width)+2px)] min-w-36 origin-[var(--transform-origin)] overflow-x-hidden overflow-y-auto rounded-xl border border-border bg-popover text-popover-foreground shadow-lg outline-none duration-100 data-[align-trigger=true]:animate-none data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
             className
           )}
           {...props}
         >
-          <BaseSelect.List className="outline-none p-1 overflow-y-auto max-h-[var(--available-height)]">
+          <SelectScrollUpButton />
+          <BaseSelect.List className="outline-none p-1">
             {children}
           </BaseSelect.List>
+          <SelectScrollDownButton />
         </BaseSelect.Popup>
       </BaseSelect.Positioner>
     </BaseSelect.Portal>
   )
 );
 SelectPopup.displayName = "SelectPopup";
+const SelectContent = SelectPopup;
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof BaseSelect.Item>,
@@ -154,18 +171,23 @@ const SelectItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <BaseSelect.Item
     ref={ref}
+    data-slot="select-item"
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-lg py-1.5 pl-8 pr-2.5 text-xs outline-none transition-all duration-100 ease-out active:scale-[0.99] data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[selected]:font-semibold data-[selected]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex w-full cursor-default select-none items-center gap-2 rounded-lg py-1.5 pr-8 pl-2.5 text-xs outline-none transition-colors duration-100 focus:bg-muted focus:text-foreground data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[selected]:font-semibold data-[selected]:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-primary">
-      <BaseSelect.ItemIndicator>
-        <Check className="h-3.5 w-3.5" />
-      </BaseSelect.ItemIndicator>
-    </span>
-    <BaseSelect.ItemText>{children}</BaseSelect.ItemText>
+    <BaseSelect.ItemText className="flex flex-1 gap-2 shrink-0 truncate whitespace-nowrap">
+      {children}
+    </BaseSelect.ItemText>
+    <BaseSelect.ItemIndicator
+      render={
+        <span className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center text-primary">
+          <Check className="h-3.5 w-3.5 pointer-events-none" />
+        </span>
+      }
+    />
   </BaseSelect.Item>
 ));
 SelectItem.displayName = "SelectItem";
@@ -177,11 +199,13 @@ const SelectGroupLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.GroupLabel
     ref={ref}
-    className={cn("px-2 py-1 text-[11px] font-semibold text-muted-foreground", className)}
+    data-slot="select-label"
+    className={cn("px-2.5 py-1 text-[11px] font-semibold text-muted-foreground", className)}
     {...props}
   />
 ));
 SelectGroupLabel.displayName = "SelectGroupLabel";
+const SelectLabel = SelectGroupLabel;
 
 const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof BaseSelect.Separator>,
@@ -189,11 +213,42 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <BaseSelect.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-border", className)}
+    data-slot="select-separator"
+    className={cn("-mx-1 my-1 h-px bg-border pointer-events-none", className)}
     {...props}
   />
 ));
 SelectSeparator.displayName = "SelectSeparator";
+
+const SelectScrollUpButton = React.forwardRef<
+  React.ElementRef<typeof BaseSelect.ScrollUpArrow>,
+  React.ComponentPropsWithoutRef<typeof BaseSelect.ScrollUpArrow>
+>(({ className, ...props }, ref) => (
+  <BaseSelect.ScrollUpArrow
+    ref={ref}
+    data-slot="select-scroll-up-button"
+    className={cn("bg-popover z-10 flex cursor-default items-center justify-center py-1 text-muted-foreground top-0 w-full", className)}
+    {...props}
+  >
+    <ChevronUp className="h-3.5 w-3.5" />
+  </BaseSelect.ScrollUpArrow>
+));
+SelectScrollUpButton.displayName = "SelectScrollUpButton";
+
+const SelectScrollDownButton = React.forwardRef<
+  React.ElementRef<typeof BaseSelect.ScrollDownArrow>,
+  React.ComponentPropsWithoutRef<typeof BaseSelect.ScrollDownArrow>
+>(({ className, ...props }, ref) => (
+  <BaseSelect.ScrollDownArrow
+    ref={ref}
+    data-slot="select-scroll-down-button"
+    className={cn("bg-popover z-10 flex cursor-default items-center justify-center py-1 text-muted-foreground bottom-0 w-full", className)}
+    {...props}
+  >
+    <ChevronDown className="h-3.5 w-3.5" />
+  </BaseSelect.ScrollDownArrow>
+));
+SelectScrollDownButton.displayName = "SelectScrollDownButton";
 
 const SelectPortal = BaseSelect.Portal;
 const SelectPositioner = BaseSelect.Positioner;
@@ -207,10 +262,14 @@ export {
   SelectTrigger,
   SelectValue,
   SelectPopup,
+  SelectContent,
   SelectItem,
   SelectGroup,
   SelectGroupLabel,
+  SelectLabel,
   SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
   SelectPortal,
   SelectPositioner,
   SelectList,

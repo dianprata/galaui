@@ -1,0 +1,57 @@
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverPopup,
+  PopoverTitle,
+  PopoverDescription,
+  Button,
+  Input,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Sliders } from "lucide-react";
+
+# Popover
+
+Displays rich contextual content in a portal layer triggered by a button. Built on Base UI Popover primitives with collision detection.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Collision Aware</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Popover,\n  PopoverTrigger,\n  PopoverPopup,\n  PopoverTitle,\n  PopoverDescription,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Settings Popover"
+  description="Card popover with form fields and dismissal control."
+  code={'import {\n  Popover,\n  PopoverTrigger,\n  PopoverPopup,\n  PopoverTitle,\n  PopoverDescription,\n  Button,\n  Input,\n} from "@galaui/react";\nimport { Sliders } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Popover>\n      <PopoverTrigger>\n        <Button variant="outline" size="sm">\n          <Sliders className="w-3.5 h-3.5 mr-1.5" />\n          Dimensions\n        </Button>\n      </PopoverTrigger>\n      <PopoverPopup className="w-80">\n        <PopoverTitle>Set Dimensions</PopoverTitle>\n        <PopoverDescription>Configure custom canvas width and height.</PopoverDescription>\n        <div className="space-y-2 py-3">\n          <div className="flex items-center justify-between gap-2">\n            <span className="text-xs">Width</span>\n            <Input size="xs" defaultValue="100%" className="w-28 font-mono" />\n          </div>\n          <div className="flex items-center justify-between gap-2">\n            <span className="text-xs">Max Height</span>\n            <Input size="xs" defaultValue="600px" className="w-28 font-mono" />\n          </div>\n        </div>\n      </PopoverPopup>\n    </Popover>\n  );\n}'}
+>
+  <Popover>
+    <PopoverTrigger>
+      <Button variant="outline" size="sm">
+        <Sliders className="w-3.5 h-3.5 mr-1.5" />
+        Dimensions
+      </Button>
+    </PopoverTrigger>
+    <PopoverPopup className="w-80">
+      <PopoverTitle>Set Dimensions</PopoverTitle>
+      <PopoverDescription>Configure custom canvas width and height.</PopoverDescription>
+      <div className="space-y-2 py-3">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs">Width</span>
+          <Input size="xs" defaultValue="100%" className="w-28 font-mono" />
+        </div>
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs">Max Height</span>
+          <Input size="xs" defaultValue="600px" className="w-28 font-mono" />
+        </div>
+      </div>
+    </PopoverPopup>
+  </Popover>
+</ComponentPreview>

@@ -1,0 +1,61 @@
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuPopup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { User, Settings, ShieldCheck, LogOut, ChevronDown } from "lucide-react";
+
+# Dropdown Menu
+
+Displays a menu of actions or options to the user—such as account settings or actions—triggered by a button. Built on Base UI Menu primitives with full keyboard navigation.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Keyboard Navigation</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuPopup,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Action Menu"
+  description="Dropdown menu with item icons and divider."
+  code={'import {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuPopup,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  Button,\n} from "@galaui/react";\nimport { User, Settings, ShieldCheck, LogOut, ChevronDown } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger>\n        <Button variant="outline" size="sm">\n          My Account\n          <ChevronDown className="w-3.5 h-3.5 ml-1.5 text-muted-foreground" />\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuPopup>\n        <DropdownMenuItem>\n          <User className="w-3.5 h-3.5 mr-2 text-muted-foreground" />\n          Profile\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <Settings className="w-3.5 h-3.5 mr-2 text-muted-foreground" />\n          Settings\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <ShieldCheck className="w-3.5 h-3.5 mr-2 text-muted-foreground" />\n          Security\n        </DropdownMenuItem>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem className="text-destructive">\n          <LogOut className="w-3.5 h-3.5 mr-2" />\n          Log out\n        </DropdownMenuItem>\n      </DropdownMenuPopup>\n    </DropdownMenu>\n  );\n}'}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger>
+      <Button variant="outline" size="sm">
+        My Account
+        <ChevronDown className="w-3.5 h-3.5 ml-1.5 text-muted-foreground" />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuPopup>
+      <DropdownMenuItem>
+        <User className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+        Profile
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <Settings className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+        Settings
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <ShieldCheck className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+        Security
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem className="text-destructive">
+        <LogOut className="w-3.5 h-3.5 mr-2" />
+        Log out
+      </DropdownMenuItem>
+    </DropdownMenuPopup>
+  </DropdownMenu>
+</ComponentPreview>

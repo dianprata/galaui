@@ -1,0 +1,39 @@
+import { Switch, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Switch
+
+A control that allows the user to toggle between checked and not checked states. Built on Base UI Switch primitives with spring thumb animations.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Animated Thumb</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Switch } from "@galaui/react";'} />
+
+## Sizes & States
+
+<ComponentPreview
+  title="Switch Sizes"
+  description="Scale from xs, sm, default to lg."
+  code={'import { Switch } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Small (sm)</span>\n        <Switch size="sm" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Default (default)</span>\n        <Switch size="default" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Large (lg)</span>\n        <Switch size="lg" defaultChecked />\n      </div>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-3">
+    <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">
+      <span className="text-xs font-medium">Small (sm)</span>
+      <Switch size="sm" defaultChecked />
+    </div>
+    <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">
+      <span className="text-xs font-medium">Default (default)</span>
+      <Switch size="default" defaultChecked />
+    </div>
+    <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">
+      <span className="text-xs font-medium">Large (lg)</span>
+      <Switch size="lg" defaultChecked />
+    </div>
+  </div>
+</ComponentPreview>

@@ -1,0 +1,48 @@
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Breadcrumb
+
+Displays the path to the current resource using a hierarchical trail of links.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic Nav</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">WAI-ARIA</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Breadcrumb Trail"
+  description="Navigation trail showing hierarchical location."
+  code={'import {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink href="#">Home</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink href="#">Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}'}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Components</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentPreview>

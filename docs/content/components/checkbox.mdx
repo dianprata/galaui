@@ -1,0 +1,47 @@
+import { Checkbox, CheckboxGroup, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Checkbox
+
+A control that allows the user to toggle between checked and unchecked states. Built on Base UI Checkbox primitives with keyboard accessibility.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Tri-State Ready</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Checkbox, CheckboxGroup } from "@galaui/react";'} />
+
+## Single & Group
+
+<ComponentPreview
+  title="Checkbox Group"
+  description="Multiple selection checkboxes with labels and helper text."
+  code={'import { Checkbox, CheckboxGroup } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="space-y-4 max-w-sm">\n      <div className="flex items-center gap-2.5">\n        <Checkbox id="terms" defaultChecked />\n        <label htmlFor="terms" className="text-xs font-medium cursor-pointer select-none">\n          Accept terms and conditions\n        </label>\n      </div>\n      <CheckboxGroup defaultValue={["email"]} className="space-y-2 pt-2 border-t border-border">\n        <div className="flex items-center gap-2.5">\n          <Checkbox value="email" id="email" />\n          <label htmlFor="email" className="text-xs text-muted-foreground cursor-pointer select-none">\n            Email notifications\n          </label>\n        </div>\n        <div className="flex items-center gap-2.5">\n          <Checkbox value="sms" id="sms" />\n          <label htmlFor="sms" className="text-xs text-muted-foreground cursor-pointer select-none">\n            SMS security alerts\n          </label>\n        </div>\n      </CheckboxGroup>\n    </div>\n  );\n}'}
+>
+  <div className="space-y-4 max-w-sm">
+    <div className="flex items-center gap-2.5">
+      <Checkbox id="terms" defaultChecked />
+      <label htmlFor="terms" className="text-xs font-medium cursor-pointer select-none">
+        Accept terms and conditions
+      </label>
+    </div>
+    <CheckboxGroup defaultValue={["email"]} className="space-y-2 pt-2 border-t border-border">
+      <div className="flex items-center gap-2.5">
+        <Checkbox value="email" id="email" />
+        <label htmlFor="email" className="text-xs text-muted-foreground cursor-pointer select-none">
+          Email notifications
+        </label>
+      </div>
+      <div className="flex items-center gap-2.5">
+        <Checkbox value="sms" id="sms" />
+        <label htmlFor="sms" className="text-xs text-muted-foreground cursor-pointer select-none">
+          SMS security alerts
+        </label>
+      </div>
+    </CheckboxGroup>
+  </div>
+</ComponentPreview>

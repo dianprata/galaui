@@ -4,10 +4,36 @@ import { cn } from "@/lib/utils";
 
 const Popover = BasePopover.Root;
 const PopoverPortal = BasePopover.Portal;
-const PopoverTrigger = BasePopover.Trigger;
-const PopoverClose = BasePopover.Close;
 const PopoverTitle = BasePopover.Title;
 const PopoverDescription = BasePopover.Description;
+
+const PopoverTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BasePopover.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BasePopover.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BasePopover.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BasePopover.Trigger ref={ref} {...props}>{children}</BasePopover.Trigger>;
+});
+PopoverTrigger.displayName = "PopoverTrigger";
+
+const PopoverClose = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BasePopover.Close>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BasePopover.Close ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BasePopover.Close ref={ref} render={children} {...props} />;
+  }
+  return <BasePopover.Close ref={ref} {...props}>{children}</BasePopover.Close>;
+});
+PopoverClose.displayName = "PopoverClose";
 
 const PopoverPositioner = React.forwardRef<
   React.ElementRef<typeof BasePopover.Positioner>,

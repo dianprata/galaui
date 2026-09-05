@@ -1,0 +1,36 @@
+import { Progress, ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Progress
+
+Displays an indicator showing the completion progress of a task, typically displayed as a progress bar. Built on Base UI Progress primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">WAI-ARIA Progressbar</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Progress, ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Task Completion"
+  description="Determinate progress bar with numeric value display."
+  code={'import { Progress, ProgressTrack, ProgressIndicator, ProgressLabel, ProgressValue } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <Progress value={68}>\n        <div className="flex justify-between items-center">\n          <ProgressLabel>Downloading Update</ProgressLabel>\n          <ProgressValue>68%</ProgressValue>\n        </div>\n        <ProgressTrack>\n          <ProgressIndicator />\n        </ProgressTrack>\n      </Progress>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-3">
+    <Progress value={68}>
+      <div className="flex justify-between items-center">
+        <ProgressLabel>Downloading Update</ProgressLabel>
+        <ProgressValue>68%</ProgressValue>
+      </div>
+      <ProgressTrack>
+        <ProgressIndicator />
+      </ProgressTrack>
+    </Progress>
+  </div>
+</ComponentPreview>

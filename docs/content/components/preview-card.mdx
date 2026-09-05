@@ -1,0 +1,57 @@
+import {
+  PreviewCard,
+  PreviewCardTrigger,
+  PreviewCardPopup,
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Preview Card
+
+Rich preview popup displayed on pointer hover for link previews or user cards. Built on Base UI PreviewCard primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Hover Card</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { PreviewCard, PreviewCardTrigger, PreviewCardPopup } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="User Profile Preview"
+  description="Hover over the username link to preview profile card."
+  code={'import {\n  PreviewCard,\n  PreviewCardTrigger,\n  PreviewCardPopup,\n  Avatar,\n  AvatarImage,\n  AvatarFallback,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <PreviewCard>\n      <PreviewCardTrigger className="text-xs font-semibold text-primary underline underline-offset-4 cursor-pointer">\n        @galaui\n      </PreviewCardTrigger>\n      <PreviewCardPopup>\n        <div className="flex gap-3">\n          <Avatar size="default">\n            <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="GalaUI" />\n            <AvatarFallback>GU</AvatarFallback>\n          </Avatar>\n          <div className="space-y-1">\n            <h4 className="text-xs font-bold">GalaUI Design System</h4>\n            <p className="text-[11px] text-muted-foreground leading-relaxed">\n              Modern accessible React component library powered by Base UI & Tailwind CSS v4.\n            </p>\n            <div className="flex items-center gap-2 pt-1 text-[10px] text-muted-foreground">\n              <span>1.2k Stars</span>\n              <span>•</span>\n              <span>43 Components</span>\n            </div>\n          </div>\n        </div>\n      </PreviewCardPopup>\n    </PreviewCard>\n  );\n}'}
+>
+  <PreviewCard>
+    <PreviewCardTrigger className="text-xs font-semibold text-primary underline underline-offset-4 cursor-pointer">
+      @galaui
+    </PreviewCardTrigger>
+    <PreviewCardPopup>
+      <div className="flex gap-3">
+        <Avatar size="default">
+          <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="GalaUI" />
+          <AvatarFallback>GU</AvatarFallback>
+        </Avatar>
+        <div className="space-y-1">
+          <h4 className="text-xs font-bold">GalaUI Design System</h4>
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
+            Modern accessible React component library powered by Base UI & Tailwind CSS v4.
+          </p>
+          <div className="flex items-center gap-2 pt-1 text-[10px] text-muted-foreground">
+            <span>1.2k Stars</span>
+            <span>•</span>
+            <span>43 Components</span>
+          </div>
+        </div>
+      </div>
+    </PreviewCardPopup>
+  </PreviewCard>
+</ComponentPreview>

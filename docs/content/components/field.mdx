@@ -1,0 +1,47 @@
+import {
+  Field,
+  FieldControl,
+  FieldLabel,
+  FieldDescription,
+  FieldError,
+  Fieldset,
+  FieldsetLegend,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Field & Form
+
+Accessible form field primitives integrating labels, inputs, descriptions, and error validation states. Built on Base UI Field primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">ARIA Describedby</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Field,\n  FieldControl,\n  FieldLabel,\n  FieldDescription,\n  FieldError,\n  Fieldset,\n  FieldsetLegend,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Form Validation Fieldset"
+  description="Form controls with label association and validation feedback."
+  code={'import {\n  Field,\n  FieldControl,\n  FieldLabel,\n  FieldDescription,\n  FieldError,\n  Fieldset,\n  FieldsetLegend,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Fieldset className="w-full max-w-sm space-y-4">\n      <FieldsetLegend>API Credentials</FieldsetLegend>\n      <Field className="space-y-1.5">\n        <FieldLabel>Access Token</FieldLabel>\n        <FieldControl defaultValue="gala_live_9921_secret" />\n        <FieldDescription>Issued by GalaUI Token Engine.</FieldDescription>\n      </Field>\n      <Field className="space-y-1.5">\n        <FieldLabel>Namespace</FieldLabel>\n        <FieldControl defaultValue="invalid cluster!" data-invalid="true" />\n        <FieldError>Alphanumeric characters only, no spaces allowed.</FieldError>\n      </Field>\n    </Fieldset>\n  );\n}'}
+>
+  <Fieldset className="w-full max-w-sm space-y-4">
+    <FieldsetLegend>API Credentials</FieldsetLegend>
+    <Field className="space-y-1.5">
+      <FieldLabel>Access Token</FieldLabel>
+      <FieldControl defaultValue="gala_live_9921_secret" />
+      <FieldDescription>Issued by GalaUI Token Engine.</FieldDescription>
+    </Field>
+    <Field className="space-y-1.5">
+      <FieldLabel>Namespace</FieldLabel>
+      <FieldControl defaultValue="invalid cluster!" data-invalid="true" />
+      <FieldError>Alphanumeric characters only, no spaces allowed.</FieldError>
+    </Field>
+  </Fieldset>
+</ComponentPreview>

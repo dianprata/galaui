@@ -1,0 +1,89 @@
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuViewport,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Navigation Menu
+
+A collection of top-level navigation links and interactive rich dropdown viewports. Built on Base UI NavigationMenu primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Animated Viewport</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuViewport,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Header Navigation Menu"
+  description="Dropdown panels for site navigation sections."
+  code={'import {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuViewport,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full min-h-[340px] flex items-start justify-center pt-6">\n      <NavigationMenu>\n        <NavigationMenuList>\n          <NavigationMenuItem>\n            <NavigationMenuTrigger>Components</NavigationMenuTrigger>\n            <NavigationMenuContent className="w-80 p-4 space-y-2">\n              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">\n                <div className="text-xs font-semibold">Alert Dialog</div>\n                <p className="text-[11px] text-muted-foreground">Modal confirmation prompt for destructive actions.</p>\n              </div>\n              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">\n                <div className="text-xs font-semibold">Drawer</div>\n                <p className="text-[11px] text-muted-foreground">Slide-over panel from screen edges with gesture swipe.</p>\n              </div>\n            </NavigationMenuContent>\n          </NavigationMenuItem>\n          <NavigationMenuItem>\n            <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>\n            <NavigationMenuContent className="w-80 p-4 space-y-1">\n              <div className="text-xs font-semibold mb-1">Quick Start</div>\n              <p className="text-[11px] text-muted-foreground">Learn how to install and customize GalaUI with Tailwind CSS v4.</p>\n            </NavigationMenuContent>\n          </NavigationMenuItem>\n        </NavigationMenuList>\n        <NavigationMenuViewport />\n      </NavigationMenu>\n    </div>\n  );\n}'}
+>
+  <div className="w-full min-h-[340px] flex items-start justify-center pt-6">
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+          <NavigationMenuContent className="w-80 p-4 space-y-2">
+              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">
+                <div className="text-xs font-semibold">Alert Dialog</div>
+                <p className="text-[11px] text-muted-foreground">Modal confirmation prompt for destructive actions.</p>
+              </div>
+              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">
+                <div className="text-xs font-semibold">Drawer</div>
+                <p className="text-[11px] text-muted-foreground">Slide-over panel from screen edges with gesture swipe.</p>
+              </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
+          <NavigationMenuContent className="w-80 p-4 space-y-1">
+              <div className="text-xs font-semibold mb-1">Quick Start</div>
+              <p className="text-[11px] text-muted-foreground">Learn how to install and customize GalaUI with Tailwind CSS v4.</p>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+      <NavigationMenuViewport />
+    </NavigationMenu>
+  </div>
+</ComponentPreview>
+
+## Top Placement
+
+<ComponentPreview
+  title="Top Side Placement"
+  description="Navigation menu positioned to open above the trigger when placed near screen bottoms."
+  code={'import {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuViewport,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full min-h-[340px] flex items-end justify-center pb-6">\n      <NavigationMenu>\n        <NavigationMenuList>\n          <NavigationMenuItem>\n            <NavigationMenuTrigger>Resources</NavigationMenuTrigger>\n            <NavigationMenuContent className="w-80 p-4 space-y-2">\n              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">\n                <div className="text-xs font-semibold">GitHub Repository</div>\n                <p className="text-[11px] text-muted-foreground">Source code and architecture documentation.</p>\n              </div>\n              <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">\n                <div className="text-xs font-semibold">Community Support</div>\n                <p className="text-[11px] text-muted-foreground">Join Discord for help and discussions.</p>\n              </div>\n            </NavigationMenuContent>\n          </NavigationMenuItem>\n        </NavigationMenuList>\n        <NavigationMenuViewport side="top" />\n      </NavigationMenu>\n    </div>\n  );\n}'}
+>
+  <div className="w-full min-h-[340px] flex items-end justify-center pb-6">
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+          <NavigationMenuContent className="w-80 p-4 space-y-2">
+            <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">
+              <div className="text-xs font-semibold">GitHub Repository</div>
+              <p className="text-[11px] text-muted-foreground">Source code and architecture documentation.</p>
+            </div>
+            <div className="p-2 hover:bg-muted rounded-lg cursor-pointer">
+              <div className="text-xs font-semibold">Community Support</div>
+              <p className="text-[11px] text-muted-foreground">Join Discord for help and discussions.</p>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+      <NavigationMenuViewport side="top" />
+    </NavigationMenu>
+  </div>
+</ComponentPreview>

@@ -4,9 +4,35 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Dialog = BaseDialog.Root;
-const DialogTrigger = BaseDialog.Trigger;
 const DialogPortal = BaseDialog.Portal;
-const DialogClose = BaseDialog.Close;
+
+const DialogTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseDialog.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseDialog.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseDialog.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BaseDialog.Trigger ref={ref} {...props}>{children}</BaseDialog.Trigger>;
+});
+DialogTrigger.displayName = "DialogTrigger";
+
+const DialogClose = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseDialog.Close>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseDialog.Close ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseDialog.Close ref={ref} render={children} {...props} />;
+  }
+  return <BaseDialog.Close ref={ref} {...props}>{children}</BaseDialog.Close>;
+});
+DialogClose.displayName = "DialogClose";
 
 const DialogBackdrop = React.forwardRef<
   React.ElementRef<typeof BaseDialog.Backdrop>,

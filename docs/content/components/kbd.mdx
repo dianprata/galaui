@@ -1,0 +1,42 @@
+import { Kbd, KbdGroup, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Kbd
+
+Renders a keyboard key indicator or combination badge for shortcuts.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic Kbd</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Monospace</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Kbd, KbdGroup } from "@galaui/react";'} />
+
+## Examples
+
+<ComponentPreview
+  title="Keyboard Combinations"
+  description="Single keys and combined keyboard shortcut groups."
+  code={'import { Kbd, KbdGroup } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap items-center gap-4">\n      <div className="flex items-center gap-2 text-xs text-muted-foreground">\n        <span>Search docs:</span>\n        <KbdGroup>\n          <Kbd>⌘</Kbd>\n          <Kbd>K</Kbd>\n        </KbdGroup>\n      </div>\n      <div className="flex items-center gap-2 text-xs text-muted-foreground">\n        <span>Copy:</span>\n        <KbdGroup>\n          <Kbd>Ctrl</Kbd>\n          <Kbd>C</Kbd>\n        </KbdGroup>\n      </div>\n      <Kbd size="sm">ESC</Kbd>\n    </div>\n  );\n}'}
+>
+  <div className="flex flex-wrap items-center gap-4">
+    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <span>Search docs:</span>
+      <KbdGroup>
+        <Kbd>⌘</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>
+    </div>
+    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <span>Copy:</span>
+      <KbdGroup>
+        <Kbd>Ctrl</Kbd>
+        <Kbd>C</Kbd>
+      </KbdGroup>
+    </div>
+    <Kbd size="sm">ESC</Kbd>
+  </div>
+</ComponentPreview>

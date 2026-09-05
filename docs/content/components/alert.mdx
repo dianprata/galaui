@@ -1,0 +1,49 @@
+import { Alert, AlertTitle, AlertDescription, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Info, CheckCircle2, AlertTriangle, AlertCircle } from "lucide-react";
+
+# Alert
+
+Displays a callout banner for user attention, communicating status messages or system alerts.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">cva / cn</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Semantic Variants</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Alert, AlertTitle, AlertDescription } from "@galaui/react";'} />
+
+## Variants
+
+<ComponentPreview
+  title="Alert Variants"
+  description="Info, success, warning, and destructive status banners."
+  code={'import { Alert, AlertTitle, AlertDescription } from "@galaui/react";\nimport { Info, CheckCircle2, AlertTriangle, AlertCircle } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md space-y-3">\n      <Alert variant="default">\n        <Info className="w-4 h-4 text-primary shrink-0" />\n        <div>\n          <AlertTitle>Update Available</AlertTitle>\n          <AlertDescription>A new version of GalaUI is ready to install.</AlertDescription>\n        </div>\n      </Alert>\n      <Alert variant="success">\n        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />\n        <div>\n          <AlertTitle>Deployment Complete</AlertTitle>\n          <AlertDescription>All cluster nodes are healthy and serving traffic.</AlertDescription>\n        </div>\n      </Alert>\n      <Alert variant="destructive">\n        <AlertCircle className="w-4 h-4 text-destructive shrink-0" />\n        <div>\n          <AlertTitle>Connection Refused</AlertTitle>\n          <AlertDescription>Could not reach the database replica in ap-southeast-1.</AlertDescription>\n        </div>\n      </Alert>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md space-y-3">
+    <Alert variant="default">
+      <Info className="w-4 h-4 text-primary shrink-0" />
+      <div>
+        <AlertTitle>Update Available</AlertTitle>
+        <AlertDescription>A new version of GalaUI is ready to install.</AlertDescription>
+      </div>
+    </Alert>
+    <Alert variant="success">
+      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+      <div>
+        <AlertTitle>Deployment Complete</AlertTitle>
+        <AlertDescription>All cluster nodes are healthy and serving traffic.</AlertDescription>
+      </div>
+    </Alert>
+    <Alert variant="destructive">
+      <AlertCircle className="w-4 h-4 text-destructive shrink-0" />
+      <div>
+        <AlertTitle>Connection Refused</AlertTitle>
+        <AlertDescription>Could not reach the database replica in ap-southeast-1.</AlertDescription>
+      </div>
+    </Alert>
+  </div>
+</ComponentPreview>

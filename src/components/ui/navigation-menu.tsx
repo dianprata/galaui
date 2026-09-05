@@ -53,14 +53,33 @@ NavigationMenuTrigger.displayName = "NavigationMenuTrigger";
 const NavigationMenuPositioner = React.forwardRef<
   React.ElementRef<typeof BaseNav.Positioner>,
   React.ComponentPropsWithoutRef<typeof BaseNav.Positioner>
->(({ className, ...props }, ref) => (
-  <BaseNav.Positioner
-    ref={ref}
-    sideOffset={8}
-    className={cn("z-50 outline-none", className)}
-    {...props}
-  />
-));
+>(
+  (
+    {
+      className,
+      sideOffset = 10,
+      side = "bottom",
+      align = "center",
+      collisionPadding = { top: 8, bottom: 8, left: 16, right: 16 },
+      collisionAvoidance = { side: "none" },
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <BaseNav.Positioner
+        ref={ref}
+        side={side}
+        sideOffset={sideOffset}
+        align={align}
+        collisionPadding={collisionPadding}
+        collisionAvoidance={collisionAvoidance}
+        className={cn("z-50 outline-none", className)}
+        {...props}
+      />
+    );
+  }
+);
 NavigationMenuPositioner.displayName = "NavigationMenuPositioner";
 
 const NavigationMenuPopup = React.forwardRef<
@@ -70,7 +89,7 @@ const NavigationMenuPopup = React.forwardRef<
   <BaseNav.Popup
     ref={ref}
     className={cn(
-      "rounded-2xl border border-border bg-card p-4 text-foreground shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95",
+      "rounded-2xl border border-border bg-card p-4 text-foreground shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95 origin-[var(--transform-origin)] data-[side=top]:origin-bottom data-[side=bottom]:origin-top",
       className
     )}
     {...props}
@@ -92,20 +111,50 @@ const NavigationMenuContent = React.forwardRef<
 ));
 NavigationMenuContent.displayName = "NavigationMenuContent";
 
+export interface NavigationMenuViewportProps
+  extends React.ComponentPropsWithoutRef<typeof BaseNav.Viewport> {
+  sideOffset?: number;
+  align?: "start" | "center" | "end";
+  side?: "top" | "bottom" | "left" | "right";
+  collisionBoundary?: any;
+  collisionPadding?: number | { top?: number; bottom?: number; left?: number; right?: number };
+  collisionAvoidance?: any;
+}
+
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof BaseNav.Viewport>,
-  React.ComponentPropsWithoutRef<typeof BaseNav.Viewport> & {
-    sideOffset?: number;
+  NavigationMenuViewportProps
+>(
+  (
+    {
+      className,
+      sideOffset = 10,
+      align = "center",
+      side = "bottom",
+      collisionPadding = { top: 8, bottom: 8, left: 16, right: 16 },
+      collisionAvoidance = { side: "none" },
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <BaseNav.Portal>
+        <BaseNav.Positioner
+          side={side}
+          sideOffset={sideOffset}
+          align={align}
+          collisionPadding={collisionPadding}
+          collisionAvoidance={collisionAvoidance}
+          className="z-50 outline-none"
+        >
+          <BaseNav.Popup className="rounded-2xl border border-border bg-card p-4 text-foreground shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95 origin-[var(--transform-origin)] data-[side=top]:origin-bottom data-[side=bottom]:origin-top">
+            <BaseNav.Viewport ref={ref} className={cn("relative w-full overflow-hidden", className)} {...props} />
+          </BaseNav.Popup>
+        </BaseNav.Positioner>
+      </BaseNav.Portal>
+    );
   }
->(({ className, sideOffset = 8, ...props }, ref) => (
-  <BaseNav.Portal>
-    <BaseNav.Positioner sideOffset={sideOffset} className="z-50 outline-none">
-      <BaseNav.Popup className="rounded-2xl border border-border bg-card p-4 text-foreground shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95">
-        <BaseNav.Viewport ref={ref} className={cn("relative w-full overflow-hidden", className)} {...props} />
-      </BaseNav.Popup>
-    </BaseNav.Positioner>
-  </BaseNav.Portal>
-));
+);
 NavigationMenuViewport.displayName = "NavigationMenuViewport";
 
 export {

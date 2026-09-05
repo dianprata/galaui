@@ -1,0 +1,62 @@
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarPopup,
+  MenubarItem,
+  MenubarSeparator,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Menubar
+
+A desktop application-style menu bar with top-level dropdown commands and keyboard traversal. Built on Base UI Menubar primitives.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Application Menu</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarPopup,\n  MenubarItem,\n  MenubarSeparator,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Desktop Application Menubar"
+  description="Multi-menu header bar with File, Edit, and View menus."
+  code={'import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarPopup,\n  MenubarItem,\n  MenubarSeparator,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Menubar>\n      <MenubarMenu>\n        <MenubarTrigger>File</MenubarTrigger>\n        <MenubarPopup>\n          <MenubarItem>New Tab</MenubarItem>\n          <MenubarItem>New Window</MenubarItem>\n          <MenubarSeparator />\n          <MenubarItem>Print...</MenubarItem>\n        </MenubarPopup>\n      </MenubarMenu>\n      <MenubarMenu>\n        <MenubarTrigger>Edit</MenubarTrigger>\n        <MenubarPopup>\n          <MenubarItem>Undo</MenubarItem>\n          <MenubarItem>Redo</MenubarItem>\n          <MenubarSeparator />\n          <MenubarItem>Cut</MenubarItem>\n          <MenubarItem>Copy</MenubarItem>\n        </MenubarPopup>\n      </MenubarMenu>\n      <MenubarMenu>\n        <MenubarTrigger>View</MenubarTrigger>\n        <MenubarPopup>\n          <MenubarItem>Zoom In</MenubarItem>\n          <MenubarItem>Zoom Out</MenubarItem>\n          <MenubarItem>Toggle Fullscreen</MenubarItem>\n        </MenubarPopup>\n      </MenubarMenu>\n    </Menubar>\n  );\n}'}
+>
+  <Menubar>
+    <MenubarMenu>
+      <MenubarTrigger>File</MenubarTrigger>
+      <MenubarPopup>
+        <MenubarItem>New Tab</MenubarItem>
+        <MenubarItem>New Window</MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>Print...</MenubarItem>
+      </MenubarPopup>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Edit</MenubarTrigger>
+      <MenubarPopup>
+        <MenubarItem>Undo</MenubarItem>
+        <MenubarItem>Redo</MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>Cut</MenubarItem>
+        <MenubarItem>Copy</MenubarItem>
+      </MenubarPopup>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>View</MenubarTrigger>
+      <MenubarPopup>
+        <MenubarItem>Zoom In</MenubarItem>
+        <MenubarItem>Zoom Out</MenubarItem>
+        <MenubarItem>Toggle Fullscreen</MenubarItem>
+      </MenubarPopup>
+    </MenubarMenu>
+  </Menubar>
+</ComponentPreview>

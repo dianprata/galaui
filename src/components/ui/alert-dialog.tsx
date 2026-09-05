@@ -4,9 +4,35 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button";
 
 const AlertDialog = BaseAlertDialog.Root;
-const AlertDialogTrigger = BaseAlertDialog.Trigger;
 const AlertDialogPortal = BaseAlertDialog.Portal;
-const AlertDialogClose = BaseAlertDialog.Close;
+
+const AlertDialogTrigger = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseAlertDialog.Trigger>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseAlertDialog.Trigger ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseAlertDialog.Trigger ref={ref} render={children} {...props} />;
+  }
+  return <BaseAlertDialog.Trigger ref={ref} {...props}>{children}</BaseAlertDialog.Trigger>;
+});
+AlertDialogTrigger.displayName = "AlertDialogTrigger";
+
+const AlertDialogClose = React.forwardRef<
+  any,
+  React.ComponentPropsWithoutRef<typeof BaseAlertDialog.Close>
+>(({ render, children, ...props }, ref) => {
+  if (render) {
+    return <BaseAlertDialog.Close ref={ref} render={render} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseAlertDialog.Close ref={ref} render={children} {...props} />;
+  }
+  return <BaseAlertDialog.Close ref={ref} {...props}>{children}</BaseAlertDialog.Close>;
+});
+AlertDialogClose.displayName = "AlertDialogClose";
 
 const AlertDialogBackdrop = React.forwardRef<
   React.ElementRef<typeof BaseAlertDialog.Backdrop>,

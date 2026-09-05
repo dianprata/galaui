@@ -1,0 +1,42 @@
+import { Toggle, ToggleGroup, ToggleGroupItem, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Bold, Italic, Underline, Bookmark } from "lucide-react";
+
+# Toggle & Toggle Group
+
+A two-state button that can be either on or off, or a group of segmented toggle buttons for single or multiple selection.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Segmented Controls</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Toggle, ToggleGroup, ToggleGroupItem } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Rich Text Toolbar"
+  description="Segmented multiple-choice text styling toggles."
+  code={'import { Toggle, ToggleGroup, ToggleGroupItem } from "@galaui/react";\nimport { Bold, Italic, Underline, Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <ToggleGroup type="multiple" defaultValue={["bold"]}>\n        <ToggleGroupItem value="bold" aria-label="Toggle bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" aria-label="Toggle italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" aria-label="Toggle underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <Toggle aria-label="Bookmark item">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-4">
+    <ToggleGroup type="multiple" defaultValue={["bold"]}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+    <Toggle aria-label="Bookmark item">
+      <Bookmark className="h-3.5 w-3.5" />
+    </Toggle>
+  </div>
+</ComponentPreview>

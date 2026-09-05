@@ -5,18 +5,28 @@ import { cn } from "@/lib/utils";
 const Collapsible = BaseCollapsible.Root;
 
 const CollapsibleTrigger = React.forwardRef<
-  React.ElementRef<typeof BaseCollapsible.Trigger>,
+  any,
   React.ComponentPropsWithoutRef<typeof BaseCollapsible.Trigger>
->(({ className, ...props }, ref) => (
-  <BaseCollapsible.Trigger
-    ref={ref}
-    className={cn(
-      "group flex w-full items-center justify-between font-medium transition-all select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-      className
-    )}
-    {...props}
-  />
-));
+>(({ render, children, className, ...props }, ref) => {
+  if (render) {
+    return <BaseCollapsible.Trigger ref={ref} render={render} className={className} {...props} />;
+  }
+  if (React.isValidElement(children)) {
+    return <BaseCollapsible.Trigger ref={ref} render={children} className={className} {...props} />;
+  }
+  return (
+    <BaseCollapsible.Trigger
+      ref={ref}
+      className={cn(
+        "group flex w-full items-center justify-between font-medium transition-all select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </BaseCollapsible.Trigger>
+  );
+});
 CollapsibleTrigger.displayName = "CollapsibleTrigger";
 
 const CollapsiblePanel = React.forwardRef<

@@ -1,0 +1,49 @@
+import {
+  EmptyState,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateActions,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { FolderPlus, Plus } from "lucide-react";
+
+# Empty State
+
+A visual placeholder shown when records, search queries, or data sets are empty, guiding users on what to do next.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Compound Layout</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Call to Action</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  EmptyState,\n  EmptyStateIcon,\n  EmptyStateTitle,\n  EmptyStateDescription,\n  EmptyStateActions,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="No Projects Placeholder"
+  description="Friendly empty state with an icon and create button."
+  code={'import {\n  EmptyState,\n  EmptyStateIcon,\n  EmptyStateTitle,\n  EmptyStateDescription,\n  EmptyStateActions,\n  Button,\n} from "@galaui/react";\nimport { FolderPlus, Plus } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <EmptyState className="w-full max-w-md">\n      <EmptyStateIcon>\n        <FolderPlus className="w-6 h-6" />\n      </EmptyStateIcon>\n      <EmptyStateTitle>No projects created yet</EmptyStateTitle>\n      <EmptyStateDescription>\n        Get started by initializing a new project or importing your existing repository.\n      </EmptyStateDescription>\n      <EmptyStateActions>\n        <Button size="sm">\n          <Plus className="w-3.5 h-3.5 mr-1.5" />\n          Create Project\n        </Button>\n      </EmptyStateActions>\n    </EmptyState>\n  );\n}'}
+>
+  <EmptyState className="w-full max-w-md">
+    <EmptyStateIcon>
+      <FolderPlus className="w-6 h-6" />
+    </EmptyStateIcon>
+    <EmptyStateTitle>No projects created yet</EmptyStateTitle>
+    <EmptyStateDescription>
+      Get started by initializing a new project or importing your existing repository.
+    </EmptyStateDescription>
+    <EmptyStateActions>
+      <Button size="sm">
+        <Plus className="w-3.5 h-3.5 mr-1.5" />
+        Create Project
+      </Button>
+    </EmptyStateActions>
+  </EmptyState>
+</ComponentPreview>

@@ -1,0 +1,56 @@
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Pagination
+
+Pagination controls with page numbers, previous/next buttons, and ellipsis indicators for paginated datasets.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic Nav</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Accessible Links</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationPrevious,\n  PaginationNext,\n  PaginationEllipsis,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Multi-page Navigation"
+  description="Navigation bar for navigating multiple pages of records."
+  code={'import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  PaginationPrevious,\n  PaginationNext,\n  PaginationEllipsis,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Pagination>\n      <PaginationContent>\n        <PaginationItem>\n          <PaginationPrevious href="#" />\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href="#" isActive>1</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href="#">2</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href="#">3</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationEllipsis />\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationNext href="#" />\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  );\n}'}
+>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#" isActive>1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</ComponentPreview>

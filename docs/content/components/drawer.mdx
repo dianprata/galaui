@@ -1,0 +1,58 @@
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerPopup,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerClose,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Drawer
+
+A slide-over sheet panel that animates smoothly from the screen edge. Built on Base UI Drawer with touch gestures and backdrop blur.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Swipe to Dismiss</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Drawer,\n  DrawerTrigger,\n  DrawerPopup,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerClose,\n} from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Slide-over Drawer"
+  description="Side drawer with header, body content, and action footer."
+  code={'import {\n  Drawer,\n  DrawerTrigger,\n  DrawerPopup,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerClose,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Drawer>\n      <DrawerTrigger>\n        <Button variant="default">Open Drawer</Button>\n      </DrawerTrigger>\n      <DrawerPopup side="right">\n        <DrawerHeader>\n          <DrawerTitle>Configuration Panel</DrawerTitle>\n          <DrawerDescription>\n            Modify deployment variables and token configurations directly.\n          </DrawerDescription>\n        </DrawerHeader>\n        <div className="p-4 flex-1 text-xs text-muted-foreground">\n          Drawer body content with smooth edge swipe dismiss.\n        </div>\n        <DrawerFooter>\n          <DrawerClose>\n            <Button variant="outline" size="sm">Close</Button>\n          </DrawerClose>\n          <Button variant="default" size="sm">Save Changes</Button>\n        </DrawerFooter>\n      </DrawerPopup>\n    </Drawer>\n  );\n}'}
+>
+  <Drawer>
+    <DrawerTrigger>
+      <Button variant="default">Open Drawer</Button>
+    </DrawerTrigger>
+    <DrawerPopup side="right">
+      <DrawerHeader>
+        <DrawerTitle>Configuration Panel</DrawerTitle>
+        <DrawerDescription>
+          Modify deployment variables and token configurations directly.
+        </DrawerDescription>
+      </DrawerHeader>
+      <div className="p-4 flex-1 text-xs text-muted-foreground">
+        Drawer body content with smooth edge swipe dismiss.
+      </div>
+      <DrawerFooter>
+        <DrawerClose>
+          <Button variant="outline" size="sm">Close</Button>
+        </DrawerClose>
+        <Button variant="default" size="sm">Save Changes</Button>
+      </DrawerFooter>
+    </DrawerPopup>
+  </Drawer>
+</ComponentPreview>
