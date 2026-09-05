@@ -8,14 +8,16 @@ import { SearchDialog } from "./SearchDialog";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { DocsPagination } from "./DocsPagination";
 import { Badge, Button, Kbd } from "@/index";
+import { cn } from "@/index";
 import { Menu, X, ExternalLink, Search } from "lucide-react";
 import { useEffect } from "react";
 
 interface DocsLayoutProps {
   children: ReactNode;
+  className?: string;
 }
 
-export function DocsLayout({ children }: DocsLayoutProps) {
+export function DocsLayout({ children, className }: DocsLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -31,7 +33,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
+    <div className={cn("min-h-screen bg-background text-foreground flex flex-col antialiased", className)}>
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Top Navbar */}

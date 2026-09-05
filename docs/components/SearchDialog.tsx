@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { allRoutes, docSections } from "../routes";
 import { Search, ChevronRight, FileText } from "lucide-react";
-import { Dialog, DialogPopup, Input, Kbd } from "@/index";
+import { Dialog, DialogPopup, Input, Kbd, cn } from "@/index";
 
 interface SearchDialogProps {
   open: boolean;
@@ -84,25 +84,26 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                       onClose();
                     }}
                     onMouseEnter={() => setSelectedIndex(index)}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-primary text-primary-foreground shadow-xs font-medium"
-                        : "text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <FileText className={`w-4 h-4 ${isSelected ? "text-primary-foreground" : "text-muted-foreground"}`} />
-                      <div>
-                        <div className="font-medium text-sm">{item.title}</div>
-                        {section && (
-                          <div className={`text-[11px] ${isSelected ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
-                            {section.title}
-                          </div>
-                        )}
-                      </div>
+                  className={cn(
+                    "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all cursor-pointer",
+                    isSelected
+                      ? "bg-primary text-primary-foreground shadow-xs font-medium"
+                      : "text-foreground hover:bg-muted"
+                  )}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <FileText className={cn("w-4 h-4", isSelected ? "text-primary-foreground" : "text-muted-foreground")} />
+                    <div>
+                      <div className="font-medium text-sm">{item.title}</div>
+                      {section && (
+                        <div className={cn("text-[11px]", isSelected ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                          {section.title}
+                        </div>
+                      )}
                     </div>
-                    <ChevronRight className={`w-4 h-4 ${isSelected ? "text-primary-foreground" : "text-muted-foreground/50"}`} />
-                  </button>
+                  </div>
+                  <ChevronRight className={cn("w-4 h-4", isSelected ? "text-primary-foreground" : "text-muted-foreground/50")} />
+                </button>
                 );
               })}
             </div>

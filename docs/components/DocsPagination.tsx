@@ -1,9 +1,9 @@
 import { useLocation, Link } from "wouter";
 import { allRoutes } from "../routes";
-import { Card, Separator } from "@/index";
+import { Card, Separator, cn } from "@/index";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export function DocsPagination() {
+export function DocsPagination({ className }: { className?: string } = {}) {
   const [location] = useLocation();
 
   const currentIndex = allRoutes.findIndex((r) => r.path === location);
@@ -13,7 +13,7 @@ export function DocsPagination() {
   const next = currentIndex < allRoutes.length - 1 ? allRoutes[currentIndex + 1] : null;
 
   return (
-    <div className="mt-16">
+    <div className={cn("mt-16", className)}>
       <Separator className="mb-8" />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {prev ? (
@@ -53,4 +53,3 @@ export function DocsPagination() {
     </div>
   );
 }
-

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { highlightCode } from "../lib/highlighter";
-import { Button } from "@/index";
+import { Button, cn } from "@/index";
 import { Check, Copy, Terminal } from "lucide-react";
 
 interface CodeBlockProps {
@@ -45,9 +45,13 @@ export function CodeBlock({
 
   return (
     <div
-      className={`shiki-container relative group my-4 rounded-xl border border-border bg-card text-foreground overflow-hidden shadow-xs transition-colors ${className}`}
+      className={cn(
+        "shiki-container relative group border border-border bg-card text-foreground overflow-hidden shadow-xs transition-colors",
+        className
+      )}
     >
-      <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/40 text-xs font-mono">
+      {(filename || showCopy) && (
+        <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/40 text-xs font-mono">
         <div className="flex items-center gap-2 text-muted-foreground">
           {isBash ? <Terminal className="w-3.5 h-3.5 text-muted-foreground/70" /> : null}
           <span className="text-[11px] font-medium text-foreground/80">{filename || language}</span>
@@ -75,6 +79,7 @@ export function CodeBlock({
           </Button>
         )}
       </div>
+      )}
 
       {html ? (
         <div
@@ -89,4 +94,3 @@ export function CodeBlock({
     </div>
   );
 }
-

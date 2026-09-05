@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AlignLeft, ExternalLink, MessageSquare } from "lucide-react";
+import { cn } from "@/index";
 
 interface HeadingItem {
   id: string;
@@ -7,7 +8,7 @@ interface HeadingItem {
   level: number;
 }
 
-export function TableOfContents() {
+export function TableOfContents({ className }: { className?: string } = {}) {
   const [headings, setHeadings] = useState<HeadingItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -51,7 +52,7 @@ export function TableOfContents() {
   }
 
   return (
-    <aside className="hidden xl:block w-56 shrink-0 py-8 pl-6 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto">
+    <aside className={cn("hidden xl:block w-56 shrink-0 py-8 pl-6 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto", className)}>
       <div className="space-y-4">
         <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground tracking-tight">
           <AlignLeft className="w-3.5 h-3.5 text-primary" />
@@ -74,13 +75,13 @@ export function TableOfContents() {
                     setActiveId(heading.id);
                   }
                 }}
-                className={`block py-1 transition-colors leading-normal ${
-                  heading.level === 3 ? "pl-3 text-[11px]" : "font-medium"
-                } ${
+                className={cn(
+                  "block py-1 transition-colors leading-normal",
+                  heading.level === 3 ? "pl-3 text-[11px]" : "font-medium",
                   isActive
                     ? "text-primary font-semibold"
                     : "text-muted-foreground hover:text-foreground"
-                }`}
+                )}
               >
                 {heading.text}
               </a>

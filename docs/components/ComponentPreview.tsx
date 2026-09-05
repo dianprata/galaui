@@ -15,6 +15,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipPopup,
+  cn,
 } from "@/index";
 import { Eye, Code as CodeIcon, RefreshCw, Copy, Check, Grid, CircleDot, Square } from "lucide-react";
 
@@ -48,7 +49,7 @@ export function ComponentPreview({
   };
 
   return (
-    <Card className={`my-8 overflow-hidden p-0 ${className}`}>
+    <Card className={cn("my-8 overflow-hidden p-0", className)}>
       {(title || description) && (
         <CardHeader className="px-6 py-4 border-b border-border bg-muted/20 space-y-1">
           {title && <CardTitle className="text-sm font-semibold tracking-tight">{title}</CardTitle>}
@@ -147,13 +148,14 @@ export function ComponentPreview({
           <TabsPanel value="preview">
             <div
               key={key}
-              className={`p-8 md:p-12 min-h-[220px] flex items-center justify-center overflow-x-auto transition-colors ${
+              className={cn(
+                "p-8 md:p-12 min-h-[220px] flex items-center justify-center overflow-x-auto transition-colors",
                 bgStyle === "dots"
                   ? "stage-dots"
                   : bgStyle === "lines"
                   ? "stage-lines"
                   : "stage-solid"
-              }`}
+              )}
             >
               <div className="w-full flex items-center justify-center">{children}</div>
             </div>

@@ -10,9 +10,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
   Button,
+  cn,
 } from "@/index";
 
-export function Breadcrumbs() {
+export function Breadcrumbs({ className }: { className?: string } = {}) {
   const [location] = useLocation();
   const [copied, setCopied] = useState(false);
 
@@ -40,7 +41,7 @@ export function Breadcrumbs() {
   };
 
   return (
-    <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/60 text-xs">
+    <div className={cn("flex items-center justify-between pb-4 mb-6 border-b border-border/60 text-xs", className)}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
