@@ -35,7 +35,7 @@ const mdxComponents = {
     return (
       <h2
         id={id}
-        className="text-xl font-semibold tracking-tight mt-8 mb-3 text-foreground scroll-mt-20"
+        className="text-xl font-semibold tracking-tight mt-8 mb-3 text-foreground scroll-mt-28 xl:scroll-mt-20"
         {...props}
       />
     );
@@ -45,7 +45,7 @@ const mdxComponents = {
     return (
       <h3
         id={id}
-        className="text-base font-semibold mt-5 mb-2 text-foreground scroll-mt-20"
+        className="text-base font-semibold mt-5 mb-2 text-foreground scroll-mt-28 xl:scroll-mt-20"
         {...props}
       />
     );
