@@ -16,13 +16,13 @@ import {
 
 const mdxComponents = {
   h1: (props: any) => <h1 className="text-3xl font-bold tracking-tight mb-3 text-foreground" {...props} />,
-  h2: (props: any) => <h2 className="text-xl font-semibold tracking-tight mt-8 mb-3 pb-2 border-b border-border text-foreground" {...props} />,
-  h3: (props: any) => <h3 className="text-base font-semibold mt-6 mb-2 text-foreground" {...props} />,
-  p: (props: any) => <p className="text-sm text-muted-foreground leading-relaxed my-3" {...props} />,
+  h2: (props: any) => <h2 className="text-xl font-semibold tracking-tight mt-6 mb-2.5 pb-1.5 border-b border-border text-foreground" {...props} />,
+  h3: (props: any) => <h3 className="text-base font-semibold mt-4 mb-1.5 text-foreground" {...props} />,
+  p: (props: any) => <p className="text-sm text-muted-foreground leading-relaxed my-2" {...props} />,
   ul: (props: any) => <ul className="list-disc pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
   ol: (props: any) => <ol className="list-decimal pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
   li: (props: any) => <li className="leading-relaxed" {...props} />,
-  hr: (props: any) => <Separator className="my-8" {...props} />,
+  hr: (props: any) => <Separator className="my-5" {...props} />,
   strong: (props: any) => <strong className="font-semibold text-foreground" {...props} />,
   code: ({ className, ...props }: any) => {
     if (className) {
@@ -30,7 +30,7 @@ const mdxComponents = {
     }
     return <code className="px-1.5 py-0.5 rounded-md bg-muted font-mono text-xs text-foreground border border-border/50" {...props} />;
   },
-  table: (props: any) => <Table className="my-6" {...props} />,
+  table: (props: any) => <Table className="my-4" {...props} />,
   thead: (props: any) => <TableHeader {...props} />,
   tbody: (props: any) => <TableBody {...props} />,
   tr: (props: any) => <TableRow {...props} />,

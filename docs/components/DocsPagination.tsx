@@ -13,8 +13,8 @@ export function DocsPagination({ className }: { className?: string } = {}) {
   const next = currentIndex < allRoutes.length - 1 ? allRoutes[currentIndex + 1] : null;
 
   return (
-    <div className={cn("mt-16", className)}>
-      <Separator className="mb-8" />
+    <div className={cn("mt-10", className)}>
+      <Separator className="mb-5" />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {prev ? (
           <Link href={prev.path} className="group cursor-pointer">

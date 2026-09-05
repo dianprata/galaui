@@ -41,7 +41,7 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
   };
 
   return (
-    <div className={cn("flex items-center justify-between pb-4 mb-6 border-b border-border/60 text-xs", className)}>
+    <div className={cn("flex items-center justify-between pb-3 mb-4 border-b border-border/60 text-xs", className)}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
