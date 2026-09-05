@@ -138,7 +138,7 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
               </Button>
             </div>
             <div className="flex-1 overflow-y-auto">
-              <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
+              <Sidebar onNavigate={() => setMobileMenuOpen(false)} className="w-full" />
             </div>
           </DrawerPopup>
         </Drawer>
