@@ -1,6 +1,6 @@
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
-import { Alert, AlertTitle, AlertDescription, Tabs, TabsList, TabsTab, TabsPanel, Separator, Button } from "@/index";
+import { Alert, AlertTitle, AlertDescription, Tabs, TabsList, TabsTab, TabsPanel, Button } from "@/index";
 import { CheckCircle2 } from "lucide-react";
 
 # Installation
@@ -36,18 +36,15 @@ Select your package manager to install the core package:
   </TabsPanel>
 </Tabs>
 
-<Separator className="my-8" />
-
 ## 2. Import Stylesheet
 
-GalaUI includes all base styles and Tailwind CSS v4 design tokens in `@galaui/react/styles.css`. Import it at the root of your application (e.g. `main.tsx`, `App.tsx`, or Next.js `app/layout.tsx`):
+GalaUI includes all base styles and Tailwind CSS v4 design tokens in `@galaui/react/styles.css`. Import it at the root of your application (such as `main.tsx`, `App.tsx`, or Next.js `app/layout.tsx`):
 
 <CodeBlock
   language="tsx"
-  code={'import "@galaui/react/styles.css";\nimport React from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")!).render(<App />);'}
+  filename="main.tsx"
+  code={'import "@galaui/react/styles.css";\nimport { StrictMode } from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")!).render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);'}
 />
-
-<Separator className="my-8" />
 
 ## 3. Verify Setup
 
@@ -70,3 +67,4 @@ Render your first GalaUI component to verify that styling and Base UI primitives
     </AlertDescription>
   </div>
 </Alert>
+
