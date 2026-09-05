@@ -9,6 +9,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { DocsPagination } from "./DocsPagination";
 import { Badge, Button, Kbd } from "@/index";
 import { cn } from "@/index";
+import { Drawer, DrawerPopup } from "@/index";
 import { Menu, X, ExternalLink, Search } from "lucide-react";
 import { useEffect } from "react";
 
@@ -124,24 +125,23 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
         </div>
 
         {/* Mobile Drawer */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 md:hidden flex">
-            <div className="fixed inset-0 bg-black/40 backdrop-blur-xs" onClick={() => setMobileMenuOpen(false)} />
-            <div className="relative w-72 bg-background h-full shadow-xl flex flex-col z-10">
-              <div className="p-4 border-b border-border flex items-center justify-between">
-                <span className="font-semibold text-sm">Navigation</span>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 rounded-md text-muted-foreground hover:text-foreground"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
+        <Drawer open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          <DrawerPopup side="left" className={cn("p-0 w-72 max-w-72 rounded-none h-full max-h-full border-r border-border flex flex-col [&>button:last-child]:hidden")}>
+            <div className="p-4 border-b border-border flex items-center justify-between shrink-0">
+              <span className="font-semibold text-sm">Navigation</span>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
               <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
             </div>
-          </div>
-        )}
+          </DrawerPopup>
+        </Drawer>
 
         {/* Main Documentation Content */}
         <main className="flex-1 min-w-0 px-6 py-8 md:px-10 md:py-10">
