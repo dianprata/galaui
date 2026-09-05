@@ -23,30 +23,39 @@ const DialogBackdrop = React.forwardRef<
 ));
 DialogBackdrop.displayName = "DialogBackdrop";
 
+export interface DialogPopupProps
+  extends React.ComponentPropsWithoutRef<typeof BaseDialog.Popup> {
+  showCloseButton?: boolean;
+}
+
 const DialogPopup = React.forwardRef<
   React.ElementRef<typeof BaseDialog.Popup>,
-  React.ComponentPropsWithoutRef<typeof BaseDialog.Popup>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogBackdrop />
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <BaseDialog.Popup
-        ref={ref}
-        className={cn(
-          "relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-starting-style:translate-y-2 data-ending-style:opacity-0 data-ending-style:scale-95 data-ending-style:translate-y-2",
+  DialogPopupProps
+>(({ className, children, showCloseButton = true, ...props }, ref) => {
+  return (
+    <DialogPortal>
+      <DialogBackdrop />
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <BaseDialog.Popup
+          ref={ref}
+          className={cn(
+            "relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl transition-all duration-200 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-starting-style:translate-y-2 data-ending-style:opacity-0 data-ending-style:scale-95 data-ending-style:translate-y-2",
           className
         )}
         {...props}
       >
         {children}
-        <BaseDialog.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 active:scale-90 cursor-pointer">
-          <X className="h-4 w-4" />
-          <span className="sr-only">Close</span>
-        </BaseDialog.Close>
+        {showCloseButton && (
+          <BaseDialog.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 active:scale-90 cursor-pointer">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </BaseDialog.Close>
+        )}
       </BaseDialog.Popup>
-    </div>
-  </DialogPortal>
-));
+      </div>
+    </DialogPortal>
+  );
+});
 DialogPopup.displayName = "DialogPopup";
 
 const DialogHeader = ({

@@ -24,12 +24,16 @@ const DrawerBackdrop = React.forwardRef<
 ));
 DrawerBackdrop.displayName = "DrawerBackdrop";
 
+export interface DrawerPopupProps
+  extends React.ComponentPropsWithoutRef<typeof BaseDrawer.Popup> {
+  side?: "bottom" | "right" | "left" | "top";
+  showCloseButton?: boolean;
+}
+
 const DrawerPopup = React.forwardRef<
   React.ElementRef<typeof BaseDrawer.Popup>,
-  React.ComponentPropsWithoutRef<typeof BaseDrawer.Popup> & {
-    side?: "bottom" | "right" | "left" | "top";
-  }
->(({ className, children, side = "bottom", ...props }, ref) => {
+  DrawerPopupProps
+>(({ className, children, side = "bottom", showCloseButton = true, ...props }, ref) => {
   const sideStyles = {
     bottom:
       "fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[85vh] flex-col rounded-t-2xl border-t border-border bg-card p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:translate-y-full data-ending-style:translate-y-full",
@@ -53,10 +57,12 @@ const DrawerPopup = React.forwardRef<
           <div className="mx-auto -mt-2 mb-4 h-1.5 w-12 rounded-full bg-muted-foreground/30" />
         )}
         {children}
-        <BaseDrawer.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 cursor-pointer">
-          <X className="h-4 w-4" />
-          <span className="sr-only">Close</span>
-        </BaseDrawer.Close>
+        {showCloseButton && (
+          <BaseDrawer.Close className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground opacity-70 hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-150 cursor-pointer">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </BaseDrawer.Close>
+        )}
       </BaseDrawer.Popup>
     </DrawerPortal>
   );
