@@ -1,0 +1,12 @@
+/* Docs-specific typographic and syntax overrides */
+.docs-content pre[class*="language-"] {
+  margin: 0;
+  background: transparent;
+}
+
+.docs-content code[class*="language-"],
+.docs-content pre[class*="language-"] {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.8125rem;
+}
+

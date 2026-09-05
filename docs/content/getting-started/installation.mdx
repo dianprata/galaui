@@ -1,0 +1,56 @@
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Alert, AlertTitle, AlertDescription } from "@/index";
+import { CheckCircle2 } from "lucide-react";
+
+# Installation
+
+Install `@galaui/react` and its peer dependencies into your React project.
+
+## 1. Package Installation
+
+Install via your preferred package manager:
+
+### npm
+<CodeBlock language="bash" code="npm install @galaui/react" />
+
+### pnpm
+<CodeBlock language="bash" code="pnpm add @galaui/react" />
+
+### yarn
+<CodeBlock language="bash" code="yarn add @galaui/react" />
+
+### bun
+<CodeBlock language="bash" code="bun add @galaui/react" />
+
+---
+
+## 2. Import Stylesheet
+
+GalaUI includes all base styles and Tailwind CSS v4 design tokens in `@galaui/react/styles.css`. Import it at the root of your application (e.g. `main.tsx`, `App.tsx`, or Next.js `app/layout.tsx`):
+
+<CodeBlock
+  language="tsx"
+  code={'import "@galaui/react/styles.css";\nimport React from "react";\nimport ReactDOM from "react-dom/client";\nimport App from "./App";\n\nReactDOM.createRoot(document.getElementById("root")!).render(<App />);'}
+/>
+
+---
+
+## 3. Verify Setup
+
+Test by importing your first component into any page:
+
+<CodeBlock
+  language="tsx"
+  code={'import { Button } from "@galaui/react";\n\nexport default function Home() {\n  return (\n    <main className="p-8">\n      <Button variant="default">Hello GalaUI</Button>\n    </main>\n  );\n}'}
+/>
+
+<Alert className="my-6 bg-emerald-500/10 border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
+  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+  <div>
+    <AlertTitle>Ready to go!</AlertTitle>
+    <AlertDescription>
+      Your project is now fully configured with GalaUI. Check out the Theming guide next to customize design tokens.
+    </AlertDescription>
+  </div>
+</Alert>
+

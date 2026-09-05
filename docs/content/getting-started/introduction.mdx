@@ -1,0 +1,78 @@
+import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { Sparkles, Zap, Shield, Palette } from "lucide-react";
+
+# Introduction
+
+**GalaUI** is an accessible, modern React component library and design system powered by **Base UI** and **Tailwind CSS v4 (CSS-first / Zero Config)**.
+
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+  <Card className="p-4">
+    <div className="flex items-center gap-3">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <Shield className="w-5 h-5" />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold">Base UI Primitives</h3>
+        <p className="text-xs text-muted-foreground mt-0.5">Unstyled, fully accessible WAI-ARIA compliant foundations.</p>
+      </div>
+    </div>
+  </Card>
+
+  <Card className="p-4">
+    <div className="flex items-center gap-3">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <Zap className="w-5 h-5" />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold">Fine-Grained Tree-Shaking</h3>
+        <p className="text-xs text-muted-foreground mt-0.5">PreserveModules build system ensures minimal bundle impact.</p>
+      </div>
+    </div>
+  </Card>
+
+  <Card className="p-4">
+    <div className="flex items-center gap-3">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <Palette className="w-5 h-5" />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold">CSS Variables Tokens</h3>
+        <p className="text-xs text-muted-foreground mt-0.5">100% customizable colors, radius, and sizing via CSS tokens.</p>
+      </div>
+    </div>
+  </Card>
+
+  <Card className="p-4">
+    <div className="flex items-center gap-3">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+        <Sparkles className="w-5 h-5" />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold">Tailwind CSS v4 Native</h3>
+        <p className="text-xs text-muted-foreground mt-0.5">Zero config, CSS-first architecture with smooth CSS transitions.</p>
+      </div>
+    </div>
+  </Card>
+</div>
+
+## Quick Interactive Teaser
+
+Here is a quick sample of GalaUI components interacting together:
+
+<ComponentPreview
+  code={'<div className="flex flex-wrap items-center gap-3">\n  <Button variant="default">Primary Action</Button>\n  <Button variant="outline">Outline</Button>\n  <Badge variant="success">Active</Badge>\n</div>'}
+>
+  <div className="flex flex-wrap items-center gap-3">
+    <Button variant="default">Primary Action</Button>
+    <Button variant="outline">Outline</Button>
+    <Badge variant="success">Active</Badge>
+  </div>
+</ComponentPreview>
+
+## Next Steps
+
+- Check out the [Installation Guide](/getting-started/installation) to install `@galaui/react` in your project.
+- Learn how to customize colors and radiuses in [Theming & Tokens](/getting-started/theming).
+- Explore our full list of components in the sidebar.
+

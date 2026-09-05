@@ -1,0 +1,46 @@
+import { Tabs, TabsList, TabsTab, TabsPanel, Card, CardContent, Input, Button } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+
+# Tabs
+
+A set of layered sections of content—known as tab panels—that are displayed one at a time. Powered by Base UI with animated selection indicators.
+
+---
+
+## Example
+
+<ComponentPreview
+  title="Interactive Tabs"
+  description="Navigate between different content views."
+  code={'<Tabs defaultValue="account" className="w-full max-w-md">\n  <TabsList className="grid grid-cols-2 w-full">\n    <TabsTab value="account">Account</TabsTab>\n    <TabsTab value="password">Password</TabsTab>\n  </TabsList>\n  <TabsPanel value="account">\n    <Card className="mt-3">\n      <CardContent className="space-y-3 pt-4">\n        <div className="space-y-1">\n          <label className="text-xs font-medium">Email</label>\n          <Input defaultValue="user@example.com" />\n        </div>\n        <Button size="sm" className="w-full">Save Changes</Button>\n      </CardContent>\n    </Card>\n  </TabsPanel>\n  <TabsPanel value="password">\n    <Card className="mt-3">\n      <CardContent className="space-y-3 pt-4">\n        <div className="space-y-1">\n          <label className="text-xs font-medium">Current Password</label>\n          <Input type="password" />\n        </div>\n        <Button size="sm" variant="destructive" className="w-full">Update Password</Button>\n      </CardContent>\n    </Card>\n  </TabsPanel>\n</Tabs>'}
+>
+  <Tabs defaultValue="account" className="w-full max-w-md">
+    <TabsList className="grid grid-cols-2 w-full">
+      <TabsTab value="account">Account</TabsTab>
+      <TabsTab value="password">Password</TabsTab>
+    </TabsList>
+    <TabsPanel value="account">
+      <Card className="mt-3">
+        <CardContent className="space-y-3 pt-4">
+          <div className="space-y-1">
+            <label className="text-xs font-medium">Email</label>
+            <Input defaultValue="user@example.com" />
+          </div>
+          <Button size="sm" className="w-full">Save Changes</Button>
+        </CardContent>
+      </Card>
+    </TabsPanel>
+    <TabsPanel value="password">
+      <Card className="mt-3">
+        <CardContent className="space-y-3 pt-4">
+          <div className="space-y-1">
+            <label className="text-xs font-medium">Current Password</label>
+            <Input type="password" />
+          </div>
+          <Button size="sm" variant="destructive" className="w-full">Update Password</Button>
+        </CardContent>
+      </Card>
+    </TabsPanel>
+  </Tabs>
+</ComponentPreview>
+

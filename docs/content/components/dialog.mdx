@@ -1,0 +1,47 @@
+import { Dialog, DialogTrigger, DialogPopup, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Button, Input } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+
+# Dialog
+
+A modal dialog that interrupts the user with important content and requires action. Built on Base UI accessible dialog primitives with focus management and animations.
+
+---
+
+## Example
+
+<ComponentPreview
+  title="Modal Dialog"
+  description="Click to open the accessible modal dialog."
+  code={'<Dialog>\n  <DialogTrigger>\n    <Button variant="default">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogPopup>\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>\n        Make changes to your profile here. Click save when you are done.\n      </DialogDescription>\n    </DialogHeader>\n    <div className="space-y-3 py-4">\n      <div className="space-y-1">\n        <label className="text-xs font-medium">Name</label>\n        <Input defaultValue="Dian Pratama" />\n      </div>\n      <div className="space-y-1">\n        <label className="text-xs font-medium">Username</label>\n        <Input defaultValue="@dianprata" />\n      </div>\n    </div>\n    <DialogFooter>\n      <DialogClose>\n        <Button variant="outline">Cancel</Button>\n      </DialogClose>\n      <Button variant="default">Save changes</Button>\n    </DialogFooter>\n  </DialogPopup>\n</Dialog>'}
+>
+  <Dialog>
+    <DialogTrigger>
+      <Button variant="default">Edit Profile</Button>
+    </DialogTrigger>
+    <DialogPopup>
+      <DialogHeader>
+        <DialogTitle>Edit profile</DialogTitle>
+        <DialogDescription>
+          Make changes to your profile here. Click save when you are done.
+        </DialogDescription>
+      </DialogHeader>
+      <div className="space-y-3 py-4">
+        <div className="space-y-1">
+          <label className="text-xs font-medium">Name</label>
+          <Input defaultValue="Dian Pratama" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-medium">Username</label>
+          <Input defaultValue="@dianprata" />
+        </div>
+      </div>
+      <DialogFooter>
+        <DialogClose>
+          <Button variant="outline">Cancel</Button>
+        </DialogClose>
+        <Button variant="default">Save changes</Button>
+      </DialogFooter>
+    </DialogPopup>
+  </Dialog>
+</ComponentPreview>
+

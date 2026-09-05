@@ -25,11 +25,14 @@
       ],
       "@/tokens/*": [
         "./src/tokens/*"
+      ],
+      "@docs/*": [
+        "./docs/*"
       ]
     }
   },
   "include": [
     "src",
-    "playground"
+    "docs"
   ]
 }

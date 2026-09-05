@@ -1,0 +1,59 @@
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { Badge, Card } from "@/index";
+
+# Theming & Tokens
+
+GalaUI tokens are **100% driven by pure CSS Custom Variables**. You have complete control over fonts, corner radius scales, and semantic color palettes without touching build tools or complex config files.
+
+---
+
+## Default Token Definitions
+
+You can override any variable inside your project's `globals.css` or root stylesheet:
+
+<CodeBlock
+  language="css"
+  code={'@import "@galaui/react/styles.css";\n\n:root {\n  /* 1. Typography */\n  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;\n  --font-mono: "Geist Mono", monospace;\n\n  /* 2. Border Radius Scale */\n  --radius-xs: 2px;\n  --radius-sm: 4px;\n  --radius-md: 6px;\n  --radius-lg: 8px;\n  --radius-xl: 12px;\n  --radius-2xl: 16px;\n  --radius: var(--radius-lg);\n\n  /* 3. Semantic Brand Colors */\n  --primary: #1d54db;\n  --primary-hover: #143eb0;\n  --primary-active: #12348e;\n  --primary-foreground: #ffffff;\n\n  /* 4. Canvas Colors */\n  --background: #fcfcfd;\n  --foreground: #121417;\n  --muted: #f1f3f5;\n  --muted-foreground: #6c757d;\n  --border: #e4e7eb;\n  --card: #ffffff;\n}\n\n/* Dark Mode Overrides */\n.dark {\n  --primary: #2f6fed;\n  --primary-hover: #558ff8;\n  --primary-active: #8ab4fc;\n  --primary-foreground: #ffffff;\n\n  --background: #0a0c0e;\n  --foreground: #f8f9fa;\n  --muted: #16191d;\n  --muted-foreground: #8b949e;\n  --border: #21262d;\n  --card: #101317;\n}'}
+/>
+
+---
+
+## Semantic Color Palette
+
+<div className="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+  <div className="p-3 rounded-xl border border-border bg-card space-y-2">
+    <div className="h-8 rounded-lg bg-primary" />
+    <div className="text-xs font-medium">Primary</div>
+    <div className="text-[11px] font-mono text-muted-foreground">--primary</div>
+  </div>
+
+  <div className="p-3 rounded-xl border border-border bg-card space-y-2">
+    <div className="h-8 rounded-lg bg-secondary flex items-center justify-center text-xs font-medium">Secondary</div>
+    <div className="text-xs font-medium">Secondary</div>
+    <div className="text-[11px] font-mono text-muted-foreground">--secondary</div>
+  </div>
+
+  <div className="p-3 rounded-xl border border-border bg-card space-y-2">
+    <div className="h-8 rounded-lg bg-destructive flex items-center justify-center text-white text-xs font-medium">Destructive</div>
+    <div className="text-xs font-medium">Destructive</div>
+    <div className="text-[11px] font-mono text-muted-foreground">--destructive</div>
+  </div>
+
+  <div className="p-3 rounded-xl border border-border bg-card space-y-2">
+    <div className="h-8 rounded-lg bg-muted flex items-center justify-center text-xs font-medium">Muted</div>
+    <div className="text-xs font-medium">Muted</div>
+    <div className="text-[11px] font-mono text-muted-foreground">--muted</div>
+  </div>
+</div>
+
+---
+
+## Dark Mode Integration
+
+GalaUI detects dark mode via the `.dark` class on the root `<html>` or `<body>` element:
+
+<CodeBlock
+  language="tsx"
+  code={'// Example: Toggle dark mode\nfunction toggleTheme() {\n  document.documentElement.classList.toggle("dark");\n}'}
+/>
+

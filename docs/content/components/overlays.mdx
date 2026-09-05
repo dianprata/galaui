@@ -1,0 +1,85 @@
+import { Button, Tooltip, TooltipTrigger, TooltipPopup, Popover, PopoverTrigger, PopoverPopup, PopoverTitle, PopoverDescription, DropdownMenu, DropdownMenuTrigger, DropdownMenuPopup, DropdownMenuItem, DropdownMenuSeparator } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { MoreHorizontal, User, Settings, LogOut, Info } from "lucide-react";
+
+# Overlays & Tooltips
+
+Floating context elements built on Base UI floating primitives with auto-positioning, collision detection, and smooth open/close micro-animations.
+
+---
+
+## Tooltip
+
+<ComponentPreview
+  title="Hover Tooltip"
+  description="Displays contextual info on hover or focus."
+  code={'<Tooltip>\n  <TooltipTrigger>\n    <Button variant="outline" size="sm">\n      <Info className="w-4 h-4 mr-1.5" />\n      Hover for Details\n    </Button>\n  </TooltipTrigger>\n  <TooltipPopup>\n    GalaUI Tooltip with Base UI positioning\n  </TooltipPopup>\n</Tooltip>'}
+>
+  <Tooltip>
+    <TooltipTrigger>
+      <Button variant="outline" size="sm">
+        <Info className="w-4 h-4 mr-1.5" />
+        Hover for Details
+      </Button>
+    </TooltipTrigger>
+    <TooltipPopup>
+      GalaUI Tooltip with Base UI positioning
+    </TooltipPopup>
+  </Tooltip>
+</ComponentPreview>
+
+---
+
+## Popover
+
+<ComponentPreview
+  title="Click Popover"
+  description="Rich floating panel opened by clicking a trigger button."
+  code={'<Popover>\n  <PopoverTrigger>\n    <Button variant="default" size="sm">Open Popover</Button>\n  </PopoverTrigger>\n  <PopoverPopup className="p-4 w-72 space-y-2">\n    <PopoverTitle className="font-semibold text-sm">Dimensions</PopoverTitle>\n    <PopoverDescription className="text-xs text-muted-foreground">\n      Set the default dimensions for the canvas preview.\n    </PopoverDescription>\n  </PopoverPopup>\n</Popover>'}
+>
+  <Popover>
+    <PopoverTrigger>
+      <Button variant="default" size="sm">Open Popover</Button>
+    </PopoverTrigger>
+    <PopoverPopup className="p-4 w-72 space-y-2">
+      <PopoverTitle className="font-semibold text-sm">Dimensions</PopoverTitle>
+      <PopoverDescription className="text-xs text-muted-foreground">
+        Set the default dimensions for the canvas preview.
+      </PopoverDescription>
+    </PopoverPopup>
+  </Popover>
+</ComponentPreview>
+
+---
+
+## Dropdown Menu
+
+<ComponentPreview
+  title="Action Menu"
+  description="Contextual action menu with keyboard navigation."
+  code={'<DropdownMenu>\n  <DropdownMenuTrigger>\n    <Button variant="outline" size="icon">\n      <MoreHorizontal className="w-4 h-4" />\n    </Button>\n  </DropdownMenuTrigger>\n  <DropdownMenuPopup className="w-48">\n    <DropdownMenuItem className="gap-2">\n      <User className="w-4 h-4 text-muted-foreground" />\n      <span>Profile</span>\n    </DropdownMenuItem>\n    <DropdownMenuItem className="gap-2">\n      <Settings className="w-4 h-4 text-muted-foreground" />\n      <span>Settings</span>\n    </DropdownMenuItem>\n    <DropdownMenuSeparator />\n    <DropdownMenuItem className="gap-2 text-destructive">\n      <LogOut className="w-4 h-4" />\n      <span>Log out</span>\n    </DropdownMenuItem>\n  </DropdownMenuPopup>\n</DropdownMenu>'}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger>
+      <Button variant="outline" size="icon">
+        <MoreHorizontal className="w-4 h-4" />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuPopup className="w-48">
+      <DropdownMenuItem className="gap-2">
+        <User className="w-4 h-4 text-muted-foreground" />
+        <span>Profile</span>
+      </DropdownMenuItem>
+      <DropdownMenuItem className="gap-2">
+        <Settings className="w-4 h-4 text-muted-foreground" />
+        <span>Settings</span>
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem className="gap-2 text-destructive">
+        <LogOut className="w-4 h-4" />
+        <span>Log out</span>
+      </DropdownMenuItem>
+    </DropdownMenuPopup>
+  </DropdownMenu>
+</ComponentPreview>
+
