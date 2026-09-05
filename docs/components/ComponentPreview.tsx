@@ -160,11 +160,10 @@ export function ComponentPreview({
           </TabsPanel>
 
           <TabsPanel value="code">
-            <CodeBlock code={code} language="tsx" className="my-0 rounded-none border-0" />
+            <CodeBlock code={code} language="tsx" showCopy={false} className="my-0 rounded-none border-0 shadow-none" />
           </TabsPanel>
         </CardContent>
       </Tabs>
     </Card>
   );
 }
-
