@@ -49,7 +49,7 @@ export function ComponentPreview({
   };
 
   return (
-    <Card className={cn("my-4 overflow-hidden p-0 not-prose", className)}>
+    <Card className={cn("my-6 overflow-hidden p-0 not-prose", className)}>
       {(title || description) && (
         <CardHeader className="px-6 py-4 border-b border-border bg-muted/20 space-y-1">
           {title && <CardTitle className="text-sm font-semibold tracking-tight">{title}</CardTitle>}
