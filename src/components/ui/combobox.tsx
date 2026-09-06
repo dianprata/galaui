@@ -170,7 +170,7 @@ const ComboboxEmpty = React.forwardRef<
   <BaseCombobox.Empty
     ref={ref}
     data-slot="combobox-empty"
-    className={cn("py-4 text-center text-xs text-muted-foreground", className)}
+    className={cn("empty:hidden py-4 text-center text-xs text-muted-foreground", className)}
     {...props}
   />
 ));
