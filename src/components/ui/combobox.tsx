@@ -268,7 +268,7 @@ const ComboboxChip = React.forwardRef<
     ref={ref}
     data-slot="combobox-chip"
     className={cn(
-      "inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground border border-border/50 select-none shrink-0",
+      "inline-flex items-center gap-1 rounded-md bg-secondary px-1 py-0.5 text-[11px] font-medium text-secondary-foreground border border-border/50 select-none shrink-0",
       className
     )}
     {...props}
@@ -284,7 +284,7 @@ const ComboboxChipRemove = React.forwardRef<
     ref={ref}
     data-slot="combobox-chip-remove"
     className={cn(
-      "rounded-xs hover:bg-muted-foreground/20 p-0.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors",
+      "rounded-sm hover:bg-muted-foreground/20 p-0.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors",
       className
     )}
     {...props}
