@@ -6,10 +6,32 @@ import { Sparkles, CheckCircle2, RefreshCw, Layers, ShieldCheck, Rocket } from "
 All notable changes, releases, and improvements to **@galaui/react** will be documented on this page. GalaUI adheres to [Semantic Versioning](https://semver.org/).
 
 <div className="flex flex-wrap items-center gap-2 my-4 not-prose">
-  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.4</Badge>
+  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.5</Badge>
   <Badge variant="outline" className="text-xs px-2 py-1">47 Accessible Components</Badge>
   <Badge variant="secondary" className="text-xs px-2 py-1">Base UI 1.7 + Tailwind CSS v4</Badge>
 </div>
+
+---
+
+## v0.1.5
+
+<div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
+  <span className="font-semibold text-foreground">September 7, 2026</span>
+  <span>•</span>
+  <Badge variant="default" size="xs">Latest Release</Badge>
+</div>
+
+### 🚀 Highlights (v0.1.5)
+
+Automated tag-driven deployment pipeline for Cloudflare Pages and synchronized npm package publication.
+
+### 🤖 CI/CD & Deployment Pipeline
+
+- **Tag-Triggered Cloudflare Pages Workflow (`deploy-pages.yml`)**:
+  - Automatically triggers on version tag pushes (`v*`) to build the documentation site and deploy to Cloudflare Pages.
+  - Generates TypeScript API metadata, compiles optimized Vite SPA assets to `dist-app`, and uploads via project Wrangler CLI with repository secrets.
+- **Synchronized npm Release (`release.yml`)**:
+  - Added tag push trigger (`v*`) alongside GitHub release publications for unified library distribution.
 
 ---
 
@@ -17,8 +39,6 @@ All notable changes, releases, and improvements to **@galaui/react** will be doc
 
 <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
   <span className="font-semibold text-foreground">September 7, 2026</span>
-  <span>•</span>
-  <Badge variant="default" size="xs">Latest Release</Badge>
 </div>
 
 ### 🚀 Highlights (v0.1.4)
