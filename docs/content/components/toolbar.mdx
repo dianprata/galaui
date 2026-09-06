@@ -1,0 +1,49 @@
+import {
+  Toolbar,
+  ToolbarGroup,
+  ToolbarButton,
+  ToolbarSeparator,
+  ToolbarLink,
+  ToolbarInput,
+  Badge,
+} from "@/index";
+import { Bold, Italic, Underline, Link as LinkIcon, Search } from "lucide-react";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Toolbar
+
+A container for grouping controls such as action buttons, toggles, inputs, or navigation links with keyboard navigation. Built on Base UI Toolbar.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Roving Focus</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarLink,\n  ToolbarInput,\n} from "@galaui/react";'} />
+
+## Editor Toolbar Example
+
+<ComponentPreview
+  title="Rich Text Editor Toolbar"
+  description="Text styling actions grouped with separators and an embedded search input."
+  code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarInput,\n} from "@galaui/react";\nimport { Bold, Italic, Underline, Search } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Toolbar aria-label="Formatting options">\n      <ToolbarGroup aria-label="Text styles">\n        <ToolbarButton size="icon-sm" aria-label="Bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n      <ToolbarSeparator />\n      <ToolbarInput placeholder="Search document..." />\n    </Toolbar>\n  );\n}'}
+>
+  <Toolbar aria-label="Formatting options">
+    <ToolbarGroup aria-label="Text styles">
+      <ToolbarButton size="icon-sm" aria-label="Bold">
+        <Bold className="h-3.5 w-3.5" />
+      </ToolbarButton>
+      <ToolbarButton size="icon-sm" aria-label="Italic">
+        <Italic className="h-3.5 w-3.5" />
+      </ToolbarButton>
+      <ToolbarButton size="icon-sm" aria-label="Underline">
+        <Underline className="h-3.5 w-3.5" />
+      </ToolbarButton>
+    </ToolbarGroup>
+    <ToolbarSeparator />
+    <ToolbarInput placeholder="Search document..." />
+  </Toolbar>
+</ComponentPreview>

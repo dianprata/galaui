@@ -1,0 +1,49 @@
+import {
+  Form,
+  Field,
+  FieldControl,
+  FieldLabel,
+  FieldDescription,
+  FieldError,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Form
+
+A high-level form container powered by Base UI Form primitives, providing unified form validation states, error mapping, and accessible submission handling.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Consolidated Validation</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Form, Field, FieldControl, FieldLabel, FieldError, Button } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Interactive Form Submission"
+  description="Form container handling input states and submission flow."
+  code={'import {\n  Form,\n  Field,\n  FieldControl,\n  FieldLabel,\n  FieldDescription,\n  FieldError,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Form className="w-full max-w-sm space-y-4">\n      <Field className="space-y-1.5">\n        <FieldLabel>Organization Name</FieldLabel>\n        <FieldControl placeholder="e.g. Acme Corp" defaultValue="Gala Labs" />\n        <FieldDescription>Used for team billing and invoices.</FieldDescription>\n      </Field>\n      <Field className="space-y-1.5">\n        <FieldLabel>Contact Email</FieldLabel>\n        <FieldControl type="email" placeholder="admin@domain.com" />\n      </Field>\n      <div className="flex justify-end gap-2 pt-2">\n        <Button variant="outline" type="reset" size="sm">Reset</Button>\n        <Button variant="primary" type="submit" size="sm">Save Changes</Button>\n      </div>\n    </Form>\n  );\n}'}
+>
+  <Form className="w-full max-w-sm space-y-4">
+    <Field className="space-y-1.5">
+      <FieldLabel>Organization Name</FieldLabel>
+      <FieldControl placeholder="e.g. Acme Corp" defaultValue="Gala Labs" />
+      <FieldDescription>Used for team billing and invoices.</FieldDescription>
+    </Field>
+    <Field className="space-y-1.5">
+      <FieldLabel>Contact Email</FieldLabel>
+      <FieldControl type="email" placeholder="admin@domain.com" />
+    </Field>
+    <div className="flex justify-end gap-2 pt-2">
+      <Button variant="outline" type="reset" size="sm">Reset</Button>
+      <Button variant="primary" type="submit" size="sm">Save Changes</Button>
+    </div>
+  </Form>
+</ComponentPreview>
