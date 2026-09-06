@@ -6,10 +6,42 @@ import { Sparkles, CheckCircle2, RefreshCw, Layers, ShieldCheck, Rocket } from "
 All notable changes, releases, and improvements to **@galaui/react** will be documented on this page. GalaUI adheres to [Semantic Versioning](https://semver.org/).
 
 <div className="flex flex-wrap items-center gap-2 my-4 not-prose">
-  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.3</Badge>
+  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.4</Badge>
   <Badge variant="outline" className="text-xs px-2 py-1">47 Accessible Components</Badge>
   <Badge variant="secondary" className="text-xs px-2 py-1">Base UI 1.7 + Tailwind CSS v4</Badge>
 </div>
+
+---
+
+## v0.1.4
+
+<div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
+  <span className="font-semibold text-foreground">September 7, 2026</span>
+  <span>•</span>
+  <Badge variant="default" size="xs">Latest Release</Badge>
+</div>
+
+### 🚀 Highlights (v0.1.4)
+
+Introduction of the automated TypeScript API reference documentation engine, interactive PropsTable with real-time filtering, dedicated Changelog tracker, and compiler-level Remark AST unwrap plugin for clean MDX component rendering.
+
+### 📖 Documentation Engine
+
+- **Automated Props & API Reference**:
+  - Built TypeScript Compiler API extractor to parse props, types, default values, and JSDoc annotations directly from component source files.
+  - Added `<PropsTable />` and `<ApiReference />` components with real-time property filtering and multi-subcomponent tabs.
+  - Embedded across all 45+ component documentation pages.
+- **Changelog Page**:
+  - Added dedicated version changelog tracking release milestones from `v0.1.0` through `v0.1.4`.
+  - Direct navbar shortcut from the version badge to the changelog page.
+- **Table of Contents Polish**:
+  - Added automatic heading ID deduplication to prevent React key collision warnings.
+
+### ⚙️ Compiler & DX Polish
+
+- **Remark AST Plugin (`remarkUnwrapComponentChildren`)**:
+  - Intercepts AST nodes at the compiler level to unwrap synthetic paragraph blocks created by MDX inside JSX components.
+  - Eliminates unwanted style and margin overrides inside `<Button>`, `<AlertDescription>`, and all JSX component elements.
 
 ---
 
@@ -17,13 +49,11 @@ All notable changes, releases, and improvements to **@galaui/react** will be doc
 
 <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
   <span className="font-semibold text-foreground">September 6, 2026</span>
-  <span>•</span>
-  <Badge variant="default" size="xs">Latest Release</Badge>
 </div>
 
 ### 🚀 Highlights (v0.1.3)
 
-Major expansion of the component catalog to 47 components, introduction of new form & toolbar primitives, and automated TypeScript API reference documentation.
+Major expansion of the component catalog to 47 components, introduction of new form & toolbar primitives, and enhanced form validation feedback.
 
 ### ✨ New Components
 

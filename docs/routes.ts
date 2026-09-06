@@ -73,7 +73,7 @@ export const docSections: DocSection[] = [
       { title: "Introduction", path: "/getting-started/introduction", component: IntroDoc },
       { title: "Installation", path: "/getting-started/installation", component: InstallDoc },
       { title: "Theming & Tokens", path: "/getting-started/theming", component: ThemingDoc },
-      { title: "Changelog", path: "/getting-started/changelog", component: ChangelogDoc, badge: "v0.1.3" },
+      { title: "Changelog", path: "/getting-started/changelog", component: ChangelogDoc, badge: "v0.1.4" },
     ],
   },
   {
