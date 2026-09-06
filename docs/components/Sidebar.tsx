@@ -44,7 +44,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
                             : "outline"
                         }
                         size="sm"
-                        className="font-mono text-[10px] h-4 px-1.5 uppercase font-semibold"
+                        className="text-[10px] h-4 px-1.5 font-medium"
                       >
                         {item.badge}
                       </Badge>

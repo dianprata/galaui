@@ -158,7 +158,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                           <Badge
                             variant={isSelected ? "outline" : item.badge.toLowerCase() === "new" ? "default" : "secondary"}
                             size="xs"
-                            className={cn("text-[9px] h-3.5 px-1 font-mono uppercase", isSelected && "border-primary-foreground/40 text-primary-foreground")}
+                            className={cn("text-[9px] h-3.5 px-1 font-medium", isSelected && "border-primary-foreground/40 text-primary-foreground")}
                           >
                             {item.badge}
                           </Badge>
