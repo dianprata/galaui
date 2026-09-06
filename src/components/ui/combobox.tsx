@@ -37,6 +37,7 @@ function defaultItemToStringLabel(itemValue: any, items?: readonly any[]): strin
 function Combobox<Value, Multiple extends boolean | undefined = false>({
   items,
   itemToStringLabel,
+  autoHighlight = true,
   ...props
 }: ComboboxProps<Value, Multiple>) {
   const resolvedItemToStringLabel = React.useCallback(
@@ -51,6 +52,7 @@ function Combobox<Value, Multiple extends boolean | undefined = false>({
     <BaseCombobox.Root
       items={items}
       itemToStringLabel={resolvedItemToStringLabel}
+      autoHighlight={autoHighlight}
       {...(props as any)}
     />
   );
@@ -183,7 +185,7 @@ const ComboboxItem = React.forwardRef<
     ref={ref}
     data-slot="combobox-item"
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center justify-between rounded-lg py-1.5 px-2.5 text-xs text-foreground outline-none transition-colors data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
+      "relative flex w-full cursor-pointer select-none items-center justify-between rounded-lg py-1.5 px-2.5 text-xs text-foreground outline-none transition-colors duration-100 data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[selected]:font-medium data-[selected]:text-primary data-disabled:pointer-events-none data-disabled:opacity-50",
       className
     )}
     {...props}
