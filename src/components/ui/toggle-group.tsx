@@ -16,7 +16,7 @@ const ToggleGroup = React.forwardRef<
     variant?: VariantProps<typeof toggleVariants>["variant"];
     className?: string;
   }
->(({ className, variant = "default", size = "default", children, ...props }, ref) => (
+>(({ className, variant, size, children, ...props }, ref) => (
   <ToggleGroupContext.Provider value={{ variant, size }}>
     <BaseToggleGroup
       ref={ref}
@@ -39,13 +39,16 @@ const ToggleGroupItem = React.forwardRef<
 >(({ className, children, variant, size, ...props }, ref) => {
   const context = React.useContext(ToggleGroupContext);
 
+  const resolvedVariant = variant ?? context.variant ?? "default";
+  const resolvedSize = size ?? context.size ?? "default";
+
   return (
     <BaseToggle
       ref={ref}
       className={cn(
         toggleVariants({
-          variant: context.variant || variant,
-          size: context.size || size,
+          variant: resolvedVariant,
+          size: resolvedSize,
         }),
         "data-pressed:bg-background data-pressed:text-foreground data-pressed:shadow-xs",
         className

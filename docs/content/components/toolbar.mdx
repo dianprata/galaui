@@ -32,7 +32,7 @@ Combines single-click action buttons (Undo/Redo, Cut/Copy) with toggleable forma
 <ComponentPreview
   title="Rich Text Editor Toolbar"
   description="Combines action buttons and toggleable formatting states inside a unified toolbar."
-  code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarInput,\n  ToggleGroup,\n  ToggleGroupItem,\n} from "@galaui/react";\nimport { Undo2, Redo2, Scissors, Copy, Bold, Italic, Underline } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Toolbar aria-label="Document editor">\n      {/* 1. History Action Buttons */}\n      <ToolbarGroup aria-label="History">\n        <ToolbarButton size="icon-sm" aria-label="Undo">\n          <Undo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Redo">\n          <Redo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 2. Clipboard Action Buttons */}\n      <ToolbarGroup aria-label="Clipboard">\n        <ToolbarButton size="icon-sm" aria-label="Cut">\n          <Scissors className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Copy">\n          <Copy className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 3. Text Formatting (ToggleGroup inside Toolbar) */}\n      <ToggleGroup type="multiple" defaultValue={["bold"]}>\n        <ToggleGroupItem value="bold" size="sm" aria-label="Bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" size="sm" aria-label="Italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" size="sm" aria-label="Underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n\n      <ToolbarSeparator />\n\n      {/* 4. Quick Input */}\n      <ToolbarInput placeholder="Find text..." />\n    </Toolbar>\n  );\n}'}
+  code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarInput,\n  ToggleGroup,\n  ToggleGroupItem,\n} from "@galaui/react";\nimport { Undo2, Redo2, Scissors, Copy, Bold, Italic, Underline } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Toolbar aria-label="Document editor">\n      {/* 1. History Action Buttons */}\n      <ToolbarGroup aria-label="History">\n        <ToolbarButton size="icon-sm" aria-label="Undo">\n          <Undo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Redo">\n          <Redo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 2. Clipboard Action Buttons */}\n      <ToolbarGroup aria-label="Clipboard">\n        <ToolbarButton size="icon-sm" aria-label="Cut">\n          <Scissors className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Copy">\n          <Copy className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 3. Text Formatting (ToggleGroup inside Toolbar) */}\n      <ToggleGroup type="multiple" defaultValue={["bold"]}>\n        <ToggleGroupItem value="bold" size="icon-sm" aria-label="Bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" size="icon-sm" aria-label="Italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" size="icon-sm" aria-label="Underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n\n      <ToolbarSeparator />\n\n      {/* 4. Quick Input */}\n      <ToolbarInput placeholder="Find text..." />\n    </Toolbar>\n  );\n}'}
 >
   <Toolbar aria-label="Document editor">
     <ToolbarGroup aria-label="History">
@@ -58,13 +58,13 @@ Combines single-click action buttons (Undo/Redo, Cut/Copy) with toggleable forma
     <ToolbarSeparator />
 
     <ToggleGroup type="multiple" defaultValue={["bold"]}>
-      <ToggleGroupItem value="bold" size="icon" aria-label="Bold" title="Bold">
+      <ToggleGroupItem value="bold" size="icon-sm" aria-label="Bold" title="Bold">
         <Bold className="h-3.5 w-3.5" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" size="icon" aria-label="Italic" title="Italic">
+      <ToggleGroupItem value="italic" size="icon-sm" aria-label="Italic" title="Italic">
         <Italic className="h-3.5 w-3.5" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="underline" size="icon" aria-label="Underline" title="Underline">
+      <ToggleGroupItem value="underline" size="icon-sm" aria-label="Underline" title="Underline">
         <Underline className="h-3.5 w-3.5" />
       </ToggleGroupItem>
     </ToggleGroup>
