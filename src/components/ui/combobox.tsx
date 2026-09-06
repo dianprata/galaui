@@ -3,7 +3,6 @@ import { Combobox as BaseCombobox } from "@base-ui/react";
 import { Check, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const Combobox = BaseCombobox.Root;
 const ComboboxPortal = BaseCombobox.Portal;
 const ComboboxPositioner = BaseCombobox.Positioner;
 const ComboboxList = BaseCombobox.List;
@@ -12,6 +11,50 @@ const ComboboxCollection = BaseCombobox.Collection;
 const ComboboxRow = BaseCombobox.Row;
 const ComboboxValue = BaseCombobox.Value;
 const useComboboxFilter = BaseCombobox.useFilter;
+
+export interface ComboboxProps<Value, Multiple extends boolean | undefined = false>
+  extends BaseCombobox.Root.Props<Value, Multiple> {}
+
+function defaultItemToStringLabel(itemValue: any, items?: readonly any[]): string {
+  if (itemValue == null) return "";
+  if (typeof itemValue === "object" && itemValue !== null && "label" in itemValue) {
+    return String(itemValue.label);
+  }
+  if (Array.isArray(items)) {
+    const match = items.find((item) => {
+      if (typeof item === "object" && item !== null) {
+        return item.value === itemValue || item.id === itemValue || item.key === itemValue;
+      }
+      return item === itemValue;
+    });
+    if (match && typeof match === "object" && match !== null && "label" in match) {
+      return String(match.label);
+    }
+  }
+  return String(itemValue);
+}
+
+function Combobox<Value, Multiple extends boolean | undefined = false>({
+  items,
+  itemToStringLabel,
+  ...props
+}: ComboboxProps<Value, Multiple>) {
+  const resolvedItemToStringLabel = React.useCallback(
+    (val: any) => {
+      if (itemToStringLabel) return itemToStringLabel(val);
+      return defaultItemToStringLabel(val, items);
+    },
+    [itemToStringLabel, items]
+  );
+
+  return (
+    <BaseCombobox.Root
+      items={items}
+      itemToStringLabel={resolvedItemToStringLabel}
+      {...(props as any)}
+    />
+  );
+}
 
 const ComboboxInputGroup = React.forwardRef<
   React.ElementRef<typeof BaseCombobox.InputGroup>,
