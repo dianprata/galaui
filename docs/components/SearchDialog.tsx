@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { allRoutes, docSections } from "../routes";
 import { Search, ChevronRight, FileText } from "lucide-react";
-import { Dialog, DialogPopup, Input, Kbd, KbdGroup, cn } from "@/index";
+import { Badge, Dialog, DialogPopup, Input, Kbd, KbdGroup, cn } from "@/index";
 
 interface SearchDialogProps {
   open: boolean;
@@ -152,7 +152,18 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                   <div className="flex items-center gap-2.5">
                     <FileText className={cn("w-4 h-4", isSelected ? "text-primary-foreground" : "text-muted-foreground")} />
                     <div>
-                      <div className="font-medium text-sm">{item.title}</div>
+                      <div className="flex items-center gap-1.5 font-medium text-sm">
+                        <span>{item.title}</span>
+                        {item.badge && (
+                          <Badge
+                            variant={isSelected ? "outline" : item.badge.toLowerCase() === "new" ? "default" : "secondary"}
+                            size="xs"
+                            className={cn("text-[9px] h-3.5 px-1 font-medium", isSelected && "border-primary-foreground/40 text-primary-foreground")}
+                          >
+                            {item.badge}
+                          </Badge>
+                        )}
+                      </div>
                       {section && (
                         <div className={cn("text-[11px]", isSelected ? "text-primary-foreground/80" : "text-muted-foreground")}>
                           {section.title}

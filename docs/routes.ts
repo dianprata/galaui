@@ -27,15 +27,18 @@ import ButtonDoc from "./content/components/button.mdx";
 import CardDoc from "./content/components/card.mdx";
 import CheckboxDoc from "./content/components/checkbox.mdx";
 import CollapsibleDoc from "./content/components/collapsible.mdx";
+import ComboboxDoc from "./content/components/combobox.mdx";
 import ContextMenuDoc from "./content/components/context-menu.mdx";
 import DialogDoc from "./content/components/dialog.mdx";
 import DrawerDoc from "./content/components/drawer.mdx";
 import DropdownMenuDoc from "./content/components/dropdown-menu.mdx";
 import EmptyStateDoc from "./content/components/empty-state.mdx";
 import FieldDoc from "./content/components/field.mdx";
+import FormDoc from "./content/components/form.mdx";
 import InputDoc from "./content/components/input.mdx";
 import InputOTPDoc from "./content/components/input-otp.mdx";
 import KbdDoc from "./content/components/kbd.mdx";
+import LabelDoc from "./content/components/label.mdx";
 import MenubarDoc from "./content/components/menubar.mdx";
 import MeterDoc from "./content/components/meter.mdx";
 import NavigationMenuDoc from "./content/components/navigation-menu.mdx";
@@ -56,6 +59,7 @@ import TabsDoc from "./content/components/tabs.mdx";
 import TextareaDoc from "./content/components/textarea.mdx";
 import ToastDoc from "./content/components/toast.mdx";
 import ToggleDoc from "./content/components/toggle.mdx";
+import ToolbarDoc from "./content/components/toolbar.mdx";
 import TooltipDoc from "./content/components/tooltip.mdx";
 
 import FormControlsDoc from "./content/components/form-controls.mdx";
@@ -84,15 +88,18 @@ export const docSections: DocSection[] = [
       { title: "Card", path: "/components/card", component: CardDoc },
       { title: "Checkbox", path: "/components/checkbox", component: CheckboxDoc },
       { title: "Collapsible", path: "/components/collapsible", component: CollapsibleDoc },
+      { title: "Combobox", path: "/components/combobox", component: ComboboxDoc, badge: "New" },
       { title: "Context Menu", path: "/components/context-menu", component: ContextMenuDoc },
       { title: "Dialog", path: "/components/dialog", component: DialogDoc },
       { title: "Drawer", path: "/components/drawer", component: DrawerDoc },
       { title: "Dropdown Menu", path: "/components/dropdown-menu", component: DropdownMenuDoc },
       { title: "Empty State", path: "/components/empty-state", component: EmptyStateDoc },
-      { title: "Field", path: "/components/field", component: FieldDoc },
+      { title: "Field", path: "/components/field", component: FieldDoc, badge: "Updated" },
+      { title: "Form", path: "/components/form", component: FormDoc, badge: "New" },
       { title: "Input", path: "/components/input", component: InputDoc },
       { title: "Input OTP", path: "/components/input-otp", component: InputOTPDoc },
       { title: "Kbd", path: "/components/kbd", component: KbdDoc },
+      { title: "Label", path: "/components/label", component: LabelDoc, badge: "New" },
       { title: "Menubar", path: "/components/menubar", component: MenubarDoc },
       { title: "Meter", path: "/components/meter", component: MeterDoc },
       { title: "Navigation Menu", path: "/components/navigation-menu", component: NavigationMenuDoc },
@@ -113,6 +120,7 @@ export const docSections: DocSection[] = [
       { title: "Textarea", path: "/components/textarea", component: TextareaDoc },
       { title: "Toast", path: "/components/toast", component: ToastDoc },
       { title: "Toggle", path: "/components/toggle", component: ToggleDoc },
+      { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc, badge: "New" },
       { title: "Tooltip", path: "/components/tooltip", component: TooltipDoc },
     ],
   },
@@ -125,4 +133,3 @@ export const legacyRoutes: DocItem[] = [
 ];
 
 export const allRoutes = [...docSections.flatMap((s) => s.items), ...legacyRoutes];
-

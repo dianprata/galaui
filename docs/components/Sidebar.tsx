@@ -35,7 +35,17 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
                   >
                     <span>{item.title}</span>
                     {item.badge && (
-                      <Badge variant="outline" size="sm" className="font-mono text-[10px] h-4 px-1 uppercase">
+                      <Badge
+                        variant={
+                          item.badge.toLowerCase() === "new"
+                            ? "default"
+                            : item.badge.toLowerCase() === "updated"
+                            ? "secondary"
+                            : "outline"
+                        }
+                        size="sm"
+                        className="text-[10px] h-4 px-1.5 font-medium"
+                      >
                         {item.badge}
                       </Badge>
                     )}

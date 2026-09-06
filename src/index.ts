@@ -44,4 +44,8 @@ export * from "./components/ui/preview-card";
 export * from "./components/ui/aspect-ratio";
 export * from "./components/ui/empty-state";
 export * from "./components/ui/textarea";
+export * from "./components/ui/label";
+export * from "./components/ui/form";
+export * from "./components/ui/toolbar";
+export * from "./components/ui/combobox";
 export * from "./tokens/index";

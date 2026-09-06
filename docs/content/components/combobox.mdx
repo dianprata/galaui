@@ -1,0 +1,106 @@
+import {
+  Combobox,
+  ComboboxInputGroup,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxClear,
+  ComboboxPopup,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxItemIndicator,
+  ComboboxEmpty,
+  ComboboxChips,
+  ComboboxChip,
+  ComboboxChipRemove,
+  ComboboxValue,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Combobox
+
+An accessible autocomplete input and selection menu powered by Base UI Combobox, supporting single and multi-selection with chips, live search filtering, and keyboard navigation.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Multi-Select & Chips</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Combobox,\n  ComboboxInputGroup,\n  ComboboxInput,\n  ComboboxTrigger,\n  ComboboxClear,\n  ComboboxPopup,\n  ComboboxList,\n  ComboboxItem,\n  ComboboxItemIndicator,\n  ComboboxEmpty,\n  ComboboxChips,\n  ComboboxChip,\n  ComboboxChipRemove,\n  ComboboxValue,\n} from "@galaui/react";'} />
+
+## Single Select Autocomplete
+
+<ComponentPreview
+  title="Searchable Single Select"
+  description="Combobox with live query filtering and keyboard navigation."
+  code={'import {\n  Combobox,\n  ComboboxInputGroup,\n  ComboboxInput,\n  ComboboxTrigger,\n  ComboboxPopup,\n  ComboboxList,\n  ComboboxItem,\n  ComboboxItemIndicator,\n  ComboboxEmpty,\n} from "@galaui/react";\n\nconst frameworks = [\n  { label: "Next.js", value: "next" },\n  { label: "Vite", value: "vite" },\n  { label: "Remix", value: "remix" },\n  { label: "Astro", value: "astro" },\n  { label: "Gatsby", value: "gatsby" },\n];\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xs space-y-2">\n      <Combobox items={frameworks}>\n        <ComboboxInputGroup>\n          <ComboboxInput placeholder="Choose framework..." />\n          <ComboboxTrigger />\n        </ComboboxInputGroup>\n        <ComboboxPopup>\n          <ComboboxList>\n            {(item) => (\n              <ComboboxItem key={item.value} value={item.value}>\n                {item.label}\n                <ComboboxItemIndicator />\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n          <ComboboxEmpty>No framework found.</ComboboxEmpty>\n        </ComboboxPopup>\n      </Combobox>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xs space-y-2">
+    <Combobox items={[
+      { label: "Next.js", value: "next" },
+      { label: "Vite", value: "vite" },
+      { label: "Remix", value: "remix" },
+      { label: "Astro", value: "astro" },
+      { label: "Gatsby", value: "gatsby" },
+    ]}>
+      <ComboboxInputGroup>
+        <ComboboxInput placeholder="Choose framework..." />
+        <ComboboxTrigger />
+      </ComboboxInputGroup>
+      <ComboboxPopup>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item.value} value={item.value}>
+              {item.label}
+              <ComboboxItemIndicator />
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+        <ComboboxEmpty>No framework found.</ComboboxEmpty>
+      </ComboboxPopup>
+    </Combobox>
+  </div>
+</ComponentPreview>
+
+## Multi-Select with Chips
+
+<ComponentPreview
+  title="Multi-Select Chips"
+  description="Combobox allowing multiple selected tags with keyboard dismissal."
+  code={'import {\n  Combobox,\n  ComboboxInputGroup,\n  ComboboxInput,\n  ComboboxTrigger,\n  ComboboxPopup,\n  ComboboxList,\n  ComboboxItem,\n  ComboboxItemIndicator,\n  ComboboxEmpty,\n  ComboboxChips,\n  ComboboxChip,\n  ComboboxChipRemove,\n  ComboboxValue,\n} from "@galaui/react";\n\nconst tags = [\n  "TypeScript",\n  "Tailwind CSS",\n  "Base UI",\n  "React",\n  "Design Tokens",\n];\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-2">\n      <Combobox multiple items={tags} defaultValue={["TypeScript", "Tailwind CSS"]}>\n        <ComboboxInputGroup>\n          <ComboboxChips>\n            <ComboboxValue>\n              {(values) =>\n                values?.map((val) => (\n                  <ComboboxChip key={val}>\n                    {val}\n                    <ComboboxChipRemove />\n                  </ComboboxChip>\n                ))\n              }\n            </ComboboxValue>\n          </ComboboxChips>\n          <ComboboxInput placeholder="Select tags..." />\n          <ComboboxTrigger />\n        </ComboboxInputGroup>\n        <ComboboxPopup>\n          <ComboboxList>\n            {(item) => (\n              <ComboboxItem key={item} value={item}>\n                {item}\n                <ComboboxItemIndicator />\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n          <ComboboxEmpty>No tag found.</ComboboxEmpty>\n        </ComboboxPopup>\n      </Combobox>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-2">
+    <Combobox multiple items={["TypeScript", "Tailwind CSS", "Base UI", "React", "Design Tokens"]} defaultValue={["TypeScript", "Tailwind CSS"]}>
+      <ComboboxInputGroup>
+        <ComboboxChips>
+          <ComboboxValue>
+            {(values) =>
+              values?.map((val) => (
+                <ComboboxChip key={val}>
+                  {val}
+                  <ComboboxChipRemove />
+                </ComboboxChip>
+              ))
+            }
+          </ComboboxValue>
+        </ComboboxChips>
+        <ComboboxInput placeholder="Select tags..." />
+        <ComboboxTrigger />
+      </ComboboxInputGroup>
+      <ComboboxPopup>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+              <ComboboxItemIndicator />
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+        <ComboboxEmpty>No tag found.</ComboboxEmpty>
+      </ComboboxPopup>
+    </Combobox>
+  </div>
+</ComponentPreview>

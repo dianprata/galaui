@@ -21,10 +21,10 @@ A two-state button that can be either on or off, or a group of segmented toggle 
 <ComponentPreview
   title="Rich Text Toolbar"
   description="Segmented multiple-choice text styling toggles."
-  code={'import { Toggle, ToggleGroup, ToggleGroupItem } from "@galaui/react";\nimport { Bold, Italic, Underline, Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <ToggleGroup type="multiple" defaultValue={["bold"]}>\n        <ToggleGroupItem value="bold" aria-label="Toggle bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" aria-label="Toggle italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" aria-label="Toggle underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <Toggle aria-label="Bookmark item">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n    </div>\n  );\n}'}
+  code={'import { Toggle, ToggleGroup, ToggleGroupItem } from "@galaui/react";\nimport { Bold, Italic, Underline, Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <ToggleGroup type="multiple" defaultValue={["bold"]} size="icon-sm">\n        <ToggleGroupItem value="bold" aria-label="Toggle bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" aria-label="Toggle italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" aria-label="Toggle underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <Toggle size="icon-sm" aria-label="Bookmark item">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n    </div>\n  );\n}'}
 >
   <div className="flex items-center gap-4">
-    <ToggleGroup type="multiple" defaultValue={["bold"]}>
+    <ToggleGroup type="multiple" defaultValue={["bold"]} size="icon-sm">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <Bold className="h-3.5 w-3.5" />
       </ToggleGroupItem>
@@ -35,8 +35,28 @@ A two-state button that can be either on or off, or a group of segmented toggle 
         <Underline className="h-3.5 w-3.5" />
       </ToggleGroupItem>
     </ToggleGroup>
-    <Toggle aria-label="Bookmark item">
+    <Toggle size="icon-sm" aria-label="Bookmark item">
       <Bookmark className="h-3.5 w-3.5" />
+    </Toggle>
+  </div>
+</ComponentPreview>
+
+## Icon Sizes
+
+<ComponentPreview
+  title="Icon Sizing Variants"
+  description="Toggle buttons sized specifically for square icons: icon-sm (28px), icon (32px), and icon-lg (36px)."
+  code={'import { Toggle } from "@galaui/react";\nimport { Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-3">\n      <Toggle size="icon-sm" aria-label="Small bookmark">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n      <Toggle size="icon" aria-label="Default bookmark">\n        <Bookmark className="h-4 w-4" />\n      </Toggle>\n      <Toggle size="icon-lg" aria-label="Large bookmark">\n        <Bookmark className="h-4.5 w-4.5" />\n      </Toggle>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-3">
+    <Toggle size="icon-sm" aria-label="Small bookmark">
+      <Bookmark className="h-3.5 w-3.5" />
+    </Toggle>
+    <Toggle size="icon" aria-label="Default bookmark">
+      <Bookmark className="h-4 w-4" />
+    </Toggle>
+    <Toggle size="icon-lg" aria-label="Large bookmark">
+      <Bookmark className="h-4.5 w-4.5" />
     </Toggle>
   </div>
 </ComponentPreview>

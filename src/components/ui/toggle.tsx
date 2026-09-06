@@ -16,6 +16,8 @@ const toggleVariants = cva(
         sm: "h-7 px-2.5 text-xs gap-1",
         lg: "h-9 px-3.5 text-sm gap-2",
         icon: "h-8 w-8 p-0",
+        "icon-sm": "h-7 w-7 rounded-md p-0",
+        "icon-lg": "h-9 w-9 rounded-lg p-0",
       },
     },
     defaultVariants: {

@@ -1,0 +1,76 @@
+import {
+  Toolbar,
+  ToolbarGroup,
+  ToolbarButton,
+  ToolbarSeparator,
+  ToolbarLink,
+  ToolbarInput,
+  Badge,
+} from "@/index";
+import { Bold, Italic, Underline, Undo2, Redo2, Scissors, Copy } from "lucide-react";
+import { ToggleGroup, ToggleGroupItem } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Toolbar
+
+A container for grouping controls such as action buttons, toggles, inputs, or navigation links with keyboard navigation. Built on Base UI Toolbar.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Roving Focus</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarLink,\n  ToolbarInput,\n} from "@galaui/react";'} />
+
+## Comprehensive Editor Toolbar
+
+Combines single-click action buttons (Undo/Redo, Cut/Copy) with toggleable formatting states (ToggleGroup), dividers, and quick filter inputs.
+
+<ComponentPreview
+  title="Rich Text Editor Toolbar"
+  description="Combines action buttons and toggleable formatting states inside a unified toolbar."
+  code={'import {\n  Toolbar,\n  ToolbarGroup,\n  ToolbarButton,\n  ToolbarSeparator,\n  ToolbarInput,\n  ToggleGroup,\n  ToggleGroupItem,\n} from "@galaui/react";\nimport { Undo2, Redo2, Scissors, Copy, Bold, Italic, Underline } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Toolbar aria-label="Document editor">\n      {/* 1. History Action Buttons */}\n      <ToolbarGroup aria-label="History">\n        <ToolbarButton size="icon-sm" aria-label="Undo">\n          <Undo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Redo">\n          <Redo2 className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 2. Clipboard Action Buttons */}\n      <ToolbarGroup aria-label="Clipboard">\n        <ToolbarButton size="icon-sm" aria-label="Cut">\n          <Scissors className="h-3.5 w-3.5" />\n        </ToolbarButton>\n        <ToolbarButton size="icon-sm" aria-label="Copy">\n          <Copy className="h-3.5 w-3.5" />\n        </ToolbarButton>\n      </ToolbarGroup>\n\n      <ToolbarSeparator />\n\n      {/* 3. Text Formatting (ToggleGroup inside Toolbar) */}\n      <ToggleGroup type="multiple" defaultValue={["bold"]} size="icon-sm">\n        <ToggleGroupItem value="bold" aria-label="Bold">\n          <Bold className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="italic" aria-label="Italic">\n          <Italic className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n        <ToggleGroupItem value="underline" aria-label="Underline">\n          <Underline className="h-3.5 w-3.5" />\n        </ToggleGroupItem>\n      </ToggleGroup>\n\n      <ToolbarSeparator />\n\n      {/* 4. Quick Input */}\n      <ToolbarInput placeholder="Find text..." />\n    </Toolbar>\n  );\n}'}
+>
+  <Toolbar aria-label="Document editor">
+    <ToolbarGroup aria-label="History">
+      <ToolbarButton size="icon-sm" aria-label="Undo" title="Undo">
+        <Undo2 className="h-3.5 w-3.5" />
+      </ToolbarButton>
+      <ToolbarButton size="icon-sm" aria-label="Redo" title="Redo">
+        <Redo2 className="h-3.5 w-3.5" />
+      </ToolbarButton>
+    </ToolbarGroup>
+
+    <ToolbarSeparator />
+
+    <ToolbarGroup aria-label="Clipboard">
+      <ToolbarButton size="icon-sm" aria-label="Cut" title="Cut">
+        <Scissors className="h-3.5 w-3.5" />
+      </ToolbarButton>
+      <ToolbarButton size="icon-sm" aria-label="Copy" title="Copy">
+        <Copy className="h-3.5 w-3.5" />
+      </ToolbarButton>
+    </ToolbarGroup>
+
+    <ToolbarSeparator />
+
+    <ToggleGroup type="multiple" defaultValue={["bold"]} size="icon-sm">
+      <ToggleGroupItem value="bold" aria-label="Bold" title="Bold">
+        <Bold className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Italic" title="Italic">
+        <Italic className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Underline" title="Underline">
+        <Underline className="h-3.5 w-3.5" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+
+    <ToolbarSeparator />
+
+    <ToolbarInput placeholder="Find text..." />
+  </Toolbar>
+</ComponentPreview>

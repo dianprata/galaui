@@ -1,0 +1,44 @@
+import { Label, Input, Checkbox, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+
+# Label
+
+Renders an accessible label associated with form controls, styled with GalaUI typography tokens and peer-disabled states.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Semantic HTML</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Peer Accessibility</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Label } from "@galaui/react";'} />
+
+## Example
+
+<ComponentPreview
+  title="Form Input with Label"
+  description="Accessible text field with semantic label binding."
+  code={'import { Label, Input } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-2">\n      <Label htmlFor="email">Email Address</Label>\n      <Input id="email" type="email" placeholder="name@company.com" />\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-2">
+    <Label htmlFor="email-preview">Email Address</Label>
+    <Input id="email-preview" type="email" placeholder="name@company.com" />
+  </div>
+</ComponentPreview>
+
+## Checkbox Binding
+
+<ComponentPreview
+  title="Checkbox with Label"
+  description="Clicking the label activates the paired control."
+  code={'import { Label, Checkbox } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-2.5">\n      <Checkbox id="terms-agree" defaultChecked />\n      <Label htmlFor="terms-agree">\n        I agree to the service policy and data handling\n      </Label>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-2.5">
+    <Checkbox id="terms-agree-preview" defaultChecked />
+    <Label htmlFor="terms-agree-preview">
+      I agree to the service policy and data handling
+    </Label>
+  </div>
+</ComponentPreview>
