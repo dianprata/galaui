@@ -101,4 +101,3 @@ export function ComponentPreview({
     </Card>
   );
 }
-

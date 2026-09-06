@@ -59,9 +59,11 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
               <span className="text-base font-semibold">GalaUI</span>
             </Link>
 
-            <Badge variant="outline" className="text-[10px] h-5 px-1.5 font-mono">
-              v{version}
-            </Badge>
+            <Link href="/getting-started/changelog" className="transition-opacity hover:opacity-80" title="View Changelog">
+              <Badge variant="outline" className="text-[10px] h-5 px-1.5 font-mono cursor-pointer hover:bg-muted">
+                v{version}
+              </Badge>
+            </Link>
           </div>
 
           {/* Search Command Palette Trigger */}

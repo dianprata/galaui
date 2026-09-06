@@ -26,9 +26,10 @@
   },
   "scripts": {
     "serve": "python3 -m http.server 4311 --directory .",
+    "generate:api": "node --experimental-strip-types scripts/generate-api-docs.ts",
     "dev": "vite",
     "build": "npm run build:lib",
-    "build:docs": "vite build",
+    "build:docs": "npm run generate:api && vite build",
     "build:lib": "vite build --config vite.config.lib.ts",
     "build:app": "vite build",
     "deploy:docs": "npm run build:docs && wrangler pages deploy dist-app --project-name=galaui",

@@ -27,18 +27,25 @@ function useHeadings() {
         )
       );
 
+      const idCounts = new Map<string, number>();
       const items: HeadingItem[] = elements
         .map((el) => {
-          if (!el.id) {
-            el.id =
-              el.textContent
-                ?.toLowerCase()
-                .trim()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/(^-|-$)/g, "") || "";
-          }
+          const baseId =
+            el.id ||
+            el.textContent
+              ?.toLowerCase()
+              .trim()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/(^-|-$)/g, "") ||
+            "heading";
+
+          const count = idCounts.get(baseId) || 0;
+          idCounts.set(baseId, count + 1);
+          const uniqueId = count === 0 ? baseId : `${baseId}-${count}`;
+          el.id = uniqueId;
+
           return {
-            id: el.id,
+            id: uniqueId,
             text: el.textContent?.trim() || "",
             level: el.tagName.toLowerCase() === "h2" ? 2 : 3,
           };
