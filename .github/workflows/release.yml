@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - "v*"
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       tag:
@@ -43,6 +41,12 @@ jobs:
 
       - name: Publish to npm
         run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          CURRENT_NPM_VERSION=$(npm view @galaui/react version 2>/dev/null || echo "")
+          if [ "$PACKAGE_VERSION" = "$CURRENT_NPM_VERSION" ]; then
+            echo "Version $PACKAGE_VERSION is already published on npm. Skipping publication."
+            exit 0
+          fi
           DIST_TAG="${{ github.event.inputs.tag || 'latest' }}"
           npm publish --access public --tag "$DIST_TAG" --provenance
         env:
