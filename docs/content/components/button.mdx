@@ -2,6 +2,7 @@ import { Button } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ArrowRight, Trash2, Heart, Download } from "lucide-react";
+import { ApiReference } from "@docs/components/ApiReference";
 
 # Button
 
@@ -59,12 +60,8 @@ Displays a button or a component that looks like a button. Built with customizab
       <Download className="w-4 h-4 mr-1.5" />
       Download
     </Button>
-    <Button variant="destructive" size="icon">
-      <Trash2 className="w-4 h-4" />
-    </Button>
-    <Button variant="secondary" size="icon">
-      <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-    </Button>
+    <Button variant="destructive" size="icon"><Trash2 className="w-4 h-4" /></Button>
+    <Button variant="secondary" size="icon"><Heart className="w-4 h-4 text-red-500 fill-red-500" /></Button>
   </div>
 </ComponentPreview>
 
@@ -81,3 +78,6 @@ Displays a button or a component that looks like a button. Built with customizab
   </div>
 </ComponentPreview>
 
+## API Reference
+
+<ApiReference component="Button" />

@@ -15,6 +15,7 @@ export interface DocSection {
 import IntroDoc from "./content/getting-started/introduction.mdx";
 import InstallDoc from "./content/getting-started/installation.mdx";
 import ThemingDoc from "./content/getting-started/theming.mdx";
+import ChangelogDoc from "./content/getting-started/changelog.mdx";
 
 import AccordionDoc from "./content/components/accordion.mdx";
 import AlertDoc from "./content/components/alert.mdx";
@@ -72,6 +73,7 @@ export const docSections: DocSection[] = [
       { title: "Introduction", path: "/getting-started/introduction", component: IntroDoc },
       { title: "Installation", path: "/getting-started/installation", component: InstallDoc },
       { title: "Theming & Tokens", path: "/getting-started/theming", component: ThemingDoc },
+      { title: "Changelog", path: "/getting-started/changelog", component: ChangelogDoc, badge: "v0.1.3" },
     ],
   },
   {

@@ -2,6 +2,8 @@ import { Router, Route, Switch, Redirect, Link } from "wouter";
 import { DocsLayout } from "./components/DocsLayout";
 import { allRoutes } from "./routes";
 import { MDXProvider } from "@mdx-js/react";
+import { PropsTable } from "./components/PropsTable";
+import { ApiReference } from "./components/ApiReference";
 import {
   Table,
   TableHeader,
@@ -70,6 +72,8 @@ const mdxComponents = {
   tr: (props: any) => <TableRow {...props} />,
   th: (props: any) => <TableHead {...props} />,
   td: (props: any) => <TableCell {...props} />,
+  PropsTable,
+  ApiReference,
 };
 
 export default function App() {
@@ -89,7 +93,7 @@ export default function App() {
               return (
                 <Route key={route.path} path={route.path}>
                   <article className="animate-in fade-in-50 duration-200">
-                    <Component />
+                    <Component components={mdxComponents} />
                   </article>
                 </Route>
               );

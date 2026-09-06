@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-xl border px-4 py-3 text-xs leading-relaxed transition-all duration-150 flex items-start gap-3 select-none",
+  "relative w-full rounded-xl border px-4 py-3 leading-relaxed transition-all duration-150 flex items-start gap-3 select-none",
   {
     variants: {
       variant: {
@@ -42,7 +42,7 @@ const AlertTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("font-medium tracking-tight text-foreground", className)}
+    className={cn("text-sm font-medium tracking-tight text-foreground", className)}
     {...props}
   />
 ));
@@ -54,7 +54,7 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-xs opacity-90 text-muted-foreground", className)}
+    className={cn("text-xs opacity-90 text-muted-foreground [&_p]:m-0 [&_p]:leading-relaxed [&_p]:text-inherit [&_p]:text-xs", className)}
     {...props}
   />
 ));
