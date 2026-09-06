@@ -1,11 +1,9 @@
-name: Release & Publish to npm
+name: Release
 
 on:
   push:
     tags:
       - "v*"
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       tag:
@@ -13,9 +11,13 @@ on:
         required: true
         default: "latest"
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
-    name: Publish to npm & GitHub Packages
+    name: Publish to npm
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -28,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           registry-url: "https://registry.npmjs.org"
           cache: "npm"
 
@@ -43,7 +45,43 @@ jobs:
 
       - name: Publish to npm
         run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          CURRENT_NPM_VERSION=$(npm view @galaui/react version 2>/dev/null || echo "")
+          if [ "$PACKAGE_VERSION" = "$CURRENT_NPM_VERSION" ]; then
+            echo "Version $PACKAGE_VERSION is already published on npm. Skipping publication."
+            exit 0
+          fi
           DIST_TAG="${{ github.event.inputs.tag || 'latest' }}"
           npm publish --access public --tag "$DIST_TAG" --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  deploy-docs:
+    name: Deploy Docs to Cloudflare Pages
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build documentation site
+        run: npm run build:docs
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy dist-app --project-name=galaui
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
