@@ -1,6 +1,9 @@
 name: Release & Publish to npm
 
 on:
+  push:
+    tags:
+      - "v*"
   release:
     types: [published]
   workflow_dispatch:
@@ -44,4 +47,3 @@ jobs:
           npm publish --access public --tag "$DIST_TAG" --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
