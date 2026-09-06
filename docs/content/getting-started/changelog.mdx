@@ -6,10 +6,39 @@ import { Sparkles, CheckCircle2, RefreshCw, Layers, ShieldCheck, Rocket } from "
 All notable changes, releases, and improvements to **@galaui/react** will be documented on this page. GalaUI adheres to [Semantic Versioning](https://semver.org/).
 
 <div className="flex flex-wrap items-center gap-2 my-4 not-prose">
-  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.5</Badge>
+  <Badge variant="default" className="font-mono text-xs px-2.5 py-1">Current: v0.1.6</Badge>
   <Badge variant="outline" className="text-xs px-2 py-1">47 Accessible Components</Badge>
   <Badge variant="secondary" className="text-xs px-2 py-1">Base UI 1.7 + Tailwind CSS v4</Badge>
 </div>
+
+---
+
+## v0.1.6
+
+<div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
+  <span className="font-semibold text-foreground">September 7, 2026</span>
+  <span>•</span>
+  <Badge variant="default" size="xs">Latest Release</Badge>
+</div>
+
+### 🚀 Highlights (v0.1.6)
+
+Unified release pipeline combining npm library publication with automated Cloudflare Pages documentation deployment, multi-branch CI testing covering `main` and `develop`, and zero-dependency native ESM script runtime.
+
+### 🤖 CI/CD & Workflow Modernization
+
+- **Unified Release Pipeline (`release.yml`)**:
+  - Consolidated documentation deployment and npm publishing into a single atomic workflow.
+  - Cloudflare Pages deployment executes sequentially only after the npm package successfully publishes (`needs: publish`).
+  - Removed duplicate `deploy-pages.yml` workflow, eliminating redundant runner starts and race conditions.
+- **Multi-Branch CI Pipeline (`ci.yml`)**:
+  - Configured CI checks to validate all pull requests and pushes across both `main` and `develop` branches.
+  - Keeps daily development and feature merges completely isolated from production releases.
+- **Native ESM API Generator (`scripts/generate-api-docs.mjs`)**:
+  - Refactored API documentation generation script to native ESM format.
+  - Eliminated the `--experimental-strip-types` runtime flag for clean, universal Node.js compatibility across all environments.
+- **npm Publish Idempotency**:
+  - Added proactive version availability checks (`npm view`) before publishing to prevent HTTP 409 Conflict errors.
 
 ---
 
@@ -17,8 +46,6 @@ All notable changes, releases, and improvements to **@galaui/react** will be doc
 
 <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6 not-prose">
   <span className="font-semibold text-foreground">September 7, 2026</span>
-  <span>•</span>
-  <Badge variant="default" size="xs">Latest Release</Badge>
 </div>
 
 ### 🚀 Highlights (v0.1.5)
