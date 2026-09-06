@@ -66,7 +66,7 @@ const ComboboxInputGroup = React.forwardRef<
     ref={ref}
     data-slot="combobox-input-group"
     className={cn(
-      "flex min-h-8 w-full items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-xs text-foreground transition-all duration-150 focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+      "relative flex min-h-8 w-full flex-wrap items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1.5 text-xs text-foreground transition-all duration-150 focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
       className
     )}
     {...props}
@@ -82,7 +82,7 @@ const ComboboxInput = React.forwardRef<
     ref={ref}
     data-slot="combobox-input"
     className={cn(
-      "flex-1 bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none border-none p-0 disabled:cursor-not-allowed",
+      "min-w-28 flex-1 bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none border-none p-0 disabled:cursor-not-allowed",
       className
     )}
     {...props}
@@ -98,7 +98,7 @@ const ComboboxTrigger = React.forwardRef<
     ref={ref}
     data-slot="combobox-trigger"
     className={cn(
-      "inline-flex items-center justify-center text-muted-foreground hover:text-foreground cursor-pointer select-none transition-colors",
+      "inline-flex shrink-0 items-center justify-center text-muted-foreground hover:text-foreground cursor-pointer select-none transition-colors ml-auto self-center",
       className
     )}
     {...props}
@@ -254,7 +254,7 @@ const ComboboxChips = React.forwardRef<
   <BaseCombobox.Chips
     ref={ref}
     data-slot="combobox-chips"
-    className={cn("flex flex-wrap items-center gap-1", className)}
+    className={cn("contents", className)}
     {...props}
   />
 ));
@@ -268,7 +268,7 @@ const ComboboxChip = React.forwardRef<
     ref={ref}
     data-slot="combobox-chip"
     className={cn(
-      "inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground border border-border/50 select-none",
+      "inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground border border-border/50 select-none shrink-0",
       className
     )}
     {...props}
