@@ -97,7 +97,7 @@ export function PropsTable({
                       )}
                     </div>
                   </TableCell>
-                  <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground break-all">
+                  <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground break-words">
                     {item.type}
                   </TableCell>
                   <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground">
