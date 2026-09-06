@@ -94,7 +94,7 @@ export const docSections: DocSection[] = [
       { title: "Drawer", path: "/components/drawer", component: DrawerDoc },
       { title: "Dropdown Menu", path: "/components/dropdown-menu", component: DropdownMenuDoc },
       { title: "Empty State", path: "/components/empty-state", component: EmptyStateDoc },
-      { title: "Field", path: "/components/field", component: FieldDoc },
+      { title: "Field", path: "/components/field", component: FieldDoc, badge: "Updated" },
       { title: "Form", path: "/components/form", component: FormDoc, badge: "New" },
       { title: "Input", path: "/components/input", component: InputDoc },
       { title: "Input OTP", path: "/components/input-otp", component: InputOTPDoc },
