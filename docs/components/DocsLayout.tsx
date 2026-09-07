@@ -96,16 +96,6 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
             </Button>
 
             <a
-              href="https://www.npmjs.com/package/@galaui/react"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground px-2.5 py-1.5 rounded-lg hover:bg-muted transition-colors"
-            >
-              <span>npm</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-
-            <a
               href="https://github.com/dianprata/galaui"
               target="_blank"
               rel="noreferrer"

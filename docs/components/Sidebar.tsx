@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { docSections } from "../routes";
+import { usePackageVersion } from "@docs/lib/version";
 import { Badge, cn } from "@/index";
 
 interface SidebarProps {
@@ -9,6 +10,7 @@ interface SidebarProps {
 
 export function Sidebar({ onNavigate, className }: SidebarProps) {
   const [location] = useLocation();
+  const version = usePackageVersion();
 
   return (
     <aside className={cn("w-64 shrink-0 flex flex-col h-[calc(100vh-3.5rem)] sticky top-14 border-r border-border bg-background", className)}>
@@ -21,6 +23,8 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
             <div className="space-y-0.5">
               {section.items.map((item) => {
                 const isActive = location === item.path;
+                const isChangelog = item.path === "/getting-started/changelog";
+                const displayBadge = isChangelog ? `v${version}` : item.badge;
                 return (
                   <Link
                     key={item.path}
@@ -34,19 +38,24 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
                     )}
                   >
                     <span>{item.title}</span>
-                    {item.badge && (
+                    {displayBadge && (
                       <Badge
                         variant={
-                          item.badge.toLowerCase() === "new"
+                          isChangelog
+                            ? "outline"
+                            : displayBadge.toLowerCase() === "new"
                             ? "default"
-                            : item.badge.toLowerCase() === "updated"
+                            : displayBadge.toLowerCase() === "updated"
                             ? "secondary"
                             : "outline"
                         }
                         size="sm"
-                        className="text-[10px] h-4 px-1.5 font-medium"
+                        className={cn(
+                          "text-[10px] h-4 px-1.5 font-medium",
+                          isChangelog && "font-mono font-normal"
+                        )}
                       >
-                        {item.badge}
+                        {displayBadge}
                       </Badge>
                     )}
                   </Link>
