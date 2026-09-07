@@ -12,6 +12,54 @@ import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ApiReference } from "@docs/components/ApiReference";
 
+export function SingleDatePickerDemo() {
+  const [date, setDate] = React.useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 4);
+    return d;
+  });
+
+  return (
+    <div className="w-full max-w-xs flex flex-col items-center gap-2.5">
+      <DatePicker
+        value={date}
+        onChange={setDate}
+        placeholder="Choose a date..."
+        clearable
+        className="w-full"
+      />
+      <span className="text-xs font-mono text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-md border border-border">
+        Selected: <strong className="text-foreground">{date ? date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "None"}</strong>
+      </span>
+    </div>
+  );
+}
+
+export function DateRangePickerDemo() {
+  const [range, setRange] = React.useState(() => {
+    const from = new Date();
+    from.setDate(from.getDate() + 2);
+    const to = new Date();
+    to.setDate(from.getDate() + 10);
+    return { from, to };
+  });
+
+  return (
+    <div className="w-full max-w-sm flex flex-col items-center gap-2.5">
+      <DateRangePicker
+        value={range}
+        onChange={setRange}
+        presets={defaultPresets}
+        clearable
+        className="w-full"
+      />
+      <span className="text-xs font-mono text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-md border border-border">
+        Range: <strong className="text-foreground">{range?.from ? range.from.toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "..."} – {range?.to ? range.to.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "..."}</strong>
+      </span>
+    </div>
+  );
+}
+
 # Date Picker
 
 A date and range picker component combining an interactive input trigger button, popover positioning, and the GalaUI Calendar.
@@ -28,26 +76,26 @@ A date and range picker component combining an interactive input trigger button,
 
 ## Single Date Picker
 
+Klik tombol pemilih tanggal untuk membuka popover kalender. Di contoh ini, nilai awal diset ke tanggal yang berbeda dari hari ini agar status terpilih terlihat jelas.
+
 <ComponentPreview
   title="Standard Date Picker"
   description="Clicking the trigger button opens a popover calendar for single date selection."
-  code={'import * as React from "react";\nimport { DatePicker } from "@galaui/react";\n\nexport default function Example() {\n  const [date, setDate] = React.useState<Date | undefined>();\n\n  return (\n    <div className="w-full max-w-xs space-y-2">\n      <DatePicker\n        value={date}\n        onChange={setDate}\n        placeholder="Choose a date..."\n        clearable\n      />\n    </div>\n  );\n}'}
+  code={'import * as React from "react";\nimport { DatePicker } from "@galaui/react";\n\nexport default function Example() {\n  const [date, setDate] = React.useState<Date | undefined>(() => {\n    const d = new Date();\n    d.setDate(d.getDate() + 4);\n    return d;\n  });\n\n  return (\n    <div className="w-full max-w-xs space-y-2">\n      <DatePicker\n        value={date}\n        onChange={setDate}\n        placeholder="Choose a date..."\n        clearable\n      />\n    </div>\n  );\n}'}
 >
-  <div className="w-full max-w-xs flex justify-center">
-    <DatePicker placeholder="Choose a date..." clearable />
-  </div>
+  <SingleDatePickerDemo />
 </ComponentPreview>
 
 ## Date Range Picker with Presets
 
+Pemilihan rentang tanggal dengan dual kalender dan daftar *presets* cepat (Today, Yesterday, Last 7 days, Last 30 days, This month). Rentang aktif yang terpilih langsung ter-update di trigger dan label status.
+
 <ComponentPreview
   title="Date Range Picker with Presets"
   description="Select start and end dates with side-by-side dual calendars and quick range presets."
-  code={'import * as React from "react";\nimport { DateRangePicker, defaultPresets, type DateRange } from "@galaui/react";\n\nexport default function Example() {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date();\n    const to = new Date();\n    to.setDate(from.getDate() + 14);\n    return { from, to };\n  });\n\n  return (\n    <div className="w-full max-w-sm flex justify-center">\n      <DateRangePicker\n        value={range}\n        onChange={setRange}\n        presets={defaultPresets}\n        clearable\n      />\n    </div>\n  );\n}'}
+  code={'import * as React from "react";\nimport { DateRangePicker, defaultPresets, type DateRange } from "@galaui/react";\n\nexport default function Example() {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date();\n    from.setDate(from.getDate() + 2);\n    const to = new Date();\n    to.setDate(from.getDate() + 10);\n    return { from, to };\n  });\n\n  return (\n    <div className="w-full max-w-sm flex justify-center">\n      <DateRangePicker\n        value={range}\n        onChange={setRange}\n        presets={defaultPresets}\n        clearable\n      />\n    </div>\n  );\n}'}
 >
-  <div className="w-full max-w-sm flex justify-center">
-    <DateRangePicker presets={defaultPresets} clearable />
-  </div>
+  <DateRangePickerDemo />
 </ComponentPreview>
 
 ## Form Field Integration
