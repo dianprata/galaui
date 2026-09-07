@@ -1,0 +1,182 @@
+import * as React from "react";
+import { Calendar, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+
+export function SingleDateDemo() {
+  const [date, setDate] = React.useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 4);
+    return d;
+  });
+
+  const today = new Date();
+
+  return (
+    <div className="flex flex-col items-center gap-3 w-full">
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+      />
+      <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-muted-foreground bg-muted/40 px-3 py-1.5 rounded-lg border border-border">
+        <span>Selected: <strong className="text-foreground">{date ? date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "None"}</strong></span>
+        <span>•</span>
+        <span>Today: <span className="text-primary font-semibold underline underline-offset-4 decoration-primary/40">{today.toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span></span>
+      </div>
+    </div>
+  );
+}
+
+export function DateRangeDemo() {
+  const [range, setRange] = React.useState(() => {
+    const from = new Date();
+    from.setDate(from.getDate() + 2);
+    const to = new Date();
+    to.setDate(from.getDate() + 7);
+    return { from, to };
+  });
+
+  return (
+    <div className="flex flex-col items-center gap-3 w-full">
+      <Calendar
+        mode="range"
+        selected={range}
+        onSelect={setRange}
+      />
+      <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground bg-muted/40 px-3 py-1.5 rounded-lg border border-border">
+        <span>Selected Range:</span>
+        <strong className="text-foreground">
+          {range?.from ? range.from.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Start date"}
+          {" – "}
+          {range?.to ? range.to.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "End date"}
+        </strong>
+      </div>
+    </div>
+  );
+}
+
+export function MultiMonthDemo() {
+  const [range, setRange] = React.useState(() => {
+    const from = new Date();
+    const to = new Date();
+    to.setDate(from.getDate() + 14);
+    return { from, to };
+  });
+
+  return (
+    <div className="flex flex-col items-center gap-3 w-full overflow-x-auto py-2">
+      <Calendar
+        mode="range"
+        numberOfMonths={2}
+        selected={range}
+        onSelect={setRange}
+      />
+    </div>
+  );
+}
+
+export function DisabledConstraintsDemo() {
+  const today = React.useMemo(() => new Date(), []);
+
+  // Find next upcoming weekday (Monday to Friday)
+  const initialDate = React.useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    while (d.getDay() === 0 || d.getDay() === 6) {
+      d.setDate(d.getDate() + 1);
+    }
+    return d;
+  }, []);
+
+  const [date, setDate] = React.useState(initialDate);
+
+  const isWeekend = (d) => d.getDay() === 0 || d.getDay() === 6;
+
+  return (
+    <div className="flex flex-col items-center gap-3 w-full">
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        minDate={today}
+        disabled={isWeekend}
+      />
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs font-mono text-muted-foreground bg-muted/40 px-3 py-2 rounded-lg border border-border text-center">
+        <span>
+          Selected: <strong className="text-foreground">{date ? date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : "None"}</strong>
+        </span>
+        <span className="hidden sm:inline">•</span>
+        <span className="text-[11px] text-muted-foreground/80">
+          Min: Today • Disabled: Weekends (Sat/Sun)
+        </span>
+      </div>
+    </div>
+  );
+}
+
+# Calendar
+
+A clean, accessible date and range calendar component featuring monthly grid views, date range selection with hover highlights, multi-month layouts, and localized date formatting.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">GalaUI Primitive</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Single & Range</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Multi-Month</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Calendar } from "@galaui/react";'} />
+
+## Single Date Selection
+
+Di contoh ini, tanggal yang dipilih sengaja diatur **4 hari ke depan** agar kamu dapat membedakan dengan jelas antara indikator hari ini (**Today** bergaris bawah dengan teks primer) dan tanggal yang sedang dipilih (**Selected** dengan background solid primer).
+
+<ComponentPreview
+  title="Single Date"
+  description="Calendar supporting single date selection with today indicator."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  // Set selected date to 4 days ahead to contrast with today\n  const [date, setDate] = React.useState<Date | undefined>(() => {\n    const d = new Date();\n    d.setDate(d.getDate() + 4);\n    return d;\n  });\n\n  return (\n    <div className="flex flex-col items-center gap-3">\n      <Calendar\n        mode="single"\n        selected={date}\n        onSelect={setDate}\n      />\n      <p className="text-xs text-muted-foreground font-mono">\n        Selected: {date ? date.toLocaleDateString("en-US", { dateStyle: "long" }) : "None"}\n      </p>\n    </div>\n  );\n}'}
+>
+  <SingleDateDemo />
+</ComponentPreview>
+
+## Date Range Selection
+
+Di mode rentang (*range*), pengguna dapat memilih tanggal awal (*from*) dan tanggal akhir (*to*). Rentang tanggal terpilih ditandai dengan continuous background highlight, dan status tanggal yang sedang terpilih ditampilkan di bawah kalender.
+
+<ComponentPreview
+  title="Date Range"
+  description="Select a start and end date with continuous range fill and hover preview."
+  code={'import * as React from "react";\nimport { Calendar, type DateRange } from "@galaui/react";\n\nexport default function Example() {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date();\n    from.setDate(from.getDate() + 2);\n    const to = new Date();\n    to.setDate(from.getDate() + 7);\n    return { from, to };\n  });\n\n  return (\n    <div className="flex flex-col items-center gap-3">\n      <Calendar\n        mode="range"\n        selected={range}\n        onSelect={setRange}\n      />\n      <p className="text-xs text-muted-foreground font-mono">\n        Range: {range?.from?.toLocaleDateString()} – {range?.to?.toLocaleDateString()}\n      </p>\n    </div>\n  );\n}'}
+>
+  <DateRangeDemo />
+</ComponentPreview>
+
+## Multi-Month View
+
+<ComponentPreview
+  title="Side-by-Side Dual Month View"
+  description="Display two months simultaneously, ideal for booking or date range selection."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex justify-center overflow-x-auto w-full py-2">\n      <Calendar\n        mode="range"\n        numberOfMonths={2}\n      />\n    </div>\n  );\n}'}
+>
+  <MultiMonthDemo />
+</ComponentPreview>
+
+## Disabled Dates & Constraints
+
+Membatasi tanggal yang dapat dipilih menggunakan `minDate` (menonaktifkan tanggal lampau sebelum hari ini) dan fungsi matcher `disabled` (misalnya menonaktifkan akhir pekan hari Sabtu dan Minggu). Nilai awal dipilihkan hari kerja terdekat.
+
+<ComponentPreview
+  title="Disabled Constraints"
+  description="Disable past dates and weekend days with minDate and custom matchers."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  const today = new Date();\n\n  // Set initial selected date to the next valid weekday\n  const [date, setDate] = React.useState<Date | undefined>(() => {\n    const d = new Date();\n    d.setDate(d.getDate() + 1);\n    while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1);\n    return d;\n  });\n\n  return (\n    <div className="flex flex-col items-center gap-3">\n      <Calendar\n        mode="single"\n        selected={date}\n        onSelect={setDate}\n        minDate={today}\n        disabled={(d) => d.getDay() === 0 || d.getDay() === 6}\n      />\n      <p className="text-xs text-muted-foreground font-mono">\n        Selected: {date ? date.toLocaleDateString("en-US", { dateStyle: "long" }) : "None"}\n      </p>\n    </div>\n  );\n}'}
+>
+  <DisabledConstraintsDemo />
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference component="Calendar" />
+

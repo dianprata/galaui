@@ -25,11 +25,13 @@ import AvatarDoc from "./content/components/avatar.mdx";
 import BadgeDoc from "./content/components/badge.mdx";
 import BreadcrumbDoc from "./content/components/breadcrumb.mdx";
 import ButtonDoc from "./content/components/button.mdx";
+import CalendarDoc from "./content/components/calendar.mdx";
 import CardDoc from "./content/components/card.mdx";
 import CheckboxDoc from "./content/components/checkbox.mdx";
 import CollapsibleDoc from "./content/components/collapsible.mdx";
 import ComboboxDoc from "./content/components/combobox.mdx";
 import ContextMenuDoc from "./content/components/context-menu.mdx";
+import DatePickerDoc from "./content/components/date-picker.mdx";
 import DialogDoc from "./content/components/dialog.mdx";
 import DrawerDoc from "./content/components/drawer.mdx";
 import DropdownMenuDoc from "./content/components/dropdown-menu.mdx";
@@ -87,11 +89,13 @@ export const docSections: DocSection[] = [
       { title: "Badge", path: "/components/badge", component: BadgeDoc },
       { title: "Breadcrumb", path: "/components/breadcrumb", component: BreadcrumbDoc },
       { title: "Button", path: "/components/button", component: ButtonDoc },
+      { title: "Calendar", path: "/components/calendar", component: CalendarDoc, badge: "New" },
       { title: "Card", path: "/components/card", component: CardDoc },
       { title: "Checkbox", path: "/components/checkbox", component: CheckboxDoc },
       { title: "Collapsible", path: "/components/collapsible", component: CollapsibleDoc },
       { title: "Combobox", path: "/components/combobox", component: ComboboxDoc, badge: "New" },
       { title: "Context Menu", path: "/components/context-menu", component: ContextMenuDoc },
+      { title: "Date Picker", path: "/components/date-picker", component: DatePickerDoc, badge: "New" },
       { title: "Dialog", path: "/components/dialog", component: DialogDoc },
       { title: "Drawer", path: "/components/drawer", component: DrawerDoc },
       { title: "Dropdown Menu", path: "/components/dropdown-menu", component: DropdownMenuDoc },
