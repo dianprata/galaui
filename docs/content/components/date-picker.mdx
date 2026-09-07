@@ -1,0 +1,72 @@
+import * as React from "react";
+import {
+  DatePicker,
+  DateRangePicker,
+  defaultPresets,
+  Field,
+  FieldLabel,
+  FieldDescription,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+
+# Date Picker
+
+A date and range picker component combining an interactive input trigger button, popover positioning, and the GalaUI Calendar.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Popover + Calendar</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Single & Range</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Quick Presets</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { DatePicker, DateRangePicker } from "@galaui/react";'} />
+
+## Single Date Picker
+
+<ComponentPreview
+  title="Standard Date Picker"
+  description="Clicking the trigger button opens a popover calendar for single date selection."
+  code={'import * as React from "react";\nimport { DatePicker } from "@galaui/react";\n\nexport default function Example() {\n  const [date, setDate] = React.useState<Date | undefined>();\n\n  return (\n    <div className="w-full max-w-xs space-y-2">\n      <DatePicker\n        value={date}\n        onChange={setDate}\n        placeholder="Choose a date..."\n        clearable\n      />\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xs flex justify-center">
+    <DatePicker placeholder="Choose a date..." clearable />
+  </div>
+</ComponentPreview>
+
+## Date Range Picker with Presets
+
+<ComponentPreview
+  title="Date Range Picker with Presets"
+  description="Select start and end dates with side-by-side dual calendars and quick range presets."
+  code={'import * as React from "react";\nimport { DateRangePicker, defaultPresets, type DateRange } from "@galaui/react";\n\nexport default function Example() {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date();\n    const to = new Date();\n    to.setDate(from.getDate() + 14);\n    return { from, to };\n  });\n\n  return (\n    <div className="w-full max-w-sm flex justify-center">\n      <DateRangePicker\n        value={range}\n        onChange={setRange}\n        presets={defaultPresets}\n        clearable\n      />\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm flex justify-center">
+    <DateRangePicker presets={defaultPresets} clearable />
+  </div>
+</ComponentPreview>
+
+## Form Field Integration
+
+<ComponentPreview
+  title="Form Integration"
+  description="Easily integrate the DatePicker inside GalaUI Field with accessible label and description."
+  code={'import * as React from "react";\nimport { DatePicker, Field, FieldLabel, FieldDescription } from "@galaui/react";\n\nexport default function Example() {\n  const [birthDate, setBirthDate] = React.useState<Date | undefined>();\n\n  return (\n    <Field className="w-full max-w-xs space-y-1.5">\n      <FieldLabel>Date of Birth</FieldLabel>\n      <DatePicker\n        value={birthDate}\n        onChange={setBirthDate}\n        placeholder="Select your birth date"\n        className="w-full"\n        clearable\n      />\n      <FieldDescription>\n        Used to calculate age and verify eligibility.\n      </FieldDescription>\n    </Field>\n  );\n}'}
+>
+  <div className="w-full max-w-xs flex justify-center">
+    <Field className="w-full space-y-1.5">
+      <FieldLabel>Date of Birth</FieldLabel>
+      <DatePicker placeholder="Select your birth date" className="w-full" clearable />
+      <FieldDescription>Used to calculate age and verify eligibility.</FieldDescription>
+    </Field>
+  </div>
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference component="DatePicker" />
+

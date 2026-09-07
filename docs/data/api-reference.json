@@ -2431,6 +2431,159 @@
         }
       ]
     },
+    "Calendar": {
+      "name": "Calendar",
+      "file": "calendar.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "disabled",
+          "type": "DateDisabledMatcher",
+          "defaultValue": "false",
+          "required": false,
+          "description": "Whether the component is disabled and prevents user interaction."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "defaultMonth",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Initial month displayed when uncontrolled."
+        },
+        {
+          "name": "fixedWeeks",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to always render a 6-week (42-day) grid to prevent height jumps."
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "BCP 47 language tag for date and weekday localization."
+        },
+        {
+          "name": "maxDate",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Maximum selectable date constraint."
+        },
+        {
+          "name": "minDate",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Minimum selectable date constraint."
+        },
+        {
+          "name": "mode",
+          "type": "\"single\" | \"range\" | \"multiple\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Selection mode of the calendar ('single', 'range', or 'multiple')."
+        },
+        {
+          "name": "month",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled month to display in the calendar view."
+        },
+        {
+          "name": "numberOfMonths",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Number of months displayed side-by-side."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "onMonthChange",
+          "type": "((month: Date) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when the visible month changes."
+        },
+        {
+          "name": "onSelect",
+          "type": "((value: any) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when a date or date range selection is made."
+        },
+        {
+          "name": "selected",
+          "type": "Date | DateRange | Date[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "The currently selected date, date range, or array of dates."
+        },
+        {
+          "name": "showOutsideDays",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to render days belonging to adjacent months."
+        },
+        {
+          "name": "weekStartsOn",
+          "type": "0 | 1 | 2 | 3 | 4 | 5 | 6",
+          "defaultValue": null,
+          "required": false,
+          "description": "Day of the week to start on (0 = Sunday, 1 = Monday)."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
     "Card": {
       "name": "Card",
       "file": "card.tsx",
@@ -6294,6 +6447,245 @@
           "defaultValue": null,
           "required": false,
           "description": "Style applied to the element, or a function that\nreturns a style object based on the component's state."
+        }
+      ]
+    },
+    "DatePicker": {
+      "name": "DatePicker",
+      "file": "date-picker.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "Date",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "defaultValue": "false",
+          "required": false,
+          "description": "Whether the component is disabled and prevents user interaction."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Placeholder text displayed when no value is entered."
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the align of the component."
+        },
+        {
+          "name": "buttonSize",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-md\" | \"icon-lg\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Button size preset for the date picker trigger."
+        },
+        {
+          "name": "buttonVariant",
+          "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"primary\" | \"ghost\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Visual button variant for the date picker trigger."
+        },
+        {
+          "name": "calendarProps",
+          "type": "Partial<CalendarProps>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional props passed directly to the underlying Calendar component."
+        },
+        {
+          "name": "clearable",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to show a clear button when a date is selected."
+        },
+        {
+          "name": "closeOnSelect",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to automatically close the popover upon selecting a date."
+        },
+        {
+          "name": "format",
+          "type": "((date: Date) => string)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Custom date formatting function."
+        },
+        {
+          "name": "onChange",
+          "type": "((date: Date) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "popoverClassName",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the popoverClassName of the component."
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the sideOffset of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        }
+      ],
+      "subcomponents": [
+        "DateRangePicker"
+      ]
+    },
+    "DateRangePicker": {
+      "name": "DateRangePicker",
+      "file": "date-picker.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "DateRange",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "DateRange",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "defaultValue": "false",
+          "required": false,
+          "description": "Whether the component is disabled and prevents user interaction."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Placeholder text displayed when no value is entered."
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the align of the component."
+        },
+        {
+          "name": "buttonSize",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-md\" | \"icon-lg\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Button size preset for the date picker trigger."
+        },
+        {
+          "name": "buttonVariant",
+          "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"primary\" | \"ghost\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Visual button variant for the date picker trigger."
+        },
+        {
+          "name": "calendarProps",
+          "type": "Partial<CalendarProps>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional props passed directly to the underlying Calendar component."
+        },
+        {
+          "name": "clearable",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to show a clear button when a date is selected."
+        },
+        {
+          "name": "closeOnSelect",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Whether to automatically close the popover upon selecting a date."
+        },
+        {
+          "name": "format",
+          "type": "((range: DateRange) => string)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Custom date formatting function."
+        },
+        {
+          "name": "numberOfMonths",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Number of months displayed side-by-side."
+        },
+        {
+          "name": "onChange",
+          "type": "((range: DateRange) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "popoverClassName",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the popoverClassName of the component."
+        },
+        {
+          "name": "presets",
+          "type": "DateRangePreset[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Quick selection preset options for date ranges."
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the sideOffset of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
         }
       ]
     },
@@ -22463,6 +22855,9 @@
     "button": [
       "Button"
     ],
+    "calendar": [
+      "Calendar"
+    ],
     "card": [
       "Card",
       "CardHeader",
@@ -22520,6 +22915,10 @@
       "ContextMenuSeparator",
       "ContextMenuSubmenu",
       "ContextMenuSubmenuTrigger"
+    ],
+    "date-picker": [
+      "DatePicker",
+      "DateRangePicker"
     ],
     "dialog": [
       "Dialog",

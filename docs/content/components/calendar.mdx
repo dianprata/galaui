@@ -1,0 +1,76 @@
+import * as React from "react";
+import { Calendar, Badge } from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+
+# Calendar
+
+A clean, accessible date and range calendar component featuring monthly grid views, date range selection with hover highlights, multi-month layouts, and localized date formatting.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">GalaUI Primitive</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Single & Range</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Multi-Month</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import { Calendar } from "@galaui/react";'} />
+
+## Single Date Selection
+
+<ComponentPreview
+  title="Single Date"
+  description="Calendar supporting single date selection with today indicator."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  const [date, setDate] = React.useState<Date | undefined>(new Date());\n\n  return (\n    <div className="flex flex-col items-center gap-3">\n      <Calendar\n        mode="single"\n        selected={date}\n        onSelect={setDate}\n      />\n      <p className="text-xs text-muted-foreground font-mono">\n        Selected: {date ? date.toLocaleDateString("en-US", { dateStyle: "long" }) : "None"}\n      </p>\n    </div>\n  );\n}'}
+>
+  <div className="flex flex-col items-center gap-3">
+    <Calendar mode="single" />
+  </div>
+</ComponentPreview>
+
+## Date Range Selection
+
+<ComponentPreview
+  title="Date Range"
+  description="Select a start and end date with continuous range fill and hover preview."
+  code={'import * as React from "react";\nimport { Calendar, type DateRange } from "@galaui/react";\n\nexport default function Example() {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date();\n    const to = new Date();\n    to.setDate(from.getDate() + 7);\n    return { from, to };\n  });\n\n  return (\n    <div className="flex flex-col items-center gap-3">\n      <Calendar\n        mode="range"\n        selected={range}\n        onSelect={setRange}\n      />\n    </div>\n  );\n}'}
+>
+  <div className="flex flex-col items-center gap-3">
+    <Calendar mode="range" />
+  </div>
+</ComponentPreview>
+
+## Multi-Month View
+
+<ComponentPreview
+  title="Side-by-Side Dual Month View"
+  description="Display two months simultaneously, ideal for booking or date range selection."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex justify-center overflow-x-auto w-full py-2">\n      <Calendar\n        mode="range"\n        numberOfMonths={2}\n      />\n    </div>\n  );\n}'}
+>
+  <div className="flex justify-center overflow-x-auto w-full py-2">
+    <Calendar mode="range" numberOfMonths={2} />
+  </div>
+</ComponentPreview>
+
+## Disabled Dates & Constraints
+
+<ComponentPreview
+  title="Disabled Constraints"
+  description="Disable past dates and weekend days with minDate and custom matchers."
+  code={'import * as React from "react";\nimport { Calendar } from "@galaui/react";\n\nexport default function Example() {\n  const today = new Date();\n  return (\n    <Calendar\n      mode="single"\n      minDate={today}\n      disabled={(date) => date.getDay() === 0 || date.getDay() === 6}\n    />\n  );\n}'}
+>
+  <div className="flex justify-center">
+    <Calendar
+      mode="single"
+      minDate={new Date()}
+      disabled={(date) => date.getDay() === 0 || date.getDay() === 6}
+    />
+  </div>
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference component="Calendar" />
+

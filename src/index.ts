@@ -48,4 +48,6 @@ export * from "./components/ui/label";
 export * from "./components/ui/form";
 export * from "./components/ui/toolbar";
 export * from "./components/ui/combobox";
+export * from "./components/ui/calendar";
+export * from "./components/ui/date-picker";
 export * from "./tokens/index";
