@@ -2500,7 +2500,7 @@
         },
         {
           "name": "mode",
-          "type": "\"single\" | \"range\" | \"multiple\"",
+          "type": "CalendarMode",
           "defaultValue": null,
           "required": false,
           "description": "Selection mode of the calendar ('single', 'range', or 'multiple')."

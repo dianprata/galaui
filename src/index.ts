@@ -1,6 +1,7 @@
 import "./styles/globals.css";
 
 export * from "./lib/utils";
+export * from "./lib/date";
 export * from "./components/ui/button";
 export * from "./components/ui/dialog";
 export * from "./components/ui/popover";
