@@ -433,8 +433,9 @@ export function NotificationTrigger() {
       {/* Precision Top Navbar */}
       <header className="h-12 border-b border-border bg-card/95 backdrop-blur-md flex items-center justify-between px-4 z-30 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="h-6 w-6 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-mono font-bold text-xs shadow-xs">
-            G
+          <div className="h-6 w-6 flex items-center justify-center shrink-0">
+            <img src="/logo.png" alt="GalaUI" className="w-6 h-6 dark:hidden object-contain" />
+            <img src="/logo-white.png" alt="GalaUI" className="w-6 h-6 hidden dark:block object-contain" />
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-xs tracking-tight text-foreground">GalaUI Workbench</span>
