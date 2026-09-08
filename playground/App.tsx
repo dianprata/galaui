@@ -286,7 +286,7 @@ import { Button } from "@/components/ui/button";
 export function SecurityModal() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <Button variant="primary">Authorize Key</Button>
       </DialogTrigger>
       <DialogPopup>
@@ -301,7 +301,7 @@ export function SecurityModal() {
           <input className="w-full h-9 rounded-lg border border-border bg-input px-3 text-xs" defaultValue="prod_sec_key_2026" />
         </div>
         <DialogFooter>
-          <DialogClose asChild>
+          <DialogClose>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button variant="primary">Confirm Provisioning</Button>
