@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Accordion as BaseAccordion } from "@base-ui/react";
-import { CaretDown } from "@phosphor-icons/react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Accordion = BaseAccordion.Root;
@@ -33,7 +33,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <CaretDown weight="bold" className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-panel-open:rotate-180 data-open:rotate-180" />
+      <ChevronDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-panel-open:rotate-180 data-open:rotate-180" />
     </BaseAccordion.Trigger>
   </BaseAccordion.Header>
 ));
