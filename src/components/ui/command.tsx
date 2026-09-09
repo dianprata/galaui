@@ -447,10 +447,10 @@
           }
         }}
         className={cn(
-          "group relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors duration-100 hover:bg-muted/80",
+          "group relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors duration-100",
           isSelected
-            ? "bg-primary text-primary-foreground font-medium shadow-xs [&_svg]:text-primary-foreground [&_.text-muted-foreground]:text-primary-foreground/80"
-            : "text-foreground",
+            ? "bg-primary text-primary-foreground font-medium shadow-xs hover:bg-primary hover:text-primary-foreground [&_svg]:text-primary-foreground [&_.text-muted-foreground]:text-primary-foreground/80"
+            : "text-foreground hover:bg-primary/10 hover:text-primary",
           disabled && "pointer-events-none opacity-50",
           className
         )}
