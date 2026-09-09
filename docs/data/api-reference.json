@@ -20638,6 +20638,116 @@
         }
       ]
     },
+    "Toaster": {
+      "name": "Toaster",
+      "file": "toast.tsx",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the limit of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "((event: BaseUIEvent<ChangeEvent<HTMLDivElement, Element>>) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "((event: BaseUIEvent<MouseEvent<HTMLDivElement, MouseEvent>>) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "position",
+          "type": "ToastPosition",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the position of the component."
+        },
+        {
+          "name": "stacked",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the stacked of the component."
+        },
+        {
+          "name": "timeout",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the timeout of the component."
+        },
+        {
+          "name": "toastManager",
+          "type": "ToastManager<any>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the toastManager of the component."
+        },
+        {
+          "name": "className",
+          "type": "string | ((state: ToastViewportState) => string)",
+          "defaultValue": null,
+          "required": false,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component's state."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        },
+        {
+          "name": "render",
+          "type": "React.ReactElement",
+          "defaultValue": null,
+          "required": false,
+          "description": "Allows you to replace the component's HTML element\nwith a different tag, or compose it with another component.\n\nAccepts a `ReactElement` or a function that returns the element to render."
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties | ((state: ToastViewportState) => CSSProperties)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Style applied to the element, or a function that\nreturns a style object based on the component's state."
+        }
+      ],
+      "subcomponents": [
+        "ToastProvider",
+        "ToastViewport",
+        "ToastPortal",
+        "ToastPositioner",
+        "ToastContent",
+        "ToastArrow",
+        "Toast",
+        "ToastTitle",
+        "ToastDescription",
+        "ToastAction",
+        "ToastClose"
+      ]
+    },
     "ToastProvider": {
       "name": "ToastProvider",
       "file": "toast.tsx",
@@ -20670,18 +20780,6 @@
           "required": false,
           "description": "The content or child elements rendered inside."
         }
-      ],
-      "subcomponents": [
-        "ToastViewport",
-        "ToastPortal",
-        "ToastPositioner",
-        "ToastContent",
-        "ToastArrow",
-        "Toast",
-        "ToastTitle",
-        "ToastDescription",
-        "ToastAction",
-        "ToastClose"
       ]
     },
     "ToastViewport": {
@@ -20715,6 +20813,13 @@
           "defaultValue": null,
           "required": false,
           "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "position",
+          "type": "ToastPosition",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the position of the component."
         },
         {
           "name": "stacked",
@@ -21105,7 +21210,7 @@
       "props": [
         {
           "name": "variant",
-          "type": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\"",
+          "type": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\" | \"loading\" | \"error\"",
           "defaultValue": null,
           "required": false,
           "description": "Visual appearance and hierarchy style variant."
@@ -23143,6 +23248,7 @@
       "Textarea"
     ],
     "toast": [
+      "Toaster",
       "ToastProvider",
       "ToastViewport",
       "ToastPortal",

@@ -124,7 +124,7 @@ export const docSections: DocSection[] = [
       { title: "Table", path: "/components/table", component: TableDoc },
       { title: "Tabs", path: "/components/tabs", component: TabsDoc },
       { title: "Textarea", path: "/components/textarea", component: TextareaDoc },
-      { title: "Toast", path: "/components/toast", component: ToastDoc },
+      { title: "Toast", path: "/components/toast", component: ToastDoc, badge: "Updated" },
       { title: "Toggle", path: "/components/toggle", component: ToggleDoc },
       { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc, badge: "New" },
       { title: "Tooltip", path: "/components/tooltip", component: TooltipDoc },
