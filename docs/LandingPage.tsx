@@ -15,10 +15,8 @@ import {
   Tabs,
   TabsList,
   TabsTab,
-  TabsPanel,
   DatePicker,
   NumberField,
-  Progress,
   Meter,
   MeterTrack,
   MeterIndicator,
@@ -84,7 +82,6 @@ export default function LandingPage() {
   const shouldReduce = useReducedMotion();
   const [searchOpen, setSearchOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [codeCopied, setCodeCopied] = useState(false);
   const [activeHeroTab, setActiveHeroTab] = useState<string>("form");
   const [dxTab, setDxTab] = useState<string>("preview");
 
@@ -130,13 +127,6 @@ export function ReleaseModal() {
     setCopied(true);
     toast.success("Command copied to clipboard", installCommand);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(quickCodeSnippet);
-    setCodeCopied(true);
-    toast.success("Code snippet copied", "Paste into your React component");
-    setTimeout(() => setCodeCopied(false), 2000);
   };
 
   useEffect(() => {
@@ -395,7 +385,7 @@ export function ReleaseModal() {
 
                             <Field className="space-y-1.5">
                               <FieldLabel>Cloud Region</FieldLabel>
-                              <Select value={selectedCity} onValueChange={(val) => setSelectedCity(val)}>
+                              <Select value={selectedCity} onValueChange={(val) => { if (val) setSelectedCity(val); }}>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select region" />
                                 </SelectTrigger>
@@ -493,7 +483,7 @@ export function ReleaseModal() {
                           <Meter value={sliderVal} min={0} max={100}>
                             <div className="flex items-center justify-between">
                               <MeterLabel>Asset Processing</MeterLabel>
-                              <MeterValue>{sliderVal}%</MeterValue>
+                              <MeterValue>{() => `${sliderVal}%`}</MeterValue>
                             </div>
                             <MeterTrack>
                               <MeterIndicator />

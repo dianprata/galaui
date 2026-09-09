@@ -11,7 +11,7 @@ import { DocsPagination } from "./DocsPagination";
 import { Badge, Button, Kbd, KbdGroup } from "@/index";
 import { cn } from "@/index";
 import { Drawer, DrawerPopup } from "@/index";
-import { Menu, X, ExternalLink, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { useEffect } from "react";
 import { usePackageVersion } from "@docs/lib/version";
 
