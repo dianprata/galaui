@@ -150,7 +150,7 @@ export function ReleaseModal() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const allComponents = docSections[1]?.items || [];
+  const allComponents = (docSections[1]?.items || []).filter((comp) => comp.path !== "/components");
 
   const filteredComponents = allComponents.filter((comp) => {
     const matchesQuery = comp.title.toLowerCase().includes(compQuery.toLowerCase());
@@ -227,7 +227,7 @@ export function ReleaseModal() {
 
           {/* Center Navigation Links */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <Link href="/components/accordion" className="hover:text-foreground transition-colors">
+            <Link href="/components" className="hover:text-foreground transition-colors">
               Components
             </Link>
             <a href="#features" className="hover:text-foreground transition-colors">
@@ -319,7 +319,7 @@ export function ReleaseModal() {
 
               {/* Element 4: CTAs + Install Action */}
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <Link href="/getting-started/introduction">
+                <Link href="/components">
                   <Button size="lg" className="w-full sm:w-auto gap-2 shadow-sm hover:shadow-primary/25 hover:shadow-md transition-all active:scale-[0.98]">
                     <span>Explore Components</span>
                     <ArrowRight className="w-4 h-4" />
