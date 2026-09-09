@@ -1,12 +1,26 @@
-import { createHighlighter, type Highlighter } from "shiki";
+import { createHighlighterCore, type HighlighterCore } from "shiki/core";
+import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 
-let highlighterPromise: Promise<Highlighter> | null = null;
+let highlighterPromise: Promise<HighlighterCore> | null = null;
 
-export function getHighlighter(): Promise<Highlighter> {
+export function getHighlighter(): Promise<HighlighterCore> {
   if (!highlighterPromise) {
-    highlighterPromise = createHighlighter({
-      themes: ["github-light", "github-dark"],
-      langs: ["javascript", "typescript", "tsx", "jsx", "bash", "html", "css", "json"],
+    highlighterPromise = createHighlighterCore({
+      themes: [
+        import("shiki/themes/github-light.mjs"),
+        import("shiki/themes/github-dark.mjs"),
+      ],
+      langs: [
+        import("shiki/langs/tsx.mjs"),
+        import("shiki/langs/typescript.mjs"),
+        import("shiki/langs/jsx.mjs"),
+        import("shiki/langs/javascript.mjs"),
+        import("shiki/langs/bash.mjs"),
+        import("shiki/langs/html.mjs"),
+        import("shiki/langs/css.mjs"),
+        import("shiki/langs/json.mjs"),
+      ],
+      engine: createOnigurumaEngine(import("shiki/wasm")),
     });
   }
   return highlighterPromise;
@@ -24,3 +38,4 @@ export async function highlightCode(code: string, lang = "tsx"): Promise<string>
     defaultColor: false,
   });
 }
+
