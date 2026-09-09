@@ -3,7 +3,14 @@ import { Moon, Sun } from "lucide-react";
 import { Button, cn } from "@/index";
 
 export function ThemeToggle({ className }: { className?: string } = {}) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("galaui-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return savedTheme === "dark" || (!savedTheme && prefersDark);
+    }
+    return false;
+  });
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("galaui-theme");
