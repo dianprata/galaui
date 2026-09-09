@@ -18,6 +18,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -33,6 +37,7 @@
   },
   "include": [
     "src",
-    "docs"
+    "docs",
+    "tests"
   ]
 }

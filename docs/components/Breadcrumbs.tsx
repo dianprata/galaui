@@ -50,7 +50,13 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <span>{sectionTitle}</span>
+            {sectionTitle === "Components" && location !== "/components" ? (
+              <Link href="/components" className="transition-colors hover:text-foreground cursor-pointer">
+                {sectionTitle}
+              </Link>
+            ) : (
+              <span>{sectionTitle}</span>
+            )}
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

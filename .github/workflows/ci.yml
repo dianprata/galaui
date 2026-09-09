@@ -31,6 +31,9 @@ jobs:
       - name: Type check library
         run: npx tsc --project tsconfig.build.json --noEmit
 
+      - name: Run unit & interaction tests
+        run: npm test
+
       - name: Build library (@galaui/react)
         run: npm run build:lib
 
