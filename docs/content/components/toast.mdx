@@ -1,7 +1,7 @@
-import { ToastProvider, ToastViewport, toast, Button, Badge } from "@/index";
+import { Toaster, ToastProvider, ToastViewport, toast, Button, Badge } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
-import { Bell, CheckCircle2, AlertTriangle, AlertCircle } from "lucide-react";
+import { Bell, CheckCircle2, AlertTriangle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
 import { ApiReference } from "@docs/components/ApiReference";
 
 # Toast
@@ -15,20 +15,26 @@ A succinct notification that floats temporarily over the screen to communicate q
 
 ## Import
 
-<CodeBlock language="tsx" code={'import { ToastProvider, ToastViewport, toast } from "@galaui/react";'} />
+<CodeBlock language="tsx" code={'import { Toaster, toast } from "@galaui/react";'} />
+
+## Setup
+
+Mount the `<Toaster />` component once in your root application layout.
+
+<CodeBlock language="tsx" code={'export default function App() {\n  return (\n    <>\n      <Toaster />\n      <MainApp />\n    </>\n  );\n}'} />
 
 ## Example
 
 <ComponentPreview
   title="Toast Notifications"
-  description="Click buttons below to trigger stacked toasts."
-  code={'import { toast, Button } from "@galaui/react";\nimport { Bell, CheckCircle2, AlertTriangle, AlertCircle } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Button\n        variant="default"\n        size="sm"\n        onClick={() => toast.show("System update installed", "GalaUI v0.1.2 is active.")}\n      >\n        <Bell className="w-3.5 h-3.5 mr-1.5" />\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        size="sm"\n        onClick={() => toast.success("Token Synced", "All variables updated.")}\n      >\n        <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />\n        Success\n      </Button>\n      <Button\n        variant="destructive"\n        size="sm"\n        onClick={() => toast.error("Cluster Offline", "Could not connect to host.")}\n      >\n        <AlertCircle className="w-3.5 h-3.5 mr-1.5" />\n        Destructive\n      </Button>\n    </div>\n  );\n}'}
+  description="Click buttons below to trigger stacked toasts across different status variants."
+  code={'import { toast, Button } from "@galaui/react";\nimport { Bell, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Button\n        variant="default"\n        size="sm"\n        onClick={() => toast.show("System update installed", "GalaUI v0.2.0 is active.")}\n      >\n        <Bell className="w-3.5 h-3.5 mr-1.5" />\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        size="sm"\n        onClick={() => toast.success("Token synced", "All variables updated.")}\n      >\n        <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />\n        Success\n      </Button>\n      <Button\n        variant="destructive"\n        size="sm"\n        onClick={() => toast.error("Cluster offline", "Could not connect to host.")}\n      >\n        <AlertCircle className="w-3.5 h-3.5 mr-1.5" />\n        Error\n      </Button>\n      <Button\n        variant="outline"\n        size="sm"\n        onClick={() => {\n          const id = toast.loading("Generating assets", "Please wait while files are processed...");\n          setTimeout(() => {\n            toast.close(id);\n            toast.success("Assets ready", "Generated 4 specimen assets.");\n          }, 2500);\n        }}\n      >\n        <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />\n        Loading\n      </Button>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2.5 items-center">
     <Button
       variant="default"
       size="sm"
-      onClick={() => toast.show("System update installed", "GalaUI v0.1.2 is active.")}
+      onClick={() => toast.show("System update installed", "GalaUI v0.2.0 is active.")}
     >
       <Bell className="w-3.5 h-3.5 mr-1.5" />
       Default
@@ -36,7 +42,7 @@ A succinct notification that floats temporarily over the screen to communicate q
     <Button
       variant="outline"
       size="sm"
-      onClick={() => toast.success("Token Synced", "All variables updated.")}
+      onClick={() => toast.success("Token synced", "All variables updated.")}
     >
       <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
       Success
@@ -44,14 +50,118 @@ A succinct notification that floats temporarily over the screen to communicate q
     <Button
       variant="destructive"
       size="sm"
-      onClick={() => toast.error("Cluster Offline", "Could not connect to host.")}
+      onClick={() => toast.error("Cluster offline", "Could not connect to host.")}
     >
       <AlertCircle className="w-3.5 h-3.5 mr-1.5" />
-      Destructive
+      Error
+    </Button>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => {
+        const id = toast.loading("Generating assets", "Please wait while files are processed...");
+        setTimeout(() => {
+          toast.close(id);
+          toast.success("Assets ready", "Generated 4 specimen assets.");
+        }, 2500);
+      }}
+    >
+      <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+      Loading
     </Button>
   </div>
 </ComponentPreview>
 
+## With Action
+
+Attach an actionable button to the notification via `actionProps`.
+
+<ComponentPreview
+  title="Action Button"
+  description="Display an action button to allow quick user undo or review."
+  code={'import { toast, Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      size="sm"\n      onClick={() => {\n        toast.show("File deleted", "Moved to Trash.", {\n          actionProps: {\n            children: "Undo",\n            onClick: () => toast.success("Restored file", "File has been restored to your directory."),\n          },\n        });\n      }}\n    >\n      Delete File\n    </Button>\n  );\n}'}
+>
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => {
+      toast.show("File deleted", "Moved to Trash.", {
+        actionProps: {
+          children: "Undo",
+          onClick: () => toast.success("Restored file", "File has been restored to your directory."),
+        },
+      });
+    }}
+  >
+    Delete File
+  </Button>
+</ComponentPreview>
+
+## Async Promise
+
+Use `toast.promise()` to automatically manage pending, success, and error states of an async operation.
+
+<ComponentPreview
+  title="Promise Handling"
+  description="Automatically transition between loading and resolved notifications."
+  code={'import { toast, Button } from "@galaui/react";\nimport { RefreshCw } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      size="sm"\n      onClick={() => {\n        toast.promise(\n          new Promise((resolve) => setTimeout(() => resolve({ count: 12 }), 2000)),\n          {\n            loading: "Syncing design tokens...",\n            success: (data) => ({\n              title: "Tokens updated",\n              description: `Successfully synced ${data.count} variables.`,\n            }),\n            error: "Failed to sync tokens",\n          }\n        );\n      }}\n    >\n      <RefreshCw className="w-3.5 h-3.5 mr-1.5" />\n      Sync Tokens\n    </Button>\n  );\n}'}
+>
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => {
+      toast.promise(
+        new Promise((resolve) => setTimeout(() => resolve({ count: 12 }), 2000)),
+        {
+          loading: "Syncing design tokens...",
+          success: (data) => ({
+            title: "Tokens updated",
+            description: `Successfully synced ${data.count} variables.`,
+          }),
+          error: "Failed to sync tokens",
+        }
+      );
+    }}
+  >
+    <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+    Sync Tokens
+  </Button>
+</ComponentPreview>
+
+## Outside React Components (Standalone Functions)
+
+Because `toast` is an imperative singleton manager, you can trigger notifications directly from standard JavaScript/TypeScript functions, API interceptors, or state managers outside the React component lifecycle without needing hooks.
+
+<CodeBlock language="tsx" code={'// api-client.ts (plain TypeScript file - no React hooks required)\nimport { toast } from "@galaui/react";\n\nexport async function syncUserData(userId: string) {\n  try {\n    const res = await fetch(`/api/users/${userId}/sync`, { method: "POST" });\n    if (!res.ok) throw new Error("Sync failed");\n    toast.success("User synced", "All records up to date.");\n  } catch (error) {\n    toast.error("Sync error", "Please check your network connection.");\n  }\n}'} />
+
+<ComponentPreview
+  title="Trigger from Standalone Function"
+  description="Calling a plain helper function defined outside the React component."
+  code={'import { toast, Button } from "@galaui/react";\n\n// Plain external helper function\nfunction triggerStandaloneNotice() {\n  toast.show("Quick note", "Dispatched from a standalone function outside React state.");\n}\n\nexport default function Example() {\n  return (\n    <Button variant="outline" size="sm" onClick={triggerStandaloneNotice}>\n      Trigger from Helper\n    </Button>\n  );\n}'}
+>
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => {
+      toast.show("Quick note", "Dispatched from a standalone function outside React state.");
+    }}
+  >
+    Trigger from Helper
+  </Button>
+</ComponentPreview>
+
+## `toast.show` vs `toast.add`
+
+Both methods create notifications, but they cater to different ergonomic preferences:
+
+* **`toast.show(title, description?, options?)`** (Convenience Shorthand):
+  Accepts positional arguments (`title` first, `description` second) so you do not have to write an object wrapper for simple messages. Shorthands like `toast.success()`, `toast.error()`, `toast.warning()`, `toast.info()`, and `toast.loading()` share this signature.
+
+* **`toast.add(options)`** (Structured Options Object):
+  The native Base UI manager method that receives a single configuration object. Ideal when you have dynamic payload objects, event data, or need to specify multiple properties at once.
+
+<CodeBlock language="tsx" code={'import { toast } from "@galaui/react";\n\n// 1. toast.show - quick positional arguments\ntoast.show("Profile updated", "Your preferences have been saved.");\ntoast.success("Deployment ready", "Production build passed all checks.");\n\n// 2. toast.add - single structured configuration object\ntoast.add({\n  title: "Profile updated",\n  description: "Your preferences have been saved.",\n  type: "success",\n  timeout: 5000,\n  actionProps: {\n    children: "Undo",\n    onClick: () => handleUndo(),\n  },\n});'} />
+
 ## API Reference
 
-<ApiReference component="ToastProvider" />
+<ApiReference component="Toaster" />

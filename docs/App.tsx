@@ -14,8 +14,7 @@ import {
   TableCell,
   Separator,
   Button,
-  ToastProvider,
-  ToastViewport,
+  Toaster,
 } from "@/index";
 
 function slugify(text: any): string {
@@ -79,8 +78,8 @@ const mdxComponents = {
 
 export default function App() {
   return (
-    <ToastProvider>
-      <ToastViewport />
+    <>
+      <Toaster />
     <Router>
       <Switch>
         <Route path="/" component={LandingPage} />
@@ -119,6 +118,6 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-    </ToastProvider>
+    </>
   );
 }
