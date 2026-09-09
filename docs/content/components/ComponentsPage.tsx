@@ -14,7 +14,6 @@ import {
   EmptyStateTitle,
   EmptyStateDescription,
   EmptyStateActions,
-  cn,
 } from "@/index";
 import {
   Search,

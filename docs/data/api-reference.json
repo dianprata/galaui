@@ -10880,6 +10880,13 @@
           "description": "Automatically focus the element when mounted."
         },
         {
+          "name": "index",
+          "type": "number",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the index of the component."
+        },
+        {
           "name": "onChange",
           "type": "((event: BaseUIEvent<ChangeEvent<HTMLInputElement, HTMLInputElement>>) => void)",
           "defaultValue": null,
