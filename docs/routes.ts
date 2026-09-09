@@ -17,6 +17,7 @@ import InstallDoc from "./content/getting-started/installation.mdx";
 import ThemingDoc from "./content/getting-started/theming.mdx";
 import ChangelogDoc from "./content/getting-started/ChangelogPage";
 
+import ComponentsPage from "./content/components/ComponentsPage";
 import AccordionDoc from "./content/components/accordion.mdx";
 import AlertDoc from "./content/components/alert.mdx";
 import AlertDialogDoc from "./content/components/alert-dialog.mdx";
@@ -81,6 +82,7 @@ export const docSections: DocSection[] = [
   {
     title: "Components",
     items: [
+      { title: "Overview", path: "/components", component: ComponentsPage },
       { title: "Accordion", path: "/components/accordion", component: AccordionDoc },
       { title: "Alert", path: "/components/alert", component: AlertDoc },
       { title: "Alert Dialog", path: "/components/alert-dialog", component: AlertDialogDoc },
@@ -124,7 +126,7 @@ export const docSections: DocSection[] = [
       { title: "Table", path: "/components/table", component: TableDoc },
       { title: "Tabs", path: "/components/tabs", component: TabsDoc },
       { title: "Textarea", path: "/components/textarea", component: TextareaDoc },
-      { title: "Toast", path: "/components/toast", component: ToastDoc },
+      { title: "Toast", path: "/components/toast", component: ToastDoc, badge: "Updated" },
       { title: "Toggle", path: "/components/toggle", component: ToggleDoc },
       { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc, badge: "New" },
       { title: "Tooltip", path: "/components/tooltip", component: TooltipDoc },

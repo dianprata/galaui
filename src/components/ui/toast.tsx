@@ -1,9 +1,17 @@
 import * as React from "react";
 import { Toast as BaseToast } from "@base-ui/react";
-import { X, CheckCircle, Warning, XCircle, Info } from "@phosphor-icons/react";
+import { X, CheckCircle, Warning, XCircle, Info, CircleNotch } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
 const defaultToastManager = BaseToast.createToastManager();
+
+export type ToastPosition =
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right";
 
 const ToastProvider = ({
   toastManager = defaultToastManager,
@@ -20,7 +28,7 @@ const Toast = React.forwardRef<
   React.ElementRef<typeof BaseToast.Root>,
   React.ComponentPropsWithoutRef<typeof BaseToast.Root> & {
     toast?: any;
-    variant?: "default" | "success" | "destructive" | "warning" | "info";
+    variant?: "default" | "success" | "destructive" | "warning" | "info" | "loading" | "error";
     stacked?: boolean;
   }
 >(({ className, variant = "default", stacked = true, children, toast, ...props }, ref) => {
@@ -39,7 +47,8 @@ const Toast = React.forwardRef<
         "pointer-events-auto overflow-hidden rounded-xl border shadow-2xl select-none transition-colors duration-150",
         stacked ? stackedClasses : nonStackedClasses,
         variant === "default" && "border-border bg-card text-card-foreground dark:bg-zinc-900",
-        variant === "destructive" && "border-destructive-500/30 bg-red-50 text-destructive-700 dark:border-destructive-500/40 dark:bg-red-950 dark:text-red-200",
+        variant === "loading" && "border-border bg-card text-card-foreground dark:bg-zinc-900",
+        (variant === "destructive" || variant === "error") && "border-destructive-500/30 bg-red-50 text-destructive-700 dark:border-destructive-500/40 dark:bg-red-950 dark:text-red-200",
         variant === "success" && "border-success-500/30 bg-emerald-50 text-emerald-950 dark:border-success-500/40 dark:bg-emerald-950 dark:text-emerald-200",
         variant === "warning" && "border-warning-500/30 bg-amber-50 text-amber-950 dark:border-warning-500/40 dark:bg-amber-950 dark:text-amber-200",
         variant === "info" && "border-info-500/30 bg-sky-50 text-sky-950 dark:border-info-500/40 dark:bg-sky-950 dark:text-sky-200",
@@ -59,12 +68,43 @@ const Toast = React.forwardRef<
 });
 Toast.displayName = "Toast";
 
+const positionClasses: Record<ToastPosition, { stacked: string; unstacked: string }> = {
+  "bottom-right": {
+    stacked: "fixed right-4 bottom-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed right-4 bottom-4 z-50 flex max-h-screen w-full max-w-sm flex-col-reverse gap-2 p-2 pointer-events-none sm:right-6 sm:bottom-6",
+  },
+  "bottom-left": {
+    stacked: "fixed left-4 bottom-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:left-6 sm:bottom-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed left-4 bottom-4 z-50 flex max-h-screen w-full max-w-sm flex-col-reverse gap-2 p-2 pointer-events-none sm:left-6 sm:bottom-6",
+  },
+  "bottom-center": {
+    stacked: "fixed left-1/2 -translate-x-1/2 bottom-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:bottom-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed left-1/2 -translate-x-1/2 bottom-4 z-50 flex max-h-screen w-full max-w-sm flex-col-reverse gap-2 p-2 pointer-events-none sm:bottom-6",
+  },
+  "top-right": {
+    stacked: "fixed right-4 top-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:top-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed right-4 top-4 z-50 flex max-h-screen w-full max-w-sm flex-col gap-2 p-2 pointer-events-none sm:right-6 sm:top-6",
+  },
+  "top-left": {
+    stacked: "fixed left-4 top-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:left-6 sm:top-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed left-4 top-4 z-50 flex max-h-screen w-full max-w-sm flex-col gap-2 p-2 pointer-events-none sm:left-6 sm:top-6",
+  },
+  "top-center": {
+    stacked: "fixed left-1/2 -translate-x-1/2 top-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:top-6 sm:w-96 pointer-events-none",
+    unstacked: "fixed left-1/2 -translate-x-1/2 top-4 z-50 flex max-h-screen w-full max-w-sm flex-col gap-2 p-2 pointer-events-none sm:top-6",
+  },
+};
+
+export interface ToastViewportProps
+  extends React.ComponentPropsWithoutRef<typeof BaseToast.Viewport> {
+  stacked?: boolean;
+  position?: ToastPosition;
+}
+
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof BaseToast.Viewport>,
-  React.ComponentPropsWithoutRef<typeof BaseToast.Viewport> & {
-    stacked?: boolean;
-  }
->(({ className, children, stacked = true, ...props }, ref) => {
+  ToastViewportProps
+>(({ className, children, stacked = true, position = "bottom-right", ...props }, ref) => {
   let toasts: any[] = [];
   try {
     const toastManager = useToastManager();
@@ -73,30 +113,38 @@ const ToastViewport = React.forwardRef<
     toasts = [];
   }
 
+  const pos = positionClasses[position] || positionClasses["bottom-right"];
+
   return (
     <BaseToast.Portal>
       <BaseToast.Viewport
         ref={ref}
-        className={cn(
-          stacked
-            ? "fixed right-4 bottom-4 z-50 mx-auto w-[calc(100vw-2rem)] sm:right-6 sm:bottom-6 sm:w-96 pointer-events-none"
-            : "fixed right-4 bottom-4 z-50 flex max-h-screen w-full max-w-sm flex-col-reverse gap-2 p-2 pointer-events-none sm:right-6 sm:bottom-6",
-          className
-        )}
+        className={cn(stacked ? pos.stacked : pos.unstacked, className)}
         {...props}
       >
         {children}
         {toasts.map((t) => {
-          const v = (t.type || (t as any).data?.variant || "default") as
+          const rawVariant = (t.type || (t as any).data?.variant || "default") as string;
+          const v = (rawVariant === "error" ? "destructive" : rawVariant) as
             | "default"
             | "success"
             | "destructive"
             | "warning"
-            | "info";
+            | "info"
+            | "loading";
+
+          const actionProps = (t as any).actionProps || (t as any).data?.actionProps;
+          const action = (t as any).action || (t as any).data?.action;
 
           return (
             <Toast key={t.id} toast={t} variant={v} stacked={stacked}>
               <div className="flex items-start gap-2.5 w-full">
+                {v === "loading" && (
+                  <CircleNotch
+                    weight="bold"
+                    className="w-4 h-4 text-primary animate-spin shrink-0 mt-0.5"
+                  />
+                )}
                 {v === "success" && (
                   <CheckCircle
                     weight="bold"
@@ -109,7 +157,7 @@ const ToastViewport = React.forwardRef<
                     className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"
                   />
                 )}
-                {v === "destructive" && (
+                {(v === "destructive" || rawVariant === "error") && (
                   <XCircle
                     weight="bold"
                     className="w-4 h-4 text-destructive-500 shrink-0 mt-0.5"
@@ -121,12 +169,28 @@ const ToastViewport = React.forwardRef<
                     className="w-4 h-4 text-sky-500 shrink-0 mt-0.5"
                   />
                 )}
-                <div className="flex-1 space-y-1">
+                <div className="flex-1 space-y-1 min-w-0">
                   {t.title && <ToastTitle>{t.title}</ToastTitle>}
                   {t.description && (
                     <ToastDescription>{t.description}</ToastDescription>
                   )}
+                  {action && !actionProps && (
+                    <div className="pt-1">{action}</div>
+                  )}
                 </div>
+                {actionProps && (
+                  <ToastAction
+                    onClick={(e) => {
+                      actionProps.onClick?.(e);
+                      if (actionProps.autoClose !== false) {
+                        defaultToastManager.close(t.id);
+                      }
+                    }}
+                    className={cn("shrink-0 self-center text-xs", actionProps.className)}
+                  >
+                    {actionProps.label || actionProps.children}
+                  </ToastAction>
+                )}
               </div>
             </Toast>
           );
@@ -136,6 +200,40 @@ const ToastViewport = React.forwardRef<
   );
 });
 ToastViewport.displayName = "ToastViewport";
+
+export interface ToasterProps
+  extends React.ComponentPropsWithoutRef<typeof BaseToast.Viewport> {
+  toastManager?: React.ComponentPropsWithoutRef<typeof BaseToast.Provider>["toastManager"];
+  timeout?: number;
+  limit?: number;
+  stacked?: boolean;
+  position?: ToastPosition;
+}
+
+const Toaster = ({
+  toastManager = defaultToastManager,
+  timeout,
+  limit,
+  stacked = true,
+  position = "bottom-right",
+  className,
+  children,
+  ...viewportProps
+}: ToasterProps) => {
+  return (
+    <ToastProvider toastManager={toastManager} timeout={timeout} limit={limit}>
+      <ToastViewport
+        stacked={stacked}
+        position={position}
+        className={className}
+        {...viewportProps}
+      >
+        {children}
+      </ToastViewport>
+    </ToastProvider>
+  );
+};
+Toaster.displayName = "Toaster";
 
 const ToastTitle = React.forwardRef<
   React.ElementRef<typeof BaseToast.Title>,
@@ -181,27 +279,73 @@ const ToastPositioner = BaseToast.Positioner;
 const ToastContent = BaseToast.Content;
 const ToastArrow = BaseToast.Arrow;
 
+export interface ToastActionOptions {
+  children?: React.ReactNode;
+  label?: React.ReactNode;
+  onClick?: (event: React.MouseEvent) => void;
+  className?: string;
+  autoClose?: boolean;
+}
+
+export interface ToastOptions {
+  id?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  type?: "default" | "success" | "destructive" | "warning" | "info" | "loading" | "error";
+  timeout?: number;
+  actionProps?: ToastActionOptions;
+  action?: React.ReactNode;
+  [key: string]: any;
+}
+
+export type ToastPromiseOptions<T> = {
+  loading: React.ReactNode | { title?: React.ReactNode; description?: React.ReactNode; [key: string]: any };
+  success: React.ReactNode | ((data: T) => React.ReactNode | { title?: React.ReactNode; description?: React.ReactNode; [key: string]: any });
+  error: React.ReactNode | ((err: any) => React.ReactNode | { title?: React.ReactNode; description?: React.ReactNode; [key: string]: any });
+  timeout?: number;
+};
+
 export const toast = {
-  add: (options: {
-    title?: React.ReactNode;
-    description?: React.ReactNode;
-    type?: "default" | "success" | "destructive" | "warning" | "info";
-    timeout?: number;
-  }) => defaultToastManager.add(options),
-  show: (title: string, description?: string) =>
-    defaultToastManager.add({ title, description }),
-  success: (title: string, description?: string) =>
-    defaultToastManager.add({ title, description, type: "success" }),
-  error: (title: string, description?: string) =>
-    defaultToastManager.add({ title, description, type: "destructive" }),
-  warning: (title: string, description?: string) =>
-    defaultToastManager.add({ title, description, type: "warning" }),
-  info: (title: string, description?: string) =>
-    defaultToastManager.add({ title, description, type: "info" }),
+  add: (options: ToastOptions) => defaultToastManager.add(options as any),
+  show: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, ...options } as any),
+  success: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, type: "success", ...options } as any),
+  error: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, type: "destructive", ...options } as any),
+  warning: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, type: "warning", ...options } as any),
+  info: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, type: "info", ...options } as any),
+  loading: (title: React.ReactNode, description?: React.ReactNode, options?: Partial<ToastOptions>) =>
+    defaultToastManager.add({ title, description, type: "loading", timeout: 0, ...options } as any),
+  update: (id: string, options: Partial<ToastOptions>) =>
+    defaultToastManager.update(id, options as any),
   close: (id?: string) => defaultToastManager.close(id),
+  dismiss: (id?: string) => defaultToastManager.close(id),
+  promise: <T,>(
+    promise: Promise<T> | (() => Promise<T>),
+    options: ToastPromiseOptions<T>
+  ) => {
+    const p = typeof promise === "function" ? promise() : promise;
+    const normalize = (opt: any, arg?: any) => {
+      const val = typeof opt === "function" ? opt(arg) : opt;
+      if (typeof val === "string") {
+        return { title: val };
+      }
+      return val;
+    };
+    return defaultToastManager.promise(p, {
+      loading: normalize(options.loading),
+      success: (data: T) => normalize(options.success, data),
+      error: (err: any) => normalize(options.error, err),
+      timeout: options.timeout,
+    } as any);
+  },
 };
 
 export {
+  Toaster,
   ToastProvider,
   ToastViewport,
   ToastPortal,

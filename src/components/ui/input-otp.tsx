@@ -24,10 +24,15 @@ const InputOTP = React.forwardRef<
 });
 InputOTP.displayName = "InputOTP";
 
+export interface InputOTPSlotProps
+  extends React.ComponentPropsWithoutRef<typeof BaseOTPField.Input> {
+  index?: number;
+}
+
 const InputOTPSlot = React.forwardRef<
   React.ElementRef<typeof BaseOTPField.Input>,
-  React.ComponentPropsWithoutRef<typeof BaseOTPField.Input>
->(({ className, ...props }, ref) => (
+  InputOTPSlotProps
+>(({ className, index: _index, ...props }, ref) => (
   <BaseOTPField.Input
     ref={ref}
     className={cn(

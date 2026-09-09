@@ -18,6 +18,7 @@ import {
   ToastDescription,
   ToastAction,
   useToastManager,
+  toast,
   Drawer,
   DrawerTrigger,
   DrawerPopup,
@@ -167,7 +168,7 @@ interface ShowcaseProps {
 
 function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
   const toastManager = useToastManager();
-  const handleCreate = (type?: "default" | "success" | "warning" | "destructive") => {
+  const handleCreate = (type?: "default" | "success" | "warning" | "destructive" | "loading") => {
     if (toastManager?.add) {
       if (type === "success") {
         toastManager.add({
@@ -187,6 +188,17 @@ function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
           description: "You have used 85% of your API token quota.",
           type: "warning",
         });
+      } else if (type === "loading") {
+        const id = toastManager.add({
+          title: "Building Specimen...",
+          description: "Generating assets in background.",
+          type: "loading",
+          timeout: 0,
+        });
+        setTimeout(() => {
+          toastManager.close(id);
+          toast.success("Build Complete", "Specimen assets are ready.");
+        }, 2000);
       } else {
         toastManager.add({
           title: "System Notification",
@@ -211,6 +223,42 @@ function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
       </Button>
       <Button variant="destructive" size="sm" onClick={() => handleCreate("destructive")}>
         <XCircle weight="bold" className="w-4 h-4 mr-1.5" /> Destructive
+      </Button>
+      <Button variant="outline" size="sm" onClick={() => handleCreate("loading")}>
+        Loading
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => {
+          toast.promise(
+            new Promise((resolve) => setTimeout(() => resolve({ files: 3 }), 1800)),
+            {
+              loading: "Syncing variables...",
+              success: (data: any) => ({
+                title: "Variables Synced",
+                description: `${data.files} token sets updated from Figma.`,
+              }),
+              error: "Sync failed",
+            }
+          );
+        }}
+      >
+        Promise Toast
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => {
+          toast.show("Component archived", "Moved to Trash.", {
+            actionProps: {
+              children: "Undo",
+              onClick: () => toast.success("Restored component"),
+            },
+          });
+        }}
+      >
+        Action Toast
       </Button>
     </div>
   );

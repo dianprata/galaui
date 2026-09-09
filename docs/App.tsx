@@ -1,4 +1,5 @@
-import { Router, Route, Switch, Redirect, Link } from "wouter";
+import { useEffect } from "react";
+import { Router, Route, Switch, Link, useLocation } from "wouter";
 import LandingPage from "./LandingPage";
 import { DocsLayout } from "./components/DocsLayout";
 import { allRoutes } from "./routes";
@@ -14,8 +15,7 @@ import {
   TableCell,
   Separator,
   Button,
-  ToastProvider,
-  ToastViewport,
+  Toaster,
 } from "@/index";
 
 function slugify(text: any): string {
@@ -77,11 +77,37 @@ const mdxComponents = {
   ApiReference,
 };
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    // If there is an anchor hash in the URL, let it scroll to the target element
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: isReducedMotion ? "auto" : "smooth",
+    });
+  }, [location]);
+
+  return null;
+}
+
 export default function App() {
   return (
-    <ToastProvider>
-      <ToastViewport />
+    <>
+      <Toaster />
     <Router>
+      <ScrollToTop />
       <Switch>
         <Route path="/" component={LandingPage} />
         <Route>
@@ -119,6 +145,6 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-    </ToastProvider>
+    </>
   );
 }

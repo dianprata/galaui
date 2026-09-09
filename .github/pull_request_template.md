@@ -24,10 +24,10 @@
 | *(none)* | *(preview)* |
 
 ## ✅ Verification Checklist
+- [ ] Unit & interaction tests pass (`npm test`)
 - [ ] Library build succeeds (`npm run build:lib`)
 - [ ] Documentation app build succeeds (`npm run build:app`)
 - [ ] TypeScript check passes (`npx tsc --project tsconfig.build.json --noEmit`)
 - [ ] Responsive & dark mode verified (if UI changes)
 - [ ] Keyboard navigation & accessibility (a11y) verified (for interactive components)
 - [ ] Semantic commit format followed (`<type>(<scope>): <description>`)
-
