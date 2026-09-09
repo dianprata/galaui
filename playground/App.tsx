@@ -1,74 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
-  Dialog,
-  DialogTrigger,
-  DialogPopup,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-  Popover,
-  PopoverTrigger,
-  PopoverPopup,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuPopup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  Switch,
-  Checkbox,
-  RadioGroup,
-  RadioGroupItem,
-  Tooltip,
-  TooltipTrigger,
-  TooltipPopup,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionPanel,
-  Tabs,
-  TabsList,
-  TabsTab,
-  TabsPanel,
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectPopup,
-  SelectItem,
-  SelectGroup,
-  SelectGroupLabel,
-  SelectSeparator,
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-  Slider,
-  Input,
-  Textarea,
-  Badge,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  Separator,
-  ToastProvider,
-  ToastViewport,
-  toast,
-  cn,
-} from "@/index";
-import { ShowcaseNewComponents } from "./ShowcaseNewComponents";
-
-import {
   Sparkles,
   Copy,
   Check,
   Moon,
   Sun,
   Box,
-  SlidersHorizontal,
+  Sliders,
   ShieldCheck,
   User,
   Trash2,
@@ -90,13 +28,12 @@ import {
   ChevronRight,
   Fingerprint,
   Cpu,
-  Rows3,
   Terminal,
   FileCode,
   Tag,
   Zap,
   Activity,
-  RotateCw,
+  RefreshCw,
 } from "lucide-react";
 
 type ComponentId =
@@ -513,7 +450,7 @@ export function NotificationTrigger() {
                   )}
                 >
                   <div className="flex items-center gap-2 truncate">
-                    <Box weight={active ? "fill" : "regular"} className="w-3.5 h-3.5 shrink-0" />
+                    <Box className="w-3.5 h-3.5 shrink-0" />
                     <span className="truncate">{c.name}</span>
                   </div>
                   <span
@@ -671,7 +608,7 @@ export function NotificationTrigger() {
                   {selectedComp === "popover" && (
                     <Popover>
                       <PopoverTrigger render={<Button variant="outline" />}>
-                        <SlidersHorizontal className="w-4 h-4" /> Open Base UI Popover
+                        <Sliders className="w-4 h-4" /> Open Base UI Popover
                       </PopoverTrigger>
                       <PopoverPopup className="w-76 space-y-3">
                         <div className="flex items-center justify-between pb-2 border-b border-border">

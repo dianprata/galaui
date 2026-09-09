@@ -11,7 +11,22 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/style.css",
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js",
+      "require": "./dist/tokens/index.cjs"
+    },
+    "./components/ui/*": {
+      "types": "./dist/components/ui/*.d.ts",
+      "import": "./dist/components/ui/*.js",
+      "require": "./dist/components/ui/*.cjs"
+    },
+    "./*": {
+      "types": "./dist/components/ui/*.d.ts",
+      "import": "./dist/components/ui/*.js",
+      "require": "./dist/components/ui/*.cjs"
+    }
   },
   "files": [
     "dist",
