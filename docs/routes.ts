@@ -31,6 +31,7 @@ import CardDoc from "./content/components/card.mdx";
 import CheckboxDoc from "./content/components/checkbox.mdx";
 import CollapsibleDoc from "./content/components/collapsible.mdx";
 import ComboboxDoc from "./content/components/combobox.mdx";
+import CommandDoc from "./content/components/command.mdx";
 import ContextMenuDoc from "./content/components/context-menu.mdx";
 import DatePickerDoc from "./content/components/date-picker.mdx";
 import DialogDoc from "./content/components/dialog.mdx";
@@ -38,6 +39,7 @@ import DrawerDoc from "./content/components/drawer.mdx";
 import DropdownMenuDoc from "./content/components/dropdown-menu.mdx";
 import EmptyStateDoc from "./content/components/empty-state.mdx";
 import FieldDoc from "./content/components/field.mdx";
+import FieldsetDoc from "./content/components/fieldset.mdx";
 import FormDoc from "./content/components/form.mdx";
 import InputDoc from "./content/components/input.mdx";
 import InputOTPDoc from "./content/components/input-otp.mdx";
@@ -96,6 +98,7 @@ export const docSections: DocSection[] = [
       { title: "Checkbox", path: "/components/checkbox", component: CheckboxDoc },
       { title: "Collapsible", path: "/components/collapsible", component: CollapsibleDoc },
       { title: "Combobox", path: "/components/combobox", component: ComboboxDoc, badge: "New" },
+      { title: "Command", path: "/components/command", component: CommandDoc, badge: "New" },
       { title: "Context Menu", path: "/components/context-menu", component: ContextMenuDoc },
       { title: "Date Picker", path: "/components/date-picker", component: DatePickerDoc, badge: "New" },
       { title: "Dialog", path: "/components/dialog", component: DialogDoc },
@@ -103,6 +106,7 @@ export const docSections: DocSection[] = [
       { title: "Dropdown Menu", path: "/components/dropdown-menu", component: DropdownMenuDoc },
       { title: "Empty State", path: "/components/empty-state", component: EmptyStateDoc },
       { title: "Field", path: "/components/field", component: FieldDoc, badge: "Updated" },
+      { title: "Fieldset", path: "/components/fieldset", component: FieldsetDoc, badge: "New" },
       { title: "Form", path: "/components/form", component: FormDoc, badge: "New" },
       { title: "Input", path: "/components/input", component: InputDoc },
       { title: "Input OTP", path: "/components/input-otp", component: InputOTPDoc },

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Field as BaseField, Fieldset as BaseFieldset } from "@base-ui/react";
+import { Field as BaseField } from "@base-ui/react";
 import { cn } from "@/lib/utils";
 
 const Field = BaseField.Root;
@@ -59,22 +59,7 @@ const FieldError = React.forwardRef<
 FieldError.displayName = "FieldError";
 
 const FieldValidity = BaseField.Validity;
-const Fieldset = BaseFieldset.Root;
-
-const FieldsetLegend = React.forwardRef<
-  React.ElementRef<typeof BaseFieldset.Legend>,
-  React.ComponentPropsWithoutRef<typeof BaseFieldset.Legend>
->(({ className, ...props }, ref) => (
-  <BaseFieldset.Legend
-    ref={ref}
-    className={cn(
-      "text-sm font-semibold tracking-tight text-foreground border-b border-border pb-1.5 mb-3 w-full",
-      className
-    )}
-    {...props}
-  />
-));
-FieldsetLegend.displayName = "FieldsetLegend";
+export * from "./fieldset";
 
 export {
   Field,
@@ -83,6 +68,4 @@ export {
   FieldDescription,
   FieldError,
   FieldValidity,
-  Fieldset,
-  FieldsetLegend,
 };

@@ -34,14 +34,24 @@
      "path": "dist/components/ui/combobox.js",
      "limit": "5 kB"
    },
-   {
-     "name": "Toast Component",
-     "path": "dist/components/ui/toast.js",
-     "limit": "6 kB"
-   },
-   {
-     "name": "Design Tokens",
-     "path": "dist/tokens/index.js",
-     "limit": "2 kB"
-   }
- ]
+  {
+    "name": "Toast Component",
+    "path": "dist/components/ui/toast.js",
+    "limit": "6 kB"
+  },
+  {
+    "name": "Command Component",
+    "path": "dist/components/ui/command.js",
+    "limit": "5 kB"
+  },
+  {
+    "name": "Fieldset Component",
+    "path": "dist/components/ui/fieldset.js",
+    "limit": "2 kB"
+  },
+  {
+    "name": "Design Tokens",
+    "path": "dist/tokens/index.js",
+    "limit": "2 kB"
+  }
+]

@@ -19,10 +19,11 @@
  /**
   * Wait for web fonts and main layout to stabilize before snapshot
   */
- export async function waitForPageReady(page: Page) {
-   await page.waitForLoadState("domcontentloaded");
-   await page.evaluate(async () => {
-     await document.fonts?.ready;
-   });
+export async function waitForPageReady(page: Page) {
+  await page.waitForLoadState("domcontentloaded");
+  await page.waitForSelector("article, main, section", { timeout: 15000 });
+  await page.evaluate(async () => {
+    await document.fonts?.ready;
+  });
    await page.waitForTimeout(200);
  }
