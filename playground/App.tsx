@@ -286,7 +286,7 @@ import { Button } from "@/components/ui/button";
 export function SecurityModal() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <Button variant="primary">Authorize Key</Button>
       </DialogTrigger>
       <DialogPopup>
@@ -301,7 +301,7 @@ export function SecurityModal() {
           <input className="w-full h-9 rounded-lg border border-border bg-input px-3 text-xs" defaultValue="prod_sec_key_2026" />
         </div>
         <DialogFooter>
-          <DialogClose asChild>
+          <DialogClose>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button variant="primary">Confirm Provisioning</Button>
@@ -433,8 +433,9 @@ export function NotificationTrigger() {
       {/* Precision Top Navbar */}
       <header className="h-12 border-b border-border bg-card/95 backdrop-blur-md flex items-center justify-between px-4 z-30 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="h-6 w-6 rounded-md bg-primary text-primary-foreground flex items-center justify-center font-mono font-bold text-xs shadow-xs">
-            G
+          <div className="h-6 w-6 flex items-center justify-center shrink-0">
+            <img src="/logo.png" alt="GalaUI" className="w-6 h-6 dark:hidden object-contain" />
+            <img src="/logo-white.png" alt="GalaUI" className="w-6 h-6 hidden dark:block object-contain" />
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-xs tracking-tight text-foreground">GalaUI Workbench</span>

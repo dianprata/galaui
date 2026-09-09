@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { Sidebar } from "./Sidebar";
+import { Logo } from "./Logo";
 import { TableOfContents, MobileTableOfContents } from "./TableOfContents";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchDialog } from "./SearchDialog";
@@ -52,11 +53,8 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </Button>
 
-            <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-foreground hover:opacity-90">
-              <div className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black text-xs shadow-xs">
-                G
-              </div>
-              <span className="text-base font-semibold">GalaUI</span>
+            <Link href="/" className="flex items-center gap-1 font-bold tracking-tight text-foreground hover:opacity-90">
+              <Logo withText size={26} />
             </Link>
 
             <Link href="/getting-started/changelog" className="transition-opacity hover:opacity-80" title="View Changelog">
@@ -94,16 +92,6 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
             >
               <Search className="w-4 h-4" />
             </Button>
-
-            <a
-              href="https://www.npmjs.com/package/@galaui/react"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground px-2.5 py-1.5 rounded-lg hover:bg-muted transition-colors"
-            >
-              <span>npm</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
 
             <a
               href="https://github.com/dianprata/galaui"

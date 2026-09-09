@@ -34,6 +34,27 @@ const DEFAULT_DESCRIPTIONS = {
   autoFocus: "Automatically focus the element when mounted.",
   multiple: "Whether multiple options or panels can be selected simultaneously.",
   orientation: "Layout orientation of the component (horizontal or vertical)."
+  ,mode: "Selection mode of the calendar ('single', 'range', or 'multiple').",
+  selected: "The currently selected date, date range, or array of dates.",
+  onSelect: "Callback fired when a date or date range selection is made.",
+  month: "Controlled month to display in the calendar view.",
+  defaultMonth: "Initial month displayed when uncontrolled.",
+  onMonthChange: "Callback fired when the visible month changes.",
+  numberOfMonths: "Number of months displayed side-by-side.",
+  minDate: "Minimum selectable date constraint.",
+  maxDate: "Maximum selectable date constraint.",
+  weekStartsOn: "Day of the week to start on (0 = Sunday, 1 = Monday).",
+  locale: "BCP 47 language tag for date and weekday localization.",
+  showOutsideDays: "Whether to render days belonging to adjacent months.",
+  fixedWeeks: "Whether to always render a 6-week (42-day) grid to prevent height jumps.",
+  clearable: "Whether to show a clear button when a date is selected.",
+  closeOnSelect: "Whether to automatically close the popover upon selecting a date.",
+  calendarProps: "Additional props passed directly to the underlying Calendar component.",
+  buttonVariant: "Visual button variant for the date picker trigger.",
+  buttonSize: "Button size preset for the date picker trigger.",
+  format: "Custom date formatting function.",
+  formatRange: "Custom date range formatting function.",
+  presets: "Quick selection preset options for date ranges."
 };
 
 function cleanTypeString(typeStr) {
@@ -299,4 +320,3 @@ fs.writeFileSync(
 );
 
 console.log(`Successfully generated API reference for ${Object.keys(data.components).length} components across ${Object.keys(data.byFile).length} files.`);
-

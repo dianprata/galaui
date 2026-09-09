@@ -1,4 +1,5 @@
 import { Router, Route, Switch, Redirect, Link } from "wouter";
+import LandingPage from "./LandingPage";
 import { DocsLayout } from "./components/DocsLayout";
 import { allRoutes } from "./routes";
 import { MDXProvider } from "@mdx-js/react";
@@ -81,12 +82,12 @@ export default function App() {
     <ToastProvider>
       <ToastViewport />
     <Router>
-      <DocsLayout>
-        <MDXProvider components={mdxComponents}>
-          <Switch>
-            <Route path="/">
-              <Redirect to="/getting-started/introduction" />
-            </Route>
+      <Switch>
+        <Route path="/" component={LandingPage} />
+        <Route>
+          <DocsLayout>
+            <MDXProvider components={mdxComponents}>
+              <Switch>
 
             {allRoutes.map((route) => {
               const Component = route.component;
@@ -112,9 +113,11 @@ export default function App() {
                 </Link>
               </div>
             </Route>
-          </Switch>
-        </MDXProvider>
-      </DocsLayout>
+              </Switch>
+            </MDXProvider>
+          </DocsLayout>
+        </Route>
+      </Switch>
     </Router>
     </ToastProvider>
   );
