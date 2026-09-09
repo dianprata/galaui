@@ -60,12 +60,12 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
               >
                 <div className="flex items-center gap-2.5">
                   <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <span className="font-medium text-sm">{item.title}</span>
+                  <span>{item.title}</span>
                   {item.badge && (
                     <Badge
                       variant="secondary"
                       size="xs"
-                      className="text-[9px] h-3.5 px-1 group-data-[selected=true]:bg-primary-foreground/20 group-data-[selected=true]:text-primary-foreground group-data-[selected=true]:border-primary-foreground/30"
+                      className="text-[9px] h-3.5 px-1"
                     >
                       {item.badge}
                     </Badge>
@@ -88,12 +88,12 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
               >
                 <div className="flex items-center gap-2.5">
                   <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <span className="font-medium text-sm">{item.title}</span>
+                  <span>{item.title}</span>
                   {item.badge && (
                     <Badge
                       variant={item.badge.toLowerCase() === "new" ? "default" : "secondary"}
                       size="xs"
-                      className="text-[9px] h-3.5 px-1 group-data-[selected=true]:bg-primary-foreground/20 group-data-[selected=true]:text-primary-foreground group-data-[selected=true]:border-primary-foreground/30"
+                      className="text-[9px] h-3.5 px-1"
                     >
                       {item.badge}
                     </Badge>
@@ -116,7 +116,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
               >
                 <div className="flex items-center gap-2.5">
                   <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <span className="font-medium text-sm">{item.title}</span>
+                  <span>{item.title}</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
@@ -142,4 +142,3 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
     </CommandDialog>
   );
 }
-
