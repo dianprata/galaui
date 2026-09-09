@@ -1,6 +1,10 @@
 import "@testing-library/jest-dom/vitest";
+import "vitest-axe/extend-expect";
 import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import { afterEach, vi, expect } from "vitest";
+import * as axeMatchers from "vitest-axe/matchers";
+
+expect.extend(axeMatchers);
 
 afterEach(() => {
   cleanup();
@@ -17,21 +21,13 @@ if (typeof window !== "undefined") {
 
   window.matchMedia =
     window.matchMedia ||
-    vi.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: vi.fn(),
-      removeListener: vi.fn(),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
+    vi.fn().mockImplementation((_query) => ({
+      matches: false
     }));
 
   if (!Element.prototype.scrollIntoView) {
     Element.prototype.scrollIntoView = vi.fn();
   }
-
   if (!Element.prototype.hasPointerCapture) {
     Element.prototype.hasPointerCapture = () => false;
   }
@@ -41,4 +37,5 @@ if (typeof window !== "undefined") {
   if (!Element.prototype.releasePointerCapture) {
     Element.prototype.releasePointerCapture = () => {};
   }
+  HTMLCanvasElement.prototype.getContext = () => null;
 }
