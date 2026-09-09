@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Toast as BaseToast } from "@base-ui/react";
-import { X, CheckCircle, Warning, XCircle, Info, CircleNotch } from "@phosphor-icons/react";
+import { X, CheckCircle2, AlertTriangle, AlertCircle, Info, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const defaultToastManager = BaseToast.createToastManager();
@@ -140,34 +140,19 @@ const ToastViewport = React.forwardRef<
             <Toast key={t.id} toast={t} variant={v} stacked={stacked}>
               <div className="flex items-start gap-2.5 w-full">
                 {v === "loading" && (
-                  <CircleNotch
-                    weight="bold"
-                    className="w-4 h-4 text-primary animate-spin shrink-0 mt-0.5"
-                  />
+                  <Loader2 className="w-4 h-4 text-primary animate-spin shrink-0 mt-0.5" />
                 )}
                 {v === "success" && (
-                  <CheckCircle
-                    weight="bold"
-                    className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
-                  />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                 )}
                 {v === "warning" && (
-                  <Warning
-                    weight="bold"
-                    className="w-4 h-4 text-amber-500 shrink-0 mt-0.5"
-                  />
+                  <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                 )}
                 {(v === "destructive" || rawVariant === "error") && (
-                  <XCircle
-                    weight="bold"
-                    className="w-4 h-4 text-destructive-500 shrink-0 mt-0.5"
-                  />
+                  <AlertCircle className="w-4 h-4 text-destructive-500 shrink-0 mt-0.5" />
                 )}
                 {v === "info" && (
-                  <Info
-                    weight="bold"
-                    className="w-4 h-4 text-sky-500 shrink-0 mt-0.5"
-                  />
+                  <Info className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
                 )}
                 <div className="flex-1 space-y-1 min-w-0">
                   {t.title && <ToastTitle>{t.title}</ToastTitle>}

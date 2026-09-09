@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Checkbox as BaseCheckbox } from "@base-ui/react";
-import { Check } from "@phosphor-icons/react";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Checkbox = React.forwardRef<
@@ -16,7 +16,7 @@ const Checkbox = React.forwardRef<
     {...props}
   >
     <BaseCheckbox.Indicator className="flex items-center justify-center text-current transition-all duration-150 ease-out data-unchecked:scale-0 data-unchecked:opacity-0 data-checked:scale-100 data-checked:opacity-100">
-      <Check weight="bold" className="h-3 w-3" />
+      <Check className="h-3 w-3 stroke-[3]" />
     </BaseCheckbox.Indicator>
   </BaseCheckbox.Root>
 ));
