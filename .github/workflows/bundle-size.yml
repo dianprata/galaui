@@ -1,36 +1,36 @@
- name: Bundle Size Tracker
- 
- on:
-   pull_request:
-     branches: [main, develop]
-   push:
-     branches: [main, develop]
- 
- concurrency:
-   group: bundle-size-${{ github.ref }}
-   cancel-in-progress: true
- 
- jobs:
-   size:
-     name: Monitor Subpath Bundle Sizes
-     runs-on: ubuntu-latest
-     permissions:
-       contents: read
-       pull-requests: write
- 
-     steps:
-       - name: Checkout repository
-         uses: actions/checkout@v4
- 
-       - name: Setup Node.js
-         uses: actions/setup-node@v4
-         with:
-           node-version: 22
-           cache: "npm"
- 
-       - name: Install dependencies
-         run: npm ci
- 
+name: Bundle Size Tracker
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+concurrency:
+  group: bundle-size-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  size:
+    name: Monitor Subpath Bundle Sizes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build library
         run: npm run build:lib
 
@@ -80,3 +80,4 @@
                 body: body,
               });
             }
+
