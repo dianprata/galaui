@@ -133,27 +133,27 @@ import {
 } from "@/index";
 
 import {
-  Sparkle,
-  WarningCircle,
-  CheckCircle,
+  Sparkles,
+  AlertCircle,
+  CheckCircle2,
   Info,
   XCircle,
-  BellRinging,
-  Sidebar,
+  BellRing,
+  PanelLeft,
   Hash,
   Key,
-  TextAlignCenter,
-  TextAlignLeft,
-  TextAlignRight,
-  TextAlignJustify,
-  CaretDown,
-  CaretRight,
-  Warning,
-  FolderSimplePlus,
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  AlignJustify,
+  ChevronDown,
+  ChevronRight,
+  AlertTriangle,
+  FolderPlus,
   Plus,
   Copy,
-  Trash,
-} from "@phosphor-icons/react";
+  Trash2,
+} from "lucide-react";
 
 interface ShowcaseProps {
   selectedComp: string;
@@ -213,16 +213,16 @@ function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
   return (
     <div className="flex flex-wrap gap-2 justify-center items-center">
       <Button variant="primary" size="sm" onClick={() => handleCreate()}>
-        <BellRinging weight="bold" className="w-4 h-4 mr-1.5" /> Dispatch Toast
+        <BellRing className="w-4 h-4 mr-1.5" /> Dispatch Toast
       </Button>
       <Button variant="outline" size="sm" onClick={() => handleCreate("success")}>
-        <CheckCircle weight="bold" className="w-4 h-4 mr-1.5 text-emerald-500" /> Success
+        <CheckCircle2 className="w-4 h-4 mr-1.5 text-emerald-500" /> Success
       </Button>
       <Button variant="outline" size="sm" onClick={() => handleCreate("warning")}>
-        <Warning weight="bold" className="w-4 h-4 mr-1.5 text-amber-500" /> Warning
+        <AlertTriangle className="w-4 h-4 mr-1.5 text-amber-500" /> Warning
       </Button>
       <Button variant="destructive" size="sm" onClick={() => handleCreate("destructive")}>
-        <XCircle weight="bold" className="w-4 h-4 mr-1.5" /> Destructive
+        <XCircle className="w-4 h-4 mr-1.5" /> Destructive
       </Button>
       <Button variant="outline" size="sm" onClick={() => handleCreate("loading")}>
         Loading
@@ -291,7 +291,7 @@ export function ShowcaseNewComponents({
         return (
           <div className="w-full max-w-md space-y-3">
             <Alert variant={btnVariant} className={cn(customCn)}>
-              <Info weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+              <Info className="w-4 h-4 shrink-0 mt-0.5" />
               <div>
                 <AlertTitle>{btnLabel || "Production Cluster Ready"}</AlertTitle>
                 <AlertDescription>
@@ -383,7 +383,7 @@ export function ShowcaseNewComponents({
         return (
           <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
             <DrawerTrigger render={<Button variant="primary" />}>
-              <Sidebar weight="bold" className="w-4 h-4 mr-1.5" /> Open Drawer (Sheet)
+              <PanelLeft className="w-4 h-4 mr-1.5" /> Open Drawer (Sheet)
             </DrawerTrigger>
             <DrawerPopup side="right">
               <DrawerHeader>
@@ -472,7 +472,7 @@ export function ShowcaseNewComponents({
               disabled={isDisabled}
               className={cn(customCn)}
             >
-              <Sparkle weight={togglePressed ? "fill" : "bold"} className="w-4 h-4 mr-1.5" />
+              <Sparkles weight={togglePressed ? "fill" : "bold"} className="w-4 h-4 mr-1.5" />
               {btnLabel || "Bookmark Token"}
             </Toggle>
             <span className="text-[10px] font-mono text-muted-foreground">
@@ -492,16 +492,16 @@ export function ShowcaseNewComponents({
               className={cn(customCn)}
             >
               <ToggleGroupItem value="left" aria-label="Align Left">
-                <TextAlignLeft weight="bold" className="w-3.5 h-3.5" />
+                <AlignLeft className="w-3.5 h-3.5" />
               </ToggleGroupItem>
               <ToggleGroupItem value="center" aria-label="Align Center">
-                <TextAlignCenter weight="bold" className="w-3.5 h-3.5" />
+                <AlignCenter className="w-3.5 h-3.5" />
               </ToggleGroupItem>
               <ToggleGroupItem value="right" aria-label="Align Right">
-                <TextAlignRight weight="bold" className="w-3.5 h-3.5" />
+                <AlignRight className="w-3.5 h-3.5" />
               </ToggleGroupItem>
               <ToggleGroupItem value="justify" aria-label="Align Justify">
-                <TextAlignJustify weight="bold" className="w-3.5 h-3.5" />
+                <AlignJustify className="w-3.5 h-3.5" />
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -535,7 +535,7 @@ export function ShowcaseNewComponents({
               <CollapsibleTrigger className="p-3.5 text-xs text-foreground hover:bg-muted transition-colors">
                 <span className="font-semibold">{btnLabel || "Advanced Token Metadata"}</span>
                 <CaretRight
-                  weight="bold"
+                 
                   className={cn(
                     "w-3.5 h-3.5 transition-transform duration-200 text-muted-foreground",
                     collapsibleOpen && "rotate-90 text-foreground"
@@ -557,7 +557,7 @@ export function ShowcaseNewComponents({
         return (
           <AlertDialog open={alertDlgOpen} onOpenChange={setAlertDlgOpen}>
             <AlertDialogTrigger render={<Button variant="destructive" />}>
-              <Trash weight="bold" className="w-4 h-4 mr-1.5" /> Purge Deployment
+              <Trash2 className="w-4 h-4 mr-1.5" /> Purge Deployment
             </AlertDialogTrigger>
             <AlertDialogPopup>
               <AlertDialogHeader>
@@ -762,13 +762,13 @@ export function ShowcaseNewComponents({
                         <Copy className="w-3.5 h-3.5 mr-2 text-muted-foreground" /> Copy Spec
                       </ContextMenuItem>
                       <ContextMenuItem onClick={() => showToast("Exported token")}>
-                        <Sparkle className="w-3.5 h-3.5 mr-2 text-primary" /> Export Token
+                        <Sparkles className="w-3.5 h-3.5 mr-2 text-primary" /> Export Token
                       </ContextMenuItem>
                     </ContextMenuGroup>
                     <ContextMenuSeparator />
                     <ContextMenuGroup>
                       <ContextMenuItem className="text-destructive" onClick={() => showToast("Deleted item")}>
-                        <Trash className="w-3.5 h-3.5 mr-2 text-destructive" /> Delete Specimen
+                        <Trash2 className="w-3.5 h-3.5 mr-2 text-destructive" /> Delete Specimen
                       </ContextMenuItem>
                     </ContextMenuGroup>
                   </ContextMenuPopup>
@@ -903,7 +903,7 @@ export function ShowcaseNewComponents({
         return (
           <EmptyState className="w-full max-w-md">
             <EmptyStateIcon>
-              <FolderSimplePlus weight="bold" />
+              <FolderPlus />
             </EmptyStateIcon>
             <EmptyStateTitle>{btnLabel || "No Custom Tokens Found"}</EmptyStateTitle>
             <EmptyStateDescription>
@@ -912,7 +912,7 @@ export function ShowcaseNewComponents({
             <EmptyStateActions>
               <Button variant="outline" size="sm">Documentation</Button>
               <Button variant="primary" size="sm" onClick={() => showToast("Initiated token sync")}>
-                <Plus weight="bold" className="w-3.5 h-3.5 mr-1" /> Add Variable
+                <Plus className="w-3.5 h-3.5 mr-1" /> Add Variable
               </Button>
             </EmptyStateActions>
           </EmptyState>
@@ -929,35 +929,35 @@ export function ShowcaseNewComponents({
       return (
         <div className="space-y-3 max-w-xl">
           <Alert variant="default">
-            <Info weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+            <Info className="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <AlertTitle>Default Alert</AlertTitle>
               <AlertDescription>Neutral surface background with card border.</AlertDescription>
             </div>
           </Alert>
           <Alert variant="info">
-            <Info weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+            <Info className="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <AlertTitle>Information Alert</AlertTitle>
               <AlertDescription>Electric cobalt accent for informative notes.</AlertDescription>
             </div>
           </Alert>
           <Alert variant="success">
-            <CheckCircle weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <AlertTitle>Success Alert</AlertTitle>
               <AlertDescription>Emerald tint indicating confirmed completion.</AlertDescription>
             </div>
           </Alert>
           <Alert variant="warning">
-            <Warning weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+            <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <AlertTitle>Warning Alert</AlertTitle>
               <AlertDescription>Amber highlight for cautionary conditions.</AlertDescription>
             </div>
           </Alert>
           <Alert variant="destructive">
-            <XCircle weight="bold" className="w-4 h-4 shrink-0 mt-0.5" />
+            <XCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <div>
               <AlertTitle>Destructive Alert</AlertTitle>
               <AlertDescription>Red status tint for critical failure states.</AlertDescription>

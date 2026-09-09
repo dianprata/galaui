@@ -36,9 +36,7 @@ export default defineConfig({
           id.startsWith("@base-ui/react/") ||
           id === "class-variance-authority" ||
           id === "cn" ||
-          id === "lucide-react" ||
-          id === "@phosphor-icons/react" ||
-          id.startsWith("@phosphor-icons/react/")
+          id === "lucide-react"
         );
       },
       output: [
