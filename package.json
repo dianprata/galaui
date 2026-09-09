@@ -1,6 +1,6 @@
 {
   "name": "@galaui/react",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Modern Base UI & Tailwind CSS v4 Component Library and Design Tokens",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
