@@ -56,18 +56,22 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="flex items-center justify-between"
+                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
                   <span className="font-medium text-sm">{item.title}</span>
                   {item.badge && (
-                    <Badge variant="secondary" size="xs" className="text-[9px] h-3.5 px-1">
+                    <Badge
+                      variant="secondary"
+                      size="xs"
+                      className="text-[9px] h-3.5 px-1 group-data-[selected=true]:bg-primary-foreground/20 group-data-[selected=true]:text-primary-foreground group-data-[selected=true]:border-primary-foreground/30"
+                    >
                       {item.badge}
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -80,22 +84,22 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="flex items-center justify-between"
+                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
                   <span className="font-medium text-sm">{item.title}</span>
                   {item.badge && (
                     <Badge
                       variant={item.badge.toLowerCase() === "new" ? "default" : "secondary"}
                       size="xs"
-                      className="text-[9px] h-3.5 px-1"
+                      className="text-[9px] h-3.5 px-1 group-data-[selected=true]:bg-primary-foreground/20 group-data-[selected=true]:text-primary-foreground group-data-[selected=true]:border-primary-foreground/30"
                     >
                       {item.badge}
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -108,13 +112,13 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="flex items-center justify-between"
+                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
                   <span className="font-medium text-sm">{item.title}</span>
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
               </CommandItem>
             ))}
           </CommandGroup>

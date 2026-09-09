@@ -431,24 +431,29 @@
          aria-disabled={disabled}
          data-selected={isSelected}
          data-disabled={disabled}
-         onClick={() => {
-           if (!disabled) {
-             selectItem(id);
-           }
-         }}
-         onPointerMove={() => {
-           if (!disabled && activeId !== id) {
-             setActiveId(id);
-           }
-         }}
-         className={cn(
-           "relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors",
-           isSelected
-             ? "bg-accent text-accent-foreground font-medium"
-             : "text-foreground hover:bg-muted/70",
-           disabled && "pointer-events-none opacity-50",
-           className
-         )}
+        onClick={() => {
+          if (!disabled) {
+            selectItem(id);
+          }
+        }}
+        onMouseEnter={() => {
+          if (!disabled && activeId !== id) {
+            setActiveId(id);
+          }
+        }}
+        onPointerMove={() => {
+          if (!disabled && activeId !== id) {
+            setActiveId(id);
+          }
+        }}
+        className={cn(
+          "relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors duration-100 hover:bg-muted/80",
+          isSelected
+            ? "bg-muted text-foreground font-medium shadow-2xs"
+            : "text-foreground",
+          disabled && "pointer-events-none opacity-50",
+          className
+        )}
          {...props}
        >
          {children}
