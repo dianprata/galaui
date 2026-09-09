@@ -29,13 +29,8 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
   const gettingStartedItems = allRoutes.filter((item) =>
     item.path.startsWith("/getting-started")
   );
-  const componentItems = allRoutes.filter(
-    (item) => item.path.startsWith("/components") && item.path !== "/components"
-  );
-  const otherItems = allRoutes.filter(
-    (item) =>
-      !item.path.startsWith("/getting-started") &&
-      (!item.path.startsWith("/components") || item.path === "/components")
+  const componentItems = allRoutes.filter((item) =>
+    item.path.startsWith("/components")
   );
 
   return (
@@ -71,7 +66,6 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -99,26 +93,6 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        )}
-
-        {otherItems.length > 0 && (
-          <CommandGroup heading="General">
-            {otherItems.map((item) => (
-              <CommandItem
-                key={item.path}
-                value={`${item.title} ${item.path}`}
-                onSelect={() => handleSelect(item.path)}
-                className="flex items-center justify-between"
-              >
-                <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <span>{item.title}</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -142,3 +116,4 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
     </CommandDialog>
   );
 }
+
