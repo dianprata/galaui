@@ -117,4 +117,25 @@ describe("Command", () => {
     expect(firstItem).toHaveClass("text-primary-foreground");
     expect(firstItem).toHaveAttribute("data-selected", "true");
   });
+
+  it("supports defaultActiveId to pre-select item matching specific id", () => {
+    render(
+      <Command defaultActiveId="/components/calendar">
+        <CommandInput placeholder="Search..." />
+        <CommandList>
+          <CommandItem id="/components/button">Button</CommandItem>
+          <CommandItem id="/components/calendar">Calendar</CommandItem>
+          <CommandItem id="/components/dialog">Dialog</CommandItem>
+        </CommandList>
+      </Command>
+    );
+
+    const calendarItem = screen.getByText("Calendar").closest("[role='option']");
+    expect(calendarItem).toHaveClass("bg-primary");
+    expect(calendarItem).toHaveAttribute("data-selected", "true");
+
+    const buttonItem = screen.getByText("Button").closest("[role='option']");
+    expect(buttonItem).not.toHaveClass("bg-primary");
+    expect(buttonItem).toHaveAttribute("data-selected", "false");
+  });
 });

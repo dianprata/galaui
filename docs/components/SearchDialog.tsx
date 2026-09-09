@@ -1,6 +1,6 @@
 import { useLocation } from "wouter";
 import { allRoutes } from "../routes";
-import { ChevronRight, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import {
   Badge,
   CommandDialog,
@@ -19,7 +19,7 @@ interface SearchDialogProps {
 }
 
 export function SearchDialog({ open, onClose }: SearchDialogProps) {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
 
   const handleSelect = (path: string) => {
     navigate(path);
@@ -37,6 +37,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
     <CommandDialog
       open={open}
       onOpenChange={(isOpen) => !isOpen && onClose()}
+      defaultActiveId={location}
       title="Search GalaUI Documentation"
       description="Quickly navigate components, tokens, and guides"
     >
@@ -48,6 +49,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           <CommandGroup heading="Getting Started">
             {gettingStartedItems.map((item) => (
               <CommandItem
+                id={item.path}
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
@@ -75,6 +77,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           <CommandGroup heading="Components">
             {componentItems.map((item) => (
               <CommandItem
+                id={item.path}
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
@@ -116,4 +119,3 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
     </CommandDialog>
   );
 }
-

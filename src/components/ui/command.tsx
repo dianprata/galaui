@@ -38,6 +38,7 @@ export interface CommandProps extends React.HTMLAttributes<HTMLDivElement> {
   onSearchChange?: (search: string) => void;
   filter?: (value: string, search: string) => boolean;
   loop?: boolean;
+  defaultActiveId?: string;
 }
 
 const defaultFilter = (value: string, search: string) => {
@@ -55,6 +56,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
       filter = defaultFilter,
       loop = true,
       onKeyDown,
+      defaultActiveId,
       ...props
     },
     ref
@@ -63,9 +65,16 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     const isControlled = controlledSearch !== undefined;
     const search = isControlled ? controlledSearch : uncontrolledSearch;
 
-    const [activeId, setActiveIdState] = React.useState<string | null>(null);
+    const [activeId, setActiveIdState] = React.useState<string | null>(defaultActiveId ?? null);
     const [items, setItems] = React.useState<CommandItemRegistration[]>([]);
     const isKeyboardNavRef = React.useRef(false);
+
+    React.useEffect(() => {
+      if (defaultActiveId) {
+        setActiveIdState(defaultActiveId);
+        isKeyboardNavRef.current = true;
+      }
+    }, [defaultActiveId]);
 
     const setActiveId = React.useCallback((id: string | null, isKeyboard = false) => {
       isKeyboardNavRef.current = isKeyboard;
@@ -105,17 +114,25 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>(
     // Keep active item in sync when search results change
     React.useEffect(() => {
       if (visibleItems.length > 0) {
-        const isCurrentActiveVisible = visibleItems.some(
-          (item) => item.id === activeId && !item.disabled
-        );
-        if (!isCurrentActiveVisible) {
+        const targetActiveId =
+          activeId && visibleItems.some((i) => i.id === activeId && !i.disabled)
+            ? activeId
+            : defaultActiveId && visibleItems.some((i) => i.id === defaultActiveId && !i.disabled)
+            ? defaultActiveId
+            : null;
+
+        if (targetActiveId) {
+          if (activeId !== targetActiveId) {
+            setActiveId(targetActiveId, true);
+          }
+        } else {
           const firstEnabled = visibleItems.find((item) => !item.disabled);
           setActiveId(firstEnabled ? firstEnabled.id : null, false);
         }
-      } else {
+      } else if (items.length > 0) {
         setActiveId(null, false);
       }
-    }, [visibleItems, activeId, setActiveId]);
+    }, [visibleItems, items.length, activeId, defaultActiveId, setActiveId]);
 
     const selectItem = React.useCallback(
       (id: string) => {
@@ -213,6 +230,7 @@ export interface CommandDialogProps {
   description?: string;
   filter?: (value: string, search: string) => boolean;
   loop?: boolean;
+  defaultActiveId?: string;
 }
 
 const CommandDialog = ({
@@ -222,6 +240,7 @@ const CommandDialog = ({
   className,
   title = "Command Palette",
   description = "Search for actions and commands",
+  defaultActiveId,
   ...props
 }: CommandDialogProps) => {
   return (
@@ -237,6 +256,7 @@ const CommandDialog = ({
         <DialogDescription className="sr-only">{description}</DialogDescription>
         <Command
           className="[&_[data-command-group-heading]]:px-2 [&_[data-command-group-heading]]:font-medium [&_[data-command-group-heading]]:text-muted-foreground [&_[data-command-group]]:px-2"
+          defaultActiveId={defaultActiveId}
           {...props}
         >
           {children}
@@ -385,8 +405,9 @@ export interface CommandItemProps
 }
 
 const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
-  ({ className, value, disabled = false, onSelect, children, ...props }, ref) => {
-    const id = React.useId();
+  ({ id: externalId, className, value, disabled = false, onSelect, children, ...props }, ref) => {
+    const autoId = React.useId();
+    const id = externalId || autoId;
     const itemRef = React.useRef<HTMLDivElement>(null);
     const combinedRef = (node: HTMLDivElement | null) => {
       (itemRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
@@ -457,7 +478,7 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
         className={cn(
           "group relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs outline-none transition-colors duration-75",
           isSelected
-            ? "bg-primary text-primary-foreground font-medium shadow-xs hover:bg-primary hover:text-primary-foreground [&_svg]:text-primary-foreground [&_.text-muted-foreground]:text-primary-foreground/80"
+            ? "bg-primary text-primary-foreground shadow-xs hover:bg-primary hover:text-primary-foreground [&_svg]:text-primary-foreground [&_.text-muted-foreground]:text-primary-foreground/80"
             : "text-foreground hover:bg-primary/10 hover:text-primary",
           disabled && "pointer-events-none opacity-50",
           className
@@ -498,4 +519,3 @@ export {
   CommandShortcut,
   CommandSeparator,
 };
-
