@@ -98,6 +98,7 @@
     "vite-plugin-dts": "^5.1.0",
     "vite-plugin-singlefile": "^2.3.3",
     "vitest": "^5.0.0",
+    "vitest-axe": "^0.1.0",
     "wouter": "^3.10.0",
     "wrangler": "^4.129.0"
   },

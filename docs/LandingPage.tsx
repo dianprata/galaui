@@ -591,10 +591,10 @@ export function ReleaseModal() {
                           <div className="space-y-1.5">
                             <span className="text-xs font-medium text-foreground">Semantic Badges</span>
                             <div className="flex flex-wrap gap-1.5">
-                              <Badge variant="default" className="transition-transform hover:scale-105">Production</Badge>
-                              <Badge variant="outline" className="transition-transform hover:scale-105">Preview</Badge>
-                              <Badge variant="destructive" className="transition-transform hover:scale-105">Error 500</Badge>
-                              <Badge variant="secondary" className="transition-transform hover:scale-105">Ready</Badge>
+                              <Badge variant="default">Production</Badge>
+                              <Badge variant="outline">Preview</Badge>
+                              <Badge variant="destructive">Error 500</Badge>
+                              <Badge variant="secondary">Ready</Badge>
                             </div>
                           </div>
 
@@ -622,7 +622,7 @@ export function ReleaseModal() {
                   {/* Showcase Footer Note */}
                   <CardFooter className="py-2.5 px-4 bg-muted/30 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground font-mono">
                     <span>Interactive Preview</span>
-                    <Link href="/components/button" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
+                    <Link href="/components" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
                       <span>View all 45+ components</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
