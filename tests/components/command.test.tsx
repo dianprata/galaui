@@ -99,5 +99,22 @@ describe("Command", () => {
 
     expect(handleSelect).toHaveBeenCalledTimes(1);
   });
-});
 
+  it("applies primary active styling when selected", () => {
+    render(
+      <Command>
+        <CommandInput placeholder="Search..." />
+        <CommandList>
+          <CommandItem>First Option</CommandItem>
+          <CommandItem>Second Option</CommandItem>
+        </CommandList>
+      </Command>
+    );
+
+    // By default the first enabled item is active/selected
+    const firstItem = screen.getByText("First Option").closest("[role='option']");
+    expect(firstItem).toHaveClass("bg-primary");
+    expect(firstItem).toHaveClass("text-primary-foreground");
+    expect(firstItem).toHaveAttribute("data-selected", "true");
+  });
+});

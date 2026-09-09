@@ -56,10 +56,10 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
+                className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
                   <span className="font-medium text-sm">{item.title}</span>
                   {item.badge && (
                     <Badge
@@ -71,7 +71,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -84,10 +84,10 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
+                className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
                   <span className="font-medium text-sm">{item.title}</span>
                   {item.badge && (
                     <Badge
@@ -99,7 +99,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     </Badge>
                   )}
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
             ))}
           </CommandGroup>
@@ -112,13 +112,13 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                 key={item.path}
                 value={`${item.title} ${item.path}`}
                 onSelect={() => handleSelect(item.path)}
-                className="group flex items-center justify-between data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:shadow-xs transition-colors duration-100"
+                className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-muted-foreground group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                  <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
                   <span className="font-medium text-sm">{item.title}</span>
                 </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground/50 group-data-[selected=true]:text-primary-foreground shrink-0 transition-colors" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
               </CommandItem>
             ))}
           </CommandGroup>

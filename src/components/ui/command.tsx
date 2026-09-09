@@ -447,9 +447,9 @@
           }
         }}
         className={cn(
-          "relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors duration-100 hover:bg-muted/80",
+          "group relative flex cursor-pointer select-none items-center rounded-lg px-2.5 py-2 text-xs outline-none transition-colors duration-100 hover:bg-muted/80",
           isSelected
-            ? "bg-muted text-foreground font-medium shadow-2xs"
+            ? "bg-primary text-primary-foreground font-medium shadow-xs [&_svg]:text-primary-foreground [&_.text-muted-foreground]:text-primary-foreground/80"
             : "text-foreground",
           disabled && "pointer-events-none opacity-50",
           className
@@ -470,7 +470,7 @@
    return (
      <span
        className={cn(
-         "ml-auto text-xs tracking-widest text-muted-foreground",
+         "ml-auto text-xs tracking-widest text-muted-foreground group-data-[selected=true]:text-primary-foreground/80 transition-colors",
          className
        )}
        {...props}
