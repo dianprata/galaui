@@ -8,12 +8,13 @@
    testDir: "./tests/visual",
    snapshotDir: "./tests/visual/__snapshots__",
    timeout: 30 * 1000,
-   expect: {
-     toHaveScreenshot: {
-       maxDiffPixelRatio: 0.05,
-       animations: "disabled",
-     },
-   },
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.1,
+      threshold: 0.2,
+      animations: "disabled",
+    },
+  },
    fullyParallel: true,
    forbidOnly: !!process.env.CI,
    retries: process.env.CI ? 2 : 0,

@@ -1,13 +1,19 @@
  name: Visual Regression Tests
  
- on:
-   pull_request:
-     branches: [main, develop]
-   push:
-     branches: [main, develop]
- 
- concurrency:
-   group: visual-tests-${{ github.ref }}
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      update_snapshots:
+        description: 'Update baseline snapshots'
+        type: boolean
+        default: false
+
+concurrency:
+  group: visual-tests-${{ github.ref }}
    cancel-in-progress: true
  
  jobs:
@@ -28,13 +34,18 @@
        - name: Install dependencies
          run: npm ci
  
-       - name: Install Playwright Chromium
-         run: npx playwright install --with-deps chromium
- 
-       - name: Run Playwright visual regression tests
-         run: npm run test:visual
- 
-       - name: Upload visual test report on failure
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright visual regression tests
+        run: |
+          if [ "${{ github.event.inputs.update_snapshots }}" = "true" ]; then
+            npm run test:visual:update
+          else
+            npm run test:visual
+          fi
+
+      - name: Upload visual test report on failure
          if: failure()
          uses: actions/upload-artifact@v4
          with:
