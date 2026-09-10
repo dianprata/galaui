@@ -159,7 +159,7 @@ function ComponentCard({ component }: { component: ComponentItem }) {
                     ? "default"
                     : "secondary"
                 }
-                size="xs"
+                size="sm"
                 className="text-[10px] h-4 px-1.5 font-medium"
               >
                 {component.badge}
@@ -338,7 +338,7 @@ export default function ComponentsPage() {
                     >
                       {cat.title}
                     </h2>
-                    <Badge variant="outline" size="xs" className="font-mono text-[11px] font-medium h-5 px-1.5 ml-0.5">
+                    <Badge variant="outline" size="sm" className="font-mono text-[11px] font-medium h-5 px-1.5 ml-0.5">
                       {items.length}
                     </Badge>
                   </div>

@@ -1850,7 +1850,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."

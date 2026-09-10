@@ -847,12 +847,12 @@ export function NotificationTrigger() {
 
                   {selectedComp === "badge" && (
                     <div className="flex flex-wrap gap-2 items-center justify-center">
-                      <Badge variant={btnVariant as any} className={cn(customCn)}>
+                      <Badge variant={btnVariant as any} size={btnSize as any} className={cn(customCn)}>
                         {btnLabel || "Production Live"}
                       </Badge>
-                      <Badge variant="success">99.9% Uptime</Badge>
-                      <Badge variant="warning">Syncing</Badge>
-                      <Badge variant="destructive">Deprecated</Badge>
+                      <Badge variant="success" size={btnSize as any}>99.9% Uptime</Badge>
+                      <Badge variant="warning" size={btnSize as any}>Syncing</Badge>
+                      <Badge variant="destructive" size={btnSize as any}>Deprecated</Badge>
                     </div>
                   )}
 
