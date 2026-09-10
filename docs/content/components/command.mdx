@@ -1,0 +1,179 @@
+import { useState } from "react";
+import {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  Button,
+  Badge,
+  Kbd,
+} from "@/index";
+import {
+  Calculator,
+  Calendar,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
+  Search,
+  Sparkles,
+  Layers,
+  FileText,
+} from "lucide-react";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+
+# Command
+
+Fast, composable, and accessible command menu and palette with live search filtering, keyboard navigation, group headings, and shortcut badges.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Compound Component</Badge>
+  <Badge variant="default" className="font-mono text-[11px]">New</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Keyboard Accessible</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Command,\n  CommandDialog,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  CommandSeparator,\n} from "@galaui/react";'} />
+
+## Inline Command Menu
+
+An embedded command palette widget useful for dashboards, dropdown menus, and quick search drawers.
+
+<ComponentPreview
+  title="Inline Command List"
+  description="Keyboard navigable command list with search filter and action groups."
+  code={'import {\n  Command,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  CommandSeparator,\n} from "@galaui/react";\nimport { Calendar, Smile, Calculator, User, CreditCard, Settings } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md rounded-xl border border-border shadow-md">\n      <Command>\n        <CommandInput placeholder="Type a command or search..." />\n        <CommandList>\n          <CommandEmpty>No results found.</CommandEmpty>\n          <CommandGroup heading="Suggestions">\n            <CommandItem>\n              <Calendar className="mr-2 h-4 w-4" />\n              <span>Calendar</span>\n            </CommandItem>\n            <CommandItem>\n              <Smile className="mr-2 h-4 w-4" />\n              <span>Search Emoji</span>\n            </CommandItem>\n            <CommandItem>\n              <Calculator className="mr-2 h-4 w-4" />\n              <span>Calculator</span>\n            </CommandItem>\n          </CommandGroup>\n          <CommandSeparator />\n          <CommandGroup heading="Settings">\n            <CommandItem>\n              <User className="mr-2 h-4 w-4" />\n              <span>Profile</span>\n              <CommandShortcut>⌘P</CommandShortcut>\n            </CommandItem>\n            <CommandItem>\n              <CreditCard className="mr-2 h-4 w-4" />\n              <span>Billing</span>\n              <CommandShortcut>⌘B</CommandShortcut>\n            </CommandItem>\n            <CommandItem>\n              <Settings className="mr-2 h-4 w-4" />\n              <span>Settings</span>\n              <CommandShortcut>⌘S</CommandShortcut>\n            </CommandItem>\n          </CommandGroup>\n        </CommandList>\n      </Command>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md rounded-xl border border-border shadow-md bg-card">
+    <Command>
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>
+            <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Calendar</span>
+          </CommandItem>
+          <CommandItem>
+            <Smile className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Search Emoji</span>
+          </CommandItem>
+          <CommandItem>
+            <Calculator className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Calculator</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem>
+            <User className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Profile</span>
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <CreditCard className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Billing</span>
+            <CommandShortcut>⌘B</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <Settings className="mr-2 h-4 w-4 text-muted-foreground" />
+            <span>Settings</span>
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </div>
+</ComponentPreview>
+
+## Command Dialog (Palette)
+
+Trigger a global quick switcher modal using `<CommandDialog />`.
+
+<ComponentPreview
+  title="Modal Command Palette"
+  description="Accessible dialog modal with auto-focused search and keyboard shortcut."
+  code={'import { useState } from "react";\nimport {\n  CommandDialog,\n  CommandInput,\n  CommandList,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandShortcut,\n  Button,\n  Kbd,\n} from "@galaui/react";\nimport { Sparkles, Layers, FileText } from "lucide-react";\n\nexport default function Example() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div>\n      <Button\n        variant="outline"\n        className="text-sm text-muted-foreground flex items-center gap-3 px-3 py-2"\n        onClick={() => setOpen(true)}\n      >\n        <span>Search application...</span>\n        <Kbd>⌘K</Kbd>\n      </Button>\n\n      <CommandDialog open={open} onOpenChange={setOpen}>\n        <CommandInput placeholder="Type a command or search..." />\n        <CommandList>\n          <CommandEmpty>No matching commands.</CommandEmpty>\n          <CommandGroup heading="Actions">\n            <CommandItem onSelect={() => setOpen(false)}>\n              <Sparkles className="mr-2 h-4 w-4" />\n              <span>Generate Component</span>\n            </CommandItem>\n            <CommandItem onSelect={() => setOpen(false)}>\n              <Layers className="mr-2 h-4 w-4" />\n              <span>Explore Design Tokens</span>\n            </CommandItem>\n            <CommandItem onSelect={() => setOpen(false)}>\n              <FileText className="mr-2 h-4 w-4" />\n              <span>View Documentation</span>\n              <CommandShortcut>⌘D</CommandShortcut>\n            </CommandItem>\n          </CommandGroup>\n        </CommandList>\n      </CommandDialog>\n    </div>\n  );\n}'}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div>
+        <Button
+          variant="outline"
+          className="text-sm text-muted-foreground flex items-center gap-4 px-3.5 py-2 h-9"
+          onClick={() => setOpen(true)}
+        >
+          <Search className="w-3.5 h-3.5" />
+          <span>Open Command Palette...</span>
+          <Kbd className="text-[10px] ml-2">⌘K</Kbd>
+        </Button>
+
+        <CommandDialog open={open} onOpenChange={setOpen}>
+          <CommandInput placeholder="Type a command or search..." />
+          <CommandList>
+            <CommandEmpty>No matching commands.</CommandEmpty>
+            <CommandGroup heading="Quick Actions">
+              <CommandItem onSelect={() => setOpen(false)}>
+                <Sparkles className="mr-2 h-4 w-4 text-primary" />
+                <span>Generate New Component</span>
+              </CommandItem>
+              <CommandItem onSelect={() => setOpen(false)}>
+                <Layers className="mr-2 h-4 w-4 text-muted-foreground" />
+                <span>Explore Design Tokens</span>
+              </CommandItem>
+              <CommandItem onSelect={() => setOpen(false)}>
+                <FileText className="mr-2 h-4 w-4 text-muted-foreground" />
+                <span>Read Getting Started</span>
+                <CommandShortcut>⌘G</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </CommandDialog>
+      </div>
+    );
+  })()}
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference
+  component="Command"
+  description="Container and keyboard state provider for command list items."
+  props={[
+    { name: "search", type: "string", description: "Controlled search query string." },
+    { name: "onSearchChange", type: "(search: string) => void", description: "Callback when search query updates." },
+    { name: "filter", type: "(value: string, search: string) => boolean", description: "Custom filtering function." },
+    { name: "loop", type: "boolean", default: "true", description: "Whether keyboard navigation loops from bottom to top." },
+  ]}
+/>
+
+<ApiReference
+  component="CommandDialog"
+  description="Modal dialog container for Command."
+  props={[
+    { name: "open", type: "boolean", description: "Controlled visibility of dialog." },
+    { name: "onOpenChange", type: "(open: boolean) => void", description: "Callback when dialog visibility changes." },
+    { name: "title", type: "string", default: '"Command Palette"', description: "Accessible dialog title." },
+    { name: "description", type: "string", default: '"Search for actions and commands"', description: "Accessible dialog description." },
+  ]}
+/>
+
+<ApiReference
+  component="CommandItem"
+  description="Selectable command option."
+  props={[
+    { name: "value", type: "string", description: "String used for search filtering. Defaults to children text." },
+    { name: "onSelect", type: "() => void", description: "Callback executed on click or Enter key press." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disables selection and keyboard focus." },
+  ]}
+/>
+

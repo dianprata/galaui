@@ -5217,6 +5217,609 @@
         }
       ]
     },
+    "Command": {
+      "name": "Command",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "filter",
+          "type": "((value: string, search: string) => boolean)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the filter of the component."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the loop of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "onSearchChange",
+          "type": "((search: string) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the onSearchChange of the component."
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the search of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ],
+      "subcomponents": [
+        "CommandDialog",
+        "CommandInput",
+        "CommandList",
+        "CommandEmpty",
+        "CommandGroup",
+        "CommandItem",
+        "CommandShortcut",
+        "CommandSeparator"
+      ]
+    },
+    "CommandDialog": {
+      "name": "CommandDialog",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled open state for overlays, drawers, and disclosures."
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when the open state transitions."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the description of the component."
+        },
+        {
+          "name": "filter",
+          "type": "((value: string, search: string) => boolean)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the filter of the component."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the loop of the component."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the title of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": true,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandInput": {
+      "name": "CommandInput",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((search: string) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when the value changes."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "defaultValue": "false",
+          "required": false,
+          "description": "Whether the component is disabled and prevents user interaction."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Placeholder text displayed when no value is entered."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Name of the element used for form submission."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLInputElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "type",
+          "type": "HTMLInputTypeAttribute",
+          "defaultValue": null,
+          "required": false,
+          "description": "HTML button or input type attribute."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandList": {
+      "name": "CommandList",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandEmpty": {
+      "name": "CommandEmpty",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandGroup": {
+      "name": "CommandGroup",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "heading",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the heading of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandItem": {
+      "name": "CommandItem",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "defaultValue": "false",
+          "required": false,
+          "description": "Whether the component is disabled and prevents user interaction."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "onSelect",
+          "type": "(() => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when a date or date range selection is made."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandShortcut": {
+      "name": "CommandShortcut",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLSpanElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLSpanElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "CommandSeparator": {
+      "name": "CommandSeparator",
+      "file": "command.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
     "ContextMenu": {
       "name": "ContextMenu",
       "file": "context-menu.tsx",
@@ -10086,7 +10689,8 @@
         "FieldError",
         "FieldValidity",
         "Fieldset",
-        "FieldsetLegend"
+        "FieldsetLegend",
+        "FieldsetDescription"
       ]
     },
     "FieldLabel": {
@@ -10415,8 +11019,15 @@
     },
     "Fieldset": {
       "name": "Fieldset",
-      "file": "field.tsx",
+      "file": "fieldset.tsx",
       "props": [
+        {
+          "name": "variant",
+          "type": "\"default\" | \"bordered\" | \"card\" | \"plain\"",
+          "defaultValue": "\"default\"",
+          "required": false,
+          "description": "Visual appearance and hierarchy style variant."
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -10461,7 +11072,7 @@
         },
         {
           "name": "className",
-          "type": "string | ((state: FieldsetRootState) => string)",
+          "type": "string",
           "defaultValue": null,
           "required": false,
           "description": "CSS class applied to the element, or a function that\nreturns a class based on the component's state."
@@ -10487,11 +11098,15 @@
           "required": false,
           "description": "Style applied to the element, or a function that\nreturns a style object based on the component's state."
         }
+      ],
+      "subcomponents": [
+        "FieldsetLegend",
+        "FieldsetDescription"
       ]
     },
     "FieldsetLegend": {
       "name": "FieldsetLegend",
-      "file": "field.tsx",
+      "file": "fieldset.tsx",
       "props": [
         {
           "name": "id",
@@ -10523,7 +11138,7 @@
         },
         {
           "name": "className",
-          "type": "string | ((state: FieldsetLegendState) => string)",
+          "type": "string",
           "defaultValue": null,
           "required": false,
           "description": "CSS class applied to the element, or a function that\nreturns a class based on the component's state."
@@ -10548,6 +11163,61 @@
           "defaultValue": null,
           "required": false,
           "description": "Style applied to the element, or a function that\nreturns a style object based on the component's state."
+        }
+      ]
+    },
+    "FieldsetDescription": {
+      "name": "FieldsetDescription",
+      "file": "fieldset.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLParagraphElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLParagraphElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
         }
       ]
     },
@@ -23012,6 +23682,17 @@
       "ComboboxValue",
       "ComboboxCollection"
     ],
+    "command": [
+      "Command",
+      "CommandDialog",
+      "CommandInput",
+      "CommandList",
+      "CommandEmpty",
+      "CommandGroup",
+      "CommandItem",
+      "CommandShortcut",
+      "CommandSeparator"
+    ],
     "context-menu": [
       "ContextMenu",
       "ContextMenuTrigger",
@@ -23088,7 +23769,13 @@
       "FieldError",
       "FieldValidity",
       "Fieldset",
-      "FieldsetLegend"
+      "FieldsetLegend",
+      "FieldsetDescription"
+    ],
+    "fieldset": [
+      "Fieldset",
+      "FieldsetLegend",
+      "FieldsetDescription"
     ],
     "form": [
       "Form"
