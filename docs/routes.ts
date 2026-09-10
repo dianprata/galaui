@@ -59,10 +59,12 @@ import SelectDoc from "./content/components/select.mdx";
 import SeparatorDoc from "./content/components/separator.mdx";
 import SkeletonDoc from "./content/components/skeleton.mdx";
 import SliderDoc from "./content/components/slider.mdx";
+import StepperDoc from "./content/components/stepper.mdx";
 import SwitchDoc from "./content/components/switch.mdx";
 import TableDoc from "./content/components/table.mdx";
 import TabsDoc from "./content/components/tabs.mdx";
 import TextareaDoc from "./content/components/textarea.mdx";
+import TimelineDoc from "./content/components/timeline.mdx";
 import ToastDoc from "./content/components/toast.mdx";
 import ToggleDoc from "./content/components/toggle.mdx";
 import ToolbarDoc from "./content/components/toolbar.mdx";
@@ -126,10 +128,12 @@ export const docSections: DocSection[] = [
       { title: "Separator", path: "/components/separator", component: SeparatorDoc },
       { title: "Skeleton", path: "/components/skeleton", component: SkeletonDoc },
       { title: "Slider", path: "/components/slider", component: SliderDoc },
+      { title: "Stepper", path: "/components/stepper", component: StepperDoc, badge: "New" },
       { title: "Switch", path: "/components/switch", component: SwitchDoc },
       { title: "Table", path: "/components/table", component: TableDoc },
       { title: "Tabs", path: "/components/tabs", component: TabsDoc },
       { title: "Textarea", path: "/components/textarea", component: TextareaDoc },
+      { title: "Timeline", path: "/components/timeline", component: TimelineDoc, badge: "New" },
       { title: "Toast", path: "/components/toast", component: ToastDoc, badge: "Updated" },
       { title: "Toggle", path: "/components/toggle", component: ToggleDoc },
       { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc, badge: "New" },

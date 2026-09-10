@@ -1,0 +1,144 @@
+import {
+  Timeline,
+  TimelineItem,
+  TimelineDot,
+  TimelineConnector,
+  TimelineContent,
+  TimelineTitle,
+  TimelineDescription,
+  TimelineTime,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+import { Check, GitCommit, PackageCheck, Truck, ShieldAlert } from "lucide-react";
+
+# Timeline
+
+A visual representation of chronological milestones, event sequences, activity logs, audit trails, and delivery tracking.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Display Primitive</Badge>
+  <Badge variant="default" className="font-mono text-[11px]">New</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Audit Trails</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Timeline,\n  TimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  TimelineTitle,\n  TimelineDescription,\n  TimelineTime,\n} from "@galaui/react";'} />
+
+## Activity Audit Trail
+
+Chronological activity log with contextual status colors and timestamps.
+
+<ComponentPreview
+  title="System Deployment Timeline"
+  description="Audit history with success, warning, and secondary status dots."
+  code={'import {\n  Timeline,\n  TimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  TimelineTitle,\n  TimelineDescription,\n  TimelineTime,\n} from "@galaui/react";\nimport { GitCommit, PackageCheck, ShieldAlert } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Timeline>\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="success" size="sm">\n            <PackageCheck className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>Deployed to Production</TimelineTitle>\n            <TimelineTime>Today, 04:32 PM</TimelineTime>\n            <TimelineDescription>Release v0.3.0 deployed to Cloudflare Pages.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="default" size="sm">\n            <GitCommit className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>PR #28 Merged</TimelineTitle>\n            <TimelineTime>Today, 02:15 PM</TimelineTime>\n            <TimelineDescription>Merged Command & Fieldset components into develop.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="warning" size="sm">\n            <ShieldAlert className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>Security Advisory Check</TimelineTitle>\n            <TimelineTime>Yesterday, 11:00 AM</TimelineTime>\n            <TimelineDescription>All 361 npm dependencies verified clean.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n      </Timeline>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Timeline>
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="success" size="sm">
+          <PackageCheck className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>Deployed to Production</TimelineTitle>
+          <TimelineTime>Today, 04:32 PM</TimelineTime>
+          <TimelineDescription>Release v0.3.0 deployed to Cloudflare Pages.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="default" size="sm">
+          <GitCommit className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>PR #28 Merged</TimelineTitle>
+          <TimelineTime>Today, 02:15 PM</TimelineTime>
+          <TimelineDescription>Merged Command & Fieldset components into develop.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="warning" size="sm">
+          <ShieldAlert className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>Security Advisory Check</TimelineTitle>
+          <TimelineTime>Yesterday, 11:00 AM</TimelineTime>
+          <TimelineDescription>All 361 npm dependencies verified clean.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  </div>
+</ComponentPreview>
+
+## Order Tracking
+
+Simple visual progress tracking for logistics and status updates.
+
+<ComponentPreview
+  title="Package Shipment Tracking"
+  description="Minimalist timeline for order delivery status."
+  code={'import {\n  Timeline,\n  TimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  TimelineTitle,\n  TimelineDescription,\n  TimelineTime,\n} from "@galaui/react";\nimport { Truck } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Timeline>\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="default" size="sm">\n            <Truck className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>Out for Delivery</TimelineTitle>\n            <TimelineTime>08:45 AM</TimelineTime>\n            <TimelineDescription>Courier is on the way to delivery address.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="secondary" size="sm" />\n          <TimelineContent>\n            <TimelineTitle>Arrived at Regional Hub</TimelineTitle>\n            <TimelineTime>03:20 AM</TimelineTime>\n            <TimelineDescription>Processed at Jakarta Sorting Facility.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n      </Timeline>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Timeline>
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="default" size="sm">
+          <Truck className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>Out for Delivery</TimelineTitle>
+          <TimelineTime>08:45 AM</TimelineTime>
+          <TimelineDescription>Courier is on the way to delivery address.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="secondary" size="sm" />
+        <TimelineContent>
+          <TimelineTitle>Arrived at Regional Hub</TimelineTitle>
+          <TimelineTime>03:20 AM</TimelineTime>
+          <TimelineDescription>Processed at Jakarta Sorting Facility.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  </div>
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference
+  component="Timeline"
+  description="Root container list for timeline milestones."
+  props={[
+    { name: "orientation", type: '"vertical" | "horizontal"', default: '"vertical"', description: "Layout alignment of events." },
+  ]}
+/>
+
+<ApiReference
+  component="TimelineDot"
+  description="Indicator badge on the connector line."
+  props={[
+    { name: "variant", type: '"default" | "outline" | "secondary" | "success" | "warning" | "destructive"', default: '"default"', description: "Color status theme." },
+    { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Diameter scale of the dot." },
+    { name: "icon", type: "React.ReactNode", description: "Optional icon inside the dot." },
+  ]}
+/>
+
+<ApiReference
+  component="TimelineConnector"
+  description="Vertical connecting bar between timeline nodes (hidden on the last item)."
+  props={[
+    { name: "className", type: "string", description: "Additional CSS classes." },
+  ]}
+/>
+
