@@ -50,6 +50,16 @@
     "limit": "2 kB"
   },
   {
+    "name": "Stepper Component",
+    "path": "dist/components/ui/stepper.js",
+    "limit": "3 kB"
+  },
+  {
+    "name": "Timeline Component",
+    "path": "dist/components/ui/timeline.js",
+    "limit": "2 kB"
+  },
+  {
     "name": "Design Tokens",
     "path": "dist/tokens/index.js",
     "limit": "2 kB"

@@ -1,0 +1,171 @@
+import { useState } from "react";
+import {
+  Stepper,
+  StepItem,
+  StepIndicator,
+  StepContent,
+  StepTitle,
+  StepDescription,
+  StepSeparator,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+import { User, CreditCard, CheckCircle2 } from "lucide-react";
+
+# Stepper
+
+A progressive workflow indicator for multi-step processes like checkout wizards, onboarding flows, and complex form submissions.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">Workflow Primitive</Badge>
+  <Badge variant="default" className="font-mono text-[11px]">New</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Horizontal & Vertical</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Stepper,\n  StepItem,\n  StepIndicator,\n  StepContent,\n  StepTitle,\n  StepDescription,\n  StepSeparator,\n} from "@galaui/react";'} />
+
+## Horizontal Stepper
+
+Interactive multi-step wizard showing completed, current, and upcoming stages.
+
+<ComponentPreview
+  title="Checkout Wizard"
+  description="Horizontal workflow stepper with dynamic step state and step navigation controls."
+  code={'import { useState } from "react";\nimport {\n  Stepper,\n  StepItem,\n  StepIndicator,\n  StepContent,\n  StepTitle,\n  StepDescription,\n  StepSeparator,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  const [step, setStep] = useState(2);\n\n  return (\n    <div className="w-full max-w-xl space-y-6">\n      <Stepper value={step} onValueChange={setStep} clickable>\n        <StepItem step={1}>\n          <StepIndicator>1</StepIndicator>\n          <StepContent>\n            <StepTitle>Account</StepTitle>\n            <StepDescription>Login details</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={2}>\n          <StepIndicator>2</StepIndicator>\n          <StepContent>\n            <StepTitle>Shipping</StepTitle>\n            <StepDescription>Address & carrier</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={3}>\n          <StepIndicator>3</StepIndicator>\n          <StepContent>\n            <StepTitle>Payment</StepTitle>\n            <StepDescription>Credit or bank</StepDescription>\n          </StepContent>\n        </StepItem>\n      </Stepper>\n\n      <div className="flex justify-between pt-2">\n        <Button\n          variant="outline"\n          size="sm"\n          disabled={step <= 1}\n          onClick={() => setStep((s) => s - 1)}\n        >\n          Previous\n        </Button>\n        {step > 3 ? (\n          <Button variant="outline" size="sm" onClick={() => setStep(1)}>\n            Reset Wizard\n          </Button>\n        ) : (\n          <Button size="sm" onClick={() => setStep((s) => s + 1)}>\n            {step === 3 ? "Submit Order" : "Next Step"}\n          </Button>\n        )}\n      </div>\n    </div>\n  );\n}'}
+>
+  {(() => {
+    const [step, setStep] = useState(2);
+    return (
+      <div className="w-full max-w-xl space-y-6">
+        <Stepper value={step} onValueChange={setStep} clickable>
+          <StepItem step={1}>
+            <StepIndicator>1</StepIndicator>
+            <StepContent>
+              <StepTitle>Account</StepTitle>
+              <StepDescription>Login details</StepDescription>
+            </StepContent>
+          </StepItem>
+          <StepSeparator />
+          <StepItem step={2}>
+            <StepIndicator>2</StepIndicator>
+            <StepContent>
+              <StepTitle>Shipping</StepTitle>
+              <StepDescription>Address & carrier</StepDescription>
+            </StepContent>
+          </StepItem>
+          <StepSeparator />
+          <StepItem step={3}>
+            <StepIndicator>3</StepIndicator>
+            <StepContent>
+              <StepTitle>Payment</StepTitle>
+              <StepDescription>Credit or bank</StepDescription>
+            </StepContent>
+          </StepItem>
+        </Stepper>
+
+        <div className="flex justify-between pt-2">
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={step <= 1}
+            onClick={() => setStep((s) => s - 1)}
+          >
+            Previous
+          </Button>
+          <div className="flex items-center gap-2">
+            {step > 3 ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setStep(1)}
+              >
+                Reset Wizard
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => setStep((s) => s + 1)}
+              >
+                {step === 3 ? "Submit Order" : "Next Step"}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentPreview>
+
+## Vertical Stepper with Custom Icons
+
+Display progress vertically, perfect for sidebar checklists or step-by-step documentation guides.
+
+<ComponentPreview
+  title="Account Verification"
+  description="Vertical stepper orientation with custom status icons."
+  code={'import {\n  Stepper,\n  StepItem,\n  StepIndicator,\n  StepContent,\n  StepTitle,\n  StepDescription,\n  StepSeparator,\n} from "@galaui/react";\nimport { User, CreditCard, CheckCircle2 } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm">\n      <Stepper value={2} orientation="vertical">\n        <StepItem step={1}>\n          <StepIndicator icon={<User className="w-4 h-4" />} />\n          <StepContent>\n            <StepTitle>Profile Information</StepTitle>\n            <StepDescription>Verified personal details</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={2}>\n          <StepIndicator icon={<CreditCard className="w-4 h-4" />} />\n          <StepContent>\n            <StepTitle>Payment Method</StepTitle>\n            <StepDescription>Add credit card or PayPal</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={3}>\n          <StepIndicator icon={<CheckCircle2 className="w-4 h-4" />} />\n          <StepContent>\n            <StepTitle>Confirm & Submit</StepTitle>\n            <StepDescription>Review final summary</StepDescription>\n          </StepContent>\n        </StepItem>\n      </Stepper>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm">
+    <Stepper value={2} orientation="vertical">
+      <StepItem step={1}>
+        <StepIndicator icon={<User className="w-4 h-4" />} />
+        <StepContent>
+          <StepTitle>Profile Information</StepTitle>
+          <StepDescription>Verified personal details</StepDescription>
+        </StepContent>
+      </StepItem>
+      <StepSeparator />
+      <StepItem step={2}>
+        <StepIndicator icon={<CreditCard className="w-4 h-4" />} />
+        <StepContent>
+          <StepTitle>Payment Method</StepTitle>
+          <StepDescription>Add credit card or PayPal</StepDescription>
+        </StepContent>
+      </StepItem>
+      <StepSeparator />
+      <StepItem step={3}>
+        <StepIndicator icon={<CheckCircle2 className="w-4 h-4" />} />
+        <StepContent>
+          <StepTitle>Confirm & Submit</StepTitle>
+          <StepDescription>Review final summary</StepDescription>
+        </StepContent>
+      </StepItem>
+    </Stepper>
+  </div>
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference
+  component="Stepper"
+  description="Root container and context provider for multi-step progress."
+  props={[
+    { name: "value", type: "number", description: "Current active step index (1-based)." },
+    { name: "onValueChange", type: "(step: number) => void", description: "Callback when step is selected (if clickable is enabled)." },
+    { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "Layout alignment of steps." },
+    { name: "clickable", type: "boolean", default: "false", description: "Enables clicking steps to change progress." },
+  ]}
+/>
+
+<ApiReference
+  component="StepItem"
+  description="Container for a single step."
+  props={[
+    { name: "step", type: "number", description: "Step index number." },
+    { name: "state", type: '"completed" | "current" | "upcoming"', description: "Optional explicit state override." },
+  ]}
+/>
+
+<ApiReference
+  component="StepIndicator"
+  description="Numbered or icon badge for the step."
+  props={[
+    { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Badge diameter scale." },
+    { name: "icon", type: "React.ReactNode", description: "Custom icon to replace step number." },
+  ]}
+/>

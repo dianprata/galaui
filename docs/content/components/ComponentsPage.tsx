@@ -52,6 +52,7 @@ const COMPONENTS: ComponentItem[] = [
   { title: "Radio Group", path: "/components/radio-group", category: "form-inputs", description: "Set of checkable radio buttons where no more than one button can be checked at once." },
   { title: "Select", path: "/components/select", category: "form-inputs", description: "Custom select menu with option lists, value labels, and native keyboard interaction." },
   { title: "Slider", path: "/components/slider", category: "form-inputs", description: "Input control where the user selects a value or range from within continuous bounds." },
+  { title: "Stepper", path: "/components/stepper", category: "form-inputs", description: "Workflow progress indicator for multi-step processes like wizards and onboarding.", badge: "New" },
   { title: "Switch", path: "/components/switch", category: "form-inputs", description: "Control allowing users to toggle between checked and unchecked binary states." },
   { title: "Textarea", path: "/components/textarea", category: "form-inputs", description: "Multiline text input field with configurable sizing and state indicators." },
   { title: "Toggle", path: "/components/toggle", category: "form-inputs", description: "Two-state toggle button or grouped segmented control for toolbars and filters." },
@@ -68,6 +69,7 @@ const COMPONENTS: ComponentItem[] = [
   { title: "Separator", path: "/components/separator", category: "layout-structure", description: "Visual or semantic divider separating content within lists or layouts." },
   { title: "Table", path: "/components/table", category: "layout-structure", description: "Responsive tabular data display with styled headers, alternating rows, and border styles." },
   { title: "Tabs", path: "/components/tabs", category: "layout-structure", description: "Layered sections of content navigated by tab buttons with animated active indicators." },
+  { title: "Timeline", path: "/components/timeline", category: "layout-structure", description: "Chronological milestone display for event logs, audit trails, and status tracking.", badge: "New" },
 
   // Overlays & Dialogs (9)
   { title: "Alert Dialog", path: "/components/alert-dialog", category: "overlays-dialogs", description: "Modal confirmation prompt for critical, irreversible, or destructive actions." },

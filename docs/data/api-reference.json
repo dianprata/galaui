@@ -5243,6 +5243,13 @@
           "description": "Automatically focus the element when mounted."
         },
         {
+          "name": "defaultActiveId",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the defaultActiveId of the component."
+        },
+        {
           "name": "filter",
           "type": "((value: string, search: string) => boolean)",
           "defaultValue": null,
@@ -5327,6 +5334,13 @@
           "defaultValue": null,
           "required": false,
           "description": "Callback fired when the open state transitions."
+        },
+        {
+          "name": "defaultActiveId",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the defaultActiveId of the component."
         },
         {
           "name": "description",
@@ -20087,6 +20101,462 @@
         }
       ]
     },
+    "Stepper": {
+      "name": "Stepper",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "defaultValue": null,
+          "required": true,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((step: number) => void)",
+          "defaultValue": null,
+          "required": false,
+          "description": "Callback fired when the value changes."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "clickable",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the clickable of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Layout orientation of the component (horizontal or vertical)."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ],
+      "subcomponents": [
+        "StepItem",
+        "StepIndicator",
+        "StepContent",
+        "StepTitle",
+        "StepDescription",
+        "StepSeparator"
+      ]
+    },
+    "StepItem": {
+      "name": "StepItem",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "state",
+          "type": "StepState",
+          "defaultValue": "\"upcoming\"",
+          "required": false,
+          "description": "Configures the state of the component."
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "defaultValue": null,
+          "required": true,
+          "description": "Configures the step of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "StepIndicator": {
+      "name": "StepIndicator",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\"",
+          "defaultValue": "\"default\"",
+          "required": false,
+          "description": "Size preset determining height, padding, and font size."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "icon",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the icon of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "state",
+          "type": "\"completed\" | \"current\" | \"upcoming\"",
+          "defaultValue": "\"upcoming\"",
+          "required": false,
+          "description": "Configures the state of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "StepContent": {
+      "name": "StepContent",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "StepTitle": {
+      "name": "StepTitle",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLHeadingElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLHeadingElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "StepDescription": {
+      "name": "StepDescription",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLParagraphElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLParagraphElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "StepSeparator": {
+      "name": "StepSeparator",
+      "file": "stepper.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
     "Switch": {
       "name": "Switch",
       "file": "switch.tsx",
@@ -21312,6 +21782,504 @@
           "defaultValue": null,
           "required": false,
           "description": "Style applied to the element, or a function that\nreturns a style object based on the component's state."
+        }
+      ]
+    },
+    "Timeline": {
+      "name": "Timeline",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "align",
+          "type": "TimelineAlign",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the align of the component."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLOListElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLOListElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Layout orientation of the component (horizontal or vertical)."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ],
+      "subcomponents": [
+        "TimelineItem",
+        "TimelineDot",
+        "TimelineConnector",
+        "TimelineContent",
+        "TimelineTitle",
+        "TimelineDescription",
+        "TimelineTime"
+      ]
+    },
+    "TimelineItem": {
+      "name": "TimelineItem",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Controlled value of the component."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLLIElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLLIElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "side",
+          "type": "\"left\" | \"right\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the side of the component."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineDot": {
+      "name": "TimelineDot",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"default\" | \"success\" | \"warning\" | \"destructive\" | \"secondary\" | \"outline\"",
+          "defaultValue": "\"default\"",
+          "required": false,
+          "description": "Visual appearance and hierarchy style variant."
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\"",
+          "defaultValue": "\"default\"",
+          "required": false,
+          "description": "Size preset determining height, padding, and font size."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "icon",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the icon of the component."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineConnector": {
+      "name": "TimelineConnector",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineContent": {
+      "name": "TimelineContent",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLDivElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineTitle": {
+      "name": "TimelineTitle",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLHeadingElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLHeadingElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineDescription": {
+      "name": "TimelineDescription",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLParagraphElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLParagraphElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
+        }
+      ]
+    },
+    "TimelineTime": {
+      "name": "TimelineTime",
+      "file": "timeline.tsx",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "defaultValue": null,
+          "required": false,
+          "description": "Uncontrolled initial default value."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Unique HTML element identifier."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "defaultValue": null,
+          "required": false,
+          "description": "Automatically focus the element when mounted."
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLTimeElement, Element>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard change event handler."
+        },
+        {
+          "name": "onClick",
+          "type": "MouseEventHandler<HTMLTimeElement>",
+          "defaultValue": null,
+          "required": false,
+          "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "defaultValue": null,
+          "required": false,
+          "description": "Additional CSS classes to apply to the component."
+        },
+        {
+          "name": "children",
+          "type": "React.ReactNode",
+          "defaultValue": null,
+          "required": false,
+          "description": "The content or child elements rendered inside."
         }
       ]
     },
@@ -23916,6 +24884,15 @@
       "SliderValue",
       "SliderLabel"
     ],
+    "stepper": [
+      "Stepper",
+      "StepItem",
+      "StepIndicator",
+      "StepContent",
+      "StepTitle",
+      "StepDescription",
+      "StepSeparator"
+    ],
     "switch": [
       "Switch",
       "SwitchRoot",
@@ -23940,6 +24917,16 @@
     ],
     "textarea": [
       "Textarea"
+    ],
+    "timeline": [
+      "Timeline",
+      "TimelineItem",
+      "TimelineDot",
+      "TimelineConnector",
+      "TimelineContent",
+      "TimelineTitle",
+      "TimelineDescription",
+      "TimelineTime"
     ],
     "toast": [
       "Toaster",
