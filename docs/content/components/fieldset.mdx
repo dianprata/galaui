@@ -1,0 +1,137 @@
+import {
+  Fieldset,
+  FieldsetLegend,
+  FieldsetDescription,
+  Field,
+  FieldLabel,
+  FieldControl,
+  FieldDescription,
+  Input,
+  Checkbox,
+  Switch,
+  Button,
+  Badge,
+} from "@/index";
+import { ComponentPreview } from "@docs/components/ComponentPreview";
+import { CodeBlock } from "@docs/components/CodeBlock";
+import { ApiReference } from "@docs/components/ApiReference";
+
+# Fieldset
+
+An accessible form grouping container powered by Base UI Fieldset, providing semantic grouping for related form controls with legend titles, descriptions, and automatic disabled cascading.
+
+<div className="flex flex-wrap items-center gap-2 my-4">
+  <Badge variant="outline" className="font-mono text-[11px]">@base-ui/react</Badge>
+  <Badge variant="default" className="font-mono text-[11px]">New</Badge>
+  <Badge variant="secondary" className="font-mono text-[11px]">Accessible Forms</Badge>
+</div>
+
+## Import
+
+<CodeBlock language="tsx" code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n} from "@galaui/react";'} />
+
+## Default Fieldset
+
+Standard semantic grouping for form fields.
+
+<ComponentPreview
+  title="Personal Details Fieldset"
+  description="Basic fieldset with legend and grouped input fields."
+  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Field,\n  FieldLabel,\n  Input,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset>\n        <FieldsetLegend>Personal Information</FieldsetLegend>\n        <FieldsetDescription>Enter your contact details below.</FieldsetDescription>\n        <div className="space-y-3">\n          <Field>\n            <FieldLabel>Full Name</FieldLabel>\n            <Input placeholder="John Doe" />\n          </Field>\n          <Field>\n            <FieldLabel>Email Address</FieldLabel>\n            <Input type="email" placeholder="john@example.com" />\n          </Field>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Fieldset>
+      <FieldsetLegend>Personal Information</FieldsetLegend>
+      <FieldsetDescription>Enter your contact details below.</FieldsetDescription>
+      <div className="space-y-3">
+        <Field>
+          <FieldLabel>Full Name</FieldLabel>
+          <Input placeholder="John Doe" />
+        </Field>
+        <Field>
+          <FieldLabel>Email Address</FieldLabel>
+          <Input type="email" placeholder="john@example.com" />
+        </Field>
+      </div>
+    </Fieldset>
+  </div>
+</ComponentPreview>
+
+## Bordered Variant
+
+Fieldset enclosed in an elegant bordered card.
+
+<ComponentPreview
+  title="Notification Preferences"
+  description="Bordered fieldset grouping related preference switches."
+  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Switch,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered">\n        <FieldsetLegend>Notifications</FieldsetLegend>\n        <FieldsetDescription>Manage how and when you receive product alerts.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <div className="flex items-center justify-between">\n            <span className="text-xs font-medium">Email summary</span>\n            <Switch defaultChecked />\n          </div>\n          <div className="flex items-center justify-between">\n            <span className="text-xs font-medium">Security alerts</span>\n            <Switch defaultChecked />\n          </div>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Fieldset variant="bordered">
+      <FieldsetLegend>Notifications</FieldsetLegend>
+      <FieldsetDescription>Manage how and when you receive product alerts.</FieldsetDescription>
+      <div className="space-y-3 pt-1">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-medium">Email summary</span>
+          <Switch defaultChecked />
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-medium">Security alerts</span>
+          <Switch defaultChecked />
+        </div>
+      </div>
+    </Fieldset>
+  </div>
+</ComponentPreview>
+
+## Disabled Cascade
+
+Setting `disabled` on `<Fieldset />` automatically cascades to disable all internal form controls.
+
+<ComponentPreview
+  title="Disabled State"
+  description="Fieldset disabled state prevents interaction across all grouped controls."
+  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Field,\n  FieldLabel,\n  Input,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered" disabled>\n        <FieldsetLegend>Billing Account (Locked)</FieldsetLegend>\n        <FieldsetDescription>Account modifications are currently restricted.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <Field>\n            <FieldLabel>Tax ID</FieldLabel>\n            <Input value="TAX-9821-X" readOnly />\n          </Field>\n          <Button size="sm">Update Payment Method</Button>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-md">
+    <Fieldset variant="bordered" disabled>
+      <FieldsetLegend>Billing Account (Locked)</FieldsetLegend>
+      <FieldsetDescription>Account modifications are currently restricted.</FieldsetDescription>
+      <div className="space-y-3 pt-1">
+        <Field>
+          <FieldLabel>Tax ID</FieldLabel>
+          <Input value="TAX-9821-X" readOnly />
+        </Field>
+        <Button size="sm">Update Payment Method</Button>
+      </div>
+    </Fieldset>
+  </div>
+</ComponentPreview>
+
+## API Reference
+
+<ApiReference
+  component="Fieldset"
+  description="Root container for grouping related form controls."
+  props={[
+    { name: "variant", type: '"default" | "bordered" | "card" | "plain"', default: '"default"', description: "Visual style variant." },
+    { name: "disabled", type: "boolean", default: "false", description: "Cascades disabled state to all child form controls." },
+  ]}
+/>
+
+<ApiReference
+  component="FieldsetLegend"
+  description="Title heading for the fieldset group."
+  props={[
+    { name: "className", type: "string", description: "Additional CSS classes." },
+  ]}
+/>
+
+<ApiReference
+  component="FieldsetDescription"
+  description="Helper text positioned directly below the legend."
+  props={[
+    { name: "className", type: "string", description: "Additional CSS classes." },
+  ]}
+/>
+

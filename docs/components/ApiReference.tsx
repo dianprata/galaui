@@ -67,7 +67,7 @@ export function ApiReference({
             Component API &amp; Subcomponents
           </span>
         </div>
-        <Badge variant="outline" size="xs" className="text-[10px]">
+        <Badge variant="outline" size="sm" className="text-[10px]">
           {allSubcomponents.length} parts
         </Badge>
       </div>

@@ -31,6 +31,7 @@ import CardDoc from "./content/components/card.mdx";
 import CheckboxDoc from "./content/components/checkbox.mdx";
 import CollapsibleDoc from "./content/components/collapsible.mdx";
 import ComboboxDoc from "./content/components/combobox.mdx";
+import CommandDoc from "./content/components/command.mdx";
 import ContextMenuDoc from "./content/components/context-menu.mdx";
 import DatePickerDoc from "./content/components/date-picker.mdx";
 import DialogDoc from "./content/components/dialog.mdx";
@@ -38,6 +39,7 @@ import DrawerDoc from "./content/components/drawer.mdx";
 import DropdownMenuDoc from "./content/components/dropdown-menu.mdx";
 import EmptyStateDoc from "./content/components/empty-state.mdx";
 import FieldDoc from "./content/components/field.mdx";
+import FieldsetDoc from "./content/components/fieldset.mdx";
 import FormDoc from "./content/components/form.mdx";
 import InputDoc from "./content/components/input.mdx";
 import InputOTPDoc from "./content/components/input-otp.mdx";
@@ -57,10 +59,12 @@ import SelectDoc from "./content/components/select.mdx";
 import SeparatorDoc from "./content/components/separator.mdx";
 import SkeletonDoc from "./content/components/skeleton.mdx";
 import SliderDoc from "./content/components/slider.mdx";
+import StepperDoc from "./content/components/stepper.mdx";
 import SwitchDoc from "./content/components/switch.mdx";
 import TableDoc from "./content/components/table.mdx";
 import TabsDoc from "./content/components/tabs.mdx";
 import TextareaDoc from "./content/components/textarea.mdx";
+import TimelineDoc from "./content/components/timeline.mdx";
 import ToastDoc from "./content/components/toast.mdx";
 import ToggleDoc from "./content/components/toggle.mdx";
 import ToolbarDoc from "./content/components/toolbar.mdx";
@@ -91,23 +95,25 @@ export const docSections: DocSection[] = [
       { title: "Badge", path: "/components/badge", component: BadgeDoc },
       { title: "Breadcrumb", path: "/components/breadcrumb", component: BreadcrumbDoc },
       { title: "Button", path: "/components/button", component: ButtonDoc },
-      { title: "Calendar", path: "/components/calendar", component: CalendarDoc, badge: "New" },
+      { title: "Calendar", path: "/components/calendar", component: CalendarDoc },
       { title: "Card", path: "/components/card", component: CardDoc },
       { title: "Checkbox", path: "/components/checkbox", component: CheckboxDoc },
       { title: "Collapsible", path: "/components/collapsible", component: CollapsibleDoc },
-      { title: "Combobox", path: "/components/combobox", component: ComboboxDoc, badge: "New" },
+      { title: "Combobox", path: "/components/combobox", component: ComboboxDoc },
+      { title: "Command", path: "/components/command", component: CommandDoc, badge: "New" },
       { title: "Context Menu", path: "/components/context-menu", component: ContextMenuDoc },
-      { title: "Date Picker", path: "/components/date-picker", component: DatePickerDoc, badge: "New" },
+      { title: "Date Picker", path: "/components/date-picker", component: DatePickerDoc },
       { title: "Dialog", path: "/components/dialog", component: DialogDoc },
       { title: "Drawer", path: "/components/drawer", component: DrawerDoc },
       { title: "Dropdown Menu", path: "/components/dropdown-menu", component: DropdownMenuDoc },
       { title: "Empty State", path: "/components/empty-state", component: EmptyStateDoc },
-      { title: "Field", path: "/components/field", component: FieldDoc, badge: "Updated" },
-      { title: "Form", path: "/components/form", component: FormDoc, badge: "New" },
+      { title: "Field", path: "/components/field", component: FieldDoc },
+      { title: "Fieldset", path: "/components/fieldset", component: FieldsetDoc, badge: "New" },
+      { title: "Form", path: "/components/form", component: FormDoc },
       { title: "Input", path: "/components/input", component: InputDoc },
       { title: "Input OTP", path: "/components/input-otp", component: InputOTPDoc },
       { title: "Kbd", path: "/components/kbd", component: KbdDoc },
-      { title: "Label", path: "/components/label", component: LabelDoc, badge: "New" },
+      { title: "Label", path: "/components/label", component: LabelDoc },
       { title: "Menubar", path: "/components/menubar", component: MenubarDoc },
       { title: "Meter", path: "/components/meter", component: MeterDoc },
       { title: "Navigation Menu", path: "/components/navigation-menu", component: NavigationMenuDoc },
@@ -122,13 +128,15 @@ export const docSections: DocSection[] = [
       { title: "Separator", path: "/components/separator", component: SeparatorDoc },
       { title: "Skeleton", path: "/components/skeleton", component: SkeletonDoc },
       { title: "Slider", path: "/components/slider", component: SliderDoc },
+      { title: "Stepper", path: "/components/stepper", component: StepperDoc, badge: "New" },
       { title: "Switch", path: "/components/switch", component: SwitchDoc },
       { title: "Table", path: "/components/table", component: TableDoc },
       { title: "Tabs", path: "/components/tabs", component: TabsDoc },
       { title: "Textarea", path: "/components/textarea", component: TextareaDoc },
-      { title: "Toast", path: "/components/toast", component: ToastDoc, badge: "Updated" },
+      { title: "Timeline", path: "/components/timeline", component: TimelineDoc, badge: "New" },
+      { title: "Toast", path: "/components/toast", component: ToastDoc },
       { title: "Toggle", path: "/components/toggle", component: ToggleDoc },
-      { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc, badge: "New" },
+      { title: "Toolbar", path: "/components/toolbar", component: ToolbarDoc },
       { title: "Tooltip", path: "/components/tooltip", component: TooltipDoc },
     ],
   },

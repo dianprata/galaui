@@ -21,9 +21,13 @@ An image element with a graceful initials fallback for representing user profile
 <ComponentPreview
   title="Avatar Variants"
   description="Displays profile images with automatic fallback to text initials."
-  code={'import { Avatar, AvatarImage, AvatarFallback } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Avatar size="sm">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="default">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="lg">\n        <AvatarImage src="broken-link.jpg" alt="Alex" />\n        <AvatarFallback>AP</AvatarFallback>\n      </Avatar>\n    </div>\n  );\n}'}
+  code={'import { Avatar, AvatarImage, AvatarFallback } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Avatar size="xs">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="sm">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="default">\n        <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />\n        <AvatarFallback>SC</AvatarFallback>\n      </Avatar>\n      <Avatar size="lg">\n        <AvatarImage src="broken-link.jpg" alt="Alex" />\n        <AvatarFallback>AP</AvatarFallback>\n      </Avatar>\n    </div>\n  );\n}'}
 >
   <div className="flex items-center gap-4">
+    <Avatar size="xs">
+      <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />
+      <AvatarFallback>SC</AvatarFallback>
+    </Avatar>
     <Avatar size="sm">
       <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80" alt="Sarah" />
       <AvatarFallback>SC</AvatarFallback>

@@ -51,4 +51,8 @@ export * from "./components/ui/toolbar";
 export * from "./components/ui/combobox";
 export * from "./components/ui/calendar";
 export * from "./components/ui/date-picker";
+export * from "./components/ui/command";
+export * from "./components/ui/fieldset";
+export * from "./components/ui/stepper";
+export * from "./components/ui/timeline";
 export * from "./tokens/index";

@@ -1,0 +1,67 @@
+ [
+   {
+     "name": "Root Bundle (JS)",
+     "path": "dist/index.js",
+     "limit": "10 kB"
+   },
+   {
+     "name": "Design Tokens & Styles (CSS)",
+     "path": "dist/style.css",
+     "limit": "35 kB"
+   },
+   {
+     "name": "Button Component",
+     "path": "dist/components/ui/button.js",
+     "limit": "3 kB"
+   },
+   {
+     "name": "Dialog Component",
+     "path": "dist/components/ui/dialog.js",
+     "limit": "3 kB"
+   },
+   {
+     "name": "Calendar Component",
+     "path": "dist/components/ui/calendar.js",
+     "limit": "5 kB"
+   },
+   {
+     "name": "Date Picker Component",
+     "path": "dist/components/ui/date-picker.js",
+     "limit": "5 kB"
+   },
+   {
+     "name": "Combobox Component",
+     "path": "dist/components/ui/combobox.js",
+     "limit": "5 kB"
+   },
+  {
+    "name": "Toast Component",
+    "path": "dist/components/ui/toast.js",
+    "limit": "6 kB"
+  },
+  {
+    "name": "Command Component",
+    "path": "dist/components/ui/command.js",
+    "limit": "5 kB"
+  },
+  {
+    "name": "Fieldset Component",
+    "path": "dist/components/ui/fieldset.js",
+    "limit": "2 kB"
+  },
+  {
+    "name": "Stepper Component",
+    "path": "dist/components/ui/stepper.js",
+    "limit": "3 kB"
+  },
+  {
+    "name": "Timeline Component",
+    "path": "dist/components/ui/timeline.js",
+    "limit": "2 kB"
+  },
+  {
+    "name": "Design Tokens",
+    "path": "dist/tokens/index.js",
+    "limit": "2 kB"
+  }
+]

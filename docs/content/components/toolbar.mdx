@@ -76,6 +76,58 @@ Combines single-click action buttons (Undo/Redo, Cut/Copy) with toggleable forma
   </Toolbar>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Toolbar Button Sizes"
+  description="Toolbar button sizes across xs, sm, default, and lg presets."
+  code={'import { Toolbar, ToolbarButton } from "@galaui/react";\nimport { Bold } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap items-center gap-3">\n      <Toolbar>\n        <ToolbarButton size="xs">\n          <Bold className="h-3 w-3 mr-1" /> Bold (xs)\n        </ToolbarButton>\n      </Toolbar>\n      <Toolbar>\n        <ToolbarButton size="sm">\n          <Bold className="h-3.5 w-3.5 mr-1" /> Bold (sm)\n        </ToolbarButton>\n      </Toolbar>\n      <Toolbar>\n        <ToolbarButton size="default">\n          <Bold className="h-3.5 w-3.5 mr-1.5" /> Bold (default)\n        </ToolbarButton>\n      </Toolbar>\n      <Toolbar>\n        <ToolbarButton size="lg">\n          <Bold className="h-4 w-4 mr-1.5" /> Bold (lg)\n        </ToolbarButton>\n      </Toolbar>\n    </div>\n  );\n}'}
+>
+  <div className="flex flex-wrap items-center gap-3">
+    <Toolbar>
+      <ToolbarButton size="xs">
+        <Bold className="h-3 w-3 mr-1" /> Bold (xs)
+      </ToolbarButton>
+    </Toolbar>
+    <Toolbar>
+      <ToolbarButton size="sm">
+        <Bold className="h-3.5 w-3.5 mr-1" /> Bold (sm)
+      </ToolbarButton>
+    </Toolbar>
+    <Toolbar>
+      <ToolbarButton size="default">
+        <Bold className="h-3.5 w-3.5 mr-1.5" /> Bold (default)
+      </ToolbarButton>
+    </Toolbar>
+    <Toolbar>
+      <ToolbarButton size="lg">
+        <Bold className="h-4 w-4 mr-1.5" /> Bold (lg)
+      </ToolbarButton>
+    </Toolbar>
+  </div>
+</ComponentPreview>
+
+## Vertical Orientation
+
+<ComponentPreview
+  title="Vertical Dock Toolbar"
+  description="A vertical toolbar container suitable for canvas drawing palettes and side docks."
+  code={'import { Toolbar, ToolbarButton, ToolbarSeparator } from "@galaui/react";\nimport { Bold, Italic, Underline } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Toolbar orientation="vertical">\n      <ToolbarButton size="icon" aria-label="Bold">\n        <Bold className="h-4 w-4" />\n      </ToolbarButton>\n      <ToolbarButton size="icon" aria-label="Italic">\n        <Italic className="h-4 w-4" />\n      </ToolbarButton>\n      <ToolbarButton size="icon" aria-label="Underline">\n        <Underline className="h-4 w-4" />\n      </ToolbarButton>\n      <ToolbarSeparator />\n    </Toolbar>\n  );\n}'}
+>
+  <Toolbar orientation="vertical">
+    <ToolbarButton size="icon" aria-label="Bold">
+      <Bold className="h-4 w-4" />
+    </ToolbarButton>
+    <ToolbarButton size="icon" aria-label="Italic">
+      <Italic className="h-4 w-4" />
+    </ToolbarButton>
+    <ToolbarButton size="icon" aria-label="Underline">
+      <Underline className="h-4 w-4" />
+    </ToolbarButton>
+    <ToolbarSeparator />
+  </Toolbar>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference component="Toolbar" />

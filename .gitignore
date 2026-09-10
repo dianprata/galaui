@@ -9,3 +9,6 @@ yarn-error.log*
 pnpm-debug.log*
 inspect_dts.cjs
 .wrangler
+test-results/
+playwright-report/
+blob-report/

@@ -1,104 +1,40 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
-  Dialog,
-  DialogTrigger,
-  DialogPopup,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-  Popover,
-  PopoverTrigger,
-  PopoverPopup,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuPopup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  Switch,
-  Checkbox,
-  RadioGroup,
-  RadioGroupItem,
-  Tooltip,
-  TooltipTrigger,
-  TooltipPopup,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionPanel,
-  Tabs,
-  TabsList,
-  TabsTab,
-  TabsPanel,
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectPopup,
-  SelectItem,
-  SelectGroup,
-  SelectGroupLabel,
-  SelectSeparator,
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-  Slider,
-  Input,
-  Textarea,
-  Badge,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  Separator,
-  ToastProvider,
-  ToastViewport,
-  toast,
-  cn,
-} from "@/index";
-import { ShowcaseNewComponents } from "./ShowcaseNewComponents";
-
-import {
-  Sparkle,
+  Sparkles,
   Copy,
   Check,
   Moon,
   Sun,
-  Cube,
+  Box,
   Sliders,
   ShieldCheck,
   User,
-  Trash,
+  Trash2,
   Plus,
   ArrowRight,
-  Desktop,
-  DeviceTablet,
-  DeviceMobile,
-  GridFour,
+  Monitor,
+  Tablet,
+  Smartphone,
+  LayoutGrid,
   Square,
-  CheckCircle,
-  WarningCircle,
+  CheckCircle2,
+  AlertCircle,
   Eye,
   Code,
-  ArrowSquareOut,
-  MagnifyingGlass,
-  ShareNetwork,
+  ExternalLink,
+  Search,
+  Share2,
   Command,
-  CaretRight,
+  ChevronRight,
   Fingerprint,
   Cpu,
-  SquaresFour,
-  Rows,
-  TerminalWindow,
+  Terminal,
   FileCode,
   Tag,
-  Lightning,
+  Zap,
   Activity,
-  ArrowsClockwise,
-} from "@phosphor-icons/react";
+  RefreshCw,
+} from "lucide-react";
 
 type ComponentId =
   | "button"
@@ -208,7 +144,7 @@ export default function App() {
 
   // Dynamic props configuration
   const [btnVariant, setBtnVariant] = useState<"primary" | "secondary" | "outline" | "destructive" | "ghost" | "link">("primary");
-  const [btnSize, setBtnSize] = useState<"xs" | "sm" | "default" | "md" | "lg" | "icon-xs" | "icon-sm" | "icon" | "icon-lg">("default");
+  const [btnSize, setBtnSize] = useState<"default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg">("default");
   const [btnLabel, setBtnLabel] = useState("Execute Action");
   const [customCn, setCustomCn] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -255,7 +191,7 @@ export default function App() {
     switch (selectedComp) {
       case "button":
         return `import { Button } from "@/components/ui/button";
-import { Sparkle } from "@phosphor-icons/react";
+import { Sparkles } from "lucide-react";
 import { cn } from "cn";
 
 export function ActionButton() {
@@ -266,7 +202,7 @@ export function ActionButton() {
       ${isDisabled ? "disabled" : ""}
       className={cn("${customCn}")}
     >
-      ${showIcon ? '<Sparkle weight="bold" className="w-4 h-4" /> ' : ""}${btnLabel}
+      ${showIcon ? '<Sparkles className="w-4 h-4" /> ' : ""}${btnLabel}
     </Button>
   );
 }`;
@@ -453,7 +389,7 @@ export function NotificationTrigger() {
               viewMode === "focus" ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <Square weight="bold" className="w-3 h-3" /> Focus Stage
+            <Square className="w-3 h-3" /> Focus Stage
           </button>
           <button
             onClick={() => setViewMode("matrix")}
@@ -462,7 +398,7 @@ export function NotificationTrigger() {
               viewMode === "matrix" ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <SquaresFour weight="bold" className="w-3 h-3" /> Variant Matrix
+            <LayoutGrid className="w-3 h-3" /> Variant Matrix
           </button>
         </div>
 
@@ -477,7 +413,7 @@ export function NotificationTrigger() {
             className="h-7 w-7 rounded-md border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors cursor-pointer"
             title="Toggle theme mode"
           >
-            {isDark ? <Sun weight="bold" className="w-3.5 h-3.5 text-amber-400" /> : <Moon weight="bold" className="w-3.5 h-3.5 text-zinc-600" />}
+            {isDark ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-zinc-600" />}
           </button>
         </div>
       </header>
@@ -488,7 +424,7 @@ export function NotificationTrigger() {
         <aside className="w-56 shrink-0 border-r border-border bg-card/60 flex flex-col overflow-hidden">
           <div className="p-2.5 border-b border-border">
             <div className="relative">
-              <MagnifyingGlass weight="bold" className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Filter catalog..."
@@ -514,7 +450,7 @@ export function NotificationTrigger() {
                   )}
                 >
                   <div className="flex items-center gap-2 truncate">
-                    <Cube weight={active ? "fill" : "regular"} className="w-3.5 h-3.5 shrink-0" />
+                    <Box className="w-3.5 h-3.5 shrink-0" />
                     <span className="truncate">{c.name}</span>
                   </div>
                   <span
@@ -557,7 +493,7 @@ export function NotificationTrigger() {
                     viewport === "100%" ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <Desktop weight="bold" className="w-3 h-3" /> 100%
+                  <Monitor className="w-3 h-3" /> 100%
                 </button>
                 <button
                   onClick={() => setViewport("768px")}
@@ -566,7 +502,7 @@ export function NotificationTrigger() {
                     viewport === "768px" ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <DeviceTablet weight="bold" className="w-3 h-3" /> 768px
+                  <Tablet className="w-3 h-3" /> 768px
                 </button>
                 <button
                   onClick={() => setViewport("375px")}
@@ -575,7 +511,7 @@ export function NotificationTrigger() {
                     viewport === "375px" ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <DeviceMobile weight="bold" className="w-3 h-3" /> 375px
+                  <Smartphone className="w-3 h-3" /> 375px
                 </button>
               </div>
             )}
@@ -590,7 +526,7 @@ export function NotificationTrigger() {
                 )}
                 title="Blueprint grid"
               >
-                <GridFour weight="bold" className="w-3.5 h-3.5" />
+                <LayoutGrid className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setCanvasBg("plain")}
@@ -600,7 +536,7 @@ export function NotificationTrigger() {
                 )}
                 title="Plain canvas"
               >
-                <Square weight="bold" className="w-3.5 h-3.5" />
+                <Square className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
@@ -630,9 +566,9 @@ export function NotificationTrigger() {
                         className={cn(customCn)}
                         onClick={() => showToast("Button triggered")}
                       >
-                        {showIcon && <Sparkle weight="bold" className={btnSize === "xs" || btnSize === "icon-xs" ? "w-3 h-3" : "w-3.5 h-3.5"} />}
+                        {showIcon && <Sparkles className={btnSize === "xs" || btnSize === "icon-xs" ? "w-3 h-3" : "w-3.5 h-3.5"} />}
                         {(btnSize === "icon" || btnSize === "icon-xs" || btnSize === "icon-sm" || btnSize === "icon-lg") ? (
-                          <Plus weight="bold" className={btnSize === "icon-xs" ? "w-3 h-3" : btnSize === "icon-sm" ? "w-3.5 h-3.5" : (btnSize === "icon-lg" ? "w-4.5 h-4.5" : "w-4 h-4")} />
+                          <Plus className={btnSize === "icon-xs" ? "w-3 h-3" : btnSize === "icon-sm" ? "w-3.5 h-3.5" : (btnSize === "icon-lg" ? "w-4.5 h-4.5" : "w-4 h-4")} />
                         ) : (
                           btnLabel
                         )}
@@ -645,8 +581,8 @@ export function NotificationTrigger() {
 
                   {selectedComp === "dialog" && (
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                      <DialogTrigger render={<Button variant="primary" size="md" className="shadow-xs" />}>
-                        <Fingerprint weight="bold" className="w-4 h-4" /> Launch Modal Dialog
+                      <DialogTrigger render={<Button variant="primary" size="default" className="shadow-xs" />}>
+                        <Fingerprint className="w-4 h-4" /> Launch Modal Dialog
                       </DialogTrigger>
                       <DialogPopup>
                         <DialogHeader>
@@ -672,7 +608,7 @@ export function NotificationTrigger() {
                   {selectedComp === "popover" && (
                     <Popover>
                       <PopoverTrigger render={<Button variant="outline" />}>
-                        <Sliders weight="bold" className="w-4 h-4" /> Open Base UI Popover
+                        <Sliders className="w-4 h-4" /> Open Base UI Popover
                       </PopoverTrigger>
                       <PopoverPopup className="w-76 space-y-3">
                         <div className="flex items-center justify-between pb-2 border-b border-border">
@@ -694,18 +630,18 @@ export function NotificationTrigger() {
                     <DropdownMenu>
                       <DropdownMenuTrigger render={<Button variant="outline" />}>
                         <span>Actions Menu</span>
-                        <CaretRight weight="bold" className="w-3.5 h-3.5" />
+                        <ChevronRight className="w-3.5 h-3.5" />
                       </DropdownMenuTrigger>
                       <DropdownMenuPopup className="w-52">
                         <DropdownMenuItem onClick={() => showToast("Edited item")}>
-                          <Sparkle weight="bold" className="w-3.5 h-3.5 text-primary" /> Edit Component
+                          <Sparkles className="w-3.5 h-3.5 text-primary" /> Edit Component
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => showToast("Duplicated token")}>
-                          <Copy weight="bold" className="w-3.5 h-3.5" /> Duplicate Token
+                          <Copy className="w-3.5 h-3.5" /> Duplicate Token
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-destructive" onClick={() => showToast("Deleted item")}>
-                          <Trash weight="bold" className="w-3.5 h-3.5" /> Delete Entry
+                          <Trash2 className="w-3.5 h-3.5" /> Delete Entry
                         </DropdownMenuItem>
                       </DropdownMenuPopup>
                     </DropdownMenu>
@@ -771,7 +707,7 @@ export function NotificationTrigger() {
                   {selectedComp === "tooltip" && (
                     <Tooltip>
                       <TooltipTrigger render={<Button variant="secondary" />}>
-                        <Eye weight="bold" className="w-4 h-4 mr-1.5" /> Hover for Inspection
+                        <Eye className="w-4 h-4 mr-1.5" /> Hover for Inspection
                       </TooltipTrigger>
                       <TooltipPopup>
                         Rendered with @base-ui/react Tooltip with automatic collision boundaries
@@ -911,12 +847,12 @@ export function NotificationTrigger() {
 
                   {selectedComp === "badge" && (
                     <div className="flex flex-wrap gap-2 items-center justify-center">
-                      <Badge variant={btnVariant as any} className={cn(customCn)}>
+                      <Badge variant={btnVariant as any} size={btnSize as any} className={cn(customCn)}>
                         {btnLabel || "Production Live"}
                       </Badge>
-                      <Badge variant="success">99.9% Uptime</Badge>
-                      <Badge variant="warning">Syncing</Badge>
-                      <Badge variant="destructive">Deprecated</Badge>
+                      <Badge variant="success" size={btnSize as any}>99.9% Uptime</Badge>
+                      <Badge variant="warning" size={btnSize as any}>Syncing</Badge>
+                      <Badge variant="destructive" size={btnSize as any}>Deprecated</Badge>
                     </div>
                   )}
 
@@ -928,10 +864,10 @@ export function NotificationTrigger() {
                       </CardHeader>
                       <CardContent className="space-y-2 text-xs text-muted-foreground">
                         <p className="flex items-center gap-2 text-foreground font-medium">
-                          <CheckCircle weight="bold" className="w-4 h-4 text-emerald-500" /> 1:1 Figma Token Synchronization
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 1:1 Figma Token Synchronization
                         </p>
                         <p className="flex items-center gap-2 text-foreground font-medium">
-                          <CheckCircle weight="bold" className="w-4 h-4 text-emerald-500" /> Tailwind v4 CSS-First Architecture
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Tailwind v4 CSS-First Architecture
                         </p>
                       </CardContent>
                       <CardFooter className="flex justify-end gap-2">
@@ -966,10 +902,10 @@ export function NotificationTrigger() {
                     <div className="space-y-2">
                       <span className="text-xs font-semibold text-muted-foreground">Variants (Default Size)</span>
                       <div className="flex flex-wrap gap-3 items-center">
-                        <Button variant="primary"><Sparkle weight="bold" className="w-4 h-4" /> Primary</Button>
+                        <Button variant="primary"><Sparkles className="w-4 h-4" /> Primary</Button>
                         <Button variant="secondary">Secondary</Button>
                         <Button variant="outline">Outline</Button>
-                        <Button variant="destructive"><Trash weight="bold" className="w-4 h-4" /> Destructive</Button>
+                        <Button variant="destructive"><Trash2 className="w-4 h-4" /> Destructive</Button>
                         <Button variant="ghost">Ghost</Button>
                         <Button variant="link">Link</Button>
                       </div>
@@ -982,10 +918,10 @@ export function NotificationTrigger() {
                         <Button size="sm">Small (sm / 28px)</Button>
                         <Button size="default">Default (default / 32px)</Button>
                         <Button size="lg">Large (lg / 36px)</Button>
-                        <Button size="icon-xs" title="icon-xs (24px)"><Plus weight="bold" className="w-3 h-3" /></Button>
-                        <Button size="icon-sm" title="icon-sm (28px)"><Plus weight="bold" className="w-3.5 h-3.5" /></Button>
-                        <Button size="icon" title="icon-default (32px)"><Plus weight="bold" className="w-4 h-4" /></Button>
-                        <Button size="icon-lg" title="icon-lg (36px)"><Plus weight="bold" className="w-4.5 h-4.5" /></Button>
+                        <Button size="icon-xs" title="icon-xs (24px)"><Plus className="w-3 h-3" /></Button>
+                        <Button size="icon-sm" title="icon-sm (28px)"><Plus className="w-3.5 h-3.5" /></Button>
+                        <Button size="icon" title="icon-default (32px)"><Plus className="w-4 h-4" /></Button>
+                        <Button size="icon-lg" title="icon-lg (36px)"><Plus className="w-4.5 h-4.5" /></Button>
                         <Button disabled size="default">Disabled State</Button>
                       </div>
                     </div>
@@ -1019,10 +955,10 @@ export function NotificationTrigger() {
                         </div>
                         <div className="space-y-1.5">
                           <div className="flex justify-between text-[11px]">
-                            <span className="font-medium text-foreground">Medium (md / 6px track, 18px thumb — Default)</span>
+                            <span className="font-medium text-foreground">Default (6px track, 18px thumb)</span>
                             <span className="font-mono text-muted-foreground">60%</span>
                           </div>
-                          <Slider defaultValue={60} size="md" />
+                          <Slider defaultValue={60} size="default" />
                         </div>
                         <div className="space-y-1.5">
                           <div className="flex justify-between text-[11px]">
@@ -1300,14 +1236,14 @@ export function NotificationTrigger() {
           <div className="h-40 border-t border-border bg-zinc-950 flex flex-col shrink-0">
             <div className="h-8 border-b border-zinc-800 px-3 flex items-center justify-between text-xs font-mono text-zinc-400">
               <div className="flex items-center gap-2">
-                <Code weight="bold" className="w-3.5 h-3.5 text-primary" />
+                <Code className="w-3.5 h-3.5 text-primary" />
                 <span>Generated React JSX</span>
               </div>
               <button
                 onClick={() => copyToClipboard(getGeneratedCode())}
                 className="flex items-center gap-1 text-xs text-primary hover:text-white transition-colors cursor-pointer font-medium"
               >
-                <Copy weight="bold" className="w-3 h-3" />
+                <Copy className="w-3 h-3" />
                 <span>Copy JSX</span>
               </button>
             </div>

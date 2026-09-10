@@ -353,14 +353,14 @@ export function ReleaseModal() {
                         <div className="w-3 h-3 rounded-full bg-warning-500/80" />
                         <div className="w-3 h-3 rounded-full bg-success-500/80" />
                       </div>
-                      <span className="text-xs font-medium text-muted-foreground ml-1">Live Component Hub</span>
-                    </div>
+                    <span className="text-xs font-medium text-muted-foreground ml-1">Live Component Hub</span>
+                  </div>
 
-                    {/* GalaUI TabsList */}
-                    <TabsList size="sm">
-                      <TabsTab value="form">Forms</TabsTab>
-                      <TabsTab value="controls">Controls</TabsTab>
-                      <TabsTab value="actions">Actions</TabsTab>
+                  {/* GalaUI TabsList */}
+                  <TabsList>
+                    <TabsTab value="form">Forms</TabsTab>
+                    <TabsTab value="controls">Controls</TabsTab>
+                    <TabsTab value="actions">Actions</TabsTab>
                     </TabsList>
                   </CardHeader>
 
@@ -591,10 +591,10 @@ export function ReleaseModal() {
                           <div className="space-y-1.5">
                             <span className="text-xs font-medium text-foreground">Semantic Badges</span>
                             <div className="flex flex-wrap gap-1.5">
-                              <Badge variant="default" className="transition-transform hover:scale-105">Production</Badge>
-                              <Badge variant="outline" className="transition-transform hover:scale-105">Preview</Badge>
-                              <Badge variant="destructive" className="transition-transform hover:scale-105">Error 500</Badge>
-                              <Badge variant="secondary" className="transition-transform hover:scale-105">Ready</Badge>
+                              <Badge variant="default">Production</Badge>
+                              <Badge variant="outline">Preview</Badge>
+                              <Badge variant="destructive">Error 500</Badge>
+                              <Badge variant="secondary">Ready</Badge>
                             </div>
                           </div>
 
@@ -622,7 +622,7 @@ export function ReleaseModal() {
                   {/* Showcase Footer Note */}
                   <CardFooter className="py-2.5 px-4 bg-muted/30 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground font-mono">
                     <span>Interactive Preview</span>
-                    <Link href="/components/button" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
+                    <Link href="/components" className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
                       <span>View all 45+ components</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
@@ -734,7 +734,7 @@ export function ReleaseModal() {
               </div>
 
               <Tabs value={selectedCategory} onValueChange={(val) => setSelectedCategory(val as string)}>
-                <TabsList size="sm">
+                <TabsList>
                   <TabsTab value="all">All ({allComponents.length})</TabsTab>
                   <TabsTab value="inputs">Inputs</TabsTab>
                   <TabsTab value="overlays">Overlays</TabsTab>
@@ -848,7 +848,7 @@ export function ReleaseModal() {
 
                     <div className="flex items-center gap-2">
                       <Badge variant="outline" className="hidden sm:inline-flex text-[10px]">React 19 + TS</Badge>
-                      <TabsList size="sm">
+                      <TabsList>
                         <TabsTab value="preview">Preview</TabsTab>
                         <TabsTab value="code">Code</TabsTab>
                       </TabsList>

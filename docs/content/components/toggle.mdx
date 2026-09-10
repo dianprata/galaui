@@ -42,14 +42,32 @@ A two-state button that can be either on or off, or a group of segmented toggle 
   </div>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Toggle Button Sizes"
+  description="Text toggle buttons sized from xs to lg."
+  code={'import { Toggle } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap items-center gap-3">\n      <Toggle size="xs">Extra Small (xs)</Toggle>\n      <Toggle size="sm">Small (sm)</Toggle>\n      <Toggle size="default">Default (default)</Toggle>\n      <Toggle size="lg">Large (lg)</Toggle>\n    </div>\n  );\n}'}
+>
+  <div className="flex flex-wrap items-center gap-3">
+    <Toggle size="xs">Extra Small (xs)</Toggle>
+    <Toggle size="sm">Small (sm)</Toggle>
+    <Toggle size="default">Default (default)</Toggle>
+    <Toggle size="lg">Large (lg)</Toggle>
+  </div>
+</ComponentPreview>
+
 ## Icon Sizes
 
 <ComponentPreview
   title="Icon Sizing Variants"
-  description="Toggle buttons sized specifically for square icons: icon-sm (28px), icon (32px), and icon-lg (36px)."
-  code={'import { Toggle } from "@galaui/react";\nimport { Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-3">\n      <Toggle size="icon-sm" aria-label="Small bookmark">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n      <Toggle size="icon" aria-label="Default bookmark">\n        <Bookmark className="h-4 w-4" />\n      </Toggle>\n      <Toggle size="icon-lg" aria-label="Large bookmark">\n        <Bookmark className="h-4.5 w-4.5" />\n      </Toggle>\n    </div>\n  );\n}'}
+  description="Toggle buttons sized specifically for square icons: icon-xs (24px), icon-sm (28px), icon (32px), and icon-lg (36px)."
+  code={'import { Toggle } from "@galaui/react";\nimport { Bookmark } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-3">\n      <Toggle size="icon-xs" aria-label="Extra small bookmark">\n        <Bookmark className="h-3 w-3" />\n      </Toggle>\n      <Toggle size="icon-sm" aria-label="Small bookmark">\n        <Bookmark className="h-3.5 w-3.5" />\n      </Toggle>\n      <Toggle size="icon" aria-label="Default bookmark">\n        <Bookmark className="h-4 w-4" />\n      </Toggle>\n      <Toggle size="icon-lg" aria-label="Large bookmark">\n        <Bookmark className="h-4.5 w-4.5" />\n      </Toggle>\n    </div>\n  );\n}'}
 >
   <div className="flex items-center gap-3">
+    <Toggle size="icon-xs" aria-label="Extra small bookmark">
+      <Bookmark className="h-3 w-3" />
+    </Toggle>
     <Toggle size="icon-sm" aria-label="Small bookmark">
       <Bookmark className="h-3.5 w-3.5" />
     </Toggle>
