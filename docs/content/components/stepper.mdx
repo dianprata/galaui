@@ -36,7 +36,7 @@ Interactive multi-step wizard showing completed, current, and upcoming stages.
 <ComponentPreview
   title="Checkout Wizard"
   description="Horizontal workflow stepper with dynamic step state and step navigation controls."
-  code={'import { useState } from "react";\nimport {\n  Stepper,\n  StepItem,\n  StepIndicator,\n  StepContent,\n  StepTitle,\n  StepDescription,\n  StepSeparator,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  const [step, setStep] = useState(2);\n\n  return (\n    <div className="w-full max-w-xl space-y-6">\n      <Stepper value={step} onValueChange={setStep} clickable>\n        <StepItem step={1}>\n          <StepIndicator>1</StepIndicator>\n          <StepContent>\n            <StepTitle>Account</StepTitle>\n            <StepDescription>Login details</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={2}>\n          <StepIndicator>2</StepIndicator>\n          <StepContent>\n            <StepTitle>Shipping</StepTitle>\n            <StepDescription>Address & carrier</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={3}>\n          <StepIndicator>3</StepIndicator>\n          <StepContent>\n            <StepTitle>Payment</StepTitle>\n            <StepDescription>Credit or bank</StepDescription>\n          </StepContent>\n        </StepItem>\n      </Stepper>\n\n      <div className="flex justify-between pt-2">\n        <Button\n          variant="outline"\n          size="sm"\n          disabled={step <= 1}\n          onClick={() => setStep((s) => s - 1)}\n        >\n          Previous\n        </Button>\n        <Button\n          size="sm"\n          disabled={step > 3}\n          onClick={() => {\n            if (step <= 3) setStep((s) => s + 1);\n          }}\n        >\n          {step === 3 ? "Submit Order" : step > 3 ? "Completed" : "Next Step"}\n        </Button>\n      </div>\n    </div>\n  );\n}'}
+  code={'import { useState } from "react";\nimport {\n  Stepper,\n  StepItem,\n  StepIndicator,\n  StepContent,\n  StepTitle,\n  StepDescription,\n  StepSeparator,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  const [step, setStep] = useState(2);\n\n  return (\n    <div className="w-full max-w-xl space-y-6">\n      <Stepper value={step} onValueChange={setStep} clickable>\n        <StepItem step={1}>\n          <StepIndicator>1</StepIndicator>\n          <StepContent>\n            <StepTitle>Account</StepTitle>\n            <StepDescription>Login details</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={2}>\n          <StepIndicator>2</StepIndicator>\n          <StepContent>\n            <StepTitle>Shipping</StepTitle>\n            <StepDescription>Address & carrier</StepDescription>\n          </StepContent>\n        </StepItem>\n        <StepSeparator />\n        <StepItem step={3}>\n          <StepIndicator>3</StepIndicator>\n          <StepContent>\n            <StepTitle>Payment</StepTitle>\n            <StepDescription>Credit or bank</StepDescription>\n          </StepContent>\n        </StepItem>\n      </Stepper>\n\n      <div className="flex justify-between pt-2">\n        <Button\n          variant="outline"\n          size="sm"\n          disabled={step <= 1}\n          onClick={() => setStep((s) => s - 1)}\n        >\n          Previous\n        </Button>\n        {step > 3 ? (\n          <Button variant="outline" size="sm" onClick={() => setStep(1)}>\n            Reset Wizard\n          </Button>\n        ) : (\n          <Button size="sm" onClick={() => setStep((s) => s + 1)}>\n            {step === 3 ? "Submit Order" : "Next Step"}\n          </Button>\n        )}\n      </div>\n    </div>\n  );\n}'}
 >
   {(() => {
     const [step, setStep] = useState(2);
@@ -77,15 +77,24 @@ Interactive multi-step wizard showing completed, current, and upcoming stages.
           >
             Previous
           </Button>
-          <Button
-            size="sm"
-            disabled={step > 3}
-            onClick={() => {
-              if (step <= 3) setStep((s) => s + 1);
-            }}
-          >
-            {step === 3 ? "Submit Order" : step > 3 ? "Completed" : "Next Step"}
-          </Button>
+          <div className="flex items-center gap-2">
+            {step > 3 ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setStep(1)}
+              >
+                Reset Wizard
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => setStep((s) => s + 1)}
+              >
+                {step === 3 ? "Submit Order" : "Next Step"}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     );

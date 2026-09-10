@@ -22,6 +22,17 @@ function useStepper() {
   return context;
 }
 
+interface StepItemContextValue {
+  step: number;
+  state: StepState;
+}
+
+const StepItemContext = React.createContext<StepItemContextValue | null>(null);
+
+function useStepItem() {
+  return React.useContext(StepItemContext);
+}
+
 export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number;
   onValueChange?: (step: number) => void;
@@ -100,23 +111,25 @@ const StepItem = React.forwardRef<HTMLDivElement, StepItemProps>(
     };
 
     return (
-      <div
-        ref={ref}
-        data-step={step}
-        data-state={state}
-        data-orientation={orientation}
-        data-clickable={isClickable}
-        onClick={handleClick}
-        className={cn(
-          "group flex items-center gap-3 select-none",
-          orientation === "horizontal" ? "flex-1 last:flex-none" : "w-full",
-          isClickable && "cursor-pointer",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
+      <StepItemContext.Provider value={{ step, state }}>
+        <div
+          ref={ref}
+          data-step={step}
+          data-state={state}
+          data-orientation={orientation}
+          data-clickable={isClickable}
+          onClick={handleClick}
+          className={cn(
+            "group flex items-center gap-3 select-none",
+            orientation === "horizontal" ? "flex-1 last:flex-none" : "w-full",
+            isClickable && "cursor-pointer",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </div>
+      </StepItemContext.Provider>
     );
   }
 );
@@ -153,27 +166,12 @@ export interface StepIndicatorProps
 
 const StepIndicator = React.forwardRef<HTMLDivElement, StepIndicatorProps>(
   ({ size, state: propState, icon, className, children, ...props }, ref) => {
-    // Look up state from parent StepItem DOM attribute if not passed explicitly
-    const parentRef = React.useRef<HTMLDivElement>(null);
-    const [inferredState, setInferredState] = React.useState<StepState>("upcoming");
-
-    React.useEffect(() => {
-      const stepItemEl = parentRef.current?.closest("[data-state]");
-      if (stepItemEl) {
-        const parentState = stepItemEl.getAttribute("data-state") as StepState;
-        if (parentState) setInferredState(parentState);
-      }
-    });
-
-    const state = propState || inferredState;
+    const itemContext = useStepItem();
+    const state = propState || itemContext?.state || "upcoming";
 
     return (
       <div
-        ref={(node) => {
-          (parentRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-          if (typeof ref === "function") ref(node);
-          else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-        }}
+        ref={ref}
         data-slot="step-indicator"
         className={cn(stepIndicatorVariants({ size, state }), className)}
         {...props}
@@ -248,7 +246,9 @@ export interface StepSeparatorProps extends React.HTMLAttributes<HTMLDivElement>
 
 const StepSeparator = React.forwardRef<HTMLDivElement, StepSeparatorProps>(
   ({ className, ...props }, ref) => {
-    const { orientation } = useStepper();
+    const { orientation, value } = useStepper();
+    const itemContext = useStepItem();
+    const isCompleted = itemContext ? itemContext.step < value : false;
 
     return (
       <div
@@ -258,6 +258,7 @@ const StepSeparator = React.forwardRef<HTMLDivElement, StepSeparatorProps>(
         data-orientation={orientation}
         className={cn(
           "bg-border transition-colors duration-150",
+          isCompleted && "bg-primary",
           orientation === "horizontal"
             ? "h-0.5 flex-1 mx-2 self-center rounded-full group-data-[state=completed]:bg-primary"
             : "w-0.5 h-6 ml-4 my-1 rounded-full group-data-[state=completed]:bg-primary",
@@ -280,4 +281,3 @@ export {
   StepSeparator,
   stepIndicatorVariants,
 };
-
