@@ -114,6 +114,50 @@ Simple visual progress tracking for logistics and status updates.
   </div>
 </ComponentPreview>
 
+## Left-Aligned & Alternate (Zig-Zag) Timelines
+
+By configuring `align="alternate"` or `align="left"`, you can position event details to the left, right, or alternating on both sides of the central axis.
+
+<ComponentPreview
+  title="Alternating Milestones (Left & Right)"
+  description="Timeline with content balanced symmetrically across the center connector line."
+  code={'import {\n  Timeline,\n  TimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  TimelineTitle,\n  TimelineDescription,\n  TimelineTime,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xl py-2">\n      <Timeline align="alternate">\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="default" size="sm" />\n          <TimelineContent>\n            <TimelineTitle>Version 1.0 Launched</TimelineTitle>\n            <TimelineTime>Q1 2026</TimelineTime>\n            <TimelineDescription>Initial release with core component catalog.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="success" size="sm" />\n          <TimelineContent>\n            <TimelineTitle>Design Tokens System</TimelineTitle>\n            <TimelineTime>Q2 2026</TimelineTime>\n            <TimelineDescription>Introduced automated color ramps and spacing scales.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="warning" size="sm" />\n          <TimelineContent>\n            <TimelineTitle>Enterprise A11y Suite</TimelineTitle>\n            <TimelineTime>Q3 2026</TimelineTime>\n            <TimelineDescription>Automated axe-core regression tests on all primitives.</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n      </Timeline>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xl py-2">
+    <Timeline align="alternate">
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="default" size="sm" />
+        <TimelineContent>
+          <TimelineTitle>Version 1.0 Launched</TimelineTitle>
+          <TimelineTime>Q1 2026</TimelineTime>
+          <TimelineDescription>Initial release with core component catalog.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="success" size="sm" />
+        <TimelineContent>
+          <TimelineTitle>Design Tokens System</TimelineTitle>
+          <TimelineTime>Q2 2026</TimelineTime>
+          <TimelineDescription>Introduced automated color ramps and spacing scales.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="warning" size="sm" />
+        <TimelineContent>
+          <TimelineTitle>Enterprise A11y Suite</TimelineTitle>
+          <TimelineTime>Q3 2026</TimelineTime>
+          <TimelineDescription>Automated axe-core regression tests on all primitives.</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  </div>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference
@@ -121,9 +165,17 @@ Simple visual progress tracking for logistics and status updates.
   description="Root container list for timeline milestones."
   props={[
     { name: "orientation", type: '"vertical" | "horizontal"', default: '"vertical"', description: "Layout alignment of events." },
+    { name: "align", type: '"right" | "left" | "alternate"', default: '"right"', description: "Placement of text content relative to the timeline connector axis." },
   ]}
 />
 
+<ApiReference
+  component="TimelineItem"
+  description="Single milestone node in the timeline."
+  props={[
+    { name: "side", type: '"left" | "right"', description: "Explicit side placement override for individual items." },
+  ]}
+/>
 <ApiReference
   component="TimelineDot"
   description="Indicator badge on the connector line."
@@ -141,4 +193,3 @@ Simple visual progress tracking for logistics and status updates.
     { name: "className", type: "string", description: "Additional CSS classes." },
   ]}
 />
-

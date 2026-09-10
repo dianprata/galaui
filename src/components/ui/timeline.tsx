@@ -2,44 +2,85 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+export type TimelineAlign = "right" | "left" | "alternate";
+
+interface TimelineContextValue {
+  orientation: "vertical" | "horizontal";
+  align: TimelineAlign;
+}
+
+const TimelineContext = React.createContext<TimelineContextValue>({
+  orientation: "vertical",
+  align: "right",
+});
+
+function useTimeline() {
+  return React.useContext(TimelineContext);
+}
+
 export interface TimelineProps extends React.HTMLAttributes<HTMLOListElement> {
   orientation?: "vertical" | "horizontal";
+  align?: TimelineAlign;
 }
 
 const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
-  ({ orientation = "vertical", className, children, ...props }, ref) => {
+  ({ orientation = "vertical", align = "right", className, children, ...props }, ref) => {
     return (
-      <ol
-        ref={ref}
-        role="list"
-        aria-label="Timeline"
-        data-orientation={orientation}
-        className={cn(
-          "relative flex",
-          orientation === "vertical"
-            ? "flex-col space-y-6 pl-2"
-            : "flex-row space-x-6 items-start overflow-x-auto pb-4",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </ol>
+      <TimelineContext.Provider value={{ orientation, align }}>
+        <ol
+          ref={ref}
+          role="list"
+          aria-label="Timeline"
+          data-orientation={orientation}
+          data-align={align}
+          className={cn(
+            "relative flex",
+            orientation === "vertical"
+              ? align === "alternate"
+                ? "flex-col space-y-8 w-full"
+                : align === "left"
+                ? "flex-col space-y-6 pr-2 items-end"
+                : "flex-col space-y-6 pl-2 items-start"
+              : "flex-row space-x-6 items-start overflow-x-auto pb-4",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </ol>
+      </TimelineContext.Provider>
     );
   }
 );
 Timeline.displayName = "Timeline";
 
-export interface TimelineItemProps extends React.LiHTMLAttributes<HTMLLIElement> {}
+export interface TimelineItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  side?: "left" | "right";
+}
 
 const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ side: propSide, className, children, ...props }, ref) => {
+    const { align, orientation } = useTimeline();
+
     return (
       <li
         ref={ref}
         role="listitem"
         data-slot="timeline-item"
-        className={cn("group relative flex items-start gap-3", className)}
+        data-side={propSide}
+        className={cn(
+          "group relative flex items-start",
+          orientation === "vertical" && [
+            align === "alternate"
+              ? "w-full justify-between even:flex-row-reverse even:[&_[data-slot=timeline-content]]:text-right odd:[&_[data-slot=timeline-content]]:text-left"
+              : align === "left"
+              ? "flex-row-reverse text-right gap-3 w-full"
+              : "flex-row text-left gap-3 w-full",
+            propSide === "left" && "flex-row-reverse text-right",
+            propSide === "right" && "flex-row text-left",
+          ],
+          className
+        )}
         {...props}
       >
         {children}
@@ -82,8 +123,15 @@ export interface TimelineDotProps
 
 const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
   ({ variant, size, icon, className, children, ...props }, ref) => {
+    const { align } = useTimeline();
+
     return (
-      <div className="relative flex h-6 w-7 shrink-0 items-center justify-center">
+      <div
+        className={cn(
+          "relative flex h-6 shrink-0 items-center justify-center",
+          align === "alternate" ? "w-8 mx-auto self-start z-10" : "w-7"
+        )}
+      >
         <div
           ref={ref}
           data-slot="timeline-dot"
@@ -102,6 +150,8 @@ export interface TimelineConnectorProps extends React.HTMLAttributes<HTMLDivElem
 
 const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProps>(
   ({ className, ...props }, ref) => {
+    const { align } = useTimeline();
+
     return (
       <div
         ref={ref}
@@ -109,7 +159,12 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProp
         aria-hidden="true"
         data-slot="timeline-connector"
         className={cn(
-          "absolute left-[14px] -translate-x-1/2 top-6 -bottom-6 w-0.5 bg-border group-last:hidden",
+          "absolute top-6 -bottom-6 w-0.5 bg-border group-last:hidden",
+          align === "alternate"
+            ? "left-1/2 -translate-x-1/2"
+            : align === "left"
+            ? "right-[14px] translate-x-1/2"
+            : "left-[14px] -translate-x-1/2",
           className
         )}
         {...props}
@@ -123,11 +178,17 @@ export interface TimelineContentProps extends React.HTMLAttributes<HTMLDivElemen
 
 const TimelineContent = React.forwardRef<HTMLDivElement, TimelineContentProps>(
   ({ className, ...props }, ref) => {
+    const { align } = useTimeline();
+
     return (
       <div
         ref={ref}
         data-slot="timeline-content"
-        className={cn("flex flex-1 flex-col pt-0.5", className)}
+        className={cn(
+          "flex flex-col pt-0.5",
+          align === "alternate" ? "w-[calc(50%-2rem)]" : "flex-1",
+          className
+        )}
         {...props}
       />
     );
@@ -196,3 +257,4 @@ export {
   TimelineTime,
   timelineDotVariants,
 };
+

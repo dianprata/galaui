@@ -51,4 +51,24 @@ describe("Timeline", () => {
     const dot = screen.getByTestId("dot");
     expect(dot).toHaveClass("bg-destructive-500");
   });
+
+  it("supports left alignment and alternate side layouts", () => {
+    const { container } = render(
+      <Timeline align="alternate" data-testid="timeline">
+        <TimelineItem side="left">
+          <TimelineContent>Left Item</TimelineContent>
+        </TimelineItem>
+        <TimelineItem side="right">
+          <TimelineContent>Right Item</TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    );
+
+    const list = container.querySelector("ol");
+    expect(list).toHaveAttribute("data-align", "alternate");
+
+    const items = container.querySelectorAll("li");
+    expect(items[0]).toHaveAttribute("data-side", "left");
+    expect(items[1]).toHaveAttribute("data-side", "right");
+  });
 });
