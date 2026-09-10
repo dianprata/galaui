@@ -37,17 +37,17 @@ export interface ComponentItem {
 const COMPONENTS: ComponentItem[] = [
   // Form & Inputs (18)
   { title: "Button", path: "/components/button", category: "form-inputs", description: "Interactive button with distinct visual variants, sizing scales, and loading states." },
-  { title: "Calendar", path: "/components/calendar", category: "form-inputs", description: "Accessible date and range calendar with monthly navigation and disabled constraints.", badge: "New" },
+  { title: "Calendar", path: "/components/calendar", category: "form-inputs", description: "Accessible date and range calendar with monthly navigation and disabled constraints." },
   { title: "Checkbox", path: "/components/checkbox", category: "form-inputs", description: "Control allowing users to toggle between checked, unchecked, and indeterminate states." },
-  { title: "Combobox", path: "/components/combobox", category: "form-inputs", description: "Autocomplete input and searchable selection popup with keyboard navigation.", badge: "New" },
+  { title: "Combobox", path: "/components/combobox", category: "form-inputs", description: "Autocomplete input and searchable selection popup with keyboard navigation." },
   { title: "Command", path: "/components/command", category: "overlays-dialogs", description: "Fast, composable command palette with live search filtering, keyboard navigation, and shortcuts.", badge: "New" },
-  { title: "Date Picker", path: "/components/date-picker", category: "form-inputs", description: "Input trigger combined with a calendar popover for single date or date range selection.", badge: "New" },
-  { title: "Field", path: "/components/field", category: "form-inputs", description: "Accessible form field primitive connecting labels, controls, descriptions, and error states.", badge: "Updated" },
+  { title: "Date Picker", path: "/components/date-picker", category: "form-inputs", description: "Input trigger combined with a calendar popover for single date or date range selection." },
+  { title: "Field", path: "/components/field", category: "form-inputs", description: "Accessible form field primitive connecting labels, controls, descriptions, and error states." },
   { title: "Fieldset", path: "/components/fieldset", category: "form-inputs", description: "Accessible form grouping container with legend titles, descriptions, and disabled cascading.", badge: "New" },
-  { title: "Form", path: "/components/form", category: "form-inputs", description: "High-level form container with Base UI validation and submission state handling.", badge: "New" },
+  { title: "Form", path: "/components/form", category: "form-inputs", description: "High-level form container with Base UI validation and submission state handling." },
   { title: "Input", path: "/components/input", category: "form-inputs", description: "Typography-calibrated single-line text input with sizing scales and focus rings." },
   { title: "Input OTP", path: "/components/input-otp", category: "form-inputs", description: "Accessible segmented one-time password input with individual character slots." },
-  { title: "Label", path: "/components/label", category: "form-inputs", description: "Accessible label associated with form controls, styled with GalaUI typography tokens.", badge: "New" },
+  { title: "Label", path: "/components/label", category: "form-inputs", description: "Accessible label associated with form controls, styled with GalaUI typography tokens." },
   { title: "Number Field", path: "/components/number-field", category: "form-inputs", description: "Input field tailored for numeric values with increment/decrement stepper controls." },
   { title: "Radio Group", path: "/components/radio-group", category: "form-inputs", description: "Set of checkable radio buttons where no more than one button can be checked at once." },
   { title: "Select", path: "/components/select", category: "form-inputs", description: "Custom select menu with option lists, value labels, and native keyboard interaction." },
@@ -56,7 +56,7 @@ const COMPONENTS: ComponentItem[] = [
   { title: "Switch", path: "/components/switch", category: "form-inputs", description: "Control allowing users to toggle between checked and unchecked binary states." },
   { title: "Textarea", path: "/components/textarea", category: "form-inputs", description: "Multiline text input field with configurable sizing and state indicators." },
   { title: "Toggle", path: "/components/toggle", category: "form-inputs", description: "Two-state toggle button or grouped segmented control for toolbars and filters." },
-  { title: "Toolbar", path: "/components/toolbar", category: "form-inputs", description: "Container for grouping controls such as buttons, toggles, inputs, and dropdowns.", badge: "New" },
+  { title: "Toolbar", path: "/components/toolbar", category: "form-inputs", description: "Container for grouping controls such as buttons, toggles, inputs, and dropdowns." },
 
   // Layout & Structure (10)
   { title: "Accordion", path: "/components/accordion", category: "layout-structure", description: "Vertically stacked interactive disclosure headings for expandable content sections." },
@@ -89,7 +89,7 @@ const COMPONENTS: ComponentItem[] = [
   { title: "Meter", path: "/components/meter", category: "feedback-status", description: "Scalar measurement gauge within a known range, such as storage usage or battery level." },
   { title: "Progress", path: "/components/progress", category: "feedback-status", description: "Indicator displaying task completion progress, determinate or indeterminate." },
   { title: "Skeleton", path: "/components/skeleton", category: "feedback-status", description: "Animated wireframe placeholder shown while content is asynchronously loading." },
-  { title: "Toast", path: "/components/toast", category: "feedback-status", description: "Succinct notification floating temporarily over the screen for system feedback.", badge: "Updated" },
+  { title: "Toast", path: "/components/toast", category: "feedback-status", description: "Succinct notification floating temporarily over the screen for system feedback." },
 
   // Navigation (3)
   { title: "Breadcrumb", path: "/components/breadcrumb", category: "navigation", description: "Hierarchical trail of links showing the user's location within the website hierarchy." },
