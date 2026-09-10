@@ -13,11 +13,13 @@ const toggleVariants = cva(
       },
       size: {
         default: "h-8 px-3 gap-1.5",
+        xs: "h-6 px-2 text-xs gap-1",
         sm: "h-7 px-2.5 text-xs gap-1",
         lg: "h-9 px-3.5 text-sm gap-2",
-        icon: "h-8 w-8 p-0",
-        "icon-sm": "h-7 w-7 rounded-md p-0",
-        "icon-lg": "h-9 w-9 rounded-lg p-0",
+        icon: "size-8 p-0",
+        "icon-xs": "size-6 rounded-md p-0",
+        "icon-sm": "size-7 rounded-md p-0",
+        "icon-lg": "size-9 rounded-lg p-0",
       },
     },
     defaultVariants: {

@@ -159,7 +159,7 @@ function ComponentCard({ component }: { component: ComponentItem }) {
                     ? "default"
                     : "secondary"
                 }
-                size="xs"
+                size="sm"
                 className="text-[10px] h-4 px-1.5 font-medium"
               >
                 {component.badge}
@@ -256,7 +256,7 @@ export default function ComponentsPage() {
             value={selectedCategory}
             onValueChange={(val) => setSelectedCategory(val as string)}
           >
-            <TabsList size="sm" className="overflow-x-auto max-w-full justify-start">
+            <TabsList className="overflow-x-auto max-w-full justify-start">
               <TabsTab value="all">All ({COMPONENTS.length})</TabsTab>
               <TabsTab value="form-inputs">Form</TabsTab>
               <TabsTab value="layout-structure">Layout</TabsTab>
@@ -338,7 +338,7 @@ export default function ComponentsPage() {
                     >
                       {cat.title}
                     </h2>
-                    <Badge variant="outline" size="xs" className="font-mono text-[11px] font-medium h-5 px-1.5 ml-0.5">
+                    <Badge variant="outline" size="sm" className="font-mono text-[11px] font-medium h-5 px-1.5 ml-0.5">
                       {items.length}
                     </Badge>
                   </div>

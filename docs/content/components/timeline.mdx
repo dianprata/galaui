@@ -158,6 +158,75 @@ By configuring `align="alternate"` or `align="left"`, you can position event det
   </div>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Timeline Dot Sizes"
+  description="Timeline dot indicators with icons available in xs, sm, default, and lg sizes."
+  code={'import { TimelineDot } from "@galaui/react";\nimport { Check } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <TimelineDot size="xs" variant="success">\n        <Check className="size-2.5" />\n      </TimelineDot>\n      <TimelineDot size="sm" variant="success">\n        <Check className="size-3" />\n      </TimelineDot>\n      <TimelineDot size="default" variant="success">\n        <Check className="size-3.5" />\n      </TimelineDot>\n      <TimelineDot size="lg" variant="success">\n        <Check className="size-4" />\n      </TimelineDot>\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-4">
+    <TimelineDot size="xs" variant="success">
+      <Check className="size-2.5" />
+    </TimelineDot>
+    <TimelineDot size="sm" variant="success">
+      <Check className="size-3" />
+    </TimelineDot>
+    <TimelineDot size="default" variant="success">
+      <Check className="size-3.5" />
+    </TimelineDot>
+    <TimelineDot size="lg" variant="success">
+      <Check className="size-4" />
+    </TimelineDot>
+  </div>
+</ComponentPreview>
+
+## Horizontal Orientation
+
+<ComponentPreview
+  title="Horizontal Sequence"
+  description="Events displayed in a horizontal sequence with horizontal orientation."
+  code={'import {\n  Timeline,\n  TimelineItem,\n  TimelineDot,\n  TimelineConnector,\n  TimelineContent,\n  TimelineTitle,\n  TimelineDescription,\n  TimelineTime,\n} from "@galaui/react";\nimport { Check, Truck, PackageCheck } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xl overflow-x-auto">\n      <Timeline orientation="horizontal">\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="success" size="sm">\n            <Check className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>Order Placed</TimelineTitle>\n            <TimelineTime>09:00 AM</TimelineTime>\n            <TimelineDescription>Payment confirmed</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="success" size="sm">\n            <Truck className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>In Transit</TimelineTitle>\n            <TimelineTime>01:30 PM</TimelineTime>\n            <TimelineDescription>Courier on route</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n        <TimelineItem>\n          <TimelineConnector />\n          <TimelineDot variant="default" size="sm">\n            <PackageCheck className="w-3 h-3" />\n          </TimelineDot>\n          <TimelineContent>\n            <TimelineTitle>Delivered</TimelineTitle>\n            <TimelineTime>Estimated</TimelineTime>\n            <TimelineDescription>Expected tomorrow</TimelineDescription>\n          </TimelineContent>\n        </TimelineItem>\n      </Timeline>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xl overflow-x-auto">
+    <Timeline orientation="horizontal">
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="success" size="sm">
+          <Check className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>Order Placed</TimelineTitle>
+          <TimelineTime>09:00 AM</TimelineTime>
+          <TimelineDescription>Payment confirmed</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="success" size="sm">
+          <Truck className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>In Transit</TimelineTitle>
+          <TimelineTime>01:30 PM</TimelineTime>
+          <TimelineDescription>Courier on route</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineConnector />
+        <TimelineDot variant="default" size="sm">
+          <PackageCheck className="w-3 h-3" />
+        </TimelineDot>
+        <TimelineContent>
+          <TimelineTitle>Delivered</TimelineTitle>
+          <TimelineTime>Estimated</TimelineTime>
+          <TimelineDescription>Expected tomorrow</TimelineDescription>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  </div>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference
@@ -181,7 +250,7 @@ By configuring `align="alternate"` or `align="left"`, you can position event det
   description="Indicator badge on the connector line."
   props={[
     { name: "variant", type: '"default" | "outline" | "secondary" | "success" | "warning" | "destructive"', default: '"default"', description: "Color status theme." },
-    { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Diameter scale of the dot." },
+    { name: "size", type: '"default" | "xs" | "sm" | "lg"', default: '"default"', description: "Diameter scale of the dot." },
     { name: "icon", type: "React.ReactNode", description: "Optional icon inside the dot." },
   ]}
 />

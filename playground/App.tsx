@@ -144,7 +144,7 @@ export default function App() {
 
   // Dynamic props configuration
   const [btnVariant, setBtnVariant] = useState<"primary" | "secondary" | "outline" | "destructive" | "ghost" | "link">("primary");
-  const [btnSize, setBtnSize] = useState<"xs" | "sm" | "default" | "md" | "lg" | "icon-xs" | "icon-sm" | "icon" | "icon-lg">("default");
+  const [btnSize, setBtnSize] = useState<"default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg">("default");
   const [btnLabel, setBtnLabel] = useState("Execute Action");
   const [customCn, setCustomCn] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
@@ -581,7 +581,7 @@ export function NotificationTrigger() {
 
                   {selectedComp === "dialog" && (
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                      <DialogTrigger render={<Button variant="primary" size="md" className="shadow-xs" />}>
+                      <DialogTrigger render={<Button variant="primary" size="default" className="shadow-xs" />}>
                         <Fingerprint className="w-4 h-4" /> Launch Modal Dialog
                       </DialogTrigger>
                       <DialogPopup>
@@ -847,12 +847,12 @@ export function NotificationTrigger() {
 
                   {selectedComp === "badge" && (
                     <div className="flex flex-wrap gap-2 items-center justify-center">
-                      <Badge variant={btnVariant as any} className={cn(customCn)}>
+                      <Badge variant={btnVariant as any} size={btnSize as any} className={cn(customCn)}>
                         {btnLabel || "Production Live"}
                       </Badge>
-                      <Badge variant="success">99.9% Uptime</Badge>
-                      <Badge variant="warning">Syncing</Badge>
-                      <Badge variant="destructive">Deprecated</Badge>
+                      <Badge variant="success" size={btnSize as any}>99.9% Uptime</Badge>
+                      <Badge variant="warning" size={btnSize as any}>Syncing</Badge>
+                      <Badge variant="destructive" size={btnSize as any}>Deprecated</Badge>
                     </div>
                   )}
 
@@ -955,10 +955,10 @@ export function NotificationTrigger() {
                         </div>
                         <div className="space-y-1.5">
                           <div className="flex justify-between text-[11px]">
-                            <span className="font-medium text-foreground">Medium (md / 6px track, 18px thumb — Default)</span>
+                            <span className="font-medium text-foreground">Default (6px track, 18px thumb)</span>
                             <span className="font-mono text-muted-foreground">60%</span>
                           </div>
-                          <Slider defaultValue={60} size="md" />
+                          <Slider defaultValue={60} size="default" />
                         </div>
                         <div className="space-y-1.5">
                           <div className="flex justify-between text-[11px]">

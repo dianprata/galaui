@@ -1632,7 +1632,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -1850,7 +1850,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -2347,7 +2347,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-md\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -7108,7 +7108,7 @@
         },
         {
           "name": "buttonSize",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-md\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": null,
           "required": false,
           "description": "Button size preset for the date picker trigger."
@@ -7222,7 +7222,7 @@
         },
         {
           "name": "buttonSize",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-md\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": null,
           "required": false,
           "description": "Button size preset for the date picker trigger."
@@ -11682,7 +11682,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -17766,7 +17766,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -19252,7 +19252,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -20267,7 +20267,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -20563,7 +20563,7 @@
       "props": [
         {
           "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -21465,13 +21465,6 @@
       "file": "tabs.tsx",
       "props": [
         {
-          "name": "size",
-          "type": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\"",
-          "defaultValue": "\"default\"",
-          "required": false,
-          "description": "Size preset determining height, padding, and font size."
-        },
-        {
           "name": "id",
           "type": "string",
           "defaultValue": null,
@@ -21945,7 +21938,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -23270,7 +23263,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"lg\" | \"icon\" | \"icon-sm\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": null,
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -23398,7 +23391,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"lg\" | \"icon\" | \"icon-sm\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": null,
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -23530,7 +23523,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"lg\" | \"icon\" | \"icon-sm\" | \"icon-lg\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."
@@ -23821,7 +23814,7 @@
         },
         {
           "name": "size",
-          "type": "\"default\" | \"sm\" | \"icon\" | \"icon-sm\"",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\"",
           "defaultValue": "\"default\"",
           "required": false,
           "description": "Size preset determining height, padding, and font size."

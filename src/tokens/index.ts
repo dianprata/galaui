@@ -75,10 +75,9 @@ export const borderRadius = {
 } as const;
 
 export const componentSizes = {
+  default: "32px",
   xs: "24px",
   sm: "28px",
-  default: "32px",
-  md: "32px",
   lg: "36px",
 } as const;
 

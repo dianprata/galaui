@@ -15,9 +15,13 @@ const toolbarButtonVariants = cva(
       },
       size: {
         default: "h-8 px-2.5 text-xs rounded-lg gap-1.5",
+        xs: "h-6 px-1.5 text-xs rounded-md gap-1",
         sm: "h-7 px-2 text-xs rounded-md gap-1",
-        icon: "h-8 w-8 p-0 rounded-lg",
-        "icon-sm": "h-7 w-7 p-0 rounded-md",
+        lg: "h-9 px-3 text-xs rounded-lg gap-2",
+        icon: "size-8 p-0 rounded-lg",
+        "icon-xs": "size-6 p-0 rounded-md",
+        "icon-sm": "size-7 p-0 rounded-md",
+        "icon-lg": "size-9 p-0 rounded-lg",
       },
     },
     defaultVariants: {

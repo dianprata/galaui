@@ -91,7 +91,7 @@ export function PropsTable({
                     <div className="flex items-center gap-1.5">
                       <span>{item.name}</span>
                       {item.required && (
-                        <Badge variant="destructive" size="xs">
+                        <Badge variant="destructive" size="sm">
                           Required
                         </Badge>
                       )}
@@ -121,4 +121,3 @@ export function PropsTable({
     </div>
   );
 }
-

@@ -61,7 +61,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                   {item.badge && (
                     <Badge
                       variant="secondary"
-                      size="xs"
+                      size="sm"
                       className="text-[9px] h-3.5 px-1"
                     >
                       {item.badge}
@@ -89,7 +89,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                   {item.badge && (
                     <Badge
                       variant={item.badge.toLowerCase() === "new" ? "default" : "secondary"}
-                      size="xs"
+                      size="sm"
                       className="text-[9px] h-3.5 px-1"
                     >
                       {item.badge}

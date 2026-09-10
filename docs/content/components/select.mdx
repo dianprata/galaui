@@ -55,6 +55,76 @@ Displays a list of options for the user to pick from—triggered by a button. Bu
   </div>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Trigger Sizes"
+  description="Select triggers available across the canonical size scale: xs (24px), sm (28px), default (32px), and lg (36px)."
+  code={'import {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectPopup,\n  SelectItem,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xs space-y-3.5">\n      <div className="space-y-1">\n        <span className="text-[11px] font-medium text-muted-foreground">Extra Small (xs / 24px)</span>\n        <Select defaultValue="vite">\n          <SelectTrigger size="xs">\n            <SelectValue placeholder="Select framework..." />\n          </SelectTrigger>\n          <SelectPopup>\n            <SelectItem value="next">Next.js</SelectItem>\n            <SelectItem value="vite">Vite + React</SelectItem>\n            <SelectItem value="astro">Astro</SelectItem>\n            <SelectItem value="remix">Remix</SelectItem>\n          </SelectPopup>\n        </Select>\n      </div>\n\n      <div className="space-y-1">\n        <span className="text-[11px] font-medium text-muted-foreground">Small (sm / 28px)</span>\n        <Select defaultValue="sg">\n          <SelectTrigger size="sm">\n            <SelectValue placeholder="Select region..." />\n          </SelectTrigger>\n          <SelectPopup>\n            <SelectItem value="sg">Singapore (ap-southeast-1)</SelectItem>\n            <SelectItem value="tokyo">Tokyo (ap-northeast-1)</SelectItem>\n            <SelectItem value="us-east">N. Virginia (us-east-1)</SelectItem>\n            <SelectItem value="eu-west">Frankfurt (eu-central-1)</SelectItem>\n          </SelectPopup>\n        </Select>\n      </div>\n\n      <div className="space-y-1">\n        <span className="text-[11px] font-medium text-muted-foreground">Default (default / 32px)</span>\n        <Select defaultValue="admin">\n          <SelectTrigger size="default">\n            <SelectValue placeholder="Select role..." />\n          </SelectTrigger>\n          <SelectPopup>\n            <SelectItem value="owner">Organization Owner</SelectItem>\n            <SelectItem value="admin">Administrator</SelectItem>\n            <SelectItem value="member">Team Member</SelectItem>\n            <SelectItem value="billing">Billing Manager</SelectItem>\n          </SelectPopup>\n        </Select>\n      </div>\n\n      <div className="space-y-1">\n        <span className="text-[11px] font-medium text-muted-foreground">Large (lg / 36px)</span>\n        <Select defaultValue="pro">\n          <SelectTrigger size="lg">\n            <SelectValue placeholder="Select plan..." />\n          </SelectTrigger>\n          <SelectPopup>\n            <SelectItem value="starter">Starter Plan ($0/mo)</SelectItem>\n            <SelectItem value="pro">Pro Developer ($20/mo)</SelectItem>\n            <SelectItem value="team">Team Plan ($40/mo)</SelectItem>\n            <SelectItem value="enterprise">Enterprise Custom</SelectItem>\n          </SelectPopup>\n        </Select>\n      </div>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-xs space-y-3.5">
+    <div className="space-y-1">
+      <span className="text-[11px] font-medium text-muted-foreground">Extra Small (xs / 24px)</span>
+      <Select defaultValue="vite">
+        <SelectTrigger size="xs">
+          <SelectValue placeholder="Select framework..." />
+        </SelectTrigger>
+        <SelectPopup>
+          <SelectItem value="next">Next.js</SelectItem>
+          <SelectItem value="vite">Vite + React</SelectItem>
+          <SelectItem value="astro">Astro</SelectItem>
+          <SelectItem value="remix">Remix</SelectItem>
+        </SelectPopup>
+      </Select>
+    </div>
+
+    <div className="space-y-1">
+      <span className="text-[11px] font-medium text-muted-foreground">Small (sm / 28px)</span>
+      <Select defaultValue="sg">
+        <SelectTrigger size="sm">
+          <SelectValue placeholder="Select region..." />
+        </SelectTrigger>
+        <SelectPopup>
+          <SelectItem value="sg">Singapore (ap-southeast-1)</SelectItem>
+          <SelectItem value="tokyo">Tokyo (ap-northeast-1)</SelectItem>
+          <SelectItem value="us-east">N. Virginia (us-east-1)</SelectItem>
+          <SelectItem value="eu-west">Frankfurt (eu-central-1)</SelectItem>
+        </SelectPopup>
+      </Select>
+    </div>
+
+    <div className="space-y-1">
+      <span className="text-[11px] font-medium text-muted-foreground">Default (default / 32px)</span>
+      <Select defaultValue="admin">
+        <SelectTrigger size="default">
+          <SelectValue placeholder="Select role..." />
+        </SelectTrigger>
+        <SelectPopup>
+          <SelectItem value="owner">Organization Owner</SelectItem>
+          <SelectItem value="admin">Administrator</SelectItem>
+          <SelectItem value="member">Team Member</SelectItem>
+          <SelectItem value="billing">Billing Manager</SelectItem>
+        </SelectPopup>
+      </Select>
+    </div>
+
+    <div className="space-y-1">
+      <span className="text-[11px] font-medium text-muted-foreground">Large (lg / 36px)</span>
+      <Select defaultValue="pro">
+        <SelectTrigger size="lg">
+          <SelectValue placeholder="Select plan..." />
+        </SelectTrigger>
+        <SelectPopup>
+          <SelectItem value="starter">Starter Plan ($0/mo)</SelectItem>
+          <SelectItem value="pro">Pro Developer ($20/mo)</SelectItem>
+          <SelectItem value="team">Team Plan ($40/mo)</SelectItem>
+          <SelectItem value="enterprise">Enterprise Custom</SelectItem>
+        </SelectPopup>
+      </Select>
+    </div>
+  </div>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference component="Select" />

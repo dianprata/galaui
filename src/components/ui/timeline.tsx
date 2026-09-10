@@ -33,18 +33,18 @@ const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
           aria-label="Timeline"
           data-orientation={orientation}
           data-align={align}
-          className={cn(
-            "relative flex",
-            orientation === "vertical"
-              ? align === "alternate"
-                ? "flex-col space-y-8 w-full max-w-2xl mx-auto"
-                : align === "left"
-                ? "flex-col space-y-6 pr-2 items-end w-full"
-                : "flex-col space-y-6 pl-2 items-start w-full"
-              : "flex-row space-x-6 items-start overflow-x-auto pb-4",
-            className
-          )}
-          {...props}
+        className={cn(
+          "relative flex",
+          orientation === "vertical"
+            ? align === "alternate"
+              ? "flex-col space-y-8 w-full max-w-2xl mx-auto"
+              : align === "left"
+              ? "flex-col space-y-6 pr-2 items-end w-full"
+              : "flex-col space-y-6 pl-2 items-start w-full"
+            : "flex-row items-start w-full overflow-x-auto pb-4",
+          className
+        )}
+        {...props}
         >
           {children}
         </ol>
@@ -70,15 +70,17 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
         data-side={propSide}
         className={cn(
           "group relative flex items-start",
-          orientation === "vertical" && [
-            align === "alternate"
-              ? "grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-start w-full gap-4 even:[&_[data-slot=timeline-content]]:col-start-3 even:[&_[data-slot=timeline-content]]:row-start-1 even:[&_[data-slot=timeline-content]]:text-left odd:[&_[data-slot=timeline-content]]:col-start-1 odd:[&_[data-slot=timeline-content]]:row-start-1 odd:[&_[data-slot=timeline-content]]:text-right [&_[data-slot=timeline-dot-wrapper]]:col-start-2 [&_[data-slot=timeline-dot-wrapper]]:row-start-1"
-              : align === "left"
-              ? "flex-row-reverse text-right gap-3 w-full"
-              : "flex-row text-left gap-3 w-full",
-            propSide === "left" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-1 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-right [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
-            propSide === "right" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-3 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-left [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
-          ],
+          orientation === "vertical"
+            ? [
+                align === "alternate"
+                  ? "grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-start w-full gap-4 even:[&_[data-slot=timeline-content]]:col-start-3 even:[&_[data-slot=timeline-content]]:row-start-1 even:[&_[data-slot=timeline-content]]:text-left odd:[&_[data-slot=timeline-content]]:col-start-1 odd:[&_[data-slot=timeline-content]]:row-start-1 odd:[&_[data-slot=timeline-content]]:text-right [&_[data-slot=timeline-dot-wrapper]]:col-start-2 [&_[data-slot=timeline-dot-wrapper]]:row-start-1"
+                  : align === "left"
+                  ? "flex-row-reverse text-right gap-3 w-full"
+                  : "flex-row text-left gap-3 w-full",
+                propSide === "left" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-1 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-right [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
+                propSide === "right" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-3 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-left [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
+              ]
+            : "flex-1 flex-col items-start min-w-[140px]",
           className
         )}
         {...props}
@@ -103,9 +105,10 @@ const timelineDotVariants = cva(
         destructive: "border-destructive-500 bg-destructive-500 text-white shadow-2xs",
       },
       size: {
-        sm: "h-5 w-5 text-[10px]",
-        default: "h-7 w-7 text-xs",
-        lg: "h-9 w-9 text-sm",
+        default: "size-7 text-xs",
+        xs: "size-4 text-[9px]",
+        sm: "size-5 text-[10px]",
+        lg: "size-9 text-sm",
       },
     },
     defaultVariants: {
@@ -123,14 +126,18 @@ export interface TimelineDotProps
 
 const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
   ({ variant, size, icon, className, children, ...props }, ref) => {
-    const { align } = useTimeline();
+    const { align, orientation } = useTimeline();
 
     return (
       <div
         data-slot="timeline-dot-wrapper"
         className={cn(
-          "relative flex h-5 shrink-0 items-center justify-center",
-          align === "alternate" ? "col-start-2 row-start-1 w-8 mx-auto" : "w-7"
+          "relative flex shrink-0 items-center justify-center",
+          orientation === "horizontal"
+            ? "h-7 w-7"
+            : align === "alternate"
+            ? "col-start-2 row-start-1 w-8 mx-auto h-5"
+            : "w-7 h-5"
         )}
       >
         <div
@@ -151,7 +158,7 @@ export interface TimelineConnectorProps extends React.HTMLAttributes<HTMLDivElem
 
 const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProps>(
   ({ className, ...props }, ref) => {
-    const { align } = useTimeline();
+    const { align, orientation } = useTimeline();
 
     return (
       <div
@@ -160,12 +167,16 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProp
         aria-hidden="true"
         data-slot="timeline-connector"
         className={cn(
-          "absolute top-5 -bottom-8 w-0.5 bg-border group-last:hidden",
-          align === "alternate"
-            ? "left-1/2 -translate-x-1/2"
-            : align === "left"
-            ? "right-[14px] translate-x-1/2"
-            : "left-[14px] -translate-x-1/2",
+          orientation === "horizontal"
+            ? "absolute top-[14px] -translate-y-1/2 left-[14px] right-[-14px] h-0.5 bg-border group-last:hidden"
+            : cn(
+                "absolute top-5 -bottom-8 w-0.5 bg-border group-last:hidden",
+                align === "alternate"
+                  ? "left-1/2 -translate-x-1/2"
+                  : align === "left"
+                  ? "right-[14px] translate-x-1/2"
+                  : "left-[14px] -translate-x-1/2"
+              ),
           className
         )}
         {...props}
@@ -179,15 +190,17 @@ export interface TimelineContentProps extends React.HTMLAttributes<HTMLDivElemen
 
 const TimelineContent = React.forwardRef<HTMLDivElement, TimelineContentProps>(
   ({ className, ...props }, ref) => {
-    const { align } = useTimeline();
+    const { align, orientation } = useTimeline();
 
     return (
       <div
         ref={ref}
         data-slot="timeline-content"
         className={cn(
-          "flex flex-col min-w-0 pt-0",
-          align === "alternate" ? "w-full" : "flex-1",
+          "flex flex-col min-w-0",
+          orientation === "horizontal"
+            ? "w-full pt-2.5 pr-4 text-left"
+            : cn("pt-0", align === "alternate" ? "w-full" : "flex-1"),
           className
         )}
         {...props}
