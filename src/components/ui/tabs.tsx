@@ -6,21 +6,7 @@ import { cn } from "@/lib/utils";
 const Tabs = BaseTabs.Root;
 
 const tabsListVariants = cva(
-  "inline-flex items-center justify-center rounded-lg bg-muted text-muted-foreground",
-  {
-    variants: {
-      size: {
-        default: "h-8 p-1 text-xs",
-        xs: "h-6 p-0.5 text-xs rounded-md",
-        sm: "h-7 p-0.5 text-xs rounded-md",
-        md: "h-8 p-1 text-xs",
-        lg: "h-9 p-1 text-xs",
-      },
-    },
-    defaultVariants: {
-      size: "default",
-    },
-  }
+  "inline-flex h-8 items-center justify-center rounded-lg bg-muted p-1 text-xs text-muted-foreground"
 );
 
 export interface TabsListProps
@@ -30,10 +16,10 @@ export interface TabsListProps
 const TabsList = React.forwardRef<
   React.ElementRef<typeof BaseTabs.List>,
   TabsListProps
->(({ className, size = "default", children, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <BaseTabs.List
     ref={ref}
-    className={cn("relative isolate", tabsListVariants({ size }), className)}
+    className={cn("relative isolate", tabsListVariants(), className)}
     {...props}
   >
     <TabsIndicator />

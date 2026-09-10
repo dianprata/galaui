@@ -256,7 +256,7 @@ export default function ComponentsPage() {
             value={selectedCategory}
             onValueChange={(val) => setSelectedCategory(val as string)}
           >
-            <TabsList size="sm" className="overflow-x-auto max-w-full justify-start">
+            <TabsList className="overflow-x-auto max-w-full justify-start">
               <TabsTab value="all">All ({COMPONENTS.length})</TabsTab>
               <TabsTab value="form-inputs">Form</TabsTab>
               <TabsTab value="layout-structure">Layout</TabsTab>

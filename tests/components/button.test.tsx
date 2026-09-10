@@ -30,14 +30,17 @@ describe("Button", () => {
   });
 
   it("renders with various sizes", () => {
-    const { rerender } = render(<Button size="sm">Small</Button>);
+    const { rerender } = render(<Button size="xs">Extra Small</Button>);
+    expect(screen.getByRole("button")).toHaveClass("h-6");
+
+    rerender(<Button size="sm">Small</Button>);
     expect(screen.getByRole("button")).toHaveClass("h-7");
 
     rerender(<Button size="lg">Large</Button>);
     expect(screen.getByRole("button")).toHaveClass("h-9");
 
     rerender(<Button size="icon" aria-label="Icon Button">★</Button>);
-    expect(screen.getByRole("button")).toHaveClass("h-8", "w-8");
+    expect(screen.getByRole("button")).toHaveClass("size-8");
   });
 
   it("handles click events via userEvent", async () => {

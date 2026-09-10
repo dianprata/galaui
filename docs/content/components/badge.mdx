@@ -34,10 +34,11 @@ Displays a small status label, tag, or counter.
 
 <ComponentPreview
   title="Badge Sizes"
-  description="Compact status badges available in sm (16px), default (18px), and lg (22px)."
-  code={'import { Badge } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Badge size="sm">Small (16px)</Badge>\n      <Badge size="default">Default (18px)</Badge>\n      <Badge size="lg">Large (22px)</Badge>\n    </div>\n  );\n}'}
+  description="Compact status badges available in xs (14px), sm (16px), default (18px), and lg (22px)."
+  code={'import { Badge } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Badge size="xs">Extra Small (14px)</Badge>\n      <Badge size="sm">Small (16px)</Badge>\n      <Badge size="default">Default (18px)</Badge>\n      <Badge size="lg">Large (22px)</Badge>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2.5 items-center">
+    <Badge size="xs">Extra Small (14px)</Badge>
     <Badge size="sm">Small (16px)</Badge>
     <Badge size="default">Default (18px)</Badge>
     <Badge size="lg">Large (22px)</Badge>

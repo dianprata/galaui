@@ -41,6 +41,47 @@ An input where the user selects a value from within a given range. Built on Base
   </div>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Track & Thumb Sizes"
+  description="Track thickness and thumb dimensions available in xs, sm, default, and lg."
+  code={'import { Slider } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-4">\n      <div className="space-y-1">\n        <span className="text-xs text-muted-foreground">Extra Small (xs)</span>\n        <Slider defaultValue={30} size="xs" />\n      </div>\n      <div className="space-y-1">\n        <span className="text-xs text-muted-foreground">Small (sm)</span>\n        <Slider defaultValue={45} size="sm" />\n      </div>\n      <div className="space-y-1">\n        <span className="text-xs text-muted-foreground">Default (default)</span>\n        <Slider defaultValue={60} size="default" />\n      </div>\n      <div className="space-y-1">\n        <span className="text-xs text-muted-foreground">Large (lg)</span>\n        <Slider defaultValue={75} size="lg" />\n      </div>\n    </div>\n  );\n}'}
+>
+  <div className="w-full max-w-sm space-y-4">
+    <div className="space-y-1">
+      <span className="text-xs text-muted-foreground">Extra Small (xs)</span>
+      <Slider defaultValue={30} size="xs" />
+    </div>
+    <div className="space-y-1">
+      <span className="text-xs text-muted-foreground">Small (sm)</span>
+      <Slider defaultValue={45} size="sm" />
+    </div>
+    <div className="space-y-1">
+      <span className="text-xs text-muted-foreground">Default (default)</span>
+      <Slider defaultValue={60} size="default" />
+    </div>
+    <div className="space-y-1">
+      <span className="text-xs text-muted-foreground">Large (lg)</span>
+      <Slider defaultValue={75} size="lg" />
+    </div>
+  </div>
+</ComponentPreview>
+
+## Orientation
+
+<ComponentPreview
+  title="Vertical Orientation"
+  description="Slider oriented vertically with custom container height."
+  code={'import { Slider } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center justify-center gap-8 h-48 py-2">\n      <Slider defaultValue={40} orientation="vertical" size="sm" />\n      <Slider defaultValue={70} orientation="vertical" size="default" />\n      <Slider defaultValue={[20, 80]} orientation="vertical" size="lg" />\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center justify-center gap-8 h-48 py-2">
+    <Slider defaultValue={40} orientation="vertical" size="sm" />
+    <Slider defaultValue={70} orientation="vertical" size="default" />
+    <Slider defaultValue={[20, 80]} orientation="vertical" size="lg" />
+  </div>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference component="Slider" />

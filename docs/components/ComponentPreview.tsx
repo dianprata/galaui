@@ -57,7 +57,7 @@ export function ComponentPreview({
 
       <Tabs defaultValue="preview">
         <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/30">
-          <TabsList size="sm">
+          <TabsList>
             <TabsTab value="preview" className="gap-1.5">
               <Eye className="w-3.5 h-3.5" />
               <span>Preview</span>

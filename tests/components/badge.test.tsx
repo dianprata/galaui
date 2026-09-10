@@ -21,6 +21,9 @@ describe("Badge", () => {
     const { rerender } = render(<Badge>Default Badge</Badge>);
     expect(screen.getByText("Default Badge")).toHaveClass("h-4.5");
 
+    rerender(<Badge size="xs">Extra Small Badge</Badge>);
+    expect(screen.getByText("Extra Small Badge")).toHaveClass("h-3.5");
+
     rerender(<Badge size="sm">Small Badge</Badge>);
     expect(screen.getByText("Small Badge")).toHaveClass("h-4");
 

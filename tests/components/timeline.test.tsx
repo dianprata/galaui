@@ -71,4 +71,35 @@ describe("Timeline", () => {
     expect(items[0]).toHaveAttribute("data-side", "left");
     expect(items[1]).toHaveAttribute("data-side", "right");
   });
+
+  it("supports horizontal orientation layout", () => {
+    const { container } = render(
+      <Timeline orientation="horizontal">
+        <TimelineItem>
+          <TimelineConnector data-testid="connector-1" />
+          <TimelineDot variant="success" />
+          <TimelineContent>
+            <TimelineTitle>Step 1</TimelineTitle>
+          </TimelineContent>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineConnector data-testid="connector-2" />
+          <TimelineDot />
+          <TimelineContent>
+            <TimelineTitle>Step 2</TimelineTitle>
+          </TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    );
+
+    const list = container.querySelector("ol");
+    expect(list).toHaveAttribute("data-orientation", "horizontal");
+    expect(list).toHaveClass("flex-row");
+
+    const items = container.querySelectorAll("li");
+    expect(items[0]).toHaveClass("flex-col");
+
+    const connector = screen.getByTestId("connector-1");
+    expect(connector).toHaveClass("h-0.5");
+  });
 });

@@ -353,14 +353,14 @@ export function ReleaseModal() {
                         <div className="w-3 h-3 rounded-full bg-warning-500/80" />
                         <div className="w-3 h-3 rounded-full bg-success-500/80" />
                       </div>
-                      <span className="text-xs font-medium text-muted-foreground ml-1">Live Component Hub</span>
-                    </div>
+                    <span className="text-xs font-medium text-muted-foreground ml-1">Live Component Hub</span>
+                  </div>
 
-                    {/* GalaUI TabsList */}
-                    <TabsList size="sm">
-                      <TabsTab value="form">Forms</TabsTab>
-                      <TabsTab value="controls">Controls</TabsTab>
-                      <TabsTab value="actions">Actions</TabsTab>
+                  {/* GalaUI TabsList */}
+                  <TabsList>
+                    <TabsTab value="form">Forms</TabsTab>
+                    <TabsTab value="controls">Controls</TabsTab>
+                    <TabsTab value="actions">Actions</TabsTab>
                     </TabsList>
                   </CardHeader>
 
@@ -734,7 +734,7 @@ export function ReleaseModal() {
               </div>
 
               <Tabs value={selectedCategory} onValueChange={(val) => setSelectedCategory(val as string)}>
-                <TabsList size="sm">
+                <TabsList>
                   <TabsTab value="all">All ({allComponents.length})</TabsTab>
                   <TabsTab value="inputs">Inputs</TabsTab>
                   <TabsTab value="overlays">Overlays</TabsTab>
@@ -848,7 +848,7 @@ export function ReleaseModal() {
 
                     <div className="flex items-center gap-2">
                       <Badge variant="outline" className="hidden sm:inline-flex text-[10px]">React 19 + TS</Badge>
-                      <TabsList size="sm">
+                      <TabsList>
                         <TabsTab value="preview">Preview</TabsTab>
                         <TabsTab value="code">Code</TabsTab>
                       </TabsList>

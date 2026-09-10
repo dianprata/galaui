@@ -21,9 +21,13 @@ A control that allows the user to toggle between checked and not checked states.
 <ComponentPreview
   title="Switch Sizes"
   description="Scale from xs, sm, default to lg."
-  code={'import { Switch } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Small (sm)</span>\n        <Switch size="sm" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Default (default)</span>\n        <Switch size="default" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Large (lg)</span>\n        <Switch size="lg" defaultChecked />\n      </div>\n    </div>\n  );\n}'}
+  code={'import { Switch } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-2 rounded-lg border border-border">\n        <span className="text-xs font-medium">Extra Small (xs)</span>\n        <Switch size="xs" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Small (sm)</span>\n        <Switch size="sm" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Default (default)</span>\n        <Switch size="default" defaultChecked />\n      </div>\n      <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">\n        <span className="text-xs font-medium">Large (lg)</span>\n        <Switch size="lg" defaultChecked />\n      </div>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-3">
+    <div className="flex items-center justify-between p-2 rounded-lg border border-border">
+      <span className="text-xs font-medium">Extra Small (xs)</span>
+      <Switch size="xs" defaultChecked />
+    </div>
     <div className="flex items-center justify-between p-2.5 rounded-xl border border-border">
       <span className="text-xs font-medium">Small (sm)</span>
       <Switch size="sm" defaultChecked />

@@ -139,6 +139,21 @@ Display progress vertically, perfect for sidebar checklists or step-by-step docu
   </div>
 </ComponentPreview>
 
+## Sizes
+
+<ComponentPreview
+  title="Step Indicator Sizing"
+  description="Step indicators available in xs (20px), sm (24px), default (32px), and lg (40px) sizes."
+  code={'import { StepIndicator } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <StepIndicator size="xs" state="completed" />\n      <StepIndicator size="sm" state="completed" />\n      <StepIndicator size="default" state="completed" />\n      <StepIndicator size="lg" state="completed" />\n    </div>\n  );\n}'}
+>
+  <div className="flex items-center gap-4">
+    <StepIndicator size="xs" state="completed" />
+    <StepIndicator size="sm" state="completed" />
+    <StepIndicator size="default" state="completed" />
+    <StepIndicator size="lg" state="completed" />
+  </div>
+</ComponentPreview>
+
 ## API Reference
 
 <ApiReference
@@ -165,7 +180,7 @@ Display progress vertically, perfect for sidebar checklists or step-by-step docu
   component="StepIndicator"
   description="Numbered or icon badge for the step."
   props={[
-    { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "Badge diameter scale." },
+    { name: "size", type: '"default" | "xs" | "sm" | "lg"', default: '"default"', description: "Badge diameter scale." },
     { name: "icon", type: "React.ReactNode", description: "Custom icon to replace step number." },
   ]}
 />
