@@ -21804,6 +21804,13 @@
           "description": "Unique HTML element identifier."
         },
         {
+          "name": "align",
+          "type": "TimelineAlign",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the align of the component."
+        },
+        {
           "name": "autoFocus",
           "type": "boolean",
           "defaultValue": null,
@@ -21901,6 +21908,13 @@
           "defaultValue": null,
           "required": false,
           "description": "Standard mouse click event handler."
+        },
+        {
+          "name": "side",
+          "type": "\"left\" | \"right\"",
+          "defaultValue": null,
+          "required": false,
+          "description": "Configures the side of the component."
         },
         {
           "name": "className",
