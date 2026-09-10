@@ -128,7 +128,7 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
     return (
       <div
         className={cn(
-          "relative flex h-6 shrink-0 items-center justify-center",
+          "relative flex shrink-0 items-center justify-center pt-0.5",
           align === "alternate" ? "col-start-2 w-8 mx-auto" : "w-7"
         )}
       >
@@ -159,7 +159,7 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProp
         aria-hidden="true"
         data-slot="timeline-connector"
         className={cn(
-          "absolute top-6 -bottom-8 w-0.5 bg-border group-last:hidden",
+          "absolute top-7 -bottom-6 w-0.5 bg-border group-last:hidden",
           align === "alternate"
             ? "left-1/2 -translate-x-1/2"
             : align === "left"
@@ -185,7 +185,7 @@ const TimelineContent = React.forwardRef<HTMLDivElement, TimelineContentProps>(
         ref={ref}
         data-slot="timeline-content"
         className={cn(
-          "flex flex-col pt-0.5 min-w-0",
+          "flex flex-col min-w-0 justify-center",
           align === "alternate" ? "w-full" : "flex-1",
           className
         )}
@@ -204,7 +204,7 @@ const TimelineTitle = React.forwardRef<HTMLHeadingElement, TimelineTitleProps>(
       <h4
         ref={ref}
         data-slot="timeline-title"
-        className={cn("text-xs font-semibold tracking-tight text-foreground", className)}
+        className={cn("text-xs font-semibold tracking-tight leading-tight text-foreground", className)}
         {...props}
       />
     );
@@ -257,4 +257,3 @@ export {
   TimelineTime,
   timelineDotVariants,
 };
-
