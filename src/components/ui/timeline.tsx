@@ -39,7 +39,7 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
         ref={ref}
         role="listitem"
         data-slot="timeline-item"
-        className={cn("group relative flex items-start gap-3.5", className)}
+        className={cn("group relative flex items-start gap-3", className)}
         {...props}
       >
         {children}
@@ -83,13 +83,15 @@ export interface TimelineDotProps
 const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
   ({ variant, size, icon, className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        data-slot="timeline-dot"
-        className={cn(timelineDotVariants({ variant, size }), className)}
-        {...props}
-      >
-        {icon !== undefined ? icon : children}
+      <div className="relative flex h-6 w-7 shrink-0 items-center justify-center">
+        <div
+          ref={ref}
+          data-slot="timeline-dot"
+          className={cn(timelineDotVariants({ variant, size }), className)}
+          {...props}
+        >
+          {icon !== undefined ? icon : children}
+        </div>
       </div>
     );
   }
@@ -107,7 +109,7 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProp
         aria-hidden="true"
         data-slot="timeline-connector"
         className={cn(
-          "absolute left-[13px] top-7 -bottom-6 w-0.5 bg-border group-last:hidden",
+          "absolute left-[14px] -translate-x-1/2 top-6 -bottom-6 w-0.5 bg-border group-last:hidden",
           className
         )}
         {...props}
@@ -194,4 +196,3 @@ export {
   TimelineTime,
   timelineDotVariants,
 };
-
