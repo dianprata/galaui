@@ -37,10 +37,10 @@ const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
             "relative flex",
             orientation === "vertical"
               ? align === "alternate"
-                ? "flex-col space-y-8 w-full"
+                ? "flex-col space-y-8 w-full max-w-2xl mx-auto"
                 : align === "left"
-                ? "flex-col space-y-6 pr-2 items-end"
-                : "flex-col space-y-6 pl-2 items-start"
+                ? "flex-col space-y-6 pr-2 items-end w-full"
+                : "flex-col space-y-6 pl-2 items-start w-full"
               : "flex-row space-x-6 items-start overflow-x-auto pb-4",
             className
           )}
@@ -72,12 +72,12 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
           "group relative flex items-start",
           orientation === "vertical" && [
             align === "alternate"
-              ? "w-full justify-between even:flex-row-reverse even:[&_[data-slot=timeline-content]]:text-right odd:[&_[data-slot=timeline-content]]:text-left"
+              ? "grid grid-cols-[1fr_auto_1fr] items-start w-full gap-4 even:[&_[data-slot=timeline-content]]:col-start-3 even:[&_[data-slot=timeline-content]]:text-left odd:[&_[data-slot=timeline-content]]:col-start-1 odd:[&_[data-slot=timeline-content]]:text-right"
               : align === "left"
               ? "flex-row-reverse text-right gap-3 w-full"
               : "flex-row text-left gap-3 w-full",
-            propSide === "left" && "flex-row-reverse text-right",
-            propSide === "right" && "flex-row text-left",
+            propSide === "left" && "!grid-cols-[1fr_auto_1fr] [&_[data-slot=timeline-content]]:!col-start-1 [&_[data-slot=timeline-content]]:!text-right",
+            propSide === "right" && "!grid-cols-[1fr_auto_1fr] [&_[data-slot=timeline-content]]:!col-start-3 [&_[data-slot=timeline-content]]:!text-left",
           ],
           className
         )}
@@ -129,7 +129,7 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
       <div
         className={cn(
           "relative flex h-6 shrink-0 items-center justify-center",
-          align === "alternate" ? "w-8 mx-auto self-start z-10" : "w-7"
+          align === "alternate" ? "col-start-2 w-8 mx-auto" : "w-7"
         )}
       >
         <div
@@ -159,7 +159,7 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnectorProp
         aria-hidden="true"
         data-slot="timeline-connector"
         className={cn(
-          "absolute top-6 -bottom-6 w-0.5 bg-border group-last:hidden",
+          "absolute top-6 -bottom-8 w-0.5 bg-border group-last:hidden",
           align === "alternate"
             ? "left-1/2 -translate-x-1/2"
             : align === "left"
@@ -185,8 +185,8 @@ const TimelineContent = React.forwardRef<HTMLDivElement, TimelineContentProps>(
         ref={ref}
         data-slot="timeline-content"
         className={cn(
-          "flex flex-col pt-0.5",
-          align === "alternate" ? "w-[calc(50%-2rem)]" : "flex-1",
+          "flex flex-col pt-0.5 min-w-0",
+          align === "alternate" ? "w-full" : "flex-1",
           className
         )}
         {...props}
