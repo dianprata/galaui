@@ -72,12 +72,12 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
           "group relative flex items-start",
           orientation === "vertical" && [
             align === "alternate"
-              ? "grid grid-cols-[1fr_auto_1fr] items-start w-full gap-4 even:[&_[data-slot=timeline-content]]:col-start-3 even:[&_[data-slot=timeline-content]]:text-left odd:[&_[data-slot=timeline-content]]:col-start-1 odd:[&_[data-slot=timeline-content]]:text-right"
+              ? "grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-start w-full gap-4 even:[&_[data-slot=timeline-content]]:col-start-3 even:[&_[data-slot=timeline-content]]:row-start-1 even:[&_[data-slot=timeline-content]]:text-left odd:[&_[data-slot=timeline-content]]:col-start-1 odd:[&_[data-slot=timeline-content]]:row-start-1 odd:[&_[data-slot=timeline-content]]:text-right [&_[data-slot=timeline-dot-wrapper]]:col-start-2 [&_[data-slot=timeline-dot-wrapper]]:row-start-1"
               : align === "left"
               ? "flex-row-reverse text-right gap-3 w-full"
               : "flex-row text-left gap-3 w-full",
-            propSide === "left" && "!grid-cols-[1fr_auto_1fr] [&_[data-slot=timeline-content]]:!col-start-1 [&_[data-slot=timeline-content]]:!text-right",
-            propSide === "right" && "!grid-cols-[1fr_auto_1fr] [&_[data-slot=timeline-content]]:!col-start-3 [&_[data-slot=timeline-content]]:!text-left",
+            propSide === "left" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-1 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-right [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
+            propSide === "right" && "!grid-cols-[1fr_auto_1fr] !grid-rows-1 [&_[data-slot=timeline-content]]:!col-start-3 [&_[data-slot=timeline-content]]:!row-start-1 [&_[data-slot=timeline-content]]:!text-left [&_[data-slot=timeline-dot-wrapper]]:!col-start-2 [&_[data-slot=timeline-dot-wrapper]]:!row-start-1",
           ],
           className
         )}
@@ -127,9 +127,10 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
 
     return (
       <div
+        data-slot="timeline-dot-wrapper"
         className={cn(
           "relative flex h-5 shrink-0 items-center justify-center",
-          align === "alternate" ? "col-start-2 w-8 mx-auto" : "w-7"
+          align === "alternate" ? "col-start-2 row-start-1 w-8 mx-auto" : "w-7"
         )}
       >
         <div
