@@ -179,7 +179,7 @@ export default function ChangelogPage() {
                     {isLatest && (
                       <>
                         <span>•</span>
-                        <Badge variant="default" size="xs" className="font-medium">
+                        <Badge variant="default" size="sm" className="font-medium">
                           Latest Release
                         </Badge>
                       </>
@@ -187,7 +187,7 @@ export default function ChangelogPage() {
                     {release.prerelease && (
                       <>
                         <span>•</span>
-                        <Badge variant="secondary" size="xs">
+                        <Badge variant="secondary" size="sm">
                           Pre-release
                         </Badge>
                       </>
