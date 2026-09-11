@@ -27,13 +27,13 @@ const AccordionTrigger = React.forwardRef<
     <BaseAccordion.Trigger
       ref={ref}
       className={cn(
-        "group flex flex-1 items-center justify-between py-3.5 text-xs font-semibold transition-colors duration-200 hover:text-primary cursor-pointer text-foreground select-none",
+        "group flex flex-1 items-center justify-between py-3.5 text-sm font-semibold transition-colors duration-200 hover:text-primary cursor-pointer text-foreground select-none",
         className
       )}
       {...props}
     >
       {children}
-      <ChevronDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-panel-open:rotate-180 data-open:rotate-180" />
+      <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-out group-data-panel-open:rotate-180 data-open:rotate-180" />
     </BaseAccordion.Trigger>
   </BaseAccordion.Header>
 ));
@@ -46,7 +46,7 @@ const AccordionPanel = React.forwardRef<
   <BaseAccordion.Panel
     ref={ref}
     className={cn(
-      "h-[var(--accordion-panel-height)] overflow-hidden text-xs transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] data-starting-style:h-0 data-ending-style:h-0 text-muted-foreground leading-relaxed",
+      "h-[var(--accordion-panel-height)] overflow-hidden text-sm transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 text-muted-foreground leading-relaxed",
       className
     )}
     {...props}

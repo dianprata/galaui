@@ -218,7 +218,7 @@ const TimelineTitle = React.forwardRef<HTMLHeadingElement, TimelineTitleProps>(
       <h4
         ref={ref}
         data-slot="timeline-title"
-        className={cn("text-xs font-semibold tracking-tight leading-5 text-foreground", className)}
+        className={cn("text-sm font-semibold tracking-tight leading-5 text-foreground", className)}
         {...props}
       />
     );
@@ -252,7 +252,7 @@ const TimelineTime = React.forwardRef<HTMLTimeElement, TimelineTimeProps>(
       <time
         ref={ref}
         data-slot="timeline-time"
-        className={cn("text-[11px] font-mono text-muted-foreground/80 mt-0.5", className)}
+        className={cn("text-xs font-mono text-muted-foreground/80 mt-0.5", className)}
         {...props}
       />
     );

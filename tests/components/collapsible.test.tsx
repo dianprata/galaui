@@ -16,5 +16,6 @@ describe("Collapsible", () => {
     const trigger = screen.getByRole("button", { name: /toggle content/i });
     await user.click(trigger);
     expect(await screen.findByText("Collapsible Body")).toBeInTheDocument();
+    expect(screen.getByText("Collapsible Body")).toHaveClass("text-sm");
   });
 });

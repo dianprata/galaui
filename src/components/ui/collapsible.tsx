@@ -36,7 +36,7 @@ const CollapsiblePanel = React.forwardRef<
   <BaseCollapsible.Panel
     ref={ref}
     className={cn(
-      "h-[var(--collapsible-panel-height)] overflow-hidden text-xs transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 [&[hidden]:not([hidden='until-found'])]:hidden",
+      "h-[var(--collapsible-panel-height)] overflow-hidden text-sm transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0 [&[hidden]:not([hidden='until-found'])]:hidden",
       className
     )}
     {...props}

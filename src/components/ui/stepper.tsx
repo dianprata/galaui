@@ -138,14 +138,14 @@ StepItem.displayName = "StepItem";
 const stepIndicatorVariants = cva(
   "relative flex shrink-0 items-center justify-center rounded-full border text-xs font-semibold transition-colors duration-150",
   {
-  variants: {
-    size: {
-      default: "size-8 text-xs",
-      xs: "size-5 text-[9px]",
-      sm: "size-6 text-[10px]",
-      lg: "size-10 text-sm",
-    },
-    state: {
+    variants: {
+      size: {
+        default: "size-8 text-xs",
+        xs: "size-5 text-[9px]",
+        sm: "size-6 text-[10px]",
+        lg: "size-10 text-sm",
+      },
+      state: {
         completed: "border-primary bg-primary text-primary-foreground shadow-2xs",
         current:
           "border-primary bg-background text-primary ring-4 ring-primary/15 font-bold shadow-2xs",

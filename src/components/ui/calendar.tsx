@@ -113,7 +113,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
               <div className="w-7" />
             )}
 
-            <div className="text-xs font-semibold text-foreground tracking-tight select-none">
+            <div className="text-sm font-semibold text-foreground tracking-tight select-none">
               {monthTitle}
             </div>
 
@@ -199,7 +199,7 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                         <td
                           key={colIndex}
                           className={cn(
-                            "w-8 h-8 p-0 relative flex items-center justify-center text-center text-xs focus-within:z-20",
+                            "w-8 h-8 p-0 relative flex items-center justify-center text-center text-sm focus-within:z-20",
                             isRangeMiddle && "bg-primary/10",
                             isRangeStart && range?.to && "rounded-l-lg bg-primary/10",
                             isRangeEnd && range?.from && "rounded-r-lg bg-primary/10"
@@ -266,4 +266,3 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 Calendar.displayName = "Calendar";
 
 export { Calendar };
-

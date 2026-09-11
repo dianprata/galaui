@@ -25,6 +25,7 @@ describe("Breadcrumb", () => {
       </Breadcrumb>
     );
     expect(screen.getByRole("navigation", { name: /breadcrumb/i })).toBeInTheDocument();
+    expect(screen.getByRole("list")).toHaveClass("text-sm");
     expect(screen.getByRole("link", { name: /home/i })).toBeInTheDocument();
     expect(screen.getByText("Docs")).toBeInTheDocument();
   });

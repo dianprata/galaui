@@ -93,7 +93,7 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             size={buttonSize}
             disabled={disabled}
             className={cn(
-              "w-[220px] justify-start text-left font-normal text-xs h-8 group relative",
+              "w-[220px] justify-start text-left font-normal text-sm h-8 group relative",
               !date && "text-muted-foreground",
               className
             )}
@@ -284,7 +284,7 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
             size={buttonSize}
             disabled={disabled}
             className={cn(
-              "w-[260px] justify-start text-left font-normal text-xs h-8 group relative",
+              "w-[260px] justify-start text-left font-normal text-sm h-8 group relative",
               !range?.from && "text-muted-foreground",
               className
             )}

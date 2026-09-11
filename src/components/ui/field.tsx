@@ -11,7 +11,7 @@ const FieldLabel = React.forwardRef<
   <BaseField.Label
     ref={ref}
     className={cn(
-      "text-xs font-medium leading-none text-foreground select-none cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50",
+      "text-sm font-medium leading-none text-foreground select-none cursor-pointer data-disabled:cursor-not-allowed data-disabled:opacity-50",
       className
     )}
     {...props}
