@@ -62,7 +62,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     <Badge
                       variant="secondary"
                       size="sm"
-                      className="text-[9px] h-3.5 px-1"
+                      className="text-[10px] h-4 px-1.5 font-normal"
                     >
                       {item.badge}
                     </Badge>
@@ -90,7 +90,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     <Badge
                       variant={item.badge.toLowerCase() === "new" ? "default" : "secondary"}
                       size="sm"
-                      className="text-[9px] h-3.5 px-1"
+                      className="text-[10px] h-4 px-1.5 font-normal"
                     >
                       {item.badge}
                     </Badge>
@@ -102,7 +102,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
         )}
       </CommandList>
 
-      <div className="flex items-center justify-between px-4 py-2 border-t border-border bg-muted/40 text-[11px] text-muted-foreground font-mono">
+      <div className="flex items-center justify-between px-4 py-2 border-t border-border bg-muted/40 text-xs text-muted-foreground font-mono">
         <div className="flex items-center gap-2">
           <span>Navigate:</span>
           <KbdGroup>
