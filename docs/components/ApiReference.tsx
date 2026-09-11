@@ -74,7 +74,7 @@ export function ApiReference({
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="overflow-x-auto">
-          <TabsList className="h-8 p-1 bg-muted/60">
+          <TabsList>
             {allSubcomponents.map((part) => {
               const partData = apiReferenceData.components[part];
               const propCount = partData?.props.length || 0;
@@ -82,11 +82,11 @@ export function ApiReference({
                 <TabsTab
                   key={part}
                   value={part}
-                  className="text-xs px-2.5 h-6 flex items-center gap-1.5"
+                  className="gap-1.5"
                 >
-                  <Box className="w-3 h-3 opacity-60" />
+                  <Box className="w-3.5 h-3.5 opacity-60" />
                   <span>{part}</span>
-                  <span className="text-[10px] opacity-60">({propCount})</span>
+                  <span className="text-xs opacity-60">({propCount})</span>
                 </TabsTab>
               );
             })}
@@ -100,7 +100,7 @@ export function ApiReference({
           return (
             <TabsPanel key={part} value={part} className="focus-visible:outline-none">
               {partData.description && (
-                <p className="text-xs text-muted-foreground mb-3">{partData.description}</p>
+                <p className="text-sm text-muted-foreground mb-3">{partData.description}</p>
               )}
               <PropsTable
                 props={partData.props}

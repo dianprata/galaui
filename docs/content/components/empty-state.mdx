@@ -30,7 +30,7 @@ A visual placeholder shown when records, search queries, or data sets are empty,
 <ComponentPreview
   title="No Projects Placeholder"
   description="Friendly empty state with an icon and create button."
-  code={'import {\n  EmptyState,\n  EmptyStateIcon,\n  EmptyStateTitle,\n  EmptyStateDescription,\n  EmptyStateActions,\n  Button,\n} from "@galaui/react";\nimport { FolderPlus, Plus } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <EmptyState className="w-full max-w-md">\n      <EmptyStateIcon>\n        <FolderPlus className="w-6 h-6" />\n      </EmptyStateIcon>\n      <EmptyStateTitle>No projects created yet</EmptyStateTitle>\n      <EmptyStateDescription>\n        Get started by initializing a new project or importing your existing repository.\n      </EmptyStateDescription>\n      <EmptyStateActions>\n        <Button size="sm">\n          <Plus className="w-3.5 h-3.5 mr-1.5" />\n          Create Project\n        </Button>\n      </EmptyStateActions>\n    </EmptyState>\n  );\n}'}
+  code={'import {\n  EmptyState,\n  EmptyStateIcon,\n  EmptyStateTitle,\n  EmptyStateDescription,\n  EmptyStateActions,\n  Button,\n} from "@galaui/react";\nimport { FolderPlus, Plus } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <EmptyState className="w-full max-w-md">\n      <EmptyStateIcon>\n        <FolderPlus className="w-6 h-6" />\n      </EmptyStateIcon>\n      <EmptyStateTitle>No projects created yet</EmptyStateTitle>\n      <EmptyStateDescription>\n        Get started by initializing a new project or importing your existing repository.\n      </EmptyStateDescription>\n      <EmptyStateActions>\n        <Button >\n          <Plus className="w-3.5 h-3.5 mr-1.5" />\n          Create Project\n        </Button>\n      </EmptyStateActions>\n    </EmptyState>\n  );\n}'}
 >
   <EmptyState className="w-full max-w-md">
     <EmptyStateIcon>
@@ -41,7 +41,7 @@ A visual placeholder shown when records, search queries, or data sets are empty,
       Get started by initializing a new project or importing your existing repository.
     </EmptyStateDescription>
     <EmptyStateActions>
-      <Button size="sm">
+      <Button >
         <Plus className="w-3.5 h-3.5 mr-1.5" />
         Create Project
       </Button>
