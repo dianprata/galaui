@@ -83,7 +83,11 @@ export default function LandingPage() {
   const [sliderVal, setSliderVal] = useState(72);
   const [switchVal, setSwitchVal] = useState(true);
   const [selectedCity, setSelectedCity] = useState("jakarta");
-  const [dateVal, setDateVal] = useState<Date | undefined>(new Date());
+  const [dateVal, setDateVal] = useState<Date | undefined>(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 4);
+    return d;
+  });
   const [numberVal, setNumberVal] = useState<number | null>(4);
 
   // Component search / filter in the showcase section
@@ -320,9 +324,10 @@ export function ReleaseModal() {
                             <FieldLabel>Launch Date</FieldLabel>
                             <DatePicker
                               value={dateVal}
-                              onChange={(d) => setDateVal(d)}
+                              onChange={setDateVal}
                               placeholder="Pick target release"
-                              className="w-full justify-between"
+                              className="w-full"
+                              clearable
                             />
                           </Field>
 

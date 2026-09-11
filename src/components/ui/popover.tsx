@@ -55,7 +55,7 @@ const PopoverPopup = React.forwardRef<
   }
 >(({ className, align = "center", sideOffset = 4, children, ...props }, ref) => (
   <BasePopover.Portal>
-    <BasePopover.Positioner sideOffset={sideOffset} align={align}>
+    <BasePopover.Positioner sideOffset={sideOffset} align={align} className="isolate z-50 outline-none">
       <BasePopover.Popup
         ref={ref}
         className={cn(

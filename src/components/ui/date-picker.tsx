@@ -30,8 +30,8 @@ export interface DatePickerProps {
 }
 
 const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       value: controlledValue,
       defaultValue,
       onChange,
@@ -47,15 +47,14 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       align = "start",
       sideOffset = 4,
       popoverClassName,
-    },
-    ref
-  ) => {
+    } = props;
+
     const [open, setOpen] = React.useState(false);
     const [uncontrolledValue, setUncontrolledValue] = React.useState<Date | undefined>(
       defaultValue
     );
 
-    const isControlled = controlledValue !== undefined;
+    const isControlled = "value" in props;
     const date = isControlled ? controlledValue : uncontrolledValue;
 
     const handleSelect = (selectedDate: Date | undefined) => {
@@ -93,12 +92,12 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             size={buttonSize}
             disabled={disabled}
             className={cn(
-              "w-[220px] justify-start text-left font-normal text-sm h-8 group relative",
+              "w-[220px] justify-start text-left font-normal text-sm h-8 px-3 gap-2 group relative",
               !date && "text-muted-foreground",
               className
             )}
           >
-            <CalendarIcon className="h-3.5 w-3.5 shrink-0 opacity-60 mr-2" />
+            <CalendarIcon className="h-3.5 w-3.5 shrink-0 opacity-60" />
             <span className="truncate flex-1">{displayLabel}</span>
             {clearable && date && !disabled && (
               <span
@@ -111,7 +110,7 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
                     handleClear(e as any);
                   }
                 }}
-                className="ml-1 -mr-1.5 h-5 w-5 rounded hover:bg-muted text-muted-foreground hover:text-foreground inline-flex items-center justify-center cursor-pointer transition-colors"
+                className="-mr-1 h-5 w-5 rounded hover:bg-muted text-muted-foreground hover:text-foreground inline-flex items-center justify-center cursor-pointer transition-colors"
               >
                 <X className="h-3 w-3" />
               </span>
@@ -208,8 +207,8 @@ const defaultPresets: DateRangePreset[] = [
 ];
 
 const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       value: controlledValue,
       defaultValue,
       onChange,
@@ -227,15 +226,14 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
       popoverClassName,
       numberOfMonths = 2,
       presets,
-    },
-    ref
-  ) => {
+    } = props;
+
     const [open, setOpen] = React.useState(false);
     const [uncontrolledValue, setUncontrolledValue] = React.useState<DateRange | undefined>(
       defaultValue
     );
 
-    const isControlled = controlledValue !== undefined;
+    const isControlled = "value" in props;
     const range = isControlled ? controlledValue : uncontrolledValue;
 
     const handleSelect = (selectedRange: DateRange | undefined) => {
@@ -284,12 +282,12 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
             size={buttonSize}
             disabled={disabled}
             className={cn(
-              "w-[260px] justify-start text-left font-normal text-sm h-8 group relative",
+              "w-[260px] justify-start text-left font-normal text-sm h-8 px-3 gap-2 group relative",
               !range?.from && "text-muted-foreground",
               className
             )}
           >
-            <CalendarIcon className="h-3.5 w-3.5 shrink-0 opacity-60 mr-2" />
+            <CalendarIcon className="h-3.5 w-3.5 shrink-0 opacity-60" />
             <span className="truncate flex-1">{displayLabel}</span>
             {clearable && range?.from && !disabled && (
               <span
@@ -302,7 +300,7 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
                     handleClear(e as any);
                   }
                 }}
-                className="ml-1 -mr-1.5 h-5 w-5 rounded hover:bg-muted text-muted-foreground hover:text-foreground inline-flex items-center justify-center cursor-pointer transition-colors"
+                className="-mr-1 h-5 w-5 rounded hover:bg-muted text-muted-foreground hover:text-foreground inline-flex items-center justify-center cursor-pointer transition-colors"
               >
                 <X className="h-3 w-3" />
               </span>

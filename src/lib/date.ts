@@ -280,6 +280,13 @@ export function useCalendar({
   const handleDayClick = (date: Date) => {
     if (isDateDisabled(date, disabled, minDate, maxDate)) return;
 
+    if (
+      date.getMonth() !== activeMonth.getMonth() ||
+      date.getFullYear() !== activeMonth.getFullYear()
+    ) {
+      handleMonthChange(new Date(date.getFullYear(), date.getMonth(), 1));
+    }
+
     if (mode === "single") {
       const isCurrent = selected instanceof Date && isSameDay(selected, date);
       onSelect?.(isCurrent ? undefined : date);
