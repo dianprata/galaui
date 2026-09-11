@@ -22,13 +22,13 @@ A popup that displays information related to an element when the element receive
 <ComponentPreview
   title="Hover Tooltip"
   description="Smooth entry animation with focus and hover detection."
-  code={'import { Tooltip, TooltipTrigger, TooltipPopup, Button } from "@galaui/react";\nimport { Info, Bell } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="outline" size="sm">\n            <Info className="w-3.5 h-3.5 mr-1.5 text-primary" />\n            Hover for Info\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          GalaUI Tooltip with Base UI positioning\n        </TooltipPopup>\n      </Tooltip>\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="secondary" size="icon">\n            <Bell className="w-4 h-4" />\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          Notification alerts (2 unread)\n        </TooltipPopup>\n      </Tooltip>\n    </div>\n  );\n}'}
+  code={'import { Tooltip, TooltipTrigger, TooltipPopup, Button } from "@galaui/react";\nimport { Info, Bell } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex items-center gap-4">\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="outline">\n            <Info className="w-4 h-4 mr-1.5 text-primary" />\n            Hover for Info\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          GalaUI Tooltip with Base UI positioning\n        </TooltipPopup>\n      </Tooltip>\n      <Tooltip>\n        <TooltipTrigger>\n          <Button variant="secondary" size="icon">\n            <Bell className="w-4 h-4" />\n          </Button>\n        </TooltipTrigger>\n        <TooltipPopup>\n          Notification alerts (2 unread)\n        </TooltipPopup>\n      </Tooltip>\n    </div>\n  );\n}'}
 >
   <div className="flex items-center gap-4">
     <Tooltip>
       <TooltipTrigger>
-        <Button variant="outline" size="sm">
-          <Info className="w-3.5 h-3.5 mr-1.5 text-primary" />
+        <Button variant="outline">
+          <Info className="w-4 h-4 mr-1.5 text-primary" />
           Hover for Info
         </Button>
       </TooltipTrigger>

@@ -1,4 +1,4 @@
-import { Tabs, TabsList, TabsTab, TabsPanel, Card, CardContent, Input, Button } from "@/index";
+import { Tabs, TabsList, TabsTab, TabsPanel, Card, CardContent, Input, Label, Button } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ApiReference } from "@docs/components/ApiReference";
@@ -16,7 +16,7 @@ A set of layered sections of content—known as tab panels—that are displayed 
 <ComponentPreview
   title="Interactive Tabs"
   description="Navigate between different content views."
-  code={'import {\n  Tabs,\n  TabsList,\n  TabsTab,\n  TabsPanel,\n  Card,\n  CardContent,\n  Input,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Tabs defaultValue="account" className="w-full max-w-md">\n      <TabsList className="grid grid-cols-2 w-full">\n        <TabsTab value="account">Account</TabsTab>\n        <TabsTab value="password">Password</TabsTab>\n      </TabsList>\n      <TabsPanel value="account">\n        <Card className="mt-3">\n          <CardContent className="space-y-3 pt-4">\n            <div className="space-y-1">\n              <label className="text-xs font-medium">Email</label>\n              <Input defaultValue="user@example.com" />\n            </div>\n            <Button size="sm" className="w-full">Save Changes</Button>\n          </CardContent>\n        </Card>\n      </TabsPanel>\n      <TabsPanel value="password">\n        <Card className="mt-3">\n          <CardContent className="space-y-3 pt-4">\n            <div className="space-y-1">\n              <label className="text-xs font-medium">Current Password</label>\n              <Input type="password" />\n            </div>\n            <Button size="sm" variant="destructive" className="w-full">Update Password</Button>\n          </CardContent>\n        </Card>\n      </TabsPanel>\n    </Tabs>\n  );\n}'}
+  code={'import {\n  Tabs,\n  TabsList,\n  TabsTab,\n  TabsPanel,\n  Card,\n  CardContent,\n  Input,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Tabs defaultValue="account" className="w-full max-w-md">\n      <TabsList className="grid grid-cols-2 w-full">\n        <TabsTab value="account">Account</TabsTab>\n        <TabsTab value="password">Password</TabsTab>\n      </TabsList>\n      <TabsPanel value="account">\n        <Card className="mt-3">\n          <CardContent className="space-y-3 pt-4">\n            <div className="space-y-1">\n              <Label htmlFor="tabs-email">Email</Label>\n              <Input id="tabs-email" defaultValue="user@example.com" />\n            </div>\n            <Button  className="w-full">Save Changes</Button>\n          </CardContent>\n        </Card>\n      </TabsPanel>\n      <TabsPanel value="password">\n        <Card className="mt-3">\n          <CardContent className="space-y-3 pt-4">\n            <div className="space-y-1">\n              <Label htmlFor="tabs-pwd">Current Password</Label>\n              <Input id="tabs-pwd" type="password" />\n            </div>\n            <Button  variant="destructive" className="w-full">Update Password</Button>\n          </CardContent>\n        </Card>\n      </TabsPanel>\n    </Tabs>\n  );\n}'}
 >
   <Tabs defaultValue="account" className="w-full max-w-md">
     <TabsList className="grid grid-cols-2 w-full">
@@ -27,10 +27,10 @@ A set of layered sections of content—known as tab panels—that are displayed 
       <Card className="mt-3">
         <CardContent className="space-y-3 pt-4">
           <div className="space-y-1">
-            <label className="text-xs font-medium">Email</label>
-            <Input defaultValue="user@example.com" />
+            <Label htmlFor="tabs-email">Email</Label>
+            <Input id="tabs-email" defaultValue="user@example.com" />
           </div>
-          <Button size="sm" className="w-full">Save Changes</Button>
+          <Button  className="w-full">Save Changes</Button>
         </CardContent>
       </Card>
     </TabsPanel>
@@ -38,10 +38,10 @@ A set of layered sections of content—known as tab panels—that are displayed 
       <Card className="mt-3">
         <CardContent className="space-y-3 pt-4">
           <div className="space-y-1">
-            <label className="text-xs font-medium">Current Password</label>
-            <Input type="password" />
+            <Label htmlFor="tabs-pwd">Current Password</Label>
+            <Input id="tabs-pwd" type="password" />
           </div>
-          <Button size="sm" variant="destructive" className="w-full">Update Password</Button>
+          <Button  variant="destructive" className="w-full">Update Password</Button>
         </CardContent>
       </Card>
     </TabsPanel>

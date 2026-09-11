@@ -40,7 +40,7 @@ const mdxComponents = {
     return (
       <h2
         id={id}
-        className="text-xl font-semibold tracking-tight mt-8 mb-3 text-foreground scroll-mt-28 xl:scroll-mt-20"
+        className="text-xl sm:text-2xl font-semibold tracking-tight mt-10 mb-4 text-foreground scroll-mt-28 xl:scroll-mt-20"
         {...props}
       />
     );
@@ -50,14 +50,14 @@ const mdxComponents = {
     return (
       <h3
         id={id}
-        className="text-base font-semibold mt-5 mb-2 text-foreground scroll-mt-28 xl:scroll-mt-20"
+        className="text-lg font-semibold mt-6 mb-3 text-foreground scroll-mt-28 xl:scroll-mt-20"
         {...props}
       />
     );
   },
-  p: (props: any) => <p className="text-sm text-muted-foreground leading-relaxed my-2.5" {...props} />,
-  ul: (props: any) => <ul className="list-disc pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
-  ol: (props: any) => <ol className="list-decimal pl-5 my-3 space-y-1 text-sm text-muted-foreground" {...props} />,
+  p: (props: any) => <p className="text-base text-muted-foreground leading-relaxed my-3" {...props} />,
+  ul: (props: any) => <ul className="list-disc pl-5 my-3 space-y-1.5 text-base text-muted-foreground" {...props} />,
+  ol: (props: any) => <ol className="list-decimal pl-5 my-3 space-y-1.5 text-base text-muted-foreground" {...props} />,
   li: (props: any) => <li className="leading-relaxed" {...props} />,
   hr: (props: any) => <Separator className="my-6" {...props} />,
   strong: (props: any) => <strong className="font-semibold text-foreground" {...props} />,
@@ -65,7 +65,7 @@ const mdxComponents = {
     if (className) {
       return <code className={className} {...props} />;
     }
-    return <code className="px-1.5 py-0.5 rounded-md bg-muted font-mono text-xs text-foreground border border-border/50" {...props} />;
+    return <code className="px-1.5 py-0.5 rounded-md bg-muted font-mono text-sm text-foreground border border-border/50" {...props} />;
   },
   table: (props: any) => <Table className="my-5" {...props} />,
   thead: (props: any) => <TableHeader {...props} />,

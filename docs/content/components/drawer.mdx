@@ -32,7 +32,7 @@ A slide-over sheet panel that animates smoothly from the screen edge. Built on B
 <ComponentPreview
   title="Slide-over Drawer"
   description="Side drawer with header, body content, and action footer."
-  code={'import {\n  Drawer,\n  DrawerTrigger,\n  DrawerPopup,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerClose,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Drawer>\n      <DrawerTrigger>\n        <Button variant="default">Open Drawer</Button>\n      </DrawerTrigger>\n      <DrawerPopup side="right">\n        <DrawerHeader>\n          <DrawerTitle>Configuration Panel</DrawerTitle>\n          <DrawerDescription>\n            Modify deployment variables and token configurations directly.\n          </DrawerDescription>\n        </DrawerHeader>\n        <div className="p-4 flex-1 text-xs text-muted-foreground">\n          Drawer body content with smooth edge swipe dismiss.\n        </div>\n        <DrawerFooter>\n          <DrawerClose>\n            <Button variant="outline" size="sm">Close</Button>\n          </DrawerClose>\n          <Button variant="default" size="sm">Save Changes</Button>\n        </DrawerFooter>\n      </DrawerPopup>\n    </Drawer>\n  );\n}'}
+  code={'import {\n  Drawer,\n  DrawerTrigger,\n  DrawerPopup,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerClose,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Drawer>\n      <DrawerTrigger>\n        <Button variant="default">Open Drawer</Button>\n      </DrawerTrigger>\n      <DrawerPopup side="right">\n        <DrawerHeader>\n          <DrawerTitle>Configuration Panel</DrawerTitle>\n          <DrawerDescription>\n            Modify deployment variables and token configurations directly.\n          </DrawerDescription>\n        </DrawerHeader>\n        <div className="p-4 flex-1 text-sm text-muted-foreground">\n          Drawer body content with smooth edge swipe dismiss.\n        </div>\n        <DrawerFooter>\n          <DrawerClose>\n            <Button variant="outline">Close</Button>\n          </DrawerClose>\n          <Button variant="default">Save Changes</Button>\n        </DrawerFooter>\n      </DrawerPopup>\n    </Drawer>\n  );\n}'}
 >
   <Drawer>
     <DrawerTrigger>
@@ -45,14 +45,14 @@ A slide-over sheet panel that animates smoothly from the screen edge. Built on B
           Modify deployment variables and token configurations directly.
         </DrawerDescription>
       </DrawerHeader>
-      <div className="p-4 flex-1 text-xs text-muted-foreground">
+      <div className="p-4 flex-1 text-sm text-muted-foreground">
         Drawer body content with smooth edge swipe dismiss.
       </div>
       <DrawerFooter>
         <DrawerClose>
-          <Button variant="outline" size="sm">Close</Button>
+          <Button variant="outline">Close</Button>
         </DrawerClose>
-        <Button variant="default" size="sm">Save Changes</Button>
+        <Button variant="default">Save Changes</Button>
       </DrawerFooter>
     </DrawerPopup>
   </Drawer>

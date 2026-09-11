@@ -17,7 +17,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-6">
         {docSections.map((section) => (
           <div key={section.title} className="space-y-2">
-            <h4 className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase px-2">
+            <h4 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase px-2.5">
               {section.title}
             </h4>
             <div className="space-y-0.5">
@@ -31,7 +31,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
                     href={item.path}
                     onClick={onNavigate}
                     className={cn(
-                      "flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all",
+                      "flex items-center justify-between h-8 px-3 py-1.5 rounded-lg text-sm font-medium",
                       isActive
                         ? "bg-primary/10 text-primary font-semibold border border-primary/25 shadow-2xs"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"

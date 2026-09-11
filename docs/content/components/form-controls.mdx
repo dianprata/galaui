@@ -1,4 +1,4 @@
-import { Input, Textarea, Switch, Checkbox, Progress } from "@/index";
+import { Input, Textarea, Switch, Checkbox, Progress, Label } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 
@@ -8,23 +8,23 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
 
 ## Import
 
-<CodeBlock language="tsx" code={'import { Input, Textarea, Switch, Checkbox, Progress } from "@galaui/react";'} />
+<CodeBlock language="tsx" code={'import { Input, Textarea, Switch, Checkbox, Progress, Label } from "@galaui/react";'} />
 
 ## Text Inputs & Textarea
 
 <ComponentPreview
   title="Input Fields"
   description="Text inputs and multiline textareas."
-  code={'import { Input, Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-4">\n      <div className="space-y-1.5">\n        <label className="text-xs font-medium">Username</label>\n        <Input placeholder="Enter username..." />\n      </div>\n      <div className="space-y-1.5">\n        <label className="text-xs font-medium">Bio</label>\n        <Textarea rows={3} placeholder="Tell us a little bit about yourself..." />\n      </div>\n    </div>\n  );\n}'}
+  code={'import { Input, Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-4">\n      <div className="space-y-1.5">\n        <Label htmlFor="fc-user">Username</Label>\n        <Input id="fc-user" placeholder="Enter username..." />\n      </div>\n      <div className="space-y-1.5">\n        <Label htmlFor="fc-bio">Bio</Label>\n        <Textarea id="fc-bio" rows={3} placeholder="Tell us a little bit about yourself..." />\n      </div>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-4">
     <div className="space-y-1.5">
-      <label className="text-xs font-medium">Username</label>
-      <Input placeholder="Enter username..." />
+      <Label htmlFor="fc-user">Username</Label>
+      <Input id="fc-user" placeholder="Enter username..." />
     </div>
     <div className="space-y-1.5">
-      <label className="text-xs font-medium">Bio</label>
-      <Textarea rows={3} placeholder="Tell us a little bit about yourself..." />
+      <Label htmlFor="fc-bio">Bio</Label>
+      <Textarea id="fc-bio" rows={3} placeholder="Tell us a little bit about yourself..." />
     </div>
   </div>
 </ComponentPreview>
@@ -34,18 +34,18 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
 <ComponentPreview
   title="Toggle Controls"
   description="Switches and checkboxes with accessible keyboard states."
-  code={'import { Switch, Checkbox } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-3 rounded-lg border border-border">\n        <span className="text-xs font-medium">Email Notifications</span>\n        <Switch defaultChecked />\n      </div>\n      <div className="flex items-center gap-2.5 px-1">\n        <Checkbox id="terms" defaultChecked />\n        <label htmlFor="terms" className="text-xs text-muted-foreground cursor-pointer select-none">\n          I agree to the terms and privacy conditions\n        </label>\n      </div>\n    </div>\n  );\n}'}
+  code={'import { Switch, Checkbox, Label } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-3">\n      <div className="flex items-center justify-between p-3 rounded-lg border border-border">\n        <Label htmlFor="fc-email">Email Notifications</Label>\n        <Switch id="fc-email" defaultChecked />\n      </div>\n      <div className="flex items-center gap-2.5 px-1">\n        <Checkbox id="terms" defaultChecked />\n        <Label htmlFor="terms" className="font-normal text-muted-foreground">\n          I agree to the terms and privacy conditions\n        </Label>\n      </div>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-3">
     <div className="flex items-center justify-between p-3 rounded-lg border border-border">
-      <span className="text-xs font-medium">Email Notifications</span>
-      <Switch defaultChecked />
+      <Label htmlFor="fc-email">Email Notifications</Label>
+      <Switch id="fc-email" defaultChecked />
     </div>
     <div className="flex items-center gap-2.5 px-1">
       <Checkbox id="terms" defaultChecked />
-      <label htmlFor="terms" className="text-xs text-muted-foreground cursor-pointer select-none">
+      <Label htmlFor="terms" className="font-normal text-muted-foreground">
         I agree to the terms and privacy conditions
-      </label>
+      </Label>
     </div>
   </div>
 </ComponentPreview>
@@ -65,4 +65,3 @@ Core input controls including Text Input, Textarea, Toggle Switch, Checkbox, and
     <Progress value={68} />
   </div>
 </ComponentPreview>
-
