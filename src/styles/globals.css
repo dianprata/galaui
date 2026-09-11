@@ -19,8 +19,8 @@
   --color-zinc-600: #495057;
   --color-zinc-700: #343A40;
   --color-zinc-800: #212529;
-  --color-zinc-900: #121417;
-  --color-zinc-950: #0A0C0E;
+  --color-zinc-900: #111113;
+  --color-zinc-950: #000000;
   --color-zinc-1000: #000000;
 
   /* Electric Cobalt Brand Focus */
@@ -157,26 +157,26 @@
   }
 
   .dark {
-    --background: #0A0C0E;
-    --foreground: #F8F9FA;
-    --muted: #16191D;
-    --muted-foreground: #8B949E;
-    --subtle-foreground: #484F58;
-    --secondary: #1F2429;
-    --secondary-foreground: #F8F9FA;
-    --popover: #121519;
-    --popover-foreground: #F8F9FA;
-    --card: #101317;
-    --card-foreground: #F8F9FA;
+    --background: #000000;
+    --foreground: #EDEDF0;
+    --muted: #161619;
+    --muted-foreground: #94949E;
+    --subtle-foreground: #52525C;
+    --secondary: #1C1C20;
+    --secondary-foreground: #EDEDF0;
+    --popover: #111113;
+    --popover-foreground: #EDEDF0;
+    --card: #111113;
+    --card-foreground: #EDEDF0;
 
     --primary: #2F6FED;
     --primary-hover: #558FF8;
     --primary-active: #8AB4FC;
     --primary-foreground: #FFFFFF;
 
-    --border: #21262D;
-    --border-subtle: #161A20;
-    --input: #121519;
+    --border: #242429;
+    --border-subtle: #18181C;
+    --input: #111113;
     --ring: #2F6FED;
 
     --destructive: #F03E3E;
