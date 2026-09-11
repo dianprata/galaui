@@ -43,13 +43,13 @@ export default function ChangelogPage() {
         </p>
 
         <div className="flex flex-wrap items-center gap-2 my-4 not-prose">
-          <Badge variant="default" className="font-mono text-xs px-2.5 py-1">
-            Current: v{displayVersion}
+          <Badge>
+            Current:&nbsp;<span className="tabular-nums font-bold font-mono">{displayVersion}</span>
           </Badge>
-          <Badge variant="outline" className="text-xs px-2 py-1">
+          <Badge variant="outline">
             47 Accessible Components
           </Badge>
-          <Badge variant="secondary" className="text-xs px-2 py-1">
+          <Badge variant="secondary">
             Base UI + Tailwind CSS v4
           </Badge>
           <a
@@ -159,7 +159,7 @@ export default function ChangelogPage() {
                 <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3">
                   <h2
                     id={headingId}
-                    className="text-2xl font-bold tracking-tight text-foreground m-0 scroll-mt-28 xl:scroll-mt-20 flex items-center gap-2.5"
+                    className="not-prose text-2xl font-bold tracking-tight text-foreground m-0 scroll-mt-28 xl:scroll-mt-20 flex items-center gap-2.5"
                   >
                     <a
                       href={release.html_url}
@@ -172,14 +172,14 @@ export default function ChangelogPage() {
                     </a>
                   </h2>
 
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground not-prose">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground not-prose">
                     <span className="font-medium text-foreground">
                       {formatReleaseDate(release.published_at)}
                     </span>
                     {isLatest && (
                       <>
                         <span>•</span>
-                        <Badge variant="default" size="sm" className="font-medium">
+                        <Badge variant="default" className="font-medium">
                           Latest Release
                         </Badge>
                       </>
@@ -187,7 +187,7 @@ export default function ChangelogPage() {
                     {release.prerelease && (
                       <>
                         <span>•</span>
-                        <Badge variant="secondary" size="sm">
+                        <Badge variant="secondary">
                           Pre-release
                         </Badge>
                       </>

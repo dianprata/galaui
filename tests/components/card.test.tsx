@@ -16,7 +16,9 @@ describe("Card", () => {
     );
     expect(screen.getByTestId("card")).toBeInTheDocument();
     expect(screen.getByText("Card Title")).toBeInTheDocument();
+    expect(screen.getByText("Card Title")).toHaveClass("text-base");
     expect(screen.getByText("Card Description")).toBeInTheDocument();
+    expect(screen.getByText("Card Description")).toHaveClass("text-sm");
     expect(screen.getByText("Card Content")).toBeInTheDocument();
     expect(screen.getByText("Card Footer")).toBeInTheDocument();
   });

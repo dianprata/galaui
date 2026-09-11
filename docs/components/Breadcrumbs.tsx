@@ -40,7 +40,7 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
   };
 
   return (
-    <div className={cn("flex items-center justify-between pb-1 mb-4 text-xs", className)}>
+    <div className={cn("flex items-center justify-between pb-1 mb-4", className)}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -67,7 +67,7 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
 
       <Button
         variant="outline"
-        size="xs"
+        size="sm"
         onClick={onCopyUrl}
         title="Copy page link"
       >
@@ -79,7 +79,7 @@ export function Breadcrumbs({ className }: { className?: string } = {}) {
         ) : (
           <>
             <Share2 className="w-3 h-3 mr-1" />
-            <span className="text-[11px]">Share</span>
+            <span>Share</span>
           </>
         )}
       </Button>

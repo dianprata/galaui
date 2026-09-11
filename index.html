@@ -6,6 +6,27 @@
     <title>GalaUI - Documentation & Component Library</title>
     <script>
       (function() {
+        // Safeguard for React 19 estimateBandwidth bug accessing undefined resourceEntries
+        try {
+          if (typeof window !== "undefined" && window.performance && typeof window.performance.getEntriesByType === "function") {
+            var origGetEntriesByType = window.performance.getEntriesByType.bind(window.performance);
+            window.performance.getEntriesByType = function(type) {
+              var entries = origGetEntriesByType(type);
+              if (type === "resource" && Array.isArray(entries)) {
+                return new Proxy(entries, {
+                  get: function(target, prop) {
+                    if (typeof prop === "string" && !isNaN(Number(prop))) {
+                      return target[prop] || { startTime: 0, transferSize: 0, duration: 0, initiatorType: "", responseEnd: 0 };
+                    }
+                    return target[prop];
+                  }
+                });
+              }
+              return entries;
+            };
+          }
+        } catch (e) {}
+
         try {
           var saved = localStorage.getItem("galaui-theme");
           var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

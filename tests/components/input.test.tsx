@@ -10,6 +10,7 @@ describe("Input", () => {
     const input = screen.getByPlaceholderText("Enter email...");
     expect(input).toBeInTheDocument();
     expect(input).toHaveClass("border-border");
+    expect(input).toHaveClass("text-sm");
   });
 
   it("allows user typing and triggers onChange", async () => {

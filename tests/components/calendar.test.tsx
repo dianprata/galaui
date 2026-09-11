@@ -18,7 +18,9 @@ describe("Calendar", () => {
     );
 
     expect(screen.getByText("June 2026")).toBeInTheDocument();
+    expect(screen.getByText("June 2026")).toHaveClass("text-sm");
     const dayButton = screen.getByRole("button", { name: "15" });
+    expect(dayButton.closest("td")).toHaveClass("text-sm");
     await user.click(dayButton);
 
     expect(handleSelect).toHaveBeenCalledTimes(1);

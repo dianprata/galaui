@@ -50,8 +50,8 @@ export function ComponentPreview({
     <Card className={cn("overflow-hidden p-0 not-prose", className)}>
       {(title || description) && (
         <CardHeader className="px-5 py-4 border-b border-border bg-muted/20 space-y-1">
-          {title && <CardTitle className="text-sm font-semibold tracking-tight">{title}</CardTitle>}
-          {description && <CardDescription className="text-xs">{description}</CardDescription>}
+          {title && <CardTitle className="text-base font-semibold tracking-tight">{title}</CardTitle>}
+          {description && <CardDescription className="text-sm">{description}</CardDescription>}
         </CardHeader>
       )}
 

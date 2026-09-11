@@ -1,4 +1,4 @@
-import { RadioGroup, RadioGroupItem, Badge } from "@/index";
+import { RadioGroup, RadioGroupItem, Label, Badge } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ApiReference } from "@docs/components/ApiReference";
@@ -14,33 +14,33 @@ A set of checkable buttons—known as radio buttons—where no more than one but
 
 ## Import
 
-<CodeBlock language="tsx" code={'import { RadioGroup, RadioGroupItem } from "@galaui/react";'} />
+<CodeBlock language="tsx" code={'import { RadioGroup, RadioGroupItem, Label } from "@galaui/react";'} />
 
 ## Example
 
 <ComponentPreview
   title="Subscription Plan"
   description="Mutually exclusive radio choices."
-  code={'import { RadioGroup, RadioGroupItem } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <RadioGroup defaultValue="pro" className="space-y-2.5 max-w-sm">\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="starter" id="r-starter" />\n        <label htmlFor="r-starter" className="text-xs font-medium cursor-pointer select-none">\n          Starter Plan (Free)\n        </label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="pro" id="r-pro" />\n        <label htmlFor="r-pro" className="text-xs font-medium cursor-pointer select-none">\n          Professional Tier ($19/mo)\n        </label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="enterprise" id="r-enterprise" />\n        <label htmlFor="r-enterprise" className="text-xs font-medium cursor-pointer select-none">\n          Enterprise Cluster (Custom)\n        </label>\n      </div>\n    </RadioGroup>\n  );\n}'}
+  code={'import { RadioGroup, RadioGroupItem, Label } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <RadioGroup defaultValue="pro" className="space-y-2.5 max-w-sm">\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="starter" id="r-starter" />\n        <Label htmlFor="r-starter">Starter Plan (Free)</Label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="pro" id="r-pro" />\n        <Label htmlFor="r-pro">Professional Tier ($19/mo)</Label>\n      </div>\n      <div className="flex items-center gap-2.5">\n        <RadioGroupItem value="enterprise" id="r-enterprise" />\n        <Label htmlFor="r-enterprise">Enterprise Cluster (Custom)</Label>\n      </div>\n    </RadioGroup>\n  );\n}'}
 >
   <RadioGroup defaultValue="pro" className="space-y-2.5 max-w-sm">
     <div className="flex items-center gap-2.5">
       <RadioGroupItem value="starter" id="r-starter" />
-      <label htmlFor="r-starter" className="text-xs font-medium cursor-pointer select-none">
+      <Label htmlFor="r-starter">
         Starter Plan (Free)
-      </label>
+      </Label>
     </div>
     <div className="flex items-center gap-2.5">
       <RadioGroupItem value="pro" id="r-pro" />
-      <label htmlFor="r-pro" className="text-xs font-medium cursor-pointer select-none">
+      <Label htmlFor="r-pro">
         Professional Tier ($19/mo)
-      </label>
+      </Label>
     </div>
     <div className="flex items-center gap-2.5">
       <RadioGroupItem value="enterprise" id="r-enterprise" />
-      <label htmlFor="r-enterprise" className="text-xs font-medium cursor-pointer select-none">
+      <Label htmlFor="r-enterprise">
         Enterprise Cluster (Custom)
-      </label>
+      </Label>
     </div>
   </RadioGroup>
 </ComponentPreview>

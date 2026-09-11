@@ -42,7 +42,7 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
 
       {/* Top Navbar */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-7xl w-full mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
+        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
@@ -109,13 +109,13 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
               </svg>
             </a>
 
-          <ThemeToggle />
+            <ThemeToggle />
+          </div>
         </div>
-       </div>
-     </header>
+      </header>
 
-     {/* Body Container */}
-      <div className="flex-1 flex max-w-7xl w-full mx-auto">
+      {/* Body Container */}
+      <div className="flex-1 flex max-w-[1440px] w-full mx-auto">
         {/* Desktop Sidebar */}
         <div className="hidden md:block">
           <Sidebar />
@@ -143,9 +143,9 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
         {/* Main Documentation Content */}
         <main className="flex-1 min-w-0 flex flex-col">
           <MobileTableOfContents />
-          <div className="flex-1 px-6 py-8 md:px-10 md:py-10 max-w-3xl w-full mx-auto">
+          <div className="flex-1 px-6 py-8 md:px-10 md:py-10 max-w-4xl w-full mx-auto">
             <Breadcrumbs />
-            <div className="docs-content prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-28 xl:prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-base prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2.5 prose-p:text-sm prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:my-2.5 prose-ul:my-2.5 prose-ul:space-y-1.5 prose-ol:my-2.5 prose-ol:space-y-1.5 prose-hr:my-6 prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-xs">
+            <div className="docs-content prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-28 xl:prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-4 prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-3 prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:my-3 prose-ul:my-3 prose-ul:space-y-1.5 prose-ul:text-base prose-ol:my-3 prose-ol:space-y-1.5 prose-ol:text-base prose-hr:my-6 prose-strong:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:font-mono prose-code:text-sm">
               {children}
             </div>
             <DocsPagination />

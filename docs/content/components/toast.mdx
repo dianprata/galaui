@@ -28,20 +28,20 @@ Mount the `<Toaster />` component once in your root application layout.
 <ComponentPreview
   title="Toast Notifications"
   description="Click buttons below to trigger stacked toasts across different status variants."
-  code={'import { toast, Button } from "@galaui/react";\nimport { Bell, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Button\n        variant="default"\n        size="sm"\n        onClick={() => toast.show("System update installed", "GalaUI v0.2.0 is active.")}\n      >\n        <Bell className="w-3.5 h-3.5 mr-1.5" />\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        size="sm"\n        onClick={() => toast.success("Token synced", "All variables updated.")}\n      >\n        <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />\n        Success\n      </Button>\n      <Button\n        variant="destructive"\n        size="sm"\n        onClick={() => toast.error("Cluster offline", "Could not connect to host.")}\n      >\n        <AlertCircle className="w-3.5 h-3.5 mr-1.5" />\n        Error\n      </Button>\n      <Button\n        variant="outline"\n        size="sm"\n        onClick={() => {\n          const id = toast.loading("Generating assets", "Please wait while files are processed...");\n          setTimeout(() => {\n            toast.close(id);\n            toast.success("Assets ready", "Generated 4 specimen assets.");\n          }, 2500);\n        }}\n      >\n        <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />\n        Loading\n      </Button>\n    </div>\n  );\n}'}
+  code={'import { toast, Button } from "@galaui/react";\nimport { Bell, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <div className="flex flex-wrap gap-2.5 items-center">\n      <Button\n        variant="default"\n        \n        onClick={() => toast.show("System update installed", "GalaUI v0.4.0 is active.")}\n      >\n        <Bell className="w-3.5 h-3.5 mr-1.5" />\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        \n        onClick={() => toast.success("Token synced", "All variables updated.")}\n      >\n        <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />\n        Success\n      </Button>\n      <Button\n        variant="destructive"\n        \n        onClick={() => toast.error("Cluster offline", "Could not connect to host.")}\n      >\n        <AlertCircle className="w-3.5 h-3.5 mr-1.5" />\n        Error\n      </Button>\n      <Button\n        variant="outline"\n        \n        onClick={() => {\n          const id = toast.loading("Generating assets", "Please wait while files are processed...");\n          setTimeout(() => {\n            toast.close(id);\n            toast.success("Assets ready", "Generated 4 specimen assets.");\n          }, 2500);\n        }}\n      >\n        <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />\n        Loading\n      </Button>\n    </div>\n  );\n}'}
 >
   <div className="flex flex-wrap gap-2.5 items-center">
     <Button
       variant="default"
-      size="sm"
-      onClick={() => toast.show("System update installed", "GalaUI v0.2.0 is active.")}
+      
+      onClick={() => toast.show("System update installed", "GalaUI v0.4.0 is active.")}
     >
       <Bell className="w-3.5 h-3.5 mr-1.5" />
       Default
     </Button>
     <Button
       variant="outline"
-      size="sm"
+      
       onClick={() => toast.success("Token synced", "All variables updated.")}
     >
       <CheckCircle2 className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
@@ -49,7 +49,7 @@ Mount the `<Toaster />` component once in your root application layout.
     </Button>
     <Button
       variant="destructive"
-      size="sm"
+      
       onClick={() => toast.error("Cluster offline", "Could not connect to host.")}
     >
       <AlertCircle className="w-3.5 h-3.5 mr-1.5" />
@@ -57,7 +57,7 @@ Mount the `<Toaster />` component once in your root application layout.
     </Button>
     <Button
       variant="outline"
-      size="sm"
+      
       onClick={() => {
         const id = toast.loading("Generating assets", "Please wait while files are processed...");
         setTimeout(() => {
@@ -79,11 +79,11 @@ Attach an actionable button to the notification via `actionProps`.
 <ComponentPreview
   title="Action Button"
   description="Display an action button to allow quick user undo or review."
-  code={'import { toast, Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      size="sm"\n      onClick={() => {\n        toast.show("File deleted", "Moved to Trash.", {\n          actionProps: {\n            children: "Undo",\n            onClick: () => toast.success("Restored file", "File has been restored to your directory."),\n          },\n        });\n      }}\n    >\n      Delete File\n    </Button>\n  );\n}'}
+  code={'import { toast, Button } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      \n      onClick={() => {\n        toast.show("File deleted", "Moved to Trash.", {\n          actionProps: {\n            children: "Undo",\n            onClick: () => toast.success("Restored file", "File has been restored to your directory."),\n          },\n        });\n      }}\n    >\n      Delete File\n    </Button>\n  );\n}'}
 >
   <Button
     variant="outline"
-    size="sm"
+    
     onClick={() => {
       toast.show("File deleted", "Moved to Trash.", {
         actionProps: {
@@ -104,11 +104,11 @@ Use `toast.promise()` to automatically manage pending, success, and error states
 <ComponentPreview
   title="Promise Handling"
   description="Automatically transition between loading and resolved notifications."
-  code={'import { toast, Button } from "@galaui/react";\nimport { RefreshCw } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      size="sm"\n      onClick={() => {\n        toast.promise(\n          new Promise((resolve) => setTimeout(() => resolve({ count: 12 }), 2000)),\n          {\n            loading: "Syncing design tokens...",\n            success: (data) => ({\n              title: "Tokens updated",\n              description: `Successfully synced ${data.count} variables.`,\n            }),\n            error: "Failed to sync tokens",\n          }\n        );\n      }}\n    >\n      <RefreshCw className="w-3.5 h-3.5 mr-1.5" />\n      Sync Tokens\n    </Button>\n  );\n}'}
+  code={'import { toast, Button } from "@galaui/react";\nimport { RefreshCw } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Button\n      variant="outline"\n      \n      onClick={() => {\n        toast.promise(\n          new Promise((resolve) => setTimeout(() => resolve({ count: 12 }), 2000)),\n          {\n            loading: "Syncing design tokens...",\n            success: (data) => ({\n              title: "Tokens updated",\n              description: `Successfully synced ${data.count} variables.`,\n            }),\n            error: "Failed to sync tokens",\n          }\n        );\n      }}\n    >\n      <RefreshCw className="w-3.5 h-3.5 mr-1.5" />\n      Sync Tokens\n    </Button>\n  );\n}'}
 >
   <Button
     variant="outline"
-    size="sm"
+    
     onClick={() => {
       toast.promise(
         new Promise((resolve) => setTimeout(() => resolve({ count: 12 }), 2000)),
@@ -137,11 +137,11 @@ Because `toast` is an imperative singleton manager, you can trigger notification
 <ComponentPreview
   title="Trigger from Standalone Function"
   description="Calling a plain helper function defined outside the React component."
-  code={'import { toast, Button } from "@galaui/react";\n\n// Plain external helper function\nfunction triggerStandaloneNotice() {\n  toast.show("Quick note", "Dispatched from a standalone function outside React state.");\n}\n\nexport default function Example() {\n  return (\n    <Button variant="outline" size="sm" onClick={triggerStandaloneNotice}>\n      Trigger from Helper\n    </Button>\n  );\n}'}
+  code={'import { toast, Button } from "@galaui/react";\n\n// Plain external helper function\nfunction triggerStandaloneNotice() {\n  toast.show("Quick note", "Dispatched from a standalone function outside React state.");\n}\n\nexport default function Example() {\n  return (\n    <Button variant="outline"  onClick={triggerStandaloneNotice}>\n      Trigger from Helper\n    </Button>\n  );\n}'}
 >
   <Button
     variant="outline"
-    size="sm"
+    
     onClick={() => {
       toast.show("Quick note", "Dispatched from a standalone function outside React state.");
     }}

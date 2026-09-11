@@ -10,6 +10,7 @@ describe("Button", () => {
     const button = screen.getByRole("button", { name: /click me/i });
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass("bg-primary");
+    expect(button).toHaveClass("text-sm");
   });
 
   it("renders with various variants", () => {

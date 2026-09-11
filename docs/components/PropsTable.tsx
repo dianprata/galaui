@@ -41,7 +41,7 @@ export function PropsTable({
 
   if (!props || props.length === 0) {
     return (
-      <div className="rounded-xl border border-border bg-card p-6 text-center text-xs text-muted-foreground">
+      <div className="rounded-xl border border-border bg-card p-6 text-center text-sm text-muted-foreground">
         No dedicated props documented for {componentName || "this component"}.
       </div>
     );
@@ -59,14 +59,14 @@ export function PropsTable({
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Filter props..."
               size="sm"
-              className="pl-8 h-8 text-xs"
+              className="pl-8 h-8 text-sm"
             />
           </div>
         </div>
       )}
 
       <div className="overflow-x-auto">
-        <Table className="w-full text-left text-xs">
+        <Table className="w-full text-[13px] text-left">
           <TableHeader>
             <TableRow className="border-b border-border bg-muted/40">
               <TableHead className="w-44 font-semibold text-foreground py-2.5 px-4">
@@ -97,7 +97,7 @@ export function PropsTable({
                       )}
                     </div>
                   </TableCell>
-                  <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground break-words">
+                  <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground wrap-break-word">
                     {item.type}
                   </TableCell>
                   <TableCell className="align-top py-3 px-4 font-mono text-muted-foreground">

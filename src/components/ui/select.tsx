@@ -51,14 +51,14 @@ function Select<Value = any, Multiple extends boolean | undefined = false>({
 const selectTriggerVariants = cva(
   "flex w-full items-center justify-between rounded-lg border border-border bg-background text-foreground ring-offset-background transition-all duration-150 ease-out active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 cursor-pointer select-none text-left font-normal",
   {
-   variants: {
-     size: {
-       default: "h-8 px-3 text-xs gap-2 rounded-lg",
-       xs: "h-6 px-2 text-xs gap-1.5 rounded-md",
-       sm: "h-7 px-2.5 text-xs gap-1.5 rounded-md",
-       lg: "h-9 px-3.5 text-sm gap-2.5 rounded-lg",
-     },
-   },
+    variants: {
+      size: {
+        default: "h-8 px-3 text-sm gap-2 rounded-lg",
+        xs: "h-6 px-2 text-xs gap-1.5 rounded-md",
+        sm: "h-7 px-2.5 text-xs gap-1.5 rounded-md",
+        lg: "h-9 px-3.5 text-sm gap-2.5 rounded-lg",
+      },
+    },
     defaultVariants: {
       size: "default",
     },

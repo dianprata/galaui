@@ -1,5 +1,6 @@
 import {
   NumberField,
+  Label,
   NumberFieldGroup,
   NumberFieldInput,
   NumberFieldStepper,
@@ -29,13 +30,13 @@ An input field tailored for numeric values, complete with stepper controls and k
 <ComponentPreview
   title="Numeric Stepper"
   description="Quantity selector with up/down stepper buttons."
-  code={'import {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n  NumberFieldStepper,\n  NumberFieldIncrement,\n  NumberFieldDecrement,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xs space-y-1.5">\n      <label className="text-xs font-medium">Quantity</label>\n      <NumberField defaultValue={1} min={1} max={99}>\n        <NumberFieldGroup>\n          <NumberFieldInput />\n          <NumberFieldStepper>\n            <NumberFieldIncrement />\n            <NumberFieldDecrement />\n          </NumberFieldStepper>\n        </NumberFieldGroup>\n      </NumberField>\n    </div>\n  );\n}'}
+  code={'import {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n  NumberFieldStepper,\n  NumberFieldIncrement,\n  NumberFieldDecrement,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-xs space-y-1.5">\n      <Label htmlFor="qty">Quantity</Label>\n      <NumberField defaultValue={1} min={1} max={99}>\n        <NumberFieldGroup>\n          <NumberFieldInput id="qty" />\n          <NumberFieldStepper>\n            <NumberFieldIncrement />\n            <NumberFieldDecrement />\n          </NumberFieldStepper>\n        </NumberFieldGroup>\n      </NumberField>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-xs space-y-1.5">
-    <label className="text-xs font-medium">Quantity</label>
+    <Label htmlFor="qty">Quantity</Label>
     <NumberField defaultValue={1} min={1} max={99}>
       <NumberFieldGroup>
-        <NumberFieldInput />
+        <NumberFieldInput id="qty" />
         <NumberFieldStepper>
           <NumberFieldIncrement />
           <NumberFieldDecrement />

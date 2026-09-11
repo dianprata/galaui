@@ -1,4 +1,4 @@
-import { Textarea, Badge } from "@/index";
+import { Textarea, Label, Badge } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
 import { CodeBlock } from "@docs/components/CodeBlock";
 import { ApiReference } from "@docs/components/ApiReference";
@@ -21,11 +21,11 @@ A multiline text input field with configurable sizing and state indicators.
 <ComponentPreview
   title="Multiline Bio"
   description="Textarea field with placeholder and helper text."
-  code={'import { Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-1.5">\n      <label className="text-xs font-medium">Bio Description</label>\n      <Textarea rows={4} placeholder="Write a short summary about your project..." />\n      <p className="text-[11px] text-muted-foreground">Brief description for your dashboard profile.</p>\n    </div>\n  );\n}'}
+  code={'import { Textarea } from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-sm space-y-1.5">\n      <Label htmlFor="bio">Bio Description</Label>\n      <Textarea id="bio" rows={4} placeholder="Write a short summary about your project..." />\n      <p className="text-[11px] text-muted-foreground">Brief description for your dashboard profile.</p>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-sm space-y-1.5">
-    <label className="text-xs font-medium">Bio Description</label>
-    <Textarea rows={4} placeholder="Write a short summary about your project..." />
+    <Label htmlFor="bio">Bio Description</Label>
+    <Textarea id="bio" rows={4} placeholder="Write a short summary about your project..." />
     <p className="text-[11px] text-muted-foreground">Brief description for your dashboard profile.</p>
   </div>
 </ComponentPreview>

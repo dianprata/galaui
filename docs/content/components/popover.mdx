@@ -6,6 +6,7 @@ import {
   PopoverDescription,
   Button,
   Input,
+  Label,
   Badge,
 } from "@/index";
 import { ComponentPreview } from "@docs/components/ComponentPreview";
@@ -31,26 +32,26 @@ Displays rich contextual content in a portal layer triggered by a button. Built 
 <ComponentPreview
   title="Settings Popover"
   description="Card popover with form fields and dismissal control."
-  code={'import {\n  Popover,\n  PopoverTrigger,\n  PopoverPopup,\n  PopoverTitle,\n  PopoverDescription,\n  Button,\n  Input,\n} from "@galaui/react";\nimport { Sliders } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Popover>\n      <PopoverTrigger>\n        <Button variant="outline" size="sm">\n          <Sliders className="w-3.5 h-3.5 mr-1.5" />\n          Dimensions\n        </Button>\n      </PopoverTrigger>\n      <PopoverPopup className="w-80">\n        <PopoverTitle>Set Dimensions</PopoverTitle>\n        <PopoverDescription>Configure custom canvas width and height.</PopoverDescription>\n        <div className="space-y-2 py-3">\n          <div className="flex items-center justify-between gap-2">\n            <span className="text-xs">Width</span>\n            <Input size="xs" defaultValue="100%" className="w-28 font-mono" />\n          </div>\n          <div className="flex items-center justify-between gap-2">\n            <span className="text-xs">Max Height</span>\n            <Input size="xs" defaultValue="600px" className="w-28 font-mono" />\n          </div>\n        </div>\n      </PopoverPopup>\n    </Popover>\n  );\n}'}
+  code={'import {\n  Popover,\n  PopoverTrigger,\n  PopoverPopup,\n  PopoverTitle,\n  PopoverDescription,\n  Button,\n  Input,\n  Label,\n} from "@galaui/react";\nimport { Sliders } from "lucide-react";\n\nexport default function Example() {\n  return (\n    <Popover>\n      <PopoverTrigger>\n        <Button variant="outline">\n          <Sliders className="w-4 h-4 mr-1.5" />\n          Dimensions\n        </Button>\n      </PopoverTrigger>\n      <PopoverPopup className="w-80">\n        <PopoverTitle>Set Dimensions</PopoverTitle>\n        <PopoverDescription>Configure custom canvas width and height.</PopoverDescription>\n        <div className="space-y-3 py-3">\n          <div className="flex items-center justify-between gap-3">\n            <Label htmlFor="popover-width">Width</Label>\n            <Input id="popover-width" defaultValue="100%" className="w-32 font-mono" />\n          </div>\n          <div className="flex items-center justify-between gap-3">\n            <Label htmlFor="popover-height">Max Height</Label>\n            <Input id="popover-height" defaultValue="600px" className="w-32 font-mono" />\n          </div>\n        </div>\n      </PopoverPopup>\n    </Popover>\n  );\n}'}
 >
   <Popover>
     <PopoverTrigger>
-      <Button variant="outline" size="sm">
-        <Sliders className="w-3.5 h-3.5 mr-1.5" />
+      <Button variant="outline">
+        <Sliders className="w-4 h-4 mr-1.5" />
         Dimensions
       </Button>
     </PopoverTrigger>
     <PopoverPopup className="w-80">
       <PopoverTitle>Set Dimensions</PopoverTitle>
       <PopoverDescription>Configure custom canvas width and height.</PopoverDescription>
-      <div className="space-y-2 py-3">
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-xs">Width</span>
-          <Input size="xs" defaultValue="100%" className="w-28 font-mono" />
+      <div className="space-y-3 py-3">
+        <div className="flex items-center justify-between gap-3">
+          <Label htmlFor="popover-width">Width</Label>
+          <Input id="popover-width" defaultValue="100%" className="w-32 font-mono" />
         </div>
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-xs">Max Height</span>
-          <Input size="xs" defaultValue="600px" className="w-28 font-mono" />
+        <div className="flex items-center justify-between gap-3">
+          <Label htmlFor="popover-height">Max Height</Label>
+          <Input id="popover-height" defaultValue="600px" className="w-32 font-mono" />
         </div>
       </div>
     </PopoverPopup>

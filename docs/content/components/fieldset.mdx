@@ -64,7 +64,7 @@ Fieldset enclosed in an elegant bordered card.
 <ComponentPreview
   title="Notification Preferences"
   description="Bordered fieldset grouping related preference switches."
-  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Switch,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered">\n        <FieldsetLegend>Notifications</FieldsetLegend>\n        <FieldsetDescription>Manage how and when you receive product alerts.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <div className="flex items-center justify-between">\n            <span className="text-xs font-medium">Email summary</span>\n            <Switch defaultChecked />\n          </div>\n          <div className="flex items-center justify-between">\n            <span className="text-xs font-medium">Security alerts</span>\n            <Switch defaultChecked />\n          </div>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
+  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Switch,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered">\n        <FieldsetLegend>Notifications</FieldsetLegend>\n        <FieldsetDescription>Manage how and when you receive product alerts.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <div className="flex items-center justify-between">\n            <span className="text-sm font-medium">Email summary</span>\n            <Switch defaultChecked />\n          </div>\n          <div className="flex items-center justify-between">\n            <span className="text-sm font-medium">Security alerts</span>\n            <Switch defaultChecked />\n          </div>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-md">
     <Fieldset variant="bordered">
@@ -72,11 +72,11 @@ Fieldset enclosed in an elegant bordered card.
       <FieldsetDescription>Manage how and when you receive product alerts.</FieldsetDescription>
       <div className="space-y-3 pt-1">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium">Email summary</span>
+          <span className="text-sm font-medium">Email summary</span>
           <Switch defaultChecked />
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium">Security alerts</span>
+          <span className="text-sm font-medium">Security alerts</span>
           <Switch defaultChecked />
         </div>
       </div>
@@ -91,7 +91,7 @@ Setting `disabled` on `<Fieldset />` automatically cascades to disable all inter
 <ComponentPreview
   title="Disabled State"
   description="Fieldset disabled state prevents interaction across all grouped controls."
-  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Field,\n  FieldLabel,\n  Input,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered" disabled>\n        <FieldsetLegend>Billing Account (Locked)</FieldsetLegend>\n        <FieldsetDescription>Account modifications are currently restricted.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <Field>\n            <FieldLabel>Tax ID</FieldLabel>\n            <Input value="TAX-9821-X" readOnly />\n          </Field>\n          <Button size="sm">Update Payment Method</Button>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
+  code={'import {\n  Fieldset,\n  FieldsetLegend,\n  FieldsetDescription,\n  Field,\n  FieldLabel,\n  Input,\n  Button,\n} from "@galaui/react";\n\nexport default function Example() {\n  return (\n    <div className="w-full max-w-md">\n      <Fieldset variant="bordered" disabled>\n        <FieldsetLegend>Billing Account (Locked)</FieldsetLegend>\n        <FieldsetDescription>Account modifications are currently restricted.</FieldsetDescription>\n        <div className="space-y-3 pt-1">\n          <Field>\n            <FieldLabel>Tax ID</FieldLabel>\n            <Input value="TAX-9821-X" readOnly />\n          </Field>\n          <Button >Update Payment Method</Button>\n        </div>\n      </Fieldset>\n    </div>\n  );\n}'}
 >
   <div className="w-full max-w-md">
     <Fieldset variant="bordered" disabled>
@@ -102,7 +102,7 @@ Setting `disabled` on `<Fieldset />` automatically cascades to disable all inter
           <FieldLabel>Tax ID</FieldLabel>
           <Input value="TAX-9821-X" readOnly />
         </Field>
-        <Button size="sm">Update Payment Method</Button>
+        <Button >Update Payment Method</Button>
       </div>
     </Fieldset>
   </div>

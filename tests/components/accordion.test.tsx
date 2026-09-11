@@ -20,7 +20,9 @@ describe("Accordion", () => {
     );
 
     expect(screen.getByText("Content 1")).toBeInTheDocument();
+    expect(screen.getByText("Content 1").closest("[data-slot=panel], [class*='text-sm']")).toHaveClass("text-sm");
     const trigger2 = screen.getByRole("button", { name: /section 2/i });
+    expect(trigger2).toHaveClass("text-sm");
     await user.click(trigger2);
 
     expect(await screen.findByText("Content 2")).toBeInTheDocument();

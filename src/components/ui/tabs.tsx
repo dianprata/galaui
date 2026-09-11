@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const Tabs = BaseTabs.Root;
 
 const tabsListVariants = cva(
-  "inline-flex h-8 items-center justify-center rounded-lg bg-muted p-1 text-xs text-muted-foreground"
+  "inline-flex items-center justify-center rounded-lg bg-muted p-0.5 text-sm text-muted-foreground"
 );
 
 export interface TabsListProps
@@ -35,7 +35,7 @@ const TabsTab = React.forwardRef<
   <BaseTabs.Tab
     ref={ref}
     className={cn(
-      "relative z-10 inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-xs font-medium ring-offset-background transition-colors duration-200 ease-out hover:text-foreground active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-muted-foreground data-active:text-foreground cursor-pointer select-none",
+      "relative z-10 inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-colors duration-200 ease-out hover:text-foreground active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-muted-foreground data-active:text-foreground cursor-pointer select-none",
       className
     )}
     {...props}

@@ -159,14 +159,14 @@ function ComponentCard({ component }: { component: ComponentItem }) {
                     ? "default"
                     : "secondary"
                 }
-                size="sm"
-                className="text-[10px] h-4 px-1.5 font-medium"
+                size="xs"
+                className="font-medium"
               >
                 {component.badge}
               </Badge>
             )}
           </div>
-          <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+          <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
             {component.description}
           </p>
         </div>
@@ -212,16 +212,16 @@ export default function ComponentsPage() {
         </p>
 
         <div className="flex flex-wrap items-center gap-2 my-4 not-prose">
-          <Badge variant="default" className="font-mono text-xs px-2.5 py-1">
+          <Badge variant="default">
             47 Components
           </Badge>
-          <Badge variant="secondary" className="text-xs px-2 py-1">
+          <Badge variant="secondary">
             Base UI Primitives
           </Badge>
-          <Badge variant="outline" className="text-xs px-2 py-1">
+          <Badge variant="outline">
             Tailwind CSS v4
           </Badge>
-          <Badge variant="outline" className="text-xs px-2 py-1">
+          <Badge variant="outline">
             WAI-ARIA Compliant
           </Badge>
         </div>
@@ -238,7 +238,7 @@ export default function ComponentsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search components or keywords..."
-              className="pl-8 pr-8 h-9 text-xs w-full bg-muted/30 focus:bg-background"
+              className="pl-8 pr-8 h-9 w-full bg-muted/30 focus:bg-background"
             />
             {searchQuery && (
               <button
@@ -285,7 +285,7 @@ export default function ComponentsPage() {
                 setSearchQuery("");
                 setSelectedCategory("all");
               }}
-              className="text-xs text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground"
             >
               Reset filters
             </Button>
