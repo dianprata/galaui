@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Tooltip, TooltipTrigger, TooltipPopup, TooltipProvider } from "@/components/ui/tooltip";
+import { Tooltip, TooltipTrigger, TooltipPopup, TooltipProvider, TooltipPositioner, TooltipArrow } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 
 describe("Tooltip", () => {
@@ -14,5 +14,10 @@ describe("Tooltip", () => {
       </TooltipProvider>
     );
     expect(screen.getByRole("button", { name: /hover trigger/i })).toBeInTheDocument();
+  });
+
+  it("exports TooltipPositioner and TooltipArrow", () => {
+    expect(TooltipPositioner).toBeDefined();
+    expect(TooltipArrow).toBeDefined();
   });
 });

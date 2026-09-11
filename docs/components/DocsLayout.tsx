@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
-import { useState } from "react";
 import { Link } from "wouter";
 import { Sidebar } from "./Sidebar";
 import { Logo } from "./Logo";
 import { TableOfContents, MobileTableOfContents } from "./TableOfContents";
-import { ThemeToggle } from "./ThemeToggle";
-import { SearchDialog } from "./SearchDialog";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { DocsPagination } from "./DocsPagination";
-import { Badge, Button, Kbd, KbdGroup } from "@/index";
+import { Navbar } from "./Navbar";
+import { Button } from "@/index";
 import { cn } from "@/index";
-import { Drawer, DrawerPopup } from "@/index";
-import { Menu, X, Search } from "lucide-react";
-import { useEffect } from "react";
-import { usePackageVersion } from "@docs/lib/version";
+import { X } from "lucide-react";
 
 interface DocsLayoutProps {
   children: ReactNode;
@@ -21,98 +16,26 @@ interface DocsLayoutProps {
 }
 
 export function DocsLayout({ children, className }: DocsLayoutProps) {
-  const version = usePackageVersion();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        setSearchOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
     <div className={cn("min-h-screen bg-background text-foreground flex flex-col antialiased", className)}>
-      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <Navbar
+        mobileDrawerContent={({ close }) => (
+          <>
+            <div className="p-4 border-b border-border flex items-center justify-between shrink-0">
+              <Link href="/" onClick={close} className="flex items-center gap-2 font-bold tracking-tight text-foreground hover:opacity-90">
+                <Logo withText size={28} />
+              </Link>
+              <Button variant="ghost" size="icon-sm" onClick={close} title="Close menu">
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
 
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-[1440px] w-full mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden"
-            >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </Button>
-
-            <Link href="/" className="flex items-center gap-1 font-bold tracking-tight text-foreground hover:opacity-90">
-              <Logo withText size={26} />
-            </Link>
-
-            <Link href="/getting-started/changelog" className="transition-opacity hover:opacity-80" title="View Changelog">
-              <Badge variant="outline" className="text-[10px] h-5 px-1.5 font-mono cursor-pointer hover:bg-muted">
-                v{version}
-              </Badge>
-            </Link>
-          </div>
-
-          {/* Search Command Palette Trigger */}
-          <div className="flex-1 max-w-sm mx-4 hidden md:block">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg border border-border/80 bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground transition-all cursor-pointer shadow-2xs"
-            >
-              <div className="flex items-center gap-2">
-                <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                <span>Search documentation...</span>
-              </div>
-              <KbdGroup>
-                <Kbd>⌘</Kbd>
-                <Kbd>K</Kbd>
-              </KbdGroup>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={() => setSearchOpen(true)}
-              className="md:hidden text-muted-foreground hover:text-foreground"
-              title="Search"
-            >
-              <Search className="w-4 h-4" />
-            </Button>
-
-            <a
-              href="https://github.com/dianprata/galaui"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              title="GitHub Repository"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                />
-              </svg>
-            </a>
-
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+            <div className="flex-1 overflow-y-auto">
+              <Sidebar onNavigate={close} className="w-full h-auto border-r-0 static" />
+            </div>
+          </>
+        )}
+      />
 
       {/* Body Container */}
       <div className="flex-1 flex max-w-[1440px] w-full mx-auto">
@@ -120,25 +43,6 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
         <div className="hidden md:block">
           <Sidebar />
         </div>
-
-        {/* Mobile Drawer */}
-        <Drawer open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-          <DrawerPopup side="left" showCloseButton={false} className={cn("p-0 w-72 max-w-72 rounded-none h-full max-h-full border-r border-border flex flex-col")}>
-            <div className="p-4 border-b border-border flex items-center justify-between shrink-0">
-              <span className="font-semibold text-sm">Navigation</span>
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="flex-1 overflow-y-auto">
-              <Sidebar onNavigate={() => setMobileMenuOpen(false)} className="w-full" />
-            </div>
-          </DrawerPopup>
-        </Drawer>
 
         {/* Main Documentation Content */}
         <main className="flex-1 min-w-0 flex flex-col">
@@ -158,7 +62,7 @@ export function DocsLayout({ children, className }: DocsLayoutProps) {
 
       {/* Simple Footer */}
       {/* <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-[1440px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>MIT License © {new Date().getFullYear()} GalaUI</span>
           <span>Powered by Base UI & Tailwind CSS v4</span>
         </div>
