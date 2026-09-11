@@ -546,7 +546,7 @@ export function NotificationTrigger() {
             className={cn(
               "flex-1 overflow-auto p-6 flex items-center justify-center transition-colors",
               canvasBg === "grid"
-                ? "bg-[radial-gradient(#d1d5db_1px,transparent_1px)] dark:bg-[radial-gradient(#1f2429_1px,transparent_1px)] [background-size:20px_20px]"
+                ? "bg-[radial-gradient(#d1d5db_1px,transparent_1px)] dark:bg-[radial-gradient(#242429_1px,transparent_1px)] [background-size:20px_20px]"
                 : "bg-background"
             )}
           >
