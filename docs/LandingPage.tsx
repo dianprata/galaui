@@ -109,7 +109,7 @@ export function ReleaseModal() {
           <span>Launch Project</span>
         </Button>
       </DialogTrigger>
-      
+
       <DialogPopup>
         <div className="p-4 space-y-2">
           <h3 className="text-base font-bold">Project Initialized</h3>

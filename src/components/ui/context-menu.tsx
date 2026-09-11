@@ -105,7 +105,7 @@ const ContextMenuGroupLabel = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & {
     inset?: boolean;
   }
- >(({ className, inset, children, ...props }, ref) => (
+>(({ className, inset, children, ...props }, ref) => (
   <div
     ref={ref}
     role="presentation"
