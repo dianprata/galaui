@@ -6,6 +6,33 @@ const TooltipProvider = ({ children }: { children: React.ReactNode }) => <>{chil
 const Tooltip = BaseTooltip.Root;
 const TooltipPortal = BaseTooltip.Portal;
 
+const TooltipPositioner = React.forwardRef<
+  React.ElementRef<typeof BaseTooltip.Positioner>,
+  React.ComponentPropsWithoutRef<typeof BaseTooltip.Positioner>
+>(({ className, ...props }, ref) => (
+  <BaseTooltip.Positioner
+    ref={ref}
+    className={cn("z-[70] outline-none", className)}
+    {...props}
+  />
+));
+TooltipPositioner.displayName = "TooltipPositioner";
+
+const TooltipArrow = React.forwardRef<
+  React.ElementRef<typeof BaseTooltip.Arrow>,
+  React.ComponentPropsWithoutRef<typeof BaseTooltip.Arrow>
+>(({ className, ...props }, ref) => (
+  <BaseTooltip.Arrow
+    ref={ref}
+    className={cn(
+      "data-[side=bottom]:top-[-8px] data-[side=top]:bottom-[-8px] data-[side=right]:left-[-8px] data-[side=left]:right-[-8px]",
+      className
+    )}
+    {...props}
+  />
+));
+TooltipArrow.displayName = "TooltipArrow";
+
 const TooltipTrigger = React.forwardRef<
   any,
   React.ComponentPropsWithoutRef<typeof BaseTooltip.Trigger>
@@ -27,11 +54,11 @@ const TooltipPopup = React.forwardRef<
   }
 >(({ className, sideOffset = 4, children, ...props }, ref) => (
   <BaseTooltip.Portal>
-    <BaseTooltip.Positioner sideOffset={sideOffset}>
+    <BaseTooltip.Positioner sideOffset={sideOffset} className="z-[70] outline-none">
       <BaseTooltip.Popup
         ref={ref}
         className={cn(
-          "z-50 origin-[var(--transform-origin)] overflow-hidden rounded-md bg-zinc-900 px-3 py-1.5 text-xs text-zinc-50 shadow-md transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95 dark:bg-zinc-100 dark:text-zinc-900",
+          "z-[70] origin-[var(--transform-origin)] overflow-hidden rounded-md bg-zinc-900 px-3 py-1.5 text-xs text-zinc-50 shadow-md transition-all duration-150 ease-out data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95 dark:bg-zinc-100 dark:text-zinc-900",
           className
         )}
         {...props}
@@ -43,4 +70,4 @@ const TooltipPopup = React.forwardRef<
 ));
 TooltipPopup.displayName = "TooltipPopup";
 
-export { Tooltip, TooltipTrigger, TooltipPopup, TooltipProvider, TooltipPortal };
+export { Tooltip, TooltipTrigger, TooltipPopup, TooltipProvider, TooltipPortal, TooltipPositioner, TooltipArrow };
