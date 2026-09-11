@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 const inputVariants = cva(
   "flex w-full border border-border bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-150 ease-out",
   {
-   variants: {
-     size: {
-       default: "h-8 px-3 text-xs rounded-lg",
-       xs: "h-6 px-2 text-xs rounded-md",
-       sm: "h-7 px-2.5 text-xs rounded-md",
-       lg: "h-9 px-3.5 text-sm rounded-lg",
-     },
-   },
+    variants: {
+      size: {
+        default: "h-8 px-3 text-sm rounded-lg",
+        xs: "h-6 px-2 text-xs rounded-md",
+        sm: "h-7 px-2.5 text-xs rounded-md",
+        lg: "h-9 px-3.5 text-sm rounded-lg",
+      },
+    },
     defaultVariants: {
       size: "default",
     },

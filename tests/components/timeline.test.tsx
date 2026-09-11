@@ -34,7 +34,9 @@ describe("Timeline", () => {
     );
 
     expect(screen.getByText("Deployed")).toBeInTheDocument();
+    expect(screen.getByText("Deployed")).toHaveClass("text-sm");
     expect(screen.getByText("10:00 AM")).toBeInTheDocument();
+    expect(screen.getByText("10:00 AM")).toHaveClass("text-xs");
     expect(screen.getByText("Shipped to production")).toBeInTheDocument();
     expect(screen.getByText("Merged PR")).toBeInTheDocument();
   });

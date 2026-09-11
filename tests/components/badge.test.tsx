@@ -19,15 +19,15 @@ describe("Badge", () => {
 
   it("renders badge sizes correctly", () => {
     const { rerender } = render(<Badge>Default Badge</Badge>);
-    expect(screen.getByText("Default Badge")).toHaveClass("h-4.5");
+    expect(screen.getByText("Default Badge")).toHaveClass("h-5");
 
     rerender(<Badge size="xs">Extra Small Badge</Badge>);
-    expect(screen.getByText("Extra Small Badge")).toHaveClass("h-3.5");
+    expect(screen.getByText("Extra Small Badge")).toHaveClass("h-4");
 
     rerender(<Badge size="sm">Small Badge</Badge>);
-    expect(screen.getByText("Small Badge")).toHaveClass("h-4");
+    expect(screen.getByText("Small Badge")).toHaveClass("h-4.5");
 
     rerender(<Badge size="lg">Large Badge</Badge>);
-    expect(screen.getByText("Large Badge")).toHaveClass("h-5.5");
+    expect(screen.getByText("Large Badge")).toHaveClass("h-6");
   });
 });

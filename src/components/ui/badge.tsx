@@ -18,16 +18,16 @@ const badgeVariants = cva(
           "border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300",
         warning:
           "border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300",
-      info:
-        "border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300",
+        info:
+          "border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300",
+      },
+      size: {
+        default: "h-5 px-2 text-xs",
+        xs: "h-4 px-1.5 text-[10px]",
+        sm: "h-4.5 px-1.5 text-[11px]",
+        lg: "h-6 px-2.5 text-xs",
+      },
     },
-    size: {
-      default: "h-4.5 px-1.5 text-[11px]",
-      xs: "h-3.5 px-1 text-[10px] rounded-sm",
-      sm: "h-4 px-1 text-[10px] rounded-sm",
-      lg: "h-5.5 px-2 text-xs rounded-sm",
-    },
-  },
     defaultVariants: {
       variant: "default",
       size: "default",

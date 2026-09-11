@@ -12,6 +12,7 @@ describe("Select", () => {
       </Select>
     );
     expect(screen.getByRole("combobox", { name: /select country/i })).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: /select country/i })).toHaveClass("text-sm");
     expect(screen.getByText("Choose country...")).toBeInTheDocument();
   });
 });

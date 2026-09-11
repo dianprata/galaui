@@ -19,6 +19,7 @@ describe("Tabs", () => {
 
     expect(screen.getByText("Panel Content 1")).toBeInTheDocument();
     const tab2 = screen.getByRole("tab", { name: /tab 2/i });
+    expect(tab2).toHaveClass("text-sm");
     await user.click(tab2);
 
     expect(await screen.findByText("Panel Content 2")).toBeInTheDocument();
