@@ -1,26 +1,181 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sparkles,
-  AlertCircle,
   CheckCircle2,
   Info,
   XCircle,
   BellRing,
   PanelLeft,
-  Hash,
-  Key,
   AlignCenter,
   AlignLeft,
   AlignRight,
   AlignJustify,
-  ChevronDown,
   ChevronRight,
   AlertTriangle,
   FolderPlus,
   Plus,
   Copy,
   Trash2,
+  Settings,
+  Bold,
+  Italic,
+  Underline,
+  FileText,
 } from "lucide-react";
+import {
+  Button,
+  Badge,
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogPopup,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AspectRatio,
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+  Calendar,
+  Checkbox,
+  CheckboxGroup,
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsiblePanel,
+  Combobox,
+  ComboboxInput,
+  ComboboxPopup,
+  ComboboxItem,
+  ComboboxEmpty,
+  ComboboxList,
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuPortal,
+  ContextMenuPositioner,
+  ContextMenuPopup,
+  ContextMenuGroup,
+  ContextMenuGroupLabel,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  DatePicker,
+  Drawer,
+  DrawerTrigger,
+  DrawerPopup,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerClose,
+  EmptyState,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateActions,
+  Field,
+  FieldLabel,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  Fieldset,
+  FieldsetLegend,
+  FieldsetDescription,
+  Input,
+  InputOTP,
+  InputOTPSlot,
+  InputOTPSeparator,
+  Kbd,
+  Label,
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarPopup,
+  MenubarItem,
+  MenubarSeparator,
+  Meter,
+  MeterTrack,
+  MeterIndicator,
+  MeterLabel,
+  MeterValue,
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuViewport,
+  NumberField,
+  NumberFieldGroup,
+  NumberFieldInput,
+  NumberFieldStepper,
+  NumberFieldIncrement,
+  NumberFieldDecrement,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+  PreviewCard,
+  PreviewCardTrigger,
+  PreviewCardPopup,
+  Progress,
+  ProgressTrack,
+  ProgressIndicator,
+  ProgressLabel,
+  ProgressValue,
+  ScrollArea,
+  Separator,
+  Skeleton,
+  Stepper,
+  StepItem,
+  StepIndicator,
+  StepContent,
+  StepTitle,
+  StepDescription,
+  StepSeparator,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+  Textarea,
+  Timeline,
+  TimelineItem,
+  TimelineDot,
+  TimelineConnector,
+  TimelineContent,
+  TimelineTitle,
+  TimelineDescription,
+  TimelineTime,
+  useToastManager,
+  toast,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  Toolbar,
+  ToolbarGroup,
+  ToolbarButton,
+  ToolbarSeparator,
+  cn,
+} from "@/index";
 
 interface ShowcaseProps {
   selectedComp: string;
@@ -31,9 +186,25 @@ interface ShowcaseProps {
   btnLabel?: string;
   isDisabled?: boolean;
   customCn?: string;
+  orientation?: "horizontal" | "vertical";
+  sliderValue?: number;
 }
 
-function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
+function ToastDemoButton({
+  showToast,
+  btnVariant,
+  btnSize,
+  btnLabel,
+  isDisabled,
+  customCn,
+}: {
+  showToast: (msg: string) => void;
+  btnVariant?: any;
+  btnSize?: any;
+  btnLabel?: string;
+  isDisabled?: boolean;
+  customCn?: string;
+}) {
   const toastManager = useToastManager();
   const handleCreate = (type?: "default" | "success" | "warning" | "destructive" | "loading") => {
     if (toastManager?.add) {
@@ -78,17 +249,17 @@ function ToastDemoButton({ showToast }: { showToast: (msg: string) => void }) {
   };
 
   return (
-    <div className="flex flex-wrap gap-2 justify-center items-center">
-      <Button variant="primary" size="sm" onClick={() => handleCreate()}>
-        <BellRing className="w-4 h-4 mr-1.5" /> Dispatch Toast
+    <div className={cn("flex flex-wrap gap-2 justify-center items-center", customCn)}>
+      <Button variant={btnVariant || "primary"} size={btnSize || "sm"} disabled={isDisabled} onClick={() => handleCreate()}>
+        <BellRing className="w-4 h-4 mr-1.5" /> {btnLabel || "Dispatch Toast"}
       </Button>
-      <Button variant="outline" size="sm" onClick={() => handleCreate("success")}>
+      <Button variant="outline" size={btnSize || "sm"} disabled={isDisabled} onClick={() => handleCreate("success")}>
         <CheckCircle2 className="w-4 h-4 mr-1.5 text-emerald-500" /> Success
       </Button>
-      <Button variant="outline" size="sm" onClick={() => handleCreate("warning")}>
+      <Button variant="outline" size={btnSize || "sm"} disabled={isDisabled} onClick={() => handleCreate("warning")}>
         <AlertTriangle className="w-4 h-4 mr-1.5 text-amber-500" /> Warning
       </Button>
-      <Button variant="destructive" size="sm" onClick={() => handleCreate("destructive")}>
+      <Button variant="destructive" size={btnSize || "sm"} disabled={isDisabled} onClick={() => handleCreate("destructive")}>
         <XCircle className="w-4 h-4 mr-1.5" /> Destructive
       </Button>
       <Button variant="outline" size="sm" onClick={() => handleCreate("loading")}>
@@ -140,6 +311,8 @@ export function ShowcaseNewComponents({
   btnLabel,
   isDisabled = false,
   customCn = "",
+  orientation = "horizontal",
+  sliderValue = 68,
 }: ShowcaseProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [alertDlgOpen, setAlertDlgOpen] = useState(false);
@@ -148,8 +321,12 @@ export function ShowcaseNewComponents({
   const [alignValues, setAlignValues] = useState<string[]>(["left"]);
   const [checkedItems, setCheckedItems] = useState<string[]>(["analytics"]);
   const [numberVal, setNumberVal] = useState<number | null>(42);
-  const [progressVal, setProgressVal] = useState(68);
+  const [progressVal, setProgressVal] = useState(sliderValue);
   const [ctxMenuOpen, setCtxMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setProgressVal(sliderValue);
+  }, [sliderValue]);
 
   /* FOCUS STAGE */
   if (viewMode === "focus") {
@@ -218,7 +395,14 @@ export function ShowcaseNewComponents({
             <div className="w-full text-left space-y-2">
               <span className="text-xs font-semibold text-muted-foreground">Interactive Queue Dispatcher</span>
               <div className="p-4 rounded-xl border border-border bg-card flex flex-col items-center justify-center gap-3">
-                <ToastDemoButton showToast={showToast} />
+                <ToastDemoButton
+                  showToast={showToast}
+                  btnVariant={btnVariant}
+                  btnSize={btnSize}
+                  btnLabel={btnLabel}
+                  isDisabled={isDisabled}
+                  customCn={customCn}
+                />
                 <p className="text-[11px] text-muted-foreground">
                   Dispatches Base UI animated queue toast to the viewport in the bottom-right.
                 </p>
@@ -249,8 +433,11 @@ export function ShowcaseNewComponents({
       case "drawer":
         return (
           <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-            <DrawerTrigger render={<Button variant="primary" />}>
-              <PanelLeft className="w-4 h-4 mr-1.5" /> Open Drawer (Sheet)
+            <DrawerTrigger render={
+              <Button variant={btnVariant || "primary"} size={btnSize || "default"} disabled={isDisabled} className={cn(customCn)}>
+                <PanelLeft className="w-4 h-4 mr-1.5" /> {btnLabel || "Open Drawer (Sheet)"}
+              </Button>
+            }>
             </DrawerTrigger>
             <DrawerPopup side="right">
               <DrawerHeader>
@@ -422,8 +609,11 @@ export function ShowcaseNewComponents({
       case "alert-dialog":
         return (
           <AlertDialog open={alertDlgOpen} onOpenChange={setAlertDlgOpen}>
-            <AlertDialogTrigger render={<Button variant="destructive" />}>
-              <Trash2 className="w-4 h-4 mr-1.5" /> Purge Deployment
+            <AlertDialogTrigger render={
+              <Button variant={btnVariant || "destructive"} size={btnSize || "default"} disabled={isDisabled} className={cn(customCn)}>
+                <Trash2 className="w-4 h-4 mr-1.5" /> {btnLabel || "Purge Deployment"}
+              </Button>
+            }>
             </AlertDialogTrigger>
             <AlertDialogPopup>
               <AlertDialogHeader>
@@ -767,7 +957,7 @@ export function ShowcaseNewComponents({
 
       case "empty-state":
         return (
-          <EmptyState className="w-full max-w-md">
+          <EmptyState className={cn("w-full max-w-md", customCn)}>
             <EmptyStateIcon>
               <FolderPlus />
             </EmptyStateIcon>
@@ -776,12 +966,198 @@ export function ShowcaseNewComponents({
               You have not created any custom semantic variable mappings yet. Start by syncing with Tokens Studio.
             </EmptyStateDescription>
             <EmptyStateActions>
-              <Button variant="outline" size="sm">Documentation</Button>
-              <Button variant="primary" size="sm" onClick={() => showToast("Initiated token sync")}>
+              <Button variant="outline" size={btnSize || "sm"} disabled={isDisabled}>Documentation</Button>
+              <Button variant={btnVariant || "primary"} size={btnSize || "sm"} disabled={isDisabled} onClick={() => showToast("Initiated token sync")}>
                 <Plus className="w-3.5 h-3.5 mr-1" /> Add Variable
               </Button>
             </EmptyStateActions>
           </EmptyState>
+        );
+
+      case "calendar":
+        return (
+          <div className={cn("p-4 rounded-xl border border-border bg-card shadow-xs", customCn)}>
+            <Calendar mode="single" disabled={isDisabled ? () => true : undefined} />
+          </div>
+        );
+
+      case "date-picker":
+        return (
+          <div className={cn("w-full max-w-xs space-y-2", customCn)}>
+            <label className="text-xs font-medium text-foreground block">{btnLabel || "Select Deployment Date"}</label>
+            <DatePicker placeholder={btnLabel || "Choose execution date..."} disabled={isDisabled} />
+          </div>
+        );
+
+      case "command":
+        return (
+          <div className={cn("w-full max-w-md rounded-xl border border-border bg-card shadow-md overflow-hidden", customCn)}>
+            <Command>
+              <CommandInput placeholder={btnLabel || "Type a command or search..."} disabled={isDisabled} />
+              <CommandList className="max-h-56">
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Actions">
+                  <CommandItem onSelect={() => showToast("Syncing tokens...")}>
+                    <Sparkles className="w-3.5 h-3.5 mr-2 text-primary" /> Sync Figma Variables
+                  </CommandItem>
+                  <CommandItem onSelect={() => showToast("Creating component...")}>
+                    <Plus className="w-3.5 h-3.5 mr-2" /> Create Component Specimen
+                  </CommandItem>
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Settings">
+                  <CommandItem onSelect={() => showToast("Opening settings...")}>
+                    <Settings className="w-3.5 h-3.5 mr-2" /> Theme Preferences
+                  </CommandItem>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
+        );
+
+      case "combobox":
+        return (
+          <div className={cn("w-full max-w-xs space-y-2", customCn)}>
+            <label className="text-xs font-medium text-foreground block">{btnLabel || "Component Selection"}</label>
+            <Combobox items={["Button", "Dialog", "Select", "Switch", "Tooltip", "Command"]}>
+              <ComboboxInput placeholder={btnLabel || "Select or type component..."} disabled={isDisabled} />
+              <ComboboxPopup>
+                <ComboboxList>
+                  <ComboboxEmpty>No component found</ComboboxEmpty>
+                  {["Button", "Dialog", "Select", "Switch", "Tooltip", "Command"].map((item) => (
+                    <ComboboxItem key={item} value={item}>{item}</ComboboxItem>
+                  ))}
+                </ComboboxList>
+              </ComboboxPopup>
+            </Combobox>
+          </div>
+        );
+
+      case "stepper":
+        return (
+          <div className="w-full max-w-lg p-4 rounded-xl border border-border bg-card">
+            <Stepper value={2} orientation={orientation}>
+              <StepItem step={1}>
+                <StepIndicator />
+                <StepContent>
+                  <StepTitle>Tokens</StepTitle>
+                  <StepDescription>Configure CSS vars</StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepSeparator />
+              <StepItem step={2}>
+                <StepIndicator />
+                <StepContent>
+                  <StepTitle>{btnLabel || "Specimen"}</StepTitle>
+                  <StepDescription>Active review stage</StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepSeparator />
+              <StepItem step={3}>
+                <StepIndicator />
+                <StepContent>
+                  <StepTitle>Ship</StepTitle>
+                  <StepDescription>Publish to npm</StepDescription>
+                </StepContent>
+              </StepItem>
+            </Stepper>
+          </div>
+        );
+
+      case "timeline":
+        return (
+          <div className="w-full max-w-md p-4 rounded-xl border border-border bg-card">
+            <Timeline orientation={orientation}>
+              <TimelineItem>
+                <TimelineDot variant="success" />
+                <TimelineConnector />
+                <TimelineContent>
+                  <TimelineTitle>Tokens Studio Parity</TimelineTitle>
+                  <TimelineDescription>Electric Cobalt ramp and zinc scale verified.</TimelineDescription>
+                  <TimelineTime>09:00 AM</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineDot variant="default" />
+                <TimelineConnector />
+                <TimelineContent>
+                  <TimelineTitle>{btnLabel || "Playground Workbench Redesign"}</TimelineTitle>
+                  <TimelineDescription>Implementing comprehensive interactive catalog.</TimelineDescription>
+                  <TimelineTime>Just now</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineDot />
+                <TimelineContent>
+                  <TimelineTitle>Release @galaui/react</TimelineTitle>
+                  <TimelineDescription>Verify ship checks and deploy docs.</TimelineDescription>
+                  <TimelineTime>Pending</TimelineTime>
+                </TimelineContent>
+              </TimelineItem>
+            </Timeline>
+          </div>
+        );
+
+      case "fieldset":
+        return (
+          <div className={cn("w-full max-w-md", customCn)}>
+            <Fieldset disabled={isDisabled}>
+              <FieldsetLegend>{btnLabel || "API Authentication"}</FieldsetLegend>
+              <FieldsetDescription>Manage environment tokens and rotation policy.</FieldsetDescription>
+              <div className="space-y-3 pt-2">
+                <Input size={btnSize || "default"} placeholder="Client ID" defaultValue="gala_app_99182" disabled={isDisabled} />
+                <Input size={btnSize || "default"} placeholder="Secret Key" type="password" defaultValue="sec_key_token" disabled={isDisabled} />
+              </div>
+            </Fieldset>
+          </div>
+        );
+
+      case "form":
+        return (
+          <div className={cn("w-full max-w-md p-4 rounded-xl border border-border bg-card space-y-3", customCn)}>
+            <h4 className="text-xs font-semibold text-foreground">{btnLabel || "Project Form Configuration"}</h4>
+            <div className="space-y-2">
+              <Label htmlFor="proj-name">Repository Name</Label>
+              <Input id="proj-name" size={btnSize || "default"} placeholder="galaui-workspace" disabled={isDisabled} />
+            </div>
+            <Button variant={btnVariant || "primary"} size={btnSize || "sm"} disabled={isDisabled} onClick={() => showToast("Form submitted")}>
+              Save Settings
+            </Button>
+          </div>
+        );
+
+      case "label":
+        return (
+          <div className={cn("space-y-2 max-w-sm", customCn)}>
+            <Label>{btnLabel || "Semantic Label Element"}</Label>
+            <Input size={btnSize || "default"} placeholder="Associated control..." disabled={isDisabled} />
+            <p className="text-[11px] text-muted-foreground">Built on accessible label primitives.</p>
+          </div>
+        );
+
+      case "textarea":
+        return (
+          <div className={cn("w-full max-w-md space-y-2", customCn)}>
+            <Label>{btnLabel || "Component Specification Notes"}</Label>
+            <Textarea placeholder={btnLabel || "Add design tokens and props requirements..."} disabled={isDisabled} className="h-24" />
+          </div>
+        );
+
+      case "toolbar":
+        return (
+          <div className={cn("p-2 rounded-xl border border-border bg-card shadow-xs", customCn)}>
+            <Toolbar orientation={orientation}>
+              <ToolbarGroup>
+                <ToolbarButton variant={btnVariant || "ghost"} size={btnSize || "default"} disabled={isDisabled} title="Bold" onClick={() => showToast("Bold clicked")}><Bold className="w-3.5 h-3.5" /></ToolbarButton>
+                <ToolbarButton variant={btnVariant || "ghost"} size={btnSize || "default"} disabled={isDisabled} title="Italic" onClick={() => showToast("Italic clicked")}><Italic className="w-3.5 h-3.5" /></ToolbarButton>
+                <ToolbarButton variant={btnVariant || "ghost"} size={btnSize || "default"} disabled={isDisabled} title="Underline" onClick={() => showToast("Underline clicked")}><Underline className="w-3.5 h-3.5" /></ToolbarButton>
+              </ToolbarGroup>
+              <ToolbarSeparator />
+              <ToolbarGroup>
+                <ToolbarButton variant={btnVariant || "ghost"} size={btnSize || "default"} disabled={isDisabled} onClick={() => showToast("File clicked")}><FileText className="w-3.5 h-3.5 mr-1" /> {btnLabel || "Document"}</ToolbarButton>
+              </ToolbarGroup>
+            </Toolbar>
+          </div>
         );
 
       default:

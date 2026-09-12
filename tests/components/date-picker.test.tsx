@@ -19,4 +19,34 @@ describe("DatePicker & DateRangePicker", () => {
     render(<DateRangePicker placeholder="Select range" />);
     expect(screen.getByRole("button", { name: /select range/i })).toBeInTheDocument();
   });
+
+  it("selects date and clears with clearable button", async () => {
+    const user = userEvent.setup();
+    let selected: Date | undefined = new Date(2026, 5, 10);
+    const { rerender } = render(
+      <DatePicker
+        value={selected}
+        onChange={(d) => {
+          selected = d;
+        }}
+        clearable
+      />
+    );
+
+    const clearBtn = screen.getByRole("button", { name: /clear date/i });
+    await user.click(clearBtn);
+    expect(selected).toBeUndefined();
+
+    rerender(
+      <DatePicker
+        value={selected}
+        placeholder="Pick target release"
+        onChange={(d) => {
+          selected = d;
+        }}
+        clearable
+      />
+    );
+    expect(screen.getByText("Pick target release")).toBeInTheDocument();
+  });
 });
