@@ -20,122 +20,122 @@
           ],
           "hiddenFromPublishing": true
         },
-        {
-          "name": "color/primitive/zinc/50",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#FAFAFA"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/100",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#F4F4F5"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/200",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#E4E4E7"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/300",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#D4D4D8"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/400",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#A1A1AA"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#71717A"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/600",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#52525B"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/700",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#3F3F46"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/800",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#27272A"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/900",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#18181B"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/zinc/950",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#09090B"
-          },
+       {
+         "name": "color/primitive/zinc/50",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#F8F9FA"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/100",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#F1F3F5"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/200",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#E9ECEF"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/300",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#DEE2E6"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/400",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#CED4DA"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#868E96"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/600",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#495057"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/700",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#343A40"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/800",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#212529"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/900",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#111113"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/zinc/950",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#000000"
+         },
           "scopes": [
             "ALL_SCOPES"
           ],
@@ -152,177 +152,177 @@
           ],
           "hiddenFromPublishing": true
         },
-        {
-          "name": "color/primitive/brand/50",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#EEF2FF"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/100",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#E0E7FF"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/200",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#C7D2FE"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/300",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#A5B4FC"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/400",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#818CF8"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#6366F1"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/600",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#4F46E5"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/700",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#4338CA"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/800",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#3730A3"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/900",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#312E81"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/brand/950",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#1E1B4B"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/red/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#EF4444"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/red/600",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#DC2626"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/green/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#22C55E"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/amber/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#F59E0B"
-          },
-          "scopes": [
-            "ALL_SCOPES"
-          ],
-          "hiddenFromPublishing": true
-        },
-        {
-          "name": "color/primitive/sky/500",
-          "type": "COLOR",
-          "valuesByMode": {
-            "mode_primitive_val": "#0EA5E9"
-          },
+       {
+         "name": "color/primitive/brand/50",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#EEF4FF"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/100",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#D8E6FF"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/200",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#B9D2FE"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/300",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#8AB4FC"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/400",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#558FF8"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#2F6FED"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/600",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#1D54DB"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/700",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#143EB0"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/800",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#12348E"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/900",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#142F73"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/brand/950",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#0C1C45"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/red/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#E03131"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/red/600",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#C92A2A"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/green/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#2F9E44"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/amber/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#F08C00"
+         },
+         "scopes": [
+           "ALL_SCOPES"
+         ],
+         "hiddenFromPublishing": true
+       },
+       {
+         "name": "color/primitive/sky/500",
+         "type": "COLOR",
+         "valuesByMode": {
+            "mode_primitive_val": "#1971C2"
+         },
           "scopes": [
             "ALL_SCOPES"
           ],
